@@ -20,8 +20,7 @@ You're going to need:
  1. Fork this repository on Github.
  2. Clone *your forked repository* (not our original one) to your hard drive with `git clone https://github.com/YOURUSERNAME/api-docs.git`
  3. `cd api-docs`
- 4. Install all dependencies: `bundle install`
- 4.5 If you are having trouble with some of the gems, try running `bundle update`
+ 4. Install all dependencies: `bundle install`. If you are having trouble with some of the gems, try running `bundle update`, then `bundle install` again.
  5. Start the test server: `bundle exec middleman server`
 
 You can now see the docs at <http://localhost:4567>. Whoa! That was fast!

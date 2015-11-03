@@ -7,8 +7,7 @@ language_tabs:
   - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://algorithmia.com/'>Sign up for an Algorithmia Key</a>
 
 includes:
   - errors
