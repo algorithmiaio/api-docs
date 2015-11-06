@@ -10,12 +10,12 @@ language_tabs:
 
 toc_footers:
   - <a href='https://algorithmia.com/'>Sign up for an Algorithmia Key</a>
+  - <a href='http://github.com/tripit/slate'>Powered by Slate</a>
 
 includes:
-  - kittensintro
+  - introduction
   - gettingstarted
   - authentication
-  - kittenserrors
   - help
 
 search: true
