@@ -26,7 +26,7 @@ AlgorithmiaClient client = Algorithmia.client("YOUR_API_KEY");
 import com.algorithmia._
 import com.algorithmia.algo._
 
-val client = Algorithmia.client('YOUR_API_KEY')
+val client = Algorithmia.client("YOUR_API_KEY")
 ```
 
 ```javascript

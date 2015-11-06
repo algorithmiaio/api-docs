@@ -13,6 +13,7 @@ toc_footers:
 
 includes:
   - kittensintro
+  - gettingstarted
   - authentication
   - kittenserrors
   - help
