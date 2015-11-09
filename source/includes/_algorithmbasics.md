@@ -25,17 +25,25 @@ When calling into an algorithm that uses another algorithm internally, you may e
 View your last 30-days of account usage on your account page.
 </aside>
 
-
 ## Permissions
 
+Permissions can be found on the algorithm description page. The algorithm's author can indicate if the algorithm will require internet access, call other algorithms, or if the users can view the source code. Some of these permissions will affect the amount of credits needed to run the algorithm. Be sure to check out the algorithm's permissions section on the description page for more information.
+
 ### Internet Access
+
+Many of the algorithms in the marketplace can be run without accessing the internet. Some algorithms require retrieving or sending data outside of the Algorithmia platform during execution. If an algorithm's permissions indicate that it requires internet access, please be aware that there is the potential for your data to leave the Algorithmia platform.
+
 ### Calls Other Algorithms
+
+Some algorithms call other algorithms in order to combine algorithms and parallelize workloads. This permission is listed on the description page so that you can determine if the algorithm will incur additional usage and royalty costs.
+
 ### Source Code Visibility
 
+Algorithm authors have the option of choosing to open source their algorithm. Open source algorithms have a button on the description to "View Source" and anyone can see the internal code of the algorithm. If an algorithm is closed source, this means that only the author has the ability to view the code. Note that open source algorithms still accrue fees for usage and may have a royalty fee.
 
 ## Versioning
 
-Each algorithm follows the same versioning scheme composed of a revision number, minor version number, and major version number. This allows algorithm developers the ability to update and improve their algorithms while maintaining a dependable version for comsumers to call.
+Each algorithm follows the same versioning scheme composed of a revision number, minor version number, and major version number. This allows algorithm developers the ability to update and improve their algorithms while maintaining a dependable version for consumers to call.
 
 ### Revisions (-.-.z)
 
