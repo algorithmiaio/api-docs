@@ -4,7 +4,7 @@ This is a quick guide to get you started using the Algorithmia API. We'll walk t
 
 ## Finding an Algorithm
 
-To get started, find an algorithm you'd like to call. You can do this by using the search bar or browsing the marketplace by tags & categories. Each algorithm has an owner and an algorithm name; you'll need both to format your request. This information is listed under the algorithm name on the description page as well as in the format of the algorithm's URL. 
+To get started, find an algorithm you'd like to call. You can do this by using the search bar or browsing the marketplace by tags & categories. Each algorithm has an owner and an algorithm name; you'll need both to format your request. This information is listed under the algorithm name on the description page as well as in the format of the algorithm's URL.
 
 For a given user and algorithm name, API calls are made to the following url:
 
@@ -69,12 +69,12 @@ We'll make our first call with the demo algorithm ["Hello"](https://algorithmia.
 
 Calling the algorithm is as simple as making a curl request. For example, to call the demo/Hello algorithm, simply run a cURL request in your terminal:
 
-`curl -X POST -d 'YOUR_NAME' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY'`	
+`curl -X POST -d 'YOUR_NAME' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY'`
 
 You can also use one of the clients to make your call. Simply pick your language tab on the right side of these docs to see the sample call in another language.
 
 
-<aside class="warning">
+<aside class="notice">
 Remember — you'll need to authenticate!
 </aside>
 
@@ -84,14 +84,14 @@ Remember — you'll need to authenticate!
 
 ```
 { "result": "Hello Liz",
-  "metadata": { 
+  "metadata": {
   	 "content_type": "text",
-  	 "duration": 0.000187722 
+  	 "duration": 0.000187722
   }
 }
 ```
 
-Each algorithm returns a response in JSON. It will include the `"result"` as well as metadata about the API call you made. 
+Each algorithm returns a response in JSON. It will include the `"result"` as well as metadata about the API call you made.
 
 The metadata will include the `content_type` as well as a duration. The duration is the compute time of the API call into the algorithm. Because you are charged on the compute time of the API call, this information will help you optimize your use of the API. For more information, see the [Pricing](https://algorithmia.com/docs/platform/pricing/) page.
 
