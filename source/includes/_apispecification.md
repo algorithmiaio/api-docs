@@ -107,20 +107,24 @@ To call private versions of an algorithm, you must use a fully specified semanti
 
 ## Query parameters
 
-`timeout={seconds}` specifies a timeout for the call (in seconds)
-The default timeout is 5 minutes
-The maximum configurable timeout is 50 minutes
+The API offers the following query paramaters:
 
-stdout=true returns the stdout the Algorithm produced during the call.
-Will only display if the Algorithm author initiates the call.
+* `timeout={seconds}`
+  * Specifies a timeout for the call in seconds
+  * The default timeout is 5 minutes
+  * The maximum configurable timeout is 50 minutes
 
-output=raw returns the result of the Algorithm call without the JSON-RPC wrapper
+* `stdout=true`
+  * Returns the stdout that the algorithm produced during the call
+  * Will only display if the algorithm author initiates the call
 
-If the algorithm returned an error then an HTTP 400 status code will be used
+* `output=raw`
+  * Returns the result of the algorithm call without the JSON-RPC wrapper
+  * If the algorithm returned an error then an HTTP 400 status code will be used
 
-output=void returns immediately and does not wait for the algorithm to run
-
-The result of the algorithm will not be accessible, this is useful in some cases where an algorithm outputs to a data:// file with a long running time
+* `output=void`
+  * Returns immediately and does not wait for the algorithm to run
+  * The result of the algorithm will not be accessible; this is useful in some cases where an algorithm outputs to a data:// file with a long running time
 
 ## Output
 
