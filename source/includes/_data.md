@@ -45,37 +45,51 @@ If you select this permission option for your data collection, it will allow oth
 
 Anyone can read the data in your collection, feed that data to their algorithms, or copy the data to their own collections.
 
-### The '.my' pseudonym
-
-If you are operating on your own directories / files you can use the .my pseudonym and the username will be assumed from the authorization provided.
+### The `.my` pseudonym
 
 ```
 data://.my/:collection
 data://.my/:collection/:filename
 ```
+
+If you are operating on your own directories / files you can use the .my pseudonym and the username will be assumed from the authorization provided.
+
 <aside class="warning">
-Avoid using the '.my' pseudonym in the program code of an algorithm, because when it is executed .my will be interpreted as the username of the user who called the algorithm.
+Avoid using the `.my` pseudonym in the program code of an algorithm. When the algorithm is executed, `.my` will be interpreted as the username of the user who called the algorithm, rather than the author's username.
 </aside>
 
 ## Session Collections
+
 If using Data URI within Algorithmia:
 
 data://.session/:filename
 The session directory exists for each Algorithm Session and is only accessible to algorithms within that session
 
+* What makes a session?
+* when do you use this collection
+* why isn't there a "session" section on the data page?
+* example?
+
 ## Temporary Algorithm Collections
-If using api-key auth from outside of Algorithmia (for example, when using a client) or from inside Algorithmia:
 
+> Access temporary collections with this URI format from inside of Algorithmia or using a client:
+
+```
 data://.algo/:author/:algoname/temp/:filename
-Use this form when accessing an algorithm collection from a specific algorithm. For example, if the user docs had an algorithm called CollectionWriter that produced a file called file.csv in its temp directory, this file could be accessed as
+```
+Temporary algorithm collections give you a space to store data on a temporary basis. You will find the temporary collections under a `temp` directory inside of an algorithm collection. For example, a user can have an algorithm that produces a file inside of a temporary collection.
 
-data://.algo/docs/CollectionWriter/temp/file.csv
-If using Data URI from inside Algorithmia, you may optionally use the simplified form, in which the algorithm triggering the call will be assumed:
+### The Simplified Format
 
+> Simplified URI format:
+
+```
 data://.algo/temp/:filename
-Data is deleted from temp directories after approximately one day
+```
 
-This is particularly useful for including in sample input so that users can run your sample input and the output will be cleaned up automatically
+If you are using the Data URI from inside Algorithmia, you can also use a simplified form of the URI. This simplified version will infer the algorithm when it is being called so that you don't have to specify the author and algorithm name.
+
+Temporary algorithm collections are ideal for storing data on a short term basis. This data is deleted after approximately one day. This temporary state is perfect for showcasing sample input in an algorithm that generates an output. If you store the output in a temporary algorithm collection, the results from teh algorithm will be cleaned up automatically, allowing users to try the algorithm without creating permanent data.
 
 ## Permanent Algorithm Collections
 If using api-key auth from outside of Algorithmia (for example, when using a client) or from inside Algorithmia:
