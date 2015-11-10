@@ -60,10 +60,13 @@ Avoid using the `.my` pseudonym in the program code of an algorithm. When the al
 
 ## Session Collections
 
-If using Data URI within Algorithmia:
+> The format for session colelctions when using Data URI within Algorithmia:
 
+```
 data://.session/:filename
-The session directory exists for each Algorithm Session and is only accessible to algorithms within that session
+```
+
+The session directory exists for each Algorithm Session and is only accessible to algorithms within that session.
 
 * What makes a session?
 * when do you use this collection
@@ -89,22 +92,44 @@ data://.algo/temp/:filename
 
 If you are using the Data URI from inside Algorithmia, you can also use a simplified form of the URI. This simplified version will infer the algorithm when it is being called so that you don't have to specify the author and algorithm name.
 
-Temporary algorithm collections are ideal for storing data on a short term basis. This data is deleted after approximately one day. This temporary state is perfect for showcasing sample input in an algorithm that generates an output. If you store the output in a temporary algorithm collection, the results from teh algorithm will be cleaned up automatically, allowing users to try the algorithm without creating permanent data.
+Temporary algorithm collections are ideal for storing data on a short term basis. This data is deleted after approximately one day. This temporary state is perfect for showcasing sample input in an algorithm that generates an output. If you store the output in a temporary algorithm collection, the results from the algorithm will be cleaned up automatically, allowing users to try the algorithm without creating permanent data.
 
 ## Permanent Algorithm Collections
-If using api-key auth from outside of Algorithmia (for example, when using a client) or from inside Algorithmia:
 
+> Access permanent collections with this URI format from inside of Algorithmia or using a client:
+
+```
 data://.algo/:author/:algoname/perm/:filename
-Use this form when accessing an algorithm collection from a specific algorithm. For example, if the user docs had an algorithm called CollectionWriter that produced a file called file.csv in its perm directory, this file could be accessed as
+```
 
-data://.algo/docs/CollectionWriter/perm/file.csv
-If using Data URI from inside Algorithmia, you may optionally use the simplified form, in which the algorithm triggering the call will be assumed:
+If you need to access an algorithm collection from a specific algorithm, you can use the permanent collection. This allows users to generate output that is saved permanently as a result of running the algorithm. Unlike the Temporary Algorithm Collections, the data stored in the permanent is not cleared after one day.
 
+### The Simplified Format
+
+> Simplified URI format:
+
+```
 data://.algo/perm/:filename
+```
+
+If you are using the Data URI from inside Algorithmia, you can also use a simplified form of the URI. This simplified version will infer the algorithm when it is being called so that you don't have to specify the author and algorithm name.
+
+
 
 ## more
-* algorithm data vs my collections
-* perm vs temp vs session
-* what kinds of permissions are there
 
+general questions to help clarify docs:
+
+* algorithm data vs my collections (on the data page)
+* perm vs temp vs session
+  * session section is totally incomplete
+* are permissions only available on user collections?
+* why do we have disabled permission change boxes on the data page for algorithm data?
+
+potential "why" questions about the Data api:
+
+* why should I use this instead of saving stuff myself on my own storage?
+* what is an algorithm outputs to data:// do I have to use the data api?
+* does this tie me into another service I don't want?
+* is there a usage fee for data
 
