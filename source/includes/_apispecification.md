@@ -158,29 +158,3 @@ binary | The result element is a Base64 encoded binary data in a JSON String
 <aside class="notice">
 Note that `error.stacktrace` will only display if the Algorithm is open source or if the Algorithm author initiates the call.
 </aside>
-
-
-## Not sure what to do with this content yet"
-Success response:
-
-{
-    "result": "Welcome to Algorithmia: docs",
-    "metadata": {
-        "duration": 0.001,
-        "content_type": "text"
-    }
-}
-
-Failure response:
-
-{
-    "error": {
-        "message": "there was a problem",
-        "stacktrace": "line1\nline2"
-    },
-
-    "metadata": {
-        "duration": 0.001,
-        "stdout": "line1\nline2"
-    }
-}
