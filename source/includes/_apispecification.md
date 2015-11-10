@@ -124,36 +124,7 @@ The result of the algorithm will not be accessible, this is useful in some cases
 
 ## Output
 
-
-> Success response:
-
-```
-{
-    "result": "Welcome to Algorithmia: docs",
-    "metadata": {
-        "duration": 0.001,
-        "content_type": "text"
-    }
-}
-```
-
-> Failure response:
-
-```
-{
-    "error": {
-        "message": "there was a problem",
-        "stacktrace": "line1\nline2"
-    },
-
-    "metadata": {
-        "duration": 0.001,
-        "stdout": "line1\nline2"
-    }
-}
-```
-
-```json
+```shell
 {
     "result": Any, /* Optional */
     "error": {
@@ -171,13 +142,41 @@ The result of the algorithm will not be accessible, this is useful in some cases
 }
 ```
 
-metadata.content_type specifies the encoding of the result element:
+The `metadata.content_type` specifies which type of encoding the result element is in.
 
-"content_type": "void" means that the result element is null
-"content_type": "text" means that the result element is a JSON String using UTF-8 encoding
-"content_type": "json" means that the result element is any valid JSON element
-"content_type": "binary" means that the result element is a Base64 encoded binary data in a JSON String
+Content-Type | Description
+--------------  | --------------
+void | The result element is null
+text | The result element is a JSON string using UTF-8 encoding
+json | The result element is any valid JSON type
+binary | The result element is a Base64 encoded binary data in a JSON String
 
 <aside class="notice">
 Note that `error.stacktrace` will only display if the Algorithm is open source or if the Algorithm author initiates the call.
 </aside>
+
+
+## Not sure what to do with this content yet"
+Success response:
+
+{
+    "result": "Welcome to Algorithmia: docs",
+    "metadata": {
+        "duration": 0.001,
+        "content_type": "text"
+    }
+}
+
+Failure response:
+
+{
+    "error": {
+        "message": "there was a problem",
+        "stacktrace": "line1\nline2"
+    },
+
+    "metadata": {
+        "duration": 0.001,
+        "stdout": "line1\nline2"
+    }
+}
