@@ -17,6 +17,7 @@ includes:
   - gettingstarted
   - algorithmbasics
   - authentication
+  - apispecification
   - data
   - help
 
