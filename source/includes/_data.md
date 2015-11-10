@@ -21,6 +21,11 @@ The Algorithmia Data API is used when you have large data requirements.
 
 There are four types of collections: User collections, Session collections, Permanent Algorithm collections, and Temporary Algorithm collections.
 
+User collections can store data and allow you to set both the read/write permission on that data collection. Other collection types have system-defined permissions:
+
+* Session Collections only have read/write access from within the same session
+* Algorithm collections have read/write access from internal calls and this data collection type is guaranteed to exist for every algorithm.
+
 ## User Collections
 
 ```
@@ -60,7 +65,7 @@ Avoid using the `.my` pseudonym in the program code of an algorithm. When the al
 
 ## Session Collections
 
-> The format for session colelctions when using Data URI within Algorithmia:
+> The format for session collections when using Data URI within Algorithmia:
 
 ```
 data://.session/:filename
