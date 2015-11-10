@@ -124,7 +124,7 @@ The API offers the following query paramaters:
 
 * `output=void`
   * Returns immediately and does not wait for the algorithm to run
-  * The result of the algorithm will not be accessible; this is useful in some cases where an algorithm outputs to a data:// file with a long running time
+  * The result of the algorithm will not be accessible; this is useful in some cases where an algorithm outputs to a `data://` file with a long running time (see [The Data API](#the-data-api) for more information)
 
 ## Output
 
