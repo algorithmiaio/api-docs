@@ -17,8 +17,10 @@ includes:
   - gettingstarted
   - algorithmbasics
   - authentication
+  - clients
   - apispecification
   - data
+  - algorithmdevelopment
   - help
 
 search: true
