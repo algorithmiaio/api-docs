@@ -8,26 +8,25 @@ We currently support algorithm development in Java, Scala, and Python, but we ar
 ## Algorithm Profiles
 
 > To illustrate a good algorithm profile, below you'll find examples from the Sentiment Analysis algorithm. 
-
-> Description example:
+> Ex. Description:
 
 ```
 Identify and extract sentiment in given string. Sentiment analysis (also known as opinion mining) refers to the use of natural language processing, text analysis and computational linguistics to identify and extract subjective information in source materials. This algorithm takes an input string and assigns a sentiment rating in the range [0-4] (very negative, negative, neutral, positive, and very positive).
 ```
 
-> Tagline example:
+> Ex. Tagline:
 
 ```
 Determine sentiment from text
 ```
 
-> Sample input example:
+> Ex. Sample input:
 
 ```
 "Algorithmia loves you!"
 ```
-
-> Sample tags:
+	
+> Ex. Tags:
 
 ```
 nlp
@@ -66,12 +65,12 @@ The console on the algorithm profile allows users to experiment with the algorit
 
 Several additional pieces of metadata are displayed alongside each algorithm:
 
-Version: the latest semantic version published for public use - see versioning for more details
-API Called: the lifetime number of calls made to any version of this algorithm
-Cost per Call: a cost breakdown for calling this algorithm - see pricing for more details
-Permissions: any special permissions that this algorithm requires - see permissions for more details
-Source Availability: the license and source visibility of an algorithm - see visibility for more details
-Input/Output Types: automatically determined from your algorithm's code
+* Input/Output Types: Automatically determined from your algorithm's code.
+* API Calls: The lifetime number of calls made to any version of the algorithm.
+* Version: The latest semantic version published for public use. See [versioning](#versioning) for more details.
+* Cost Breakdown: A calculator that includes the royalty fee and average call time. See [pricing](#pricing) for more details.
+* Permissions: Any special permissions that this algorithm requires. See [permissions](#permissions) for more details.
+* Source Availability: The license and source visibility of an algorithm. See [permissions](#permissions) for more details.
 
 
 ## Managing dependencies
