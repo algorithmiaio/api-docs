@@ -91,7 +91,7 @@ Remember — you'll need to authenticate!
 }
 ```
 
-Each algorithm returns a response in JSON. It will include the `"result"` as well as metadata about the API call you made.
+Each algorithm returns a response in JSON. It will include the `"result"` as well as metadata about the API call you made. The metadata will include the `content_type` as well as a duration.
 
-The metadata will include the `content_type` as well as a duration. The duration is the compute time of the API call into the algorithm. Because you are charged on the compute time of the API call, this information will help you optimize your use of the API. For more information, see the [Pricing](https://algorithmia.com/docs/platform/pricing/) page.
+The duration is the compute time of the API call into the algorithm. This is the time in seconds between the start of the execution of the algorithm and when it produces a response. Because you are charged on the compute time of the API call, this information will help you optimize your use of the API. For more information, see the [Pricing](https://algorithmia.com/docs/platform/pricing/) page.
 
