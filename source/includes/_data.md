@@ -6,25 +6,20 @@ The Algorithmia API allows for up to 10 Mib of data to be fed into an algorithm 
 
 ## When should I use the Data API?
 
-The Algorithmia Data API is used when you have large data requirements.
+The Algorithmia Data API is used when you have large data requirements or need to preserve state between calls. It allows algorithms to access data from within the same sesion, but ensures that your data is safe. 
 
-* preserve state?
-* keep data in one place?
-* other reasons to use this?
-
-* when do I have to use the data api?
-
+There are many different collection types that have different features and security measures in place. Data in your temporary and user collections can be downloaded to be saved locally. 
 
 ## Collection Types
 
-* what is a collection?
-
 There are four types of collections: User collections, Session collections, Permanent Algorithm collections, and Temporary Algorithm collections.
 
-User collections can store data and allow you to set both the read/write permission on that data collection. Other collection types have system-defined permissions:
+User collections can store data and allow you to set the read permission on that collection.
 
-* Session Collections only have read/write access from within the same session
-* Algorithm collections have read/write access from internal calls and this data collection type is guaranteed to exist for every algorithm.
+Other collection types have system-defined permissions:
+
+* Session Collections only have read/write access from within the same session.
+* Temporary and Permanent Algorithm collections have read/write access from internal calls and this data collection type is guaranteed to exist for every algorithm.
 
 ## User Collections
 
@@ -57,10 +52,10 @@ data://.my/:collection
 data://.my/:collection/:filename
 ```
 
-If you are operating on your own directories / files you can use the .my pseudonym and the username will be assumed from the authorization provided.
+If you are operating on your own directories or files you can use the .my pseudonym and the username will be assumed from the authorization provided.
 
 <aside class="warning">
-Avoid using the `.my` pseudonym in the program code of an algorithm. When the algorithm is executed, `.my` will be interpreted as the username of the user who called the algorithm, rather than the author's username.
+If you are authoring an algorithm, avoid using the `.my` pseudonym in the source code. When the algorithm is executed, `.my` will be interpreted as the username of the user who called the algorithm, rather than the author's username.
 </aside>
 
 ## Session Collections
@@ -71,12 +66,12 @@ Avoid using the `.my` pseudonym in the program code of an algorithm. When the al
 data://.session/:filename
 ```
 
-The session directory exists for each Algorithm Session and is only accessible to algorithms within that session.
+Session collections exist for each Algorithm Session and is only accessible to algorithms within that session. 
 
-* What makes a session?
-* when do you use this collection
-* why isn't there a "session" section on the data page?
-* example?
+The Algorithm session is defined as the scope of the original request and any other subsequent calls withing the tree. When the original request ends, the session collection is no longer available. 
+
+Session collections allow data to be used across multiple algorithms within the scope of one call. This is useful for algorithm developers so that they may ensure access to data on a temporary basis. These collections are no longer available after the request, thus giving the caller security that their data will not be available outside the scope of the session.
+
 
 ## Temporary Algorithm Collections
 
@@ -86,6 +81,8 @@ The session directory exists for each Algorithm Session and is only accessible t
 data://.algo/:author/:algoname/temp/:filename
 ```
 Temporary algorithm collections give you a space to store data on a temporary basis. You will find the temporary collections under a `temp` directory inside of an algorithm collection. For example, a user can have an algorithm that produces a file inside of a temporary collection.
+
+The temporary algorithm collections are particularly useful for algorithms that produce files as a result of the sample input. For example, if your sample input generates a file, using a temporary algorithm collection allows the algorithm to store its output but will be cleaned up after a day. 
 
 ### The Simplified Format
 
@@ -107,7 +104,7 @@ Temporary algorithm collections are ideal for storing data on a short term basis
 data://.algo/:author/:algoname/perm/:filename
 ```
 
-If you need to access an algorithm collection from a specific algorithm, you can use the permanent collection. This allows users to generate output that is saved permanently as a result of running the algorithm. Unlike the Temporary Algorithm Collections, the data stored in the permanent is not cleared after one day.
+If you need to access a collection from a specific algorithm, you can use the permanent collection. This allows users to generate output that is saved permanently as a result of running the algorithm. Unlike the Temporary Algorithm Collections, the data stored in the permanent is not cleared after one day.
 
 ### The Simplified Format
 
@@ -121,20 +118,16 @@ If you are using the Data URI from inside Algorithmia, you can also use a simpli
 
 
 
+
 ## more
 
 general questions to help clarify docs:
 
 * algorithm data vs my collections (on the data page)
-* perm vs temp vs session
-  * session section is totally incomplete
-* are permissions only available on user collections?
-* why do we have disabled permission change boxes on the data page for algorithm data?
 
 potential "why" questions about the Data api:
 
 * why should I use this instead of saving stuff myself on my own storage?
 * what is an algorithm outputs to data:// do I have to use the data api?
-* does this tie me into another service I don't want?
 * is there a usage fee for data
 
