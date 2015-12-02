@@ -21,6 +21,7 @@ includes:
   - apispecification
   - data
   - algorithmdevelopment
+  - bounties
   - help
 
 search: true
