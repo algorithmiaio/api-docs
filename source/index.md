@@ -20,6 +20,7 @@ includes:
   - clients
   - apispecification
   - data
+  - dataapispecification
   - algorithmdevelopment
   - bounties
   - help

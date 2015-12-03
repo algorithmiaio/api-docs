@@ -121,10 +121,6 @@ If you are using the Data URI from inside Algorithmia, you can also use a simpli
 
 ## more
 
-general questions to help clarify docs:
-
-* algorithm data vs my collections (on the data page)
-
 potential "why" questions about the Data api:
 
 * why should I use this instead of saving stuff myself on my own storage?
