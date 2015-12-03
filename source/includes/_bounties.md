@@ -8,11 +8,11 @@
 
 A bounty is a posting that advertizes a problem that needs solving with an algorithm. Anyone can post a bounty or provide the solution! 
 
-### What kind of problems are appropriate for bounties?
+#### What kind of problems are appropriate for bounties?
 
 Bounties are great for problems that have concrete inputs and outputs. A bounty is a gret opportunity to get a subject matter expert to solve a specific problem that you have but don't know how to solve yourself. This would include problems such as defined transformations on structured data, obscure but well-defined statistical metrics on real-valued data, or problems such as extracting keywords for each document from a set of documents.
 
-### What kind of problems are not a good match for the bounty system?
+#### What kind of problems are not a good match for the bounty system?
 
 The bounty system is not a good fit for problems that are fuzzy in nature or not well defined. In order to get the best solution, the problem needs to be scoped to a clearly definable piece of work that can be solved by an algorithm.
 
@@ -23,7 +23,7 @@ Examples of problems that are not a good fit for the Bounty system include:
 
 The best bounties are things you don’t quite know how to solve, but you are reasonably confident that a subject expert probably knows.
 
-### How to Write a Good Bounty
+#### How to Write a Good Bounty
 
 Think of the bounty description as a design specification for the solution you need--the more complete and thorough, the better! Your bounty is more likely to be fulfilled if algorithm developers can easily understand your needs. If can also provide test cases or sample data, then algorithm developers will be better able to ensure that their submission meets your needs.
 
@@ -47,7 +47,7 @@ If you want a particular algorithm used to fulfill your bounty, be sure to speci
 
 If your bounty is a particularly difficult problem, your odds of getting a successful solution will rise if you provide ideas of which algorithms you think the solution might include as well as links to resources that might help an algorithm developer.
 
-### Pledging to a Bounty
+#### Pledging to a Bounty
 
 In order to incentivize algorithm developers to develop an algorithm that fulfills your bounty, you can pledge between $10 and $10,000 USD to the solution. Bounties offered with a montary value are far more likely to interest algorithm developers. 
 

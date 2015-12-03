@@ -82,7 +82,7 @@ application/octet-stream | binary data
 
 HTTP-multipart is also supported for sending a mixture of data objects. Each multipart part must have a valid Content-Type.
 
-### Versioning
+#### Versioning
 
 ```shell
 curl -X POST -d 'INPUT' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1

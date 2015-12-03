@@ -33,19 +33,19 @@ Users can create named collections of data that can be controlled by collection-
 
 Each collection has its own ACLs, and there are three types of permissions for reading data from a collection. Only you can write to your own collections, so they are by default marked as private.
 
-### Private (only me):
+#### Private (only me):
 
 When you set your collection read access to Private, only you will be able to read and write to the Data collection. This is the most restrictive option. This permission setting is the only option available for writing to collections to prevent involuntary data retention.
 
-### My Algorithms (called by any user):
+#### My Algorithms (called by any user):
 
 If you select this permission option for your data collection, it will allow other users on the platform to interact with your data through your algorithms. This means they can call your algorithm to perform an operation on your data stored in this collection. This option is perfect for showcasing the algoriths and letting the users get an idea of what they can do on your sample data.
 
-### Public (anybody):
+#### Public (anybody):
 
 Anyone can read the data in your collection, feed that data to their algorithms, or copy the data to their own collections.
 
-### The `.my` pseudonym
+#### The `.my` pseudonym
 
 ```
 data://.my/:collection
@@ -84,7 +84,7 @@ Temporary algorithm collections give you a space to store data on a temporary ba
 
 The temporary algorithm collections are particularly useful for algorithms that produce files as a result of the sample input. For example, if your sample input generates a file, using a temporary algorithm collection allows the algorithm to store its output but will be cleaned up after a day. 
 
-### The Simplified Format
+#### The Simplified Format
 
 > Simplified URI format:
 
@@ -106,7 +106,7 @@ data://.algo/:author/:algoname/perm/:filename
 
 If you need to access a collection from a specific algorithm, you can use the permanent collection. This allows users to generate output that is saved permanently as a result of running the algorithm. Unlike the Temporary Algorithm Collections, the data stored in the permanent is not cleared after one day.
 
-### The Simplified Format
+#### The Simplified Format
 
 > Simplified URI format:
 

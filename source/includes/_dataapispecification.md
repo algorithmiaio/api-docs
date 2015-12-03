@@ -2,7 +2,7 @@
 
 ## Directories
 
-### Listing a directory
+#### Listing a directory
 
 ```
 GET @apiUrl/data/:owner
@@ -58,7 +58,7 @@ Response body:
  
     * No other acl strings are currently supported
 
-##### Example requests:
+###### Example requests:
 
 ---
 
@@ -74,7 +74,7 @@ GET @apiUrl/algo/@username/collection**?acl=true**
 
 ---
 
-#### Success responses:
+##### Success responses:
 
 ```json
 {
@@ -98,7 +98,7 @@ GET @apiUrl/algo/@username/collection**?acl=true**
 }
 ```
 
-#### Failure response:
+##### Failure response:
 
 ```json
 {
@@ -109,7 +109,7 @@ GET @apiUrl/algo/@username/collection**?acl=true**
 }
 ```
 
-### Creating a directory
+#### Creating a directory
 
 ```nohighlight
 POST @apiUrl/data/:owner
@@ -138,7 +138,7 @@ Output:
 [NONE]
 ```
 
-### Updating a directory
+#### Updating a directory
 
 ```nohighlight
 PATCH @apiUrl/data/:owner/:collection_name
@@ -166,7 +166,7 @@ Output:
 [NONE]
 ```
 
-### Deleting a directory
+#### Deleting a directory
 
 ```nohighlight
 DELETE @apiUrl/data/:owner/:collection_name
@@ -198,7 +198,7 @@ Output:
 
 ## Files
 
-### Getting files
+#### Getting files
 
 ```nohighlight
 HEAD @apiUrl/data/:owner/:collection_name/:file_name
@@ -217,7 +217,7 @@ Note:
 
 * GET requests return the "X-Data-Type" response header with a value of "file"
 
-####Uploading files
+#####Uploading files
 
 ```nohighlight
 PUT @apiUrl/data/:owner/:collection_name/:file_name
@@ -229,7 +229,7 @@ Input:
 [Body of the request is the content of the file that will be created]
 ```
 
-### Deleting files
+#### Deleting files
 
 ```nohighlight
 DELETE @apiUrl/data/:owner/:collection_name/:file_name
@@ -273,7 +273,7 @@ Each version will be supported for 18 months after the version is marked as depr
 
 ## Deprecated Versions
 
-### v0 (Unversioned routes)
+#### v0 (Unversioned routes)
 
 Algorithmia API defined with the routes:
 
