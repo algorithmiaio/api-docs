@@ -1,37 +1,46 @@
 ## Java Client
 
-[needs review]
-[needs formatting]
-
 The Algorithmia Java client is available on Github, published to Maven Central, and automatically available to any algorithm you create on the Algorithmia platform.
 
 ### Getting started
 
-The Algorithmia java client is published to Maven central. It is already a dependency of new algorithms in the marketplace. It can be added as a dependency to other projects via:
+> Add the Java client as a dependency:
 
-````xml
+```
 <dependency>
   <groupId>com.algorithmia</groupId>
   <artifactId>algorithmia-client</artifactId>
   <version>[,1.1.0)</version>
 </dependency>
-````
+```
 
-Instantiate a client:
-````java
-//In your application:
-AlgorithmiaClient client = Algorithmia.client("@apiKey");
+The Algorithmia java client is published to Maven central. It is already listed as a dependency for new algorithms written in Java in the marketplace.
 
-//In an algorithm on the Algorithmia platform:
-AlgorithmiaClient client = Algorithmia.client();
-````
 
-Notes:
+#### Instantiate a client:
 
-- Using version range `[,1.1.0)` is recommended as it implies using the latest backward-compatible bugfixes.
+In your application:
 
+`AlgorithmiaClient client = Algorithmia.client("@apiKey");`
+
+In an algorithm on the Algorithmia platform:
+
+`AlgorithmiaClient client = Algorithmia.client();`
+
+
+<aside class="notice">
+  Using version range `[,1.1.0)` is recommended as it implies using the latest backward-compatible bugfixes.
+</aside>
 
 ### Calling Algorithms
+
+> Algorithms called with the `.pipe()`:
+
+```
+AlgoResponse response = client.algo("docs/JavaAddOne").pipe(72);
+Integer result = response.as(new TypeToken<Integer>(){});
+Double durationInSeconds = response.getMetadata().getDuration();
+```
 
 There are two ways to call an algorithm: `.pipeJson` and `.pipe`.
 
@@ -47,72 +56,88 @@ There are two ways to call an algorithm: `.pipeJson` and `.pipe`.
 
 * You can use .pipe with binary files. No JSON serialization is required with .pipe.
 
-Algorithms called with the `.pipe()` method are shown below:
 
-````java
-AlgoResponse response = client.algo("docs/JavaAddOne").pipe(72);
-Integer result = response.as(new TypeToken<Integer>(){});
-Double durationInSeconds = response.getMetadata().getDuration();
-````
+#### Casting results
 
-In order to cast the result to a specific type, call `.as()` with a TypeToken, for example:
 
-````java
-// For an algorithm that returns a String
+> For an algorithm that returns a string:
+
+```
 stringResult.as(new TypeToken<String>(){});
+```
 
-// For an algorithm that returns an array of Strings
+> For an algorithm that returns an array of strings:
+
+```
 stringArrayResult.as(new TypeToken<List<String>>(){});
+```
 
-// For an algorithm that returns a custom class, cast the result to that class
+> For an algorithm that returns a custom class, cast the result to that class:
+
+```
 class CustomClass {
     int maxCount;
     List<String> items;
 }
 customClassResult.as(new TypeToken<CustomClass>(){});
+```
 
-// For debugging, it is often helpful to get the JSON String representation of the result
+> For debugging, it is often helpful to get the JSON String representation of the result:
+
+```
 anyResult.asJsonString();
-````
+```
 
-Note: To create a TypeToken use the syntax `new TypeToken<CustomClass>(){}` making sure to have the trailing `{}` to create an anonymous subclass.
+In order to cast the result to a specific type, call `.as()` with a TypeToken.
+On the right pane, you'll find examples of how to do this to return a string, an array of strings, and a custom class.
+
+<aside class="notice">
+  To create a TypeToken, use the syntax `new TypeToken<CustomClass>(){}` ensuring that the trailing `{}` is present to create an anonymous subclass.
+</aside>
+
 
 ### Working with Data
 
-Algorithmia supports creating <a href="@routes.Data.list">Data Collections</a> making it easy to get data into and out of algorithms.
-In the simplest case, you can feed data to an algorithm at request time.
-For applications with larger data requirements, Algorithmia allows you to create named collections of independent documents.
-These collections are created on a per-user basis, and you control the access on a per-collection basis.
+The Algorithmia Java Client provides an easy way to manage data stored within Algorithmia. Basic usage samples are shown to the right. See the [Data API](#the-data-api) for more information.
 
-The Algorithmia Java Client provides an easy way to manage data stored within Algorithmia. Basic usage samples are described below. See the [DataAPI docs](../data.md) for more information.
+> Create a directory "foo"
 
-
-````java
-// Create a directory "foo"
+```
 DataDirectory foo = client.dir("data://.my/foo");
 foo.create();
+```
+> Upload files to "foo" directory
 
-// Upload files to "foo" directory
+```
 foo.file("sample.txt").put("sample text contents");
 foo.file("binary_file").put(new byte[] { (byte)0xe0, 0x4f, (byte)0xd0, 0x20 });
 foo.putFile(new File("/local/path/to/myfile"));
+```
 
-// List files in "foo"
+> List files in "foo"
+
+```
 for(DataFile file : foo.getFileIter()) {
     System.out.println(file.toString() + " at URL: " + file.url());
 }
+```
 
-// Get contents of files
+> Get contents of files
+
+```
 String sampleText = foo.file("sample.txt").getString();
 byte[] binaryContent = foo.file("binary_file").getBytes();
 File tempFile = foo.file("myfile").getFile();
+```
 
-// Delete files and directories
+> Delete files and directories
+
+```
 foo.file("sample.txt").delete();
 foo.delete(true); // true implies force deleting the directory and its contents
-````
+```
 
 ### Additional resources
 
-* <a href="/docs/lang/java">Algorithmia Client Java Docs <i class="fa fa-external-link"></i></a>
-* <a href="https://github.com/algorithmiaio/algorithmia-java">Algorithmia Java Client Source <i class="fa fa-external-link"></i></a>
+* <a href="http://www.javadoc.io/doc/com.algorithmia/algorithmia-client/1.0.3">Algorithmia Client Java Docs <i class="fa fa-external-link"></i></a>
+* <a href="https://github.com/algorithmiaio/algorithmia-java">Algorithmia Java Client Source Code<i class="fa fa-external-link"></i></a>
