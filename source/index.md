@@ -2,7 +2,7 @@
 title: API Reference
 
 language_tabs:
-  - shell
+  - shell: cURL
   - python
   - java
   - scala
@@ -17,7 +17,14 @@ includes:
   - gettingstarted
   - algorithmbasics
   - authentication
-  - clients
+  - clients/main
+  - clients/cli
+  - clients/curl
+  - clients/java
+  - clients/javascript
+  - clients/python
+  - clients/scala
+  - clients/lambda
   - apispecification
   - data
   - dataapispecification
