@@ -187,7 +187,7 @@ html, body {
     font-weight: 500;
     .tocify-item>a {
       // Styling here for a level 2 nesting. For example -> 
-      padding-left: $nav-padding + $nav-indent * 2;
+      padding-left: $nav-padding + $nav-indent * 1.5;
       font-size: 12px;
     }
 
@@ -531,7 +531,7 @@ html, body {
     background-color: $code-bg;
     color: #fff;
 
-    padding: 2em $main-padding;
+    padding: 1em $main-padding;
     margin: 0;
     width: $examples-width;
 
