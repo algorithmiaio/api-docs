@@ -19,7 +19,7 @@ The Algorithmia java client is published to Maven central. It is already listed 
 
 In your application:
 
-`AlgorithmiaClient client = Algorithmia.client("@apiKey");`
+`AlgorithmiaClient client = Algorithmia.client("YOUR_API_KEY");`
 
 In an algorithm on the Algorithmia platform:
 
