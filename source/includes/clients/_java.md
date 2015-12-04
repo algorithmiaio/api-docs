@@ -2,8 +2,6 @@
 
 The Algorithmia Java client is available on Github, published to Maven Central, and automatically available to any algorithm you create on the Algorithmia platform.
 
-### Getting started
-
 > Add the Java client as a dependency:
 
 ```
@@ -32,7 +30,7 @@ In an algorithm on the Algorithmia platform:
   Using version range `[,1.1.0)` is recommended as it implies using the latest backward-compatible bugfixes.
 </aside>
 
-### Calling Algorithms
+### Calling Algorithms in Java
 
 > Algorithms called with the `.pipe()`:
 
@@ -44,20 +42,20 @@ Double durationInSeconds = response.getMetadata().getDuration();
 
 There are two ways to call an algorithm: `.pipeJson` and `.pipe`.
 
-`.pipeJson:` 
+`.pipeJson:`
 
-* Use pipeJson when you are manually converting objects to JSON. This can be useful when working on edge cases or in testing.  
+* Use pipeJson when you are manually converting objects to JSON. This can be useful when working on edge cases or in testing.
 
 * We recommend that you use .pipe whenever possible.
 
-`.pipe:`  
+`.pipe:`
 
-* Use .pipe whenever possible. .pipe will take an object and convert it into the JSON structure required.  
+* Use .pipe whenever possible. .pipe will take an object and convert it into the JSON structure required.
 
 * You can use .pipe with binary files. No JSON serialization is required with .pipe.
 
 
-#### Casting results
+### Casting results in Java
 
 
 > For an algorithm that returns a string:
@@ -96,7 +94,7 @@ On the right pane, you'll find examples of how to do this to return a string, an
 </aside>
 
 
-### Working with Data
+### Working with Data in Java
 
 The Algorithmia Java Client provides an easy way to manage data stored within Algorithmia. Basic usage samples are shown to the right. See the [Data API](#the-data-api) for more information.
 
@@ -137,7 +135,7 @@ foo.file("sample.txt").delete();
 foo.delete(true); // true implies force deleting the directory and its contents
 ```
 
-### Additional resources
+#### Additional resources
 
 * <a href="http://www.javadoc.io/doc/com.algorithmia/algorithmia-client/1.0.3">Algorithmia Client Java Docs <i class="fa fa-external-link"></i></a>
 * <a href="https://github.com/algorithmiaio/algorithmia-java">Algorithmia Java Client Source Code<i class="fa fa-external-link"></i></a>
