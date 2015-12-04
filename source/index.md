@@ -31,6 +31,7 @@ includes:
   - algo_development/algorithmdevelopment
   - algo_development/yourfirstalgo
   - algo_development/algodevfaq
+  - algo_development/java
   - bounties
   - help
 
