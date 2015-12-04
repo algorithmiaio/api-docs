@@ -1,46 +1,45 @@
 ## cURL
 
-[needs docs]
-[needs formatting]
+You can use cURL to call any algorithm on the marketplace as well as interact with the Data API.
 
-### Calling an Algorithm
+### Calling an Algorithm via cURL
 
-```bash
-curl -X POST -d '41' -H 'Content-Type: application/json' -H 'Authorization: Simple @apiKey' @apiUrl/algo/docs/JavaAddOne
+```
+curl -X POST -d 'Liz' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/algo/demo/Hello
+
+-> {"result": 42,"metadata":{"duration":0.0001}}
 ```
 
-```json
-{"result": 42,"metadata":{"duration":0.0001}}
-```
+To call an algorithm, use cURL to POST to the API. Be sure to specify the content type and authorize by passing in your API key.
 
-### Working with Data
+
+### Working with Data via cURL
 
 #### Create a collection
 
-```bash
-curl -X POST -d 'newCollection' -H 'Authorization: Simple @apiKey' @apiUrl/data/@username
 ```
+curl -X POST -d 'newCollection' -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/data/YOUR_USERNAME
 
-```json
-{"result": "data://@username/newCollection"}
+-> {"result": "data://YOUR_USERNAME/newCollection"}
 ```
+You can use cURL to interact with the Data API from the command line. To create a collection, POST the new collection name to the Data API URL formatted with your username. You will get a result that returns the address of the new data collection.
+
 
 #### Upload File
 
-```bash
-curl -X PUT -F file=@@filename.csv -H 'Authorization: Simple @apiKey' @apiUrl/data/@username/newCollection
 ```
+curl -X PUT -F file=@@filename.csv -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/data/YOUR_USERNAME/newCollection
 
-```json
-{"result": "data://@username/newCollection/filename.csv"}
+-> {"result": "data://YOUR_USERNAME/newCollection/filename.csv"}
 ```
+To upload a file, use cURL to `PUT` the file to a collection. Be sure to pass in your API key and the data collection URL. The response will return a result with the location of the file.
 
 #### Upload data as a file
 
-```bash
-curl -X PUT -H 'Content-Type:application/json' -d '{"key1": "value1"}' -H 'Authorization: Simple @apiKey' @apiUrl/data/@username/newCollection/myFile.json
+```
+curl -X PUT -H 'Content-Type:application/json' -d '{"key1": "value1"}' -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/data/YOUR_USERNAME/newCollection/myFile.json
+
+-> {"result": "data://YOUR_USERNAME/newCollection/myFile.json"}
 ```
 
-```json
-{"result": "data://@username/newCollection/myFile.json"}
-```
+You can also use cURL to upload data to the collection as a file. Be sure to pass in your API key and the data collection URL. The response will return a result with the location of the file.
