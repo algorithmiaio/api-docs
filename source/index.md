@@ -29,7 +29,7 @@ includes:
   - data
   - dataapispecification
   - algo_development/algorithmdevelopment
-  - algo_development/gettingstarted
+  - algo_development/yourfirstalgo
   - algo_development/algodevfaq
   - bounties
   - help
