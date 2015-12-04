@@ -13,7 +13,7 @@ The size limit for a request is 10MiB. Check out the [Data API](#the-data-api) f
 ## Call an Algorithm
 
 ```shell
-curl -X POST -d 'YOUR_NAME' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
+curl -X POST -d 'YOUR_NAME' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY' API_URL/v1/algo/demo/Hello/0.1.1
 ```
 
 ```python
@@ -66,7 +66,7 @@ For each algorithm on the marketplace, you'll find an owner (the user who create
 
 For a given user and algorithm name, API calls are made to the following url:
 
-`POST https://api.algorithmia.com/v1/algo/:owner/:algoname`
+`POST API_URL/v1/algo/:owner/:algoname`
 
 
 ## Input
@@ -85,13 +85,13 @@ HTTP-multipart is also supported for sending a mixture of data objects. Each mul
 #### Versioning
 
 ```shell
-curl -X POST -d 'INPUT' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
+curl -X POST -d 'INPUT' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY' API_URL/v1/algo/demo/Hello/0.1.1
 ```
 
 Specifying the version of an algorithm is optional and can be a partial semantic version.
 The format of the call with a specified version is as follows:
 
-`POST https://api.algorithmia.com/v1/algo/:owner/:algoname/:version`
+`POST API_URL/v1/algo/:owner/:algoname/:version`
 
 
 Semantic Number | Description
