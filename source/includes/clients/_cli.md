@@ -44,8 +44,6 @@ Arch packages available on the AUR as [algorithmia-bin](https://aur4.archlinux.o
 Simply download and extract the OSX tarball.
 
 
-
-
 **Windows (64-bit)**
 
 Install [OpenSSL for Windows](https://slproweb.com/products/Win32OpenSSL.html).  
