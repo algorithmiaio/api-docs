@@ -3,27 +3,9 @@
 ## Directories
 
 #### Listing a directory
+> Listing a directory response body:
 
 ```
-GET @apiUrl/data/:owner
-GET @apiUrl/data/:owner/:collection_name
-GET @apiUrl/data/:owner/:collection_name?marker=123abc
-```
-
-Query-parameters:
-
-  * `acl=true` displays the acl of a Collection.  Will only display if the Collection owner initiates the call and the path is to a collection.
-
-  * `marker=12-4s4` returns the page of results starting at marker "12-4s4", only valid for markers previously returned by this API.  If this parameter is omitted then the first page of results is provided.
-
-Output:
-
-Response headers:
-
-`X-Data-Type: directory`
-
-Response body:
-```javascript
 {
     "folders": [
         {
@@ -46,35 +28,9 @@ Response body:
 }
 ```
 
-* acl strings:
+> Success response:
 
-    * "user://*" - Readable by anyone (aka: public)
-
-    * "algo://my/*" - Readable by your algorithms (default)
-
-    * Fully private is represented as an empty list
-
-    * No other acl strings are currently supported
-
-###### Example requests:
-
----
-
-GET @apiUrl/algo/@username/
-
----
-
-GET @apiUrl/algo/@username/**?marker=12-4s4**
-
----
-
-GET @apiUrl/algo/@username/collection**?acl=true**
-
----
-
-##### Success responses:
-
-```json
+```
 {
     "folders": [
         {"name":"collection1"},
@@ -83,22 +39,9 @@ GET @apiUrl/algo/@username/collection**?acl=true**
 }
 ```
 
-```json
-{
-    "files": [
-        {"filename":"file1.csv","last_modified":"2015-01-01T23:01:01.000Z","size":51118296},
-        {"filename":"file2.txt","last_modified":"2015-01-01T23:01:02.000Z","size":64}
-    ],
-    "marker": "12-4s4",
-    "acl": {
-        "read":["algo://my/*"]
-    }
-}
+> Failure response:
+
 ```
-
-##### Failure response:
-
-```json
 {
     "duration": 0.001,
     "error": {
@@ -107,15 +50,49 @@ GET @apiUrl/algo/@username/collection**?acl=true**
 }
 ```
 
+To list a directory through the Algorithmia Data API, use the following methods:
+
+`GET @apiUrl/data/:owner`
+
+`GET @apiUrl/data/:owner/:collection_name?marker=123abc`
+
+Query parameters:
+
+  * `acl=true` displays the ACL of a Collection.  Will only display if the Collection owner initiates the call and the path is to a collection.
+
+  * `marker=12-4s4` returns the page of results starting at marker "12-4s4", only valid for markers previously returned by this API.  If this parameter is omitted then the first page of results is provided.
+
+Output:
+
+Response headers:
+
+`X-Data-Type: directory`
+
+ACL Strings:
+
+  * `user://*`: Readable by anyone (public)
+
+  * `algo://my/*`: Readable by your algorithms (default)
+
+  * Fully private is represented as an empty list
+
+  * No other ACL strings are currently supported
+
+
+###### Example requests:
+
+`GET https://api.algorithmia.com/v1/algo/@username/`
+
+`GET https://api.algorithmia.com/v1/algo/@username/**?marker=12-4s4`
+
+`GET https://api.algorithmia.com/v1/algo/@username/collection**?acl=true`
+
+
 #### Creating a directory
 
-```nohighlight
-POST @apiUrl/data/:owner
+> Creating a directory input:
+
 ```
-
-Input:
-
-```javascript
 {
     "name": String,
     "acl": {
@@ -126,25 +103,23 @@ Input:
 }
 ```
 
-* Content-Type header is required
+To create a directory through the Algorithmia Data API, use the following method:
 
-    * "application/json" | "text/json"
+`POST https://api.algorithmia.com/v1/data/:owner`
+
+The Content-Type header is required:
+
+`"application/json"` or `"text/json"`
 
 Output:
 
-```nohighlight
-[NONE]
-```
+`[NONE]`
 
 #### Updating a directory
 
-```nohighlight
-PATCH @apiUrl/data/:owner/:collection_name
+> Updating a directory input:
+
 ```
-
-Input:
-
-```javascript
 {
     "acl": {
         "read": [
@@ -154,35 +129,23 @@ Input:
 }
 ```
 
-* Content-Type header is required
+To update a directory through the Algorithmia Data API, use the following method:
 
-    * "application/json" | "text/json"
+`PATCH https://api.algorithmia.com/v1/data/:owner/:collection_name`
+
+The Content-Type header is required:
+
+`"application/json"` or `"text/json"`
 
 Output:
 
-```nohighlight
-[NONE]
-```
+`[NONE]`
 
 #### Deleting a directory
 
-```nohighlight
-DELETE @apiUrl/data/:owner/:collection_name
+> Deleting a directory output:
+
 ```
-
-Input:
-
-```nohighlight
-[NONE]
-```
-
-* Query-parameters:
-
-    * "force=true" enables recursive delete of a non-empty directory
-
-Output:
-
-```javascript
 {
     "result": {
         "deleted": Long /* Number of files successfully deleted */
@@ -193,6 +156,18 @@ Output:
     } /* Optional */
 }
 ```
+
+To delete a directory through the Algorithmia Data API, use the following method:
+
+`DELETE https://api.algorithmia.com/v1/data/:owner/:collection_name`
+
+Input:
+
+`[NONE]`
+
+Query parameters:
+
+*  `"force=true"` enables recursive delete of a non-empty directory
 
 ### Files
 
