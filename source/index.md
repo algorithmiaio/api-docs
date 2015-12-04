@@ -28,7 +28,9 @@ includes:
   - apispecification
   - data
   - dataapispecification
-  - algorithmdevelopment
+  - algo_development/algorithmdevelopment
+  - algo_development/gettingstarted
+  - algo_development/algodevfaq
   - bounties
   - help
 
