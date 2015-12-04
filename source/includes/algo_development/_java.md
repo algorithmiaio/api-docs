@@ -60,7 +60,7 @@ To call other algorithms or manage data from your algorithm, use the [Algorithmi
 
 When designing your algorithm, don't forget that there are special data directories, `.session` and `.algo`, that are available only to algorithms to help you manage data over the course of the algorithm execution.
 
-<aside class="warn">
+<aside class="warning">
 Some older algorithms use our deprecated Java client. If it has an import from the `algorithmia` package instead of the `com.algorithmia` package, that means it is using the deprecated client.
 </aside>
 
