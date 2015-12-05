@@ -30,10 +30,10 @@ includes:
   - dataapispecification
   - algo_development/algorithmdevelopment
   - algo_development/yourfirstalgo
-  - algo_development/algodevfaq
   - algo_development/java
   - algo_development/scala
   - algo_development/python
+  - algo_development/algodevfaq
   - bounties
   - help
 
