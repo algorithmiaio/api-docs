@@ -169,7 +169,7 @@ Query parameters:
 
 *  `"force=true"` enables recursive delete of a non-empty directory
 
-### Files
+## Files
 
 #### Getting files
 
