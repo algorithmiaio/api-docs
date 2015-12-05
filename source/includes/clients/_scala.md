@@ -75,7 +75,7 @@ In order to cast the result to a specific type, call `.as()` with a TypeToken.
 On the right pane, you'll find examples of how to do this to return a string, an array of strings, and a custom class.
 
 <aside class="notice">
-  To create a TypeToken, use the syntax `new TypeToken<CustomClass>(){}` ensuring that the trailing `{}` is present to create an anonymous subclass.
+  To create a TypeToken, use the syntax <code>new TypeToken&lt;CustomClass&gt;(){}</code> ensuring that the trailing <code>{}</code> is present to create an anonymous subclass.
 </aside>
 
 ### Working with Data in Scala

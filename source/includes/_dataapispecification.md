@@ -183,11 +183,11 @@ Input:
 `[NONE]`
 
 <aside class="notice">
-  `HEAD` request error messages are returned on the "X-Error-Message" response header
+  HEAD request error messages are returned on the "X-Error-Message" response header
 </aside>
 
 <aside class="notice">
-  `GET` requests return the "X-Data-Type" response header with a value of "file"
+  GET requests return the "X-Data-Type" response header with a value of "file"
 </aside>
 
 

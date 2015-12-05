@@ -43,7 +43,7 @@ This example shows a function that takes two parameters, a Map from Strings to S
 Algorithmia can automatically parse many types of native Java objects to and from JSON: Integers, Lists, Arrays, Maps, and many others. In many cases it can also parse arbitrary user-defined Java Classes to and from JSON. See the <a href="https://sites.google.com/site/gson/gson-user-guide">Gson User Guide</a> for reference.
 
 <aside class="notice">
-  Note: Binary data is passed using `byte[]`
+  Note: Binary data is passed using <code>byte[]</code>
 </aside>
 
 #### Error Handling
@@ -61,7 +61,7 @@ To call other algorithms or manage data from your algorithm, use the [Algorithmi
 When designing your algorithm, don't forget that there are special data directories, `.session` and `.algo`, that are available only to algorithms to help you manage data over the course of the algorithm execution.
 
 <aside class="warning">
-Some older algorithms use our deprecated Java client. If it has an import from the `algorithmia` package instead of the `com.algorithmia` package, that means it is using the deprecated client.
+Some older algorithms use our deprecated Java client. If it has an import from the <code>algorithmia</code> package instead of the <code>com.algorithmia</code> package, that means it is using the deprecated client.
 </aside>
 
 

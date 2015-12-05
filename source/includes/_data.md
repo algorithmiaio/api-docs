@@ -55,7 +55,7 @@ data://.my/:collection/:filename
 If you are operating on your own directories or files you can use the .my pseudonym and the username will be assumed from the authorization provided.
 
 <aside class="warning">
-If you are authoring an algorithm, avoid using the `.my` pseudonym in the source code. When the algorithm is executed, `.my` will be interpreted as the username of the user who called the algorithm, rather than the author's username.
+If you are authoring an algorithm, avoid using the <code>.my</code> pseudonym in the source code. When the algorithm is executed, <code>.my</code> will be interpreted as the username of the user who called the algorithm, rather than the author's username.
 </aside>
 
 ## Session Collections
