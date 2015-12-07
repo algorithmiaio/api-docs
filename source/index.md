@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Algorithmia Documentation
 
 language_tabs:
   - shell: cURL
