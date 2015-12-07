@@ -2,6 +2,8 @@
 
 This is a quick guide to get you started using the Algorithmia API. We'll walk through how to get started with an algorithm and make your first API call.
 
+You can follow this guide immediately by making a call on the command line via cURL. You'll find example calls on the right side pane. If you'd like to get up and running with another language, check out our [client guides](#clients) for instructions on how to install a language-specific client.
+
 ## Finding an Algorithm
 
 To get started, find an algorithm you'd like to call. You can do this by using the search bar or browsing the marketplace by tags & categories. Each algorithm has an owner and an algorithm name; you'll need both to format your request. This information is listed under the algorithm name on the description page as well as in the format of the algorithm's URL.

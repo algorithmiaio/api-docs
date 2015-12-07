@@ -17,6 +17,9 @@ includes:
   - gettingstarted
   - algorithmbasics
   - authentication
+  - data
+  - apispecification
+  - dataapispecification
   - clients/main
   - clients/cli
   - clients/curl
@@ -25,9 +28,6 @@ includes:
   - clients/python
   - clients/scala
   - clients/lambda
-  - apispecification
-  - data
-  - dataapispecification
   - algo_development/algorithmdevelopment
   - algo_development/yourfirstalgo
   - algo_development/java
