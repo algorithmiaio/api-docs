@@ -10,7 +10,7 @@ To get started, find an algorithm you'd like to call. You can do this by using t
 
 For a given user and algorithm name, API calls are made to the following url:
 
-`POST API_URL/v1/algo/:owner/:algoname`
+`POST https://api.algorithmia.com/v1/algo/:owner/:algoname`
 
 <aside class="success">
 We recommend that you also append the algorithm version in your API call to ensure that the correct algorithm is called.
@@ -19,7 +19,7 @@ We recommend that you also append the algorithm version in your API call to ensu
 ## Making your first API call
 
 ```shell
-curl -X POST -d 'YOUR_NAME' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY' API_URL/v1/algo/demo/Hello/0.1.1
+curl -X POST -d 'YOUR_NAME' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
 ```
 
 ```python
@@ -82,7 +82,7 @@ Remember — you'll need to authenticate!
 
 ## Understanding the response
 
-> curl -X POST -d 'Liz' -H 'Content-Type: application/json' -H 'Authorization: Simple API_KEY' API_URL/v1/algo/demo/Hello/0.1.1
+> curl -X POST -d 'Liz' -H 'Content-Type: application/json' -H 'Authorization: Simple API_KEY' https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
 
 ```
 { "result": "Hello Liz",

@@ -5,7 +5,7 @@ You can use cURL to call any algorithm on the marketplace as well as interact wi
 ### Calling an Algorithm via cURL
 
 ```
-curl -X POST -d 'Liz' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY' API_URL/v1/algo/demo/Hello
+curl -X POST -d 'Liz' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/algo/demo/Hello
 
 -> {"result": 42,"metadata":{"duration":0.0001}}
 ```
@@ -18,7 +18,7 @@ To call an algorithm, use cURL to POST to the API. Be sure to specify the conten
 #### Create a collection
 
 ```
-curl -X POST -d 'newCollection' -H 'Authorization: Simple YOUR_API_KEY' API_URL/v1/data/YOUR_USERNAME
+curl -X POST -d 'newCollection' -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/data/YOUR_USERNAME
 
 -> {"result": "data://YOUR_USERNAME/newCollection"}
 ```
@@ -28,7 +28,7 @@ You can use cURL to interact with the Data API from the command line. To create 
 #### Upload File
 
 ```
-curl -X PUT -F file=@@filename.csv -H 'Authorization: Simple YOUR_API_KEY' API_URL/v1/data/YOUR_USERNAME/newCollection
+curl -X PUT -F file=@@filename.csv -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/data/YOUR_USERNAME/newCollection
 
 -> {"result": "data://YOUR_USERNAME/newCollection/filename.csv"}
 ```
@@ -37,7 +37,7 @@ To upload a file, use cURL to `PUT` the file to a collection. Be sure to pass in
 #### Upload data as a file
 
 ```
-curl -X PUT -H 'Content-Type:application/json' -d '{"key1": "value1"}' -H 'Authorization: Simple YOUR_API_KEY' API_URL/v1/data/YOUR_USERNAME/newCollection/myFile.json
+curl -X PUT -H 'Content-Type:application/json' -d '{"key1": "value1"}' -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/data/YOUR_USERNAME/newCollection/myFile.json
 
 -> {"result": "data://YOUR_USERNAME/newCollection/myFile.json"}
 ```

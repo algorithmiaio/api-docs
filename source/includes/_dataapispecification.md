@@ -52,9 +52,9 @@
 
 To list a directory through the Algorithmia Data API, use the following methods:
 
-`GET API_URL/data/:owner`
+`GET https://api.algorithmia.com/data/:owner`
 
-`GET API_URL/data/:owner/:collection_name?marker=123abc`
+`GET https://api.algorithmia.com/data/:owner/:collection_name?marker=123abc`
 
 Query parameters:
 
@@ -81,11 +81,11 @@ ACL Strings:
 
 ###### Example requests:
 
-`GET API_URL/v1/algo/@username/`
+`GET https://api.algorithmia.com/v1/algo/@username/`
 
-`GET API_URL/v1/algo/@username/**?marker=12-4s4`
+`GET https://api.algorithmia.com/v1/algo/@username/**?marker=12-4s4`
 
-`GET API_URL/v1/algo/@username/collection**?acl=true`
+`GET https://api.algorithmia.com/v1/algo/@username/collection**?acl=true`
 
 
 #### Creating a directory
@@ -105,7 +105,7 @@ ACL Strings:
 
 To create a directory through the Algorithmia Data API, use the following method:
 
-`POST API_URL/v1/data/:owner`
+`POST https://api.algorithmia.com/v1/data/:owner`
 
 The Content-Type header is required:
 
@@ -131,7 +131,7 @@ Output:
 
 To update a directory through the Algorithmia Data API, use the following method:
 
-`PATCH API_URL/v1/data/:owner/:collection_name`
+`PATCH https://api.algorithmia.com/v1/data/:owner/:collection_name`
 
 The Content-Type header is required:
 
@@ -159,7 +159,7 @@ Output:
 
 To delete a directory through the Algorithmia Data API, use the following method:
 
-`DELETE API_URL/v1/data/:owner/:collection_name`
+`DELETE https://api.algorithmia.com/v1/data/:owner/:collection_name`
 
 Input:
 
@@ -175,8 +175,8 @@ Query parameters:
 
 To retieve files through the Algorithmia Data API, use the following methods:
 
-`HEAD API_URL/v1/data/:owner/:collection_name/:file_name`
-`GET API_URL/v1/data/:owner/:collection_name/:file_name`
+`HEAD https://api.algorithmia.com/v1/data/:owner/:collection_name/:file_name`
+`GET https://api.algorithmia.com/v1/data/:owner/:collection_name/:file_name`
 
 Input:
 
@@ -195,7 +195,7 @@ Input:
 
 To upload files through the Algorithmia Data API, simple send a `PUT` request with the filename:
 
-`PUT API_URL/v1/data/:owner/:collection_name/:file_name`
+`PUT https://api.algorithmia.com/v1/data/:owner/:collection_name/:file_name`
 
 Input:
 
@@ -219,7 +219,7 @@ Input:
 
 To delete files through the Algorithmia Data API, simple send a `DELETE` request with the filename:
 
-` DELETE API_URL/v1/data/:owner/:collection_name/:file_name`
+` DELETE https://api.algorithmia.com/v1/data/:owner/:collection_name/:file_name`
 
 Input:
 
