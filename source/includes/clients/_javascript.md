@@ -1,18 +1,18 @@
 ## Javascript Client
 
-We offer both a vanilla javascript client as well as a nodejs library for calling algorithms in the marketplace.
+We offer both a vanilla JavaScript client as well as a NodeJS library for calling algorithms in the marketplace.
 
-You can download the javascript client directly from this page:
+You can download the JavaScript client directly from this page:
 
 [https://algorithmia.com/v1/clients/js/algorithmia-0.2.0.js](https://algorithmia.com/v1/clients/js/algorithmia-0.2.0.js)
 
 <aside class="warning">
-	The nodejs library is a work in progress and currently has only partial support for the Data API.
+	The NodeJS library is a work in progress and currently has only partial support for the Data API.
 </aside>
 
 ### Download
 
-You can download our javascript client from:
+You can download our JavaScript client from:
 
 [https://algorithmia.com/v1/clients/js/algorithmia-0.2.0.js](https://algorithmia.com/v1/clients/js/algorithmia-0.2.0.js)
 
@@ -29,11 +29,11 @@ client.algo("docs/JavaAddOne").pipe(input).then(function(output) {
 </script>
 ```
 
-You can include the javascript file as a script tag:
+You can include the JavaScript file as a script tag:
 
 `<script src="//algorithmia.com/v1/clients/js/algorithmia-0.2.0.js" type="text/javascript"></script>`
 
-To authenticate with the javascript client, simply set your API key with the following:
+To authenticate with the JavaScript client, simply set your API key with the following:
 
 `var client = Algorithmia.client("YOUR_API_KEY");`
 
@@ -83,7 +83,7 @@ In Unix systems, you may define `ALGORITHMIA_API_KEY` as an environment variable
 
 When you invoke the Node.js scripts, they will be able to access `process.env.ALGORITHMIA_API_KEY` on their own.
 
-### Node.js Usage
+### NodeJS Usage
 
 ```
 var algorithmia = require("algorithmia");
@@ -118,12 +118,10 @@ client.file("data://.my/Test/foo.txt").putString(content, function(response) {
 
 ```
 
-With the Node.js client, you can call any algorithm in the marketplace. Start by requiring the algorithmia package & authenticating as described in the above section.
-
+With the NodeJS client, you can call any algorithm in the marketplace. Start by requiring the Algorithmia package & authenticating as described in the above section.
 
 There is also partial support for some Data API calls with the Node.js package.
 
 You can currently create and read files (strings and JSON) with the methods `putString`, `getString`, `putJson`, and `getJson`.
-
 
 For more information, check out the [nodejs client source code](https://github.com/algorithmiaio/algorithmia-nodejs).

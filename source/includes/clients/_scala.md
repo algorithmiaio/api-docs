@@ -86,6 +86,7 @@ On the right pane, you'll find examples of how to do this to return a string, an
 val foo = client.dir("data://.my/foo")
 foo.create()
 ```
+
 > Upload files to "foo" directory
 
 ```

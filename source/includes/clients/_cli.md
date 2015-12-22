@@ -102,7 +102,7 @@ There are several options for specifying the type and source of input data. The 
 
 ##### Output Options
 
-The algorithm result is printed to STDOUT by defauft. Additional notices may be printed to STDERR. If you'd like to output the result to a file, use the output option flag followed by a filename:
+The algorithm result is printed to STDOUT by default. Additional notices may be printed to STDERR. If you'd like to output the result to a file, use the output option flag followed by a filename:
 
 ```bash
 $ algo run kenny/factor -d 17 --output results.txt

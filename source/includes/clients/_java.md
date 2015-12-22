@@ -104,6 +104,7 @@ The Algorithmia Java Client provides an easy way to manage data stored within Al
 DataDirectory foo = client.dir("data://.my/foo");
 foo.create();
 ```
+
 > Upload files to "foo" directory
 
 ```
