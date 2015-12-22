@@ -4,7 +4,7 @@ We offer a client library for accessing the Algorithmia API in Python.
 
 ### Installation
 
-> PyPi installation:
+> PyPi installation (recommended):
 
 ```
 pip install algorithmia
@@ -26,11 +26,7 @@ The Algorithmia python client can be installed through PyPi or from the source.
 
 To install from PyPi, simply run `pip install algorithmia`. We recommend installing through this method for its ease of use!
 
-To build the algorithmia client wheel, run `python setup.py bdist_wheel`
-
-Install the wheel manually with `pip install --user --upgrade dist/algorithmia-*.whl`
-
-When ready to use the python client, be sure to import the package:
+When ready to use the python client, be sure to import the package at the top of your file:
 `import Algorithmia`
 
 ### Usage
@@ -51,7 +47,7 @@ Simply pass the name of the algorithm to the client:
 
 `Algorithmia.algo('demo/Hello')`
 
-Then use the `.pipe` funtion to pass your input:
+Then use the `.pipe` function to pass your input:
 
 `Algorithmia.algo('demo/Hello').pipe(input)`
 
@@ -129,7 +125,8 @@ Algorithmia.file("data://.my/test/test.txt").putFile(localFile)
 ```
 
 > Delete file:
-```python
+
+```
 Algorithmia.file("data://.my/test/test.txt").delete()
 ```
 
