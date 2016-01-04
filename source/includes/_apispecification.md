@@ -128,7 +128,7 @@ The API offers the following query parameters:
 
 ## Output
 
-```shell
+```
 {
     "result": Any, /* Optional */
     "error": {
