@@ -22,7 +22,7 @@ curl -X POST -d 'newCollection' -H 'Authorization: Simple YOUR_API_KEY' https://
 
 -> {"result": "data://YOUR_USERNAME/newCollection"}
 ```
-You can use cURL to interact with the Data API from the command line. To create a collection, POST the new collection name to the Data API URL formatted with your username. You will get a result that returns the address of the new data collection.
+You can use cURL to interact with the Data API from the command line. To create a collection, POST the new collection name to the Data API URL formatted with your user name. You will get a result that returns the address of the new data collection.
 
 
 #### Upload File
@@ -32,6 +32,7 @@ curl -X PUT -F file=@@filename.csv -H 'Authorization: Simple YOUR_API_KEY' https
 
 -> {"result": "data://YOUR_USERNAME/newCollection/filename.csv"}
 ```
+
 To upload a file, use cURL to `PUT` the file to a collection. Be sure to pass in your API key and the data collection URL. The response will return a result with the location of the file.
 
 #### Upload data as a file

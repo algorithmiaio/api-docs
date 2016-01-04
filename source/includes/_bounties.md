@@ -6,11 +6,11 @@
 
 ## What is a Bounty?
 
-A bounty is a posting that advertizes a problem that needs solving with an algorithm. Anyone can post a bounty or provide the solution! 
+A bounty is a posting that advertises a problem that needs solving with an algorithm. Anyone can post a bounty or provide the solution! 
 
 #### What kind of problems are appropriate for bounties?
 
-Bounties are great for problems that have concrete inputs and outputs. A bounty is a gret opportunity to get a subject matter expert to solve a specific problem that you have but don't know how to solve yourself. This would include problems such as defined transformations on structured data, obscure but well-defined statistical metrics on real-valued data, or problems such as extracting keywords for each document from a set of documents.
+Bounties are great for problems that have concrete inputs and outputs. A bounty is a great opportunity to get a subject matter expert to solve a specific problem that you have but don't know how to solve yourself. This would include problems such as defined transformations on structured data, obscure but well-defined statistical metrics on real-valued data, or problems such as extracting keywords for each document from a set of documents.
 
 #### What kind of problems are not a good match for the bounty system?
 
@@ -49,7 +49,7 @@ If your bounty is a particularly difficult problem, your odds of getting a succe
 
 #### Pledging to a Bounty
 
-In order to incentivize algorithm developers to develop an algorithm that fulfills your bounty, you can pledge between $10 and $10,000 USD to the solution. Bounties offered with a montary value are far more likely to interest algorithm developers. 
+In order to incentivize algorithm developers to develop an algorithm that fulfills your bounty, you can pledge between $10 and $10,000 USD to the solution. Bounties offered with a monetary value are far more likely to interest algorithm developers. 
 
 Pledging a bounty will start a 60-day countdown on your bounties page, and if your bounty is not fulfilled within those 60 days you will have the choice of either receiving a refund or renewing your bounty pledge. Algorithmia collects a 20% fee when you pledge a bounty. Bounties may be pledged in USD, Algorithmia credits, or both.
 
@@ -63,4 +63,4 @@ When you accept an algorithm as the solution to your bounty posting, the bounty 
 
 If you are an algorithm developer and see an interesting bounty that you want to solve, you can submit the solution to fulfill the bounty. 
 
-To fulfill a bounty, make sure you have published the algorithm publicly. The algorithm can be either open or closed source. Next, navigate to the bounty page and click the “Fulfill Bounty” button. At this point, you will be shown a dialog box with the Algorithmia Bounty Terms & Agreement. After you read the agreement, select your algorithm from the drop-down menu at the bottom and click the “I agree to terms and submit algorithm for review” button. The bounty poster will have 30 days to review the algorithm, give you feedback, and ultimately pay the bounty out if the algorithm is accepted.
+To fulfill a bounty, make sure you have published the algorithm publicly. The algorithm can be either open or closed source. Next, navigate to the bounty page and click the “Fulfill Bounty" button. At this point, you will be shown a dialog box with the Algorithmia Bounty Terms & Agreement. After you read the agreement, select your algorithm from the drop-down menu at the bottom and click the “I agree to terms and submit algorithm for review” button. The bounty poster will have 30 days to review the algorithm, give you feedback, and ultimately pay the bounty out if the algorithm is accepted.

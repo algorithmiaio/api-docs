@@ -246,7 +246,7 @@ Each version will be supported for 18 months after the version is marked as depr
 
 ##### v0 (Unversioned routes)
 
-Algorithm API calls defined with unversioned routes are depricated. They will be supported until 2015-12-31.
+Algorithm API calls defined with unversioned routes are deprecated. They will be supported until 2015-12-31.
 
 An unversioned route appears as such:
 

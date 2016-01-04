@@ -52,9 +52,9 @@ Algorithmia provides you with fine-grained controls for restricting what API cal
 
 You can create or modify any key to include any or all of the following restrictions:
 
-- __Algorithm access__: a whitelist of specific algorithms that can be called
+- __Algorithm access__: a white list of specific algorithms that can be called
 - __Native Clients__: allow the key to be used in any request that didn't originate from a web browser (non-CORS)
-- __Web Browser__: allows the key to be used for cross-origin requests (CORS). This is required for any key that you embed on your site. If you intend to embed this key in your site, we recommend that you disallow data access and whitelist only the algorithms that your site calls.
+- __Web Browser__: allows the key to be used for cross-origin requests (CORS). This is required for any key that you embed on your site. If you intend to embed this key in your site, we recommend that you disallow data access and white list only the algorithms that your site calls.
 - __Restrict referrer hostname__: only allow cross-origin requests from a specific domain. This is recommended when embedding your API key in your site.
 - __Data access__: control the Data API read/write access for a key. Note that this restriction does not prevent an algorithm from using the Data API. See the Data API documentation for details on further managing permissions of your data.
 

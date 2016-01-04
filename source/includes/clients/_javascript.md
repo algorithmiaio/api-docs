@@ -1,4 +1,4 @@
-## Javascript Client
+## JavaScript Client
 
 We offer both a vanilla JavaScript client as well as a NodeJS library for calling algorithms in the marketplace.
 
@@ -124,4 +124,4 @@ There is also partial support for some Data API calls with the Node.js package.
 
 You can currently create and read files (strings and JSON) with the methods `putString`, `getString`, `putJson`, and `getJson`.
 
-For more information, check out the [nodejs client source code](https://github.com/algorithmiaio/algorithmia-nodejs).
+For more information, check out the [NodeJS client source code](https://github.com/algorithmiaio/algorithmia-nodejs).

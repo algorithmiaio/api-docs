@@ -8,7 +8,7 @@ You can follow this guide immediately by making a call on the command line via c
 
 To get started, find an algorithm you'd like to call. You can do this by using the search bar or browsing the marketplace by tags & categories. Each algorithm has an owner and an algorithm name; you'll need both to format your request. This information is listed under the algorithm name on the description page as well as in the format of the algorithm's URL.
 
-For a given user and algorithm name, API calls are made to the following url:
+For a given user and algorithm name, API calls are made to the following URL:
 
 `POST https://api.algorithmia.com/v1/algo/:owner/:algoname`
 

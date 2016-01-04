@@ -107,7 +107,7 @@ To call private versions of an algorithm, you must use a fully specified semanti
 
 ## Query parameters
 
-The API offers the following query paramaters:
+The API offers the following query parameters:
 
 * `timeout={seconds}`
   * Specifies a timeout for the call in seconds

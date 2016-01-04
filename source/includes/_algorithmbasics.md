@@ -27,11 +27,11 @@ View your last 30-days of account usage on your account page.
 
 ## Permissions
 
-Permissions can be found on the algorithm description page. The algorithm's author can indicate if the algorithm will require internet access, call other algorithms, or if the users can view the source code. Some of these permissions will affect the amount of credits needed to run the algorithm. Be sure to check out the algorithm's permissions section on the description page for more information.
+Permissions can be found on the algorithm description page. The algorithm's author can indicate if the algorithm will require Internet access, call other algorithms, or if the users can view the source code. Some of these permissions will affect the amount of credits needed to run the algorithm. Be sure to check out the algorithm's permissions section on the description page for more information.
 
 #### Internet Access
 
-Many of the algorithms in the marketplace can be run without accessing the internet. Some algorithms require retrieving or sending data outside of the Algorithmia platform during execution. If an algorithm's permissions indicate that it requires internet access, please be aware that there is the potential for your data to leave the Algorithmia platform.
+Many of the algorithms in the marketplace can be run without accessing the Internet. Some algorithms require retrieving or sending data outside of the Algorithmia platform during execution. If an algorithm's permissions indicate that it requires Internet access, please be aware that there is the potential for your data to leave the Algorithmia platform.
 
 #### Calls Other Algorithms
 

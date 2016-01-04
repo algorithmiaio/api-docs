@@ -77,4 +77,4 @@ Follow [this AWS guide](http://docs.aws.amazon.com/kms/latest/developerguide/cre
 
 `kmsEncryptedApiKey = "<kmsEncryptedApiKey>";`
 
-For more information, follow [this AWS Lambda walkthrough on our blog](http://blog.algorithmia.com/post/133832621114/get-started-building-intelligent-serverless-apps).
+For more information, follow [this AWS Lambda walk through on our blog](http://blog.algorithmia.com/post/133832621114/get-started-building-intelligent-serverless-apps).

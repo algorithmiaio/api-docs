@@ -2,11 +2,11 @@
 
 The Algorithmia Data API makes it easy to get your data into and out of Algorithmia.
 
-The Algorithmia API allows for up to 10 Mib of data to be fed into an algorithm at request time. However, you may find yourself wanting to apply Algorithmia to applications with larger data requirements. The Algorithmia Data API allows you to create collections of files. These collections are created on a per-user basis and you can control the access and visibilty of the data.
+The Algorithmia API allows for up to 10 Mib of data to be fed into an algorithm at request time. However, you may find yourself wanting to apply Algorithmia to applications with larger data requirements. The Algorithmia Data API allows you to create collections of files. These collections are created on a per-user basis and you can control the access and visibility of the data.
 
 ## When should I use the Data API?
 
-The Algorithmia Data API is used when you have large data requirements or need to preserve state between calls. It allows algorithms to access data from within the same sesion, but ensures that your data is safe.
+The Algorithmia Data API is used when you have large data requirements or need to preserve state between calls. It allows algorithms to access data from within the same session, but ensures that your data is safe.
 
 There are many different collection types that have different features and security measures in place. Data in your temporary and user collections can be downloaded to be saved locally.
 
@@ -29,7 +29,7 @@ data://:username/:collection
 data://:username/:collection/:filename
 ```
 
-Users can create named collections of data that can be controlled by collection-based Access Control Lists (ACLs). This allows you to manange the permissions for each collection from the Data page.
+Users can create named collections of data that can be controlled by collection-based Access Control Lists (ACLs). This allows you to manage the permissions for each collection from the Data page.
 
 Each collection has its own ACLs, and there are three types of permissions for reading data from a collection. Only you can write to your own collections, so they are by default marked as private.
 
@@ -39,7 +39,7 @@ When you set your collection read access to Private, only you will be able to re
 
 #### My Algorithms (called by any user):
 
-If you select this permission option for your data collection, it will allow other users on the platform to interact with your data through your algorithms. This means they can call your algorithm to perform an operation on your data stored in this collection. This option is perfect for showcasing the algoriths and letting the users get an idea of what they can do on your sample data.
+If you select this permission option for your data collection, it will allow other users on the platform to interact with your data through your algorithms. This means they can call your algorithm to perform an operation on your data stored in this collection. This option is perfect for showcasing the algorithms and letting the users get an idea of what they can do on your sample data.
 
 #### Public (anybody):
 
@@ -52,10 +52,10 @@ data://.my/:collection
 data://.my/:collection/:filename
 ```
 
-If you are operating on your own directories or files you can use the .my pseudonym and the username will be assumed from the authorization provided.
+If you are operating on your own directories or files you can use the .my pseudonym and the user name will be assumed from the authorization provided.
 
 <aside class="warning">
-If you are authoring an algorithm, avoid using the <code>.my</code> pseudonym in the source code. When the algorithm is executed, <code>.my</code> will be interpreted as the username of the user who called the algorithm, rather than the author's username.
+If you are authoring an algorithm, avoid using the <code>.my</code> pseudonym in the source code. When the algorithm is executed, <code>.my</code> will be interpreted as the user name of the user who called the algorithm, rather than the author's user name.
 </aside>
 
 ## Session Collections

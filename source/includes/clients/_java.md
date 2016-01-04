@@ -12,7 +12,7 @@ The Algorithmia Java client is available on Github, published to Maven Central, 
 </dependency>
 ```
 
-The Algorithmia java client is published to Maven central. It is already listed as a dependency for new algorithms written in Java in the marketplace.
+The Algorithmia Java client is published to Maven central. It is already listed as a dependency for new algorithms written in Java in the marketplace.
 
 
 #### Instantiate a client:
@@ -27,7 +27,7 @@ In an algorithm on the Algorithmia platform:
 
 
 <aside class="notice">
-  Using version range <code>[,1.1.0)</code> is recommended as it implies using the latest backward-compatible bugfixes.
+  Using version range <code>[,1.1.0)</code> is recommended as it implies using the latest backward-compatible bug fixes.
 </aside>
 
 ### Calling Algorithms in Java
