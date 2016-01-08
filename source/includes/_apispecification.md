@@ -59,6 +59,19 @@ Algorithmia.client("YOUR_API_KEY")
            });
 ```
 
+```nodejs
+// include the algorithmia.js library
+
+var input = "YOUR_NAME";
+Algorithmia.client("YOUR_API_KEY")
+           .algo("algo://demo/Hello/0.1.1")
+           .pipe(input)
+           .then(function(output) {
+             console.log(output);
+           });
+```
+
+
 > Make sure to replace `YOUR_NAME` with your name & `YOUR_API_KEY` with your API key.
 
 

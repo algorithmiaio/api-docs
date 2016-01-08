@@ -7,6 +7,7 @@ language_tabs:
   - java
   - scala
   - javascript
+  - nodejs
 
 toc_footers:
   - <a href='https://algorithmia.com/'>Sign up for an Algorithmia Key</a>
