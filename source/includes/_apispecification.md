@@ -13,7 +13,9 @@ The size limit for a request is 10MiB. Check out the [Data API](#the-data-api) f
 ## Call an Algorithm
 
 ```shell
-curl -X POST -d 'YOUR_NAME' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
+curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
+    -d 'YOUR_NAME' -H 'Content-Type: text/plain' \
+    https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
 ```
 
 ```python
@@ -51,24 +53,24 @@ System.out.println(result.asJson)
 // include the algorithmia.js library
 
 var input = "YOUR_NAME";
-Algorithmia.client("YOUR_API_KEY")
-           .algo("algo://demo/Hello/0.1.1")
-           .pipe(input)
-           .then(function(output) {
-             console.log(output);
-           });
+Algorithmia.client("YOUR_API_KEY");
+
+client.algo("algo://demo/Hello/0.1.1")
+      .pipe(input)
+      .then(function(output) {
+        console.log(output);
+      });
 ```
 
 ```nodejs
-// include the algorithmia.js library
-
 var input = "YOUR_NAME";
-Algorithmia.client("YOUR_API_KEY")
-           .algo("algo://demo/Hello/0.1.1")
-           .pipe(input)
-           .then(function(output) {
-             console.log(output);
-           });
+var client = Algorithmia.client("YOUR_API_KEY");
+
+client.algo("algo://demo/Hello/0.1.1")
+       .pipe(input)
+       .then(function(output) {
+         console.log(output);
+       });
 ```
 
 
@@ -98,7 +100,9 @@ HTTP-multipart is also supported for sending a mixture of data objects. Each mul
 #### Versioning
 
 ```shell
-curl -X POST -d 'INPUT' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
+curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
+    -d 'INPUT' -H 'Content-Type: text/plain' \
+    https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
 ```
 
 Specifying the version of an algorithm is optional and can be a partial semantic version.
