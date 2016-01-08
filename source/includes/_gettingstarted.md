@@ -19,10 +19,15 @@ We recommend that you also append the algorithm version in your API call to ensu
 ## Making your first API call
 
 ```shell
-curl -X POST -d 'YOUR_NAME' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
+curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
+    -d 'YOUR_NAME' -H 'Content-Type: text/plain' \
+    https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
 ```
 
 ```python
+# Install algorithmia from PyPi via:
+#   pip install algorithmia
+
 import Algorithmia
 
 input = "YOUR_NAME"
@@ -32,6 +37,16 @@ print algo.pipe(input)
 ```
 
 ```java
+/*
+  Add algorithmia-client dependency from Maven Central:
+
+  <dependency>
+    <groupId>com.algorithmia</groupId>
+    <artifactId>algorithmia-client</artifactId>
+    <version>[,1.1.0)</version>
+  </dependency>
+*/
+
 import com.algorithmia.*;
 import com.algorithmia.algo.*;
 
@@ -43,6 +58,14 @@ System.out.println(result.asJson());
 ```
 
 ```scala
+/**
+  Add algorithmia-client dependency from Maven Central:
+
+  libraryDependencies ++= Seq(
+    "com.algorithmia" % "algorithmia-client" % "1.0.+",
+  )
+*/
+
 import com.algorithmia._
 import com.algorithmia.algo._
 
@@ -54,16 +77,39 @@ System.out.println(result.asJson)
 ```
 
 ```javascript
-// include the algorithmia.js library
+/*
+  Include the algorithmia.js library:
+  <script src="//algorithmia.com/v1/clients/js/algorithmia-0.2.0.js" type="text/javascript"></script>
+*/
 
 var input = "YOUR_NAME";
-Algorithmia.client("YOUR_API_KEY")
-           .algo("algo://demo/Hello/0.1.1")
-           .pipe(input)
-           .then(function(output) {
-             console.log(output);
-           });
+var client = Algorithmia.client("YOUR_API_KEY");
+
+client.algo("algo://demo/Hello/0.1.1")
+      .pipe(input)
+      .then(function(output) {
+          console.log(output);
+      });
 ```
+
+```nodejs
+/*
+  Add algorithmia to your package.json via:
+    npm install --save algorithmia
+*/
+
+var algorithmia = require("algorithmia");
+
+var input = "YOUR_NAME";
+var client = algorithmia.client("YOUR_API_KEY");
+
+client.algo("algo://demo/Hello/0.1.1")
+      .pipe(input)
+      .then(function(output) {
+          console.log(output);
+      });
+```
+
 
 > Make sure to replace `YOUR_NAME` with your name & `YOUR_API_KEY` with your API key.
 
