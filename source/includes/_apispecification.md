@@ -197,8 +197,10 @@ curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
 ```
 
 ```python
-input = # TODO: convert file to byte array
-result = client.algo("opencv/SmartThumbnail/0.1").pipe(input);
+with open("/path/to/bender.png", "rb") as imageFile:
+  f = imageFile.read()
+  input = bytearray(f)
+  result = client.algo("opencv/SmartThumbnail/0.1").pipe(input);
 ```
 
 ```java
