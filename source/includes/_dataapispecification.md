@@ -534,7 +534,6 @@ To check if a file exists without downloading it, use the following endpoint:
 ```shell
 # Write a text file
 curl -X PUT -H 'Authorization: Simple YOUR_API_KEY' \
-    -H 'Content-Type: application/json' \
     -d 'Leader of the Autobots' \
     https://api.algorithmia.com/v1/data/.my/robots/Optimus_Prime.txt
 
@@ -542,11 +541,10 @@ curl -X PUT -H 'Authorization: Simple YOUR_API_KEY' \
 
 # Upload local file
 curl -X PUT -H 'Authorization: Simple YOUR_API_KEY' \
-    -H 'Content-Type: application/json' \
-    -d @Optimus_Prime.png \
+    --data-binary @Optimus_Prime.png \
     https://api.algorithmia.com/v1/data/.my/robots/Optimus_Prime.png
 
--> f{ "result": "data://.my/robots/Optimus_Prime.png" }
+-> { "result": "data://.my/robots/Optimus_Prime.png" }
 ```
 
 ```python
