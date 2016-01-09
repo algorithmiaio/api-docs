@@ -86,6 +86,146 @@ For a given user and algorithm name, API calls are made to the following url:
 
 ## Input
 
+> Text Input
+
+```shell
+curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
+    -d 'HAL 9000' -H 'Content-Type: text/plain' \
+    https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
+```
+
+```python
+algo = client.algo('demo/Hello/0.1.1')
+print algo.pipe("HAL 9000")
+```
+
+```java
+Algorithm algo = client.algo("algo://demo/Hello/0.1.1");
+AlgoResponse result = algo.pipe("HAL 9000");
+System.out.println(result.asJson());
+```
+
+```scala
+val algo = client.algo("algo://demo/Hello/0.1.1")
+val result = algo.pipe(input)
+System.out.println(result.asJson)
+```
+
+```javascript
+client.algo("algo://demo/Hello/0.1.1")
+      .pipe("HAL 9000")
+      .then(function(output) {
+        console.log(output);
+      });
+```
+
+```nodejs
+client.algo("algo://demo/Hello/0.1.1")
+      .pipe("HAL 9000")
+      .then(function(output) {
+        console.log(output);
+      });
+```
+
+> JSON Input (including serialized objects/arrays)
+
+```shell
+curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
+    -H 'Content-Type: application/json' \
+    -d '["transformer", "terraforms", "retransform"]' \
+    https://api.algorithmia.com/v1/algo/WebPredict/ListAnagrams/0.1.0
+```
+
+```python
+algo = client.algo('WebPredict/ListAnagrams/0.1.0')
+result = algo.pipe(["transformer", "terraforms", "retransform"])
+
+# Or using raw JSON
+result2 = algo.pipeJson('["transformer", "terraforms", "retransform"]')
+```
+
+```java
+Algorithm algo = client.algo("algo://WebPredict/ListAnagrams/0.1.0");
+List<String> words = Arrays.asList(("transformer", "terraforms", "retransform");
+AlgoResponse result = algo.pipe(words);
+
+// Or using raw JSON
+String jsonWords = "[\"transformer\", \"terraforms\", \"retransform\"]"
+AlgoResponse result2 = algo.pipe(jsonWords);
+```
+
+```scala
+val algo = client.algo("algo://WebPredict/ListAnagrams/0.1.0")
+val result = algo.pipe(List("transformer", "terraforms", "retransform"))
+
+// Or using raw JSON
+val result2 = algo.pipeJson("""["transformer", "terraforms", "retransform"]""")
+```
+
+```javascript
+client.algo("algo://WebPredict/ListAnagrams/0.1.0")
+      .pipe(["transformer", "terraforms", "retransform"])
+      .then(function(output) {
+        console.log(output);
+      });
+
+// Or using raw JSON
+client.algo("algo://WebPredict/ListAnagrams/0.1.0")
+      .pipeJson('["transformer", "terraforms", "retransform"]')
+```
+
+```nodejs
+client.algo("algo://WebPredict/ListAnagrams/0.1.0")
+      .pipe(["transformer", "terraforms", "retransform"])
+      .then(function(output) {
+        console.log(output);
+      });
+
+// Or using raw JSON
+client.algo("algo://WebPredict/ListAnagrams/0.1.0")
+      .pipeJson('["transformer", "terraforms", "retransform"]')
+```
+
+> Binary Input
+
+```shell
+curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
+    -H 'Content-Type: application/octet-stream' \
+    --data-binary @bender.jpg \
+    -o bender_thumb.png \
+    https://api.algorithmia.com/v1/algo/opencv/SmartThumbnail/0.1
+```
+
+```python
+input = # TODO: convert file to byte array
+result = client.algo("opencv/SmartThumbnail/0.1").pipe(input);
+```
+
+```java
+byte[] input = Files.readAllBytes(new File("/path/to/bender.jpg").toPath());
+AlgoResponse result = client.algo("opencv/SmartThumbnail/0.1").pipe(input);
+```
+
+```scala
+let input = Files.readAllBytes(new File("/path/to/bender.jpg").toPath())
+let result = client.algo("opencv/SmartThumbnail/0.1").pipe(input)
+```
+
+```javascript
+/*
+  Support for binary I/O in the javascript client is planned.
+  Contact us if you need this feature, and we'll prioritize it right away:
+  https://algorithmia.com/contact
+
+  Note: The NodeJS client does currently support the Data API.
+*/
+```
+
+```nodejs
+var buffer = fs.readFileSync("/path/to/bender.jpg");
+var promise = client.algo("opencv/SmartThumbnail").pipe(buffer);
+```
+
 The body of the request is the input to the algorithm you are calling.
 To specify the type, the Content-Type header is required.
 
@@ -98,12 +238,6 @@ application/octet-stream | binary data
 HTTP-multipart is also supported for sending a mixture of data objects. Each multipart part must have a valid Content-Type.
 
 #### Versioning
-
-```shell
-curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
-    -d 'INPUT' -H 'Content-Type: text/plain' \
-    https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
-```
 
 Specifying the version of an algorithm is optional and can be a partial semantic version.
 The format of the call with a specified version is as follows:
