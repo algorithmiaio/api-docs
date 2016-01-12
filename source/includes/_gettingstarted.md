@@ -105,8 +105,8 @@ var client = algorithmia.client("YOUR_API_KEY");
 
 client.algo("algo://demo/Hello/0.1.1")
       .pipe(input)
-      .then(function(output) {
-          console.log(output);
+      .then(function(response) {
+          console.log(response.get());
       });
 ```
 

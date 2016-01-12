@@ -68,8 +68,8 @@ var client = Algorithmia.client("YOUR_API_KEY");
 
 client.algo("algo://demo/Hello/0.1.1")
        .pipe(input)
-       .then(function(output) {
-         console.log(output);
+       .then(function(response) {
+         console.log(response.get());
        });
 ```
 
@@ -86,109 +86,147 @@ For a given user and algorithm name, API calls are made to the following url:
 
 ## Input
 
-> Text Input
+> Text Input/Output
 
 ```shell
 curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
     -d 'HAL 9000' -H 'Content-Type: text/plain' \
     https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
+
+-> {
+    "result":"Hello HAL 9000",
+    "metadata":{"content_type":"text","duration":0.034232617}
+}
 ```
 
 ```python
 algo = client.algo('demo/Hello/0.1.1')
 print algo.pipe("HAL 9000")
+# -> Hello HAL 9000
 ```
 
 ```java
 Algorithm algo = client.algo("algo://demo/Hello/0.1.1");
 AlgoResponse result = algo.pipe("HAL 9000");
-System.out.println(result.asJson());
+System.out.println(result.asString());
+// -> Hello HAL 9000
 ```
 
 ```scala
 val algo = client.algo("algo://demo/Hello/0.1.1")
 val result = algo.pipe(input)
-System.out.println(result.asJson)
+System.out.println(result.asString)
+// -> Hello HAL 9000
 ```
 
 ```javascript
 client.algo("algo://demo/Hello/0.1.1")
       .pipe("HAL 9000")
       .then(function(output) {
-        console.log(output);
+        console.log(output.result);
       });
+// -> Hello HAL 9000
 ```
 
 ```nodejs
 client.algo("algo://demo/Hello/0.1.1")
       .pipe("HAL 9000")
-      .then(function(output) {
-        console.log(output);
+      .then(function(response) {
+        console.log(response.get());
       });
+// -> Hello HAL 9000
 ```
 
-> JSON Input (including serialized objects/arrays)
+> JSON Input/Output (including serialized objects/arrays)
 
 ```shell
 curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
     -H 'Content-Type: application/json' \
     -d '["transformer", "terraforms", "retransform"]' \
-    https://api.algorithmia.com/v1/algo/WebPredict/ListAnagrams/0.1.0
+    https://api.algorithmia.com/v1/algo/WebPredict/ListAnagrams/0.1
+
+-> {
+    "result": ["transformer","retransform"],
+    "metadata":{"content_type":"json","duration":0.039351226}
+}
 ```
 
 ```python
 algo = client.algo('WebPredict/ListAnagrams/0.1.0')
 result = algo.pipe(["transformer", "terraforms", "retransform"])
+# -> ["transformer","retransform"]
 
 # Or using raw JSON
 result2 = algo.pipeJson('["transformer", "terraforms", "retransform"]')
+# -> ["transformer","retransform"]
 ```
 
 ```java
 Algorithm algo = client.algo("algo://WebPredict/ListAnagrams/0.1.0");
 List<String> words = Arrays.asList(("transformer", "terraforms", "retransform");
 AlgoResponse result = algo.pipe(words);
+// WebPredict/ListAnagrams returns an array of strings, so cast the result:
+List<String> anagrams = result.as(new TypeToken<List<String>>(){});
+// -> List("transformer", "retransform")
 
 // Or using raw JSON
 String jsonWords = "[\"transformer\", \"terraforms\", \"retransform\"]"
 AlgoResponse result2 = algo.pipe(jsonWords);
+String anagrams = result2.asJsonString();
+// -> "[\"transformer\", \"retransform\"]"
 ```
 
 ```scala
 val algo = client.algo("algo://WebPredict/ListAnagrams/0.1.0")
 val result = algo.pipe(List("transformer", "terraforms", "retransform"))
+// WebPredict/ListAnagrams returns an array of strings, so cast the result:
+val anagrams = result.as(new TypeToken<List<String>>(){})
+// -> List("transformer", "retransform")
 
 // Or using raw JSON
 val result2 = algo.pipeJson("""["transformer", "terraforms", "retransform"]""")
+String anagrams =result.asJsonString();
+// -> "[\"transformer\", \"retransform\"]"
 ```
 
 ```javascript
 client.algo("algo://WebPredict/ListAnagrams/0.1.0")
       .pipe(["transformer", "terraforms", "retransform"])
       .then(function(output) {
-        console.log(output);
+        console.log(output.result);
+        // -> ["transformer","retransform"]
       });
 
 // Or using raw JSON
 client.algo("algo://WebPredict/ListAnagrams/0.1.0")
       .pipeJson('["transformer", "terraforms", "retransform"]')
+      .then(function(output) {
+        console.log(output.result);
+        // -> ["transformer","retransform"]
+      });
 ```
 
 ```nodejs
 client.algo("algo://WebPredict/ListAnagrams/0.1.0")
       .pipe(["transformer", "terraforms", "retransform"])
-      .then(function(output) {
-        console.log(output);
+      .then(function(response) {
+        console.log(response.get());
+        // -> ["transformer","retransform"]
       });
 
 // Or using raw JSON
 client.algo("algo://WebPredict/ListAnagrams/0.1.0")
       .pipeJson('["transformer", "terraforms", "retransform"]')
+      .then(function(response) {
+        console.log(response.get());
+        // -> ["transformer","retransform"]
+      });
 ```
 
-> Binary Input
+> Binary Input/Output
 
 ```shell
+# Save output to bender_thumb.png since consoles don't handle printing binary well
 curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
     -H 'Content-Type: application/octet-stream' \
     --data-binary @bender.jpg \
@@ -197,20 +235,23 @@ curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
 ```
 
 ```python
-with open("/path/to/bender.png", "rb") as imageFile:
-  f = imageFile.read()
-  input = bytearray(f)
-  result = client.algo("opencv/SmartThumbnail/0.1").pipe(input);
+input = bytearray(open("/path/to/bender.png", "rb").read())
+result = client.algo("opencv/SmartThumbnail/0.1").pipe(input);
+# -> [binary byte sequence]
 ```
 
 ```java
 byte[] input = Files.readAllBytes(new File("/path/to/bender.jpg").toPath());
 AlgoResponse result = client.algo("opencv/SmartThumbnail/0.1").pipe(input);
+byte[] buffer = result.as(new TypeToken<byte[]>(){});
+// -> [byte array]
 ```
 
 ```scala
 let input = Files.readAllBytes(new File("/path/to/bender.jpg").toPath())
 let result = client.algo("opencv/SmartThumbnail/0.1").pipe(input)
+let buffer = result.as(new TypeToken<byte[]>(){})
+// -> [byte array]
 ```
 
 ```javascript
@@ -219,13 +260,18 @@ let result = client.algo("opencv/SmartThumbnail/0.1").pipe(input)
   Contact us if you need this feature, and we'll prioritize it right away:
   https://algorithmia.com/contact
 
-  Note: The NodeJS client does currently support the Data API.
+  Note: The NodeJS client does currently support binary I/O.
 */
 ```
 
 ```nodejs
 var buffer = fs.readFileSync("/path/to/bender.jpg");
-var promise = client.algo("opencv/SmartThumbnail").pipe(buffer);
+client.algo("opencv/SmartThumbnail")
+    .pipe(buffer)
+    .then(function(response) {
+        var buffer = response.get();
+        // -> Buffer(...)
+    });
 ```
 
 The body of the request is the input to the algorithm you are calling.
@@ -260,6 +306,45 @@ To call private versions of an algorithm, you must use a fully specified semanti
 
 ## Query parameters
 
+> Query Parameters
+
+```shell
+curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
+    -d 'HAL 9000' -H 'Content-Type: text/plain' \
+    https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1?timeout=10
+```
+
+```python
+algo = client.algo('demo/Hello/0.1.1?timeout=10')
+result = algo.pipe("HAL 9000")
+```
+
+```java
+Algorithm algo = client.algo("algo://demo/Hello/0.1.1?timeout=10");
+AlgoResponse result = algo.pipe("HAL 9000");
+```
+
+```scala
+val algo = client.algo("algo://demo/Hello/0.1.1?timeout=10")
+val result = algo.pipe(input)
+```
+
+```javascript
+client.algo("algo://demo/Hello/0.1.1?timeout=10")
+      .pipe("HAL 9000")
+      .then(function(output) {
+        console.log(output);
+      });
+```
+
+```nodejs
+client.algo("algo://demo/Hello/0.1.1?timeout=10")
+      .pipe("HAL 9000")
+      .then(function(output) {
+        console.log(output);
+      });
+```
+
 The API offers the following query parameters:
 
 * `timeout={seconds}`
@@ -281,7 +366,9 @@ The API offers the following query parameters:
 
 ## Output
 
-```
+> Output Spec
+
+```json
 {
     "result": Any, /* Optional */
     "error": {
