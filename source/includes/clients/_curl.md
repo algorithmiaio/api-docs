@@ -18,7 +18,7 @@ To call an algorithm, use cURL to POST to the API. Be sure to specify the conten
 #### Create a collection
 
 ```
-curl -X POST -d 'newCollection' -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/data/YOUR_USERNAME
+curl -X POST -d '{"name":"newCollection"}' -H 'Content-Type: application/json' -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/data/YOUR_USERNAME
 
 -> {"result": "data://YOUR_USERNAME/newCollection"}
 ```
@@ -28,7 +28,7 @@ You can use cURL to interact with the Data API from the command line. To create 
 #### Upload File
 
 ```
-curl -X PUT -F file=@@filename.csv -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/data/YOUR_USERNAME/newCollection
+curl -X PUT -F file=@filename.csv -H 'Authorization: Simple YOUR_API_KEY' https://api.algorithmia.com/v1/data/YOUR_USERNAME/newCollection/filename.csv
 
 -> {"result": "data://YOUR_USERNAME/newCollection/filename.csv"}
 ```
