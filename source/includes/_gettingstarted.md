@@ -28,6 +28,8 @@ curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
 # Install the algo CLI for your OS via instructions at:
 # https://github.com/algorithmiaio/algorithmia-cli#installing-the-algorithmia-cli
 
+$ algo auth
+# When prompted, enter YOUR_API_KEY
 $ algo run demo/Hello/0.1.1 -d 'YOUR_NAME'
 ```
 
