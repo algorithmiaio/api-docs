@@ -57,6 +57,16 @@ curl -H 'Authorization: Simple YOUR_API_KEY' \
     "marker": "12-abcdefgj9ao72LHhjglh3AcRtCuf7T1FeSoZTA1gycqRHaDrdp254LV9S1LjKgQZ"
 }
 ```
+
+```cli
+$ algo ls data://.my
+robots  cats
+
+$ algo ls -l data://.my/robots
+2016-01-06 00:52:34    48 R2-D2.txt
+2016-01-06 00:52:34    36 T-800.txt
+```
+
 ```python
 # Support for listing directories from the python client is planned.
 # Contact us if you need this feature, and we'll prioritize it right away:
@@ -206,6 +216,11 @@ curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
 # Empty 200 response on success
 ```
 
+```cli
+$ algo mkdir data://.my/robots
+Created directory: data://.my/robots
+```
+
 ```python
 # Support for creating directories from the python client is planned.
 # Contact us if you need this feature, and we'll prioritize it right away:
@@ -324,6 +339,14 @@ curl -X DELETE -H 'Authorization: Simple YOUR_API_KEY' \
 -> { "result": { "deleted": 25 }}
 ```
 
+```cli
+$ algo rmdir data://.my/public_robots
+Deleted directory: data://.my/public_robots
+
+$ algo rmdir -f data://.my/robots
+Deleted directory: data://.my/robots
+```
+
 ```python
 # Support for deleting directories from the python client is planned.
 # Contact us if you need this feature, and we'll prioritize it right away:
@@ -399,6 +422,17 @@ error.deleted   | The number of files successfully deleted if an error encounter
 curl -O -H 'Authorization: Simple YOUR_API_KEY' \
     https://api.algorithmia.com/v1/data/.my/robots/T-800.png
 # Downloaded to `T-800.png` in local working directory
+```
+
+```cli
+# Download file to current directory with 'algo cp'
+$ algo cp data://.my/robots/T-800.png .
+Downloaded data://.my/robots/T-800.png (657kB)
+Finished downloading 1 file(s)
+
+# Echo file contents to STDOUT with 'algo cat'
+$ algo cat data://.my/robots/T-800.txt
+Cyberdyne Systems Series 800 Terminator
 ```
 
 ```python
@@ -547,6 +581,13 @@ curl -X PUT -H 'Authorization: Simple YOUR_API_KEY' \
 -> { "result": "data://.my/robots/Optimus_Prime.png" }
 ```
 
+```cli
+# Upload files with 'algo cp'
+$ algo cp Optimus_Prime.png data://.my/robots
+Uploaded data://.my/robots/Optimus_Prime.png
+Finished uploading 1 file(s)
+```
+
 ```python
 # Upload local file
 client.file("data://.my/robots/Optimus_Prime.png").putFile("/path/to/Optimus_Prime.png")
@@ -611,6 +652,11 @@ curl -X DELETE -H 'Authorization: Simple YOUR_API_KEY' \
     https://api.algorithmia.com/v1/data/.my/robots/C-3PO.txt
 
 -> { "result": { "deleted": 1 }}
+```
+
+```cli
+$ algo rm data://.my/robots/C-3PO.txt
+Deleted file data://.my/robots/C-3PO.txt
 ```
 
 ```python

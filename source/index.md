@@ -3,6 +3,7 @@ title: Algorithmia Documentation
 
 language_tabs:
   - shell: cURL
+  - cli: CLI
   - python
   - java
   - scala

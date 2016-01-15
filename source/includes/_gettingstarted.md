@@ -24,6 +24,13 @@ curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
     https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
 ```
 
+```cli
+# Install the algo CLI for your OS via instructions at:
+# https://github.com/algorithmiaio/algorithmia-cli#installing-the-algorithmia-cli
+
+$ algo run demo/Hello/0.1.1 -d 'YOUR_NAME'
+```
+
 ```python
 # Install algorithmia from PyPi via:
 #   pip install algorithmia

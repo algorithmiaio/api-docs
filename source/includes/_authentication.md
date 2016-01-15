@@ -8,6 +8,12 @@
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here" -H 'Authorization: Simple YOUR_API_KEY'
 ```
+```cli
+$ algo auth
+Configuring authentication for 'default' profile
+Enter API Key (prefixed with 'sim'): YOUR_API_KEY
+Profile is ready to use. Test with 'algo ls'
+```
 
 ```python
 import Algorithmia

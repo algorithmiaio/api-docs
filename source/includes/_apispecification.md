@@ -18,6 +18,11 @@ curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
     https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
 ```
 
+```cli
+$ algo run -d 'YOUR_NAME' demo/Hello/0.1.1
+Hello YOUR_NAME
+```
+
 ```python
 import Algorithmia
 
@@ -99,6 +104,11 @@ curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
 }
 ```
 
+```cli
+$ algo run demo/Hello/0.1.1 -d 'HAL 9000'
+Hello HAL 9000
+```
+
 ```python
 algo = client.algo('demo/Hello/0.1.1')
 print algo.pipe("HAL 9000")
@@ -150,6 +160,14 @@ curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
     "metadata":{"content_type":"json","duration":0.039351226}
 }
 ```
+
+```cli
+# -d automatically detects if input is valid JSON
+$ algo run WebPredict/ListAnagrams/0.1 \
+    -d '["transformer", "terraforms", "retransform"]'
+["transformer","retransform"]
+```
+
 
 ```python
 algo = client.algo('WebPredict/ListAnagrams/0.1.0')
@@ -234,6 +252,13 @@ curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
     https://api.algorithmia.com/v1/algo/opencv/SmartThumbnail/0.1
 ```
 
+```cli
+# -D reads input from a file
+# -o saves output to a file since consoles don't print binary well
+$ algo run opencv/SmartThumbnail/0.1 -D bender.jpg -o bender_thumb.png
+Completed in 1.1 seconds
+```
+
 ```python
 input = bytearray(open("/path/to/bender.png", "rb").read())
 result = client.algo("opencv/SmartThumbnail/0.1").pipe(input);
@@ -312,6 +337,14 @@ To call private versions of an algorithm, you must use a fully specified semanti
 curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
     -d 'HAL 9000' -H 'Content-Type: text/plain' \
     https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1?timeout=10
+```
+
+```cli
+# use --timeout to set the call timeout
+$ algo run demo/Hello/0.1.1 -d 'HAL 9000' --timeout 10
+
+# use --debug to print STDOUT if available
+$ algo run demo/Hello/0.1.1 -d 'HAL 9000' --debug
 ```
 
 ```python
