@@ -173,10 +173,6 @@ $ algo run WebPredict/ListAnagrams/0.1 \
 algo = client.algo('WebPredict/ListAnagrams/0.1.0')
 result = algo.pipe(["transformer", "terraforms", "retransform"])
 # -> ["transformer","retransform"]
-
-# Or using raw JSON
-result2 = algo.pipeJson('["transformer", "terraforms", "retransform"]')
-# -> ["transformer","retransform"]
 ```
 
 ```java
