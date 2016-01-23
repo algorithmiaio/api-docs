@@ -1,0 +1,12 @@
+# language setting
+language: ruby
+
+# version numbers
+rvm: 2.0.0-p247
+
+script: bundle exec rake publish
+
+# exclude
+branches:
+  except:
+    - gh-pages
