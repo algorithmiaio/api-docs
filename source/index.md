@@ -35,7 +35,6 @@ includes:
   - algo_development/java
   - algo_development/scala
   - algo_development/python
-  - algo_development/algodevfaq
   - bounties
   - help
 
