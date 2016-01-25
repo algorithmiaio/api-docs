@@ -1,3 +1,7 @@
+require "rubygems"
+require "tmpdir"
+require "bundler/setup"
+
 task :default => [:build]
 
 desc "Build the static site"
