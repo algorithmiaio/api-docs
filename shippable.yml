@@ -4,9 +4,14 @@ language: ruby
 # version numbers
 rvm: 2.0.0-p247
 
-script: bundle exec rake publish
+script: bundle exec rake build
+
+after_success:
+  - bundle exec rake shippable:publish
 
 # exclude
 branches:
   except:
     - gh-pages
+
+
