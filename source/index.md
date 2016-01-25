@@ -16,7 +16,6 @@ toc_footers:
 
 includes:
   - introduction
-  - algorithmbasics
   - authentication
   - data
   - apispecification
