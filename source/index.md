@@ -16,7 +16,6 @@ toc_footers:
 
 includes:
   - introduction
-  - gettingstarted
   - algorithmbasics
   - authentication
   - data
