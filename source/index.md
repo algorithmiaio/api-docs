@@ -17,8 +17,8 @@ toc_footers:
 includes:
   - introduction
   - authentication
-  - data
   - apispecification
+  - data
   - dataapispecification
   - clients/main
   - clients/cli
@@ -29,7 +29,6 @@ includes:
   - clients/scala
   - clients/lambda
   - algo_development/algorithmdevelopment
-  - algo_development/yourfirstalgo
   - algo_development/java
   - algo_development/scala
   - algo_development/python
