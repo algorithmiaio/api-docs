@@ -398,21 +398,21 @@ The API offers the following query parameters:
 > Output Spec
 
 ```json
-{
-    "result": Any, /* Optional */
-    "error": {
-        "message": String,
-        "stacktrace": String /* Optional */
-    }, /* Optional */
-    "metadata": {
-        "duration": Double,
-        "content_type": String,
-        "stdout": String, /* Optional */
-        "alerts": [
-            String
-        ] /* Optional */
+{ 
+  "result":"Hello HAL 9000",
+  "error": {
+        "message": "Authorization required",
+        "stacktrace": ...
+    }, 
+  "metadata": {
+    "content_type": "text",
+    "duration": 0.000447055,
+    "stdout": "a string",
+    "alerts": [
+            "a string"
+        ]
     }
-}
+  }
 ```
 
 The `metadata.content_type` specifies which type of encoding the result element is in.

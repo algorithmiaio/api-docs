@@ -24,9 +24,9 @@ raise NameError('Invalid graph structure')
 
 > Exceptions will be returned as JSON, of the form:
 
-```
+```json
 {
-  "error" {
+  "error": {
     "message": "Error running algorithm",
     "stacktrace": ...
   }

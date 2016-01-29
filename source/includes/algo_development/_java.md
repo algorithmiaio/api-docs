@@ -23,7 +23,7 @@ For example, to add Apache Commons Math version 3.4.1,
 
 #### Automatic JSON parsing
 
-```
+```java
 package algorithmia.docs.Example;
 import com.algorithmia.*;
 
@@ -48,7 +48,7 @@ Algorithmia can automatically parse many types of native Java objects to and fro
 
 #### Error Handling
 
-```
+```java
 throw new AlgorithmException("Invalid graph structure");
 ```
 

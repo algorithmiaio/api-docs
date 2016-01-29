@@ -154,22 +154,20 @@ acl | Include the directory ACL in the response (Default = false)
 {
     "folders": [
         {
-            "name": String
+            "name": "friendly_robots"
         }
-    ], /* Optional */
+    ],
     "files": [
         {
-            "filename": String,
-            "last_modified": String, /* ISO-8601 */
-            "size": Long /* Number of bytes */
+            "filename": "HAL 9000",
+            "last_modified": "2012-04-21T18:25:43-05:00",
+            "size": 48
         }
-    ], /* Optional */
-    "marker": String, /* Optional */
+    ], 
+    "marker": "12-bcdefgj9ao72LHhjglh3AcRtCuf7T1FeSoZTA1gycqRHaDrdp254LV9S1LjKgQZ",
     "acl": {
-        "read": [
-            String
-        ]
-    } /* Optional */
+        "read": [ "algo://.my/*" ]
+    }
 }
 ```
 
@@ -394,15 +392,15 @@ force            | if true, enables recursive delete of a non-empty directory
 
 > Deleting a directory output:
 
-```
+```json
 {
     "result": {
-        "deleted": Long /* Number of files successfully deleted */
-    }, /* Optional */
+        "deleted": 2
+    }, 
     "error": {
-        "message": String,
-        "deleted": Long /* Number of files successfully deleted */
-    } /* Optional */
+        "message": "Error Message",
+        "deleted": 2
+    }
 }
 ```
 
@@ -692,15 +690,15 @@ To delete a file through the Algorithmia Data API, use the following endpoint:
 
 > Deleting a file output:
 
-```
+```json
 {
     "result": {
-        "deleted": Long /* Number of files successfully deleted (0 or 1 for single file delete) */
-    }, /* Optional */
+        "deleted": 0
+    }, 
     "error": {
-        "message": String,
-        "deleted": Long /* Number of files successfully deleted (0 or 1 for single file delete) */
-    } /* Optional */
+        "message": "Error Message",
+        "deleted": 0
+    } 
 }
 ```
 
