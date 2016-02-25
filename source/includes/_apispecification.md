@@ -313,7 +313,7 @@ application/json    | text/json for passing JSON encoded data (UTF-8 encoded)
 application/text    | text/plain for passing a basic String (UTF-8 encoded)
 application/octet-stream | binary data
 
-HTTP-multipart is also supported for sending a mixture of data objects. Each multipart part must have a valid Content-Type.
+Currently, there is no way to send a mixture of data objects (e.g. binary and JSON). If you need this enabled, please [contact us](https://algorithmia.com/contact) and we will prioritize it.
 
 #### Versioning
 
