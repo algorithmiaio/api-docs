@@ -29,7 +29,11 @@ import Algorithmia
 input = "YOUR_NAME"
 client = Algorithmia.client('YOUR_API_KEY')
 algo = client.algo('demo/Hello/0.1.1')
-print algo.pipe(input)
+result = algo.pipe(input)
+print result.result
+
+# You can also retrieve metadata about the result
+print result.metadata
 ```
 
 ```java
@@ -111,7 +115,7 @@ Hello HAL 9000
 
 ```python
 algo = client.algo('demo/Hello/0.1.1')
-print algo.pipe("HAL 9000")
+print algo.pipe("HAL 9000").result
 # -> Hello HAL 9000
 ```
 
@@ -171,7 +175,7 @@ $ algo run WebPredict/ListAnagrams/0.1 \
 
 ```python
 algo = client.algo('WebPredict/ListAnagrams/0.1.0')
-result = algo.pipe(["transformer", "terraforms", "retransform"])
+result = algo.pipe(["transformer", "terraforms", "retransform"]).result
 # -> ["transformer","retransform"]
 ```
 
@@ -257,7 +261,7 @@ Completed in 1.1 seconds
 
 ```python
 input = bytearray(open("/path/to/bender.png", "rb").read())
-result = client.algo("opencv/SmartThumbnail/0.1").pipe(input);
+result = client.algo("opencv/SmartThumbnail/0.1").pipe(input).result
 # -> [binary byte sequence]
 ```
 
@@ -344,8 +348,11 @@ $ algo run demo/Hello/0.1.1 -d 'HAL 9000' --debug
 ```
 
 ```python
-algo = client.algo('demo/Hello/0.1.1?timeout=10')
+algo = client.algo('demo/Hello/0.1.1').set_options(timeout=10, stdout=True)
 result = algo.pipe("HAL 9000")
+
+from Algorithmia.algorithm import OutputType
+algo = client.algo('demo/Hello/0.1.1').set_options(output=OutputType.raw)
 ```
 
 ```java
