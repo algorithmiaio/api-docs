@@ -361,7 +361,27 @@ algo = client.algo('demo/Hello/0.1.1').set_options(output=OutputType.raw)
 ```
 
 ```java
-Algorithm algo = client.algo("algo://demo/Hello/0.1.1?timeout=10");
+// There are several equivalent ways to set query parameters for an API call
+
+// Helper methods for specific parameters in the API spec:
+Algorithm algo = client.algo("demo/Hello/0.1.1")
+                         .setTimeout(5, TimeUnit.MINUTES)
+                         .setStdout(false)
+                         .setOutputType(AlgorithmOutputType.RAW);
+
+// Or, set query parameter string directly:
+Algorithm algo = client.algo("demo/Hello/0.1.1")
+                         .setOption("timeout", "300")
+                         .setOption("stdout","false")
+                         .setOption("output","raw");
+                         
+// Or, pass in a Map of options:
+HashMap<String, String> options = new HashMap<>();
+options.put("timeout", "300");
+options.put("stdout", "false");
+options.put("output", "raw");
+Algorithm algo = client.algo("demo/Hello/0.1.1").setOptions(options);
+
 AlgoResponse result = algo.pipe("HAL 9000");
 ```
 

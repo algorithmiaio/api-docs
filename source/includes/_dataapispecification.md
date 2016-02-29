@@ -236,6 +236,10 @@ robots.create(ReadAcl.public)  # Supported: ReadAcl.public, ReadAcl.private, Rea
 ```java
 DataDirectory robots = client.dir("data://.my/robots");
 robots.create();
+
+// You can also create a directory with different permissions
+import com.algorithmia.data.DataAcl;
+robots.create(DataAcl.PRIVATE);
 ```
 
 ```scala
@@ -307,6 +311,18 @@ robots = client.dir("data://.my/robots")
 robots.create()
 print robots.get_permissions().read_acl == AclType.my_algos #  True
 robots.update_permissions(ReadAcl.private)  # True if update succeeded
+```
+
+```java
+import com.algorithmia.data.DataAcl;
+DataDirectory robots = client.dir("data://.my/robots");
+robots.create();
+
+// Get the current permissions
+robots.getPermissions().getReadPermissions();  // DataAclType.MY_ALGOS
+
+// Update permissions
+robots.updatePermissions(DataAcl.PRIVATE);  
 ```
 
 To update a directory, use the following API:
