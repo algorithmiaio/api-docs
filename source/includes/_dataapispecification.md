@@ -68,9 +68,14 @@ $ algo ls -l data://.my/robots
 ```
 
 ```python
-# Support for listing directories from the python client is planned.
-# Contact us if you need this feature, and we'll prioritize it right away:
-# https://algorithmia.com/contact
+# List top level directoreis
+for dir in client.dir("data://.my").dirs():
+    print "Directory " + dir.path + " at URL " + dir.url
+
+# List files in the 'robots' directory
+dir = client.dir("data://.my/robots")
+for file in dir.files():
+    print "File " + file.path + " at URL " + file.url + " last modified " + file.last_modified
 ```
 
 ```java
@@ -220,9 +225,12 @@ Created directory: data://.my/robots
 ```
 
 ```python
-# Support for creating directories from the python client is planned.
-# Contact us if you need this feature, and we'll prioritize it right away:
-# https://algorithmia.com/contact
+robots = client.dir("data://.my/robots")
+robots.create()
+
+# You can also create a directory with different permissions
+from Algorithmia.acl import ReadAcl
+robots.create(ReadAcl.public)  # Supported: ReadAcl.public, ReadAcl.private, ReadAcl.my_algos
 ```
 
 ```java
@@ -293,6 +301,14 @@ curl -X PATCH -H 'Authorization: Simple YOUR_API_KEY' \
 # Empty 200 response on success
 ```
 
+```python
+from Algorithmia.acl import ReadAcl, AclType
+robots = client.dir("data://.my/robots")
+robots.create()
+print robots.get_permissions().read_acl == AclType.my_algos #  True
+robots.update_permissions(ReadAcl.private)  # True if update succeeded
+```
+
 To update a directory, use the following API:
 
 `PATCH https://api.algorithmia.com/v1/data/:owner/:directory`
@@ -346,9 +362,9 @@ Deleted directory: data://.my/robots
 ```
 
 ```python
-# Support for deleting directories from the python client is planned.
-# Contact us if you need this feature, and we'll prioritize it right away:
-# https://algorithmia.com/contact
+robots = client.dir("data://.my/robots")
+if robots.exists():
+	robots.delete()
 ```
 
 ```java

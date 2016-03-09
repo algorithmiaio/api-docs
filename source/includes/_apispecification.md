@@ -29,7 +29,16 @@ import Algorithmia
 input = "YOUR_NAME"
 client = Algorithmia.client('YOUR_API_KEY')
 algo = client.algo('demo/Hello/0.1.1')
-print algo.pipe(input)
+result = algo.pipe(input)
+
+# If you are using the 1.0+ client you can access both the output and the metadata
+print result.result    # Hello YOUR_NAME
+print result.metadata  # Metadata(content_type='text',duration=0.0002127)
+
+# If you are using 0.9.x you can only get the algorithm output
+print result   # Hello YOUR_NAME
+
+# There are many other features missing in 0.9.x, to upgrade see the github docs
 ```
 
 ```java
@@ -111,7 +120,7 @@ Hello HAL 9000
 
 ```python
 algo = client.algo('demo/Hello/0.1.1')
-print algo.pipe("HAL 9000")
+print algo.pipe("HAL 9000").result
 # -> Hello HAL 9000
 ```
 
@@ -171,7 +180,7 @@ $ algo run WebPredict/ListAnagrams/0.1 \
 
 ```python
 algo = client.algo('WebPredict/ListAnagrams/0.1.0')
-result = algo.pipe(["transformer", "terraforms", "retransform"])
+result = algo.pipe(["transformer", "terraforms", "retransform"]).result
 # -> ["transformer","retransform"]
 ```
 
@@ -257,7 +266,7 @@ Completed in 1.1 seconds
 
 ```python
 input = bytearray(open("/path/to/bender.png", "rb").read())
-result = client.algo("opencv/SmartThumbnail/0.1").pipe(input);
+result = client.algo("opencv/SmartThumbnail/0.1").pipe(input).result
 # -> [binary byte sequence]
 ```
 
@@ -304,7 +313,7 @@ application/json    | text/json for passing JSON encoded data (UTF-8 encoded)
 application/text    | text/plain for passing a basic String (UTF-8 encoded)
 application/octet-stream | binary data
 
-HTTP-multipart is also supported for sending a mixture of data objects. Each multipart part must have a valid Content-Type.
+Currently, there is no way to send a mixture of data objects (e.g. binary and JSON). If you need this enabled, please [contact us](https://algorithmia.com/contact) and we will prioritize it.
 
 #### Versioning
 
@@ -344,8 +353,11 @@ $ algo run demo/Hello/0.1.1 -d 'HAL 9000' --debug
 ```
 
 ```python
-algo = client.algo('demo/Hello/0.1.1?timeout=10')
+algo = client.algo('demo/Hello/0.1.1').set_options(timeout=10, stdout=True)
 result = algo.pipe("HAL 9000")
+
+from Algorithmia.algorithm import OutputType
+algo = client.algo('demo/Hello/0.1.1').set_options(output=OutputType.raw)
 ```
 
 ```java
