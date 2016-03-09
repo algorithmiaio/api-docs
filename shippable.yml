@@ -13,5 +13,3 @@ after_success:
 branches:
   except:
     - gh-pages
-
-
