@@ -77,8 +77,10 @@ client.algo("algo://demo/Hello/0.1.1")
 ```
 
 ```nodejs
+var algorithmia = require("algorithmia");
+
 var input = "YOUR_NAME";
-var client = Algorithmia.client("YOUR_API_KEY");
+var client = algorithmia.client("YOUR_API_KEY");
 
 client.algo("algo://demo/Hello/0.1.1")
        .pipe(input)
