@@ -1,5 +1,4 @@
-[![Build Status](https://api.shippable.com/projects/56709c711895ca4474666740/badge/master)](https://app.shippable.com/projects/56709c711895ca4474666740/builds/latest)
-
+[![Run Status](https://api.shippable.com/projects/56709c711895ca4474666740/badge?branch=master)](https://app.shippable.com/projects/56709c711895ca4474666740)
 
 API Docs
 ========
