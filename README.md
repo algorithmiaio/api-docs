@@ -30,6 +30,42 @@ You can now see the docs at <http://localhost:4567>. Whoa! That was fast!
 
 If you are making any changes to the stylesheets or javascript, run `rake build` to re-build the project so you can see your changes.
 
+### How to add new files
+
+To add a new file and have it included in the navigation, be sure to add it to the `includes:` field of the front-matter in `index.rb`. Note that while the files are prefaced with an underscore, here in the front-matter, the underscore is unnecessary. You also do not need to include the file extension.
+
+```
+...
+includes:
+  - introduction
+  - authentication
+  - apispecification
+  - data
+  - dataapispecification
+  - clients/cli
+...
+
+```
+
+
+### Language Tabs
+
+Adding a new language to the docs is easy! To get a new language tab, simply add the language to the front-matter in `index.rb`. 
+
+```
+language_tabs:
+  - shell: cURL
+  - cli: CLI
+  - python
+  - java
+  - scala
+  - javascript
+  - nodejs
+```
+
+Need to add a custom lexer? Add it in `custom_lexers.rb`.
+
+If you add a new language, be sure to add code samples for each snippet that appears in other languages! The docs are only complete when there is language parity.
 
 Contributing
 -------------
