@@ -21,6 +21,13 @@ import Algorithmia
 client = Algorithmia.client('YOUR_API_KEY')
 ```
 
+```ruby
+require 'algorithmia'
+
+client = Algorithmia.client('YOUR_API_KEY')
+```
+
+
 ```java
 import com.algorithmia.*;
 import com.algorithmia.algo.*;

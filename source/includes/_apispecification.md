@@ -41,6 +41,15 @@ print result   # Hello YOUR_NAME
 # There are many other features missing in 0.9.x, to upgrade see the github docs
 ```
 
+```ruby
+require 'algorithmia'
+
+client = Algorithmia.client('YOUR_API_KEY')
+algo = client.algo('demo/Hello/0.1.1')
+response = algo.pipe('YOUR_NAME')
+puts response.result
+```
+
 ```java
 import com.algorithmia.*;
 import com.algorithmia.algo.*;
@@ -126,6 +135,12 @@ print algo.pipe("HAL 9000").result
 # -> Hello HAL 9000
 ```
 
+```ruby
+algo = client.algo('demo/Hello/0.1.1')
+puts algo.pipe('HAL 9000').result
+# -> Hello HAL 900
+```
+
 ```java
 Algorithm algo = client.algo("algo://demo/Hello/0.1.1");
 AlgoResponse result = algo.pipe("HAL 9000");
@@ -181,6 +196,12 @@ $ algo run WebPredict/ListAnagrams/0.1 \
 
 
 ```python
+algo = client.algo('WebPredict/ListAnagrams/0.1.0')
+result = algo.pipe(["transformer", "terraforms", "retransform"]).result
+# -> ["transformer","retransform"]
+```
+
+```ruby
 algo = client.algo('WebPredict/ListAnagrams/0.1.0')
 result = algo.pipe(["transformer", "terraforms", "retransform"]).result
 # -> ["transformer","retransform"]
@@ -270,6 +291,12 @@ Completed in 1.1 seconds
 input = bytearray(open("/path/to/bender.png", "rb").read())
 result = client.algo("opencv/SmartThumbnail/0.1").pipe(input).result
 # -> [binary byte sequence]
+```
+
+```ruby
+input = File.binread("/path/to/bender.png")
+result = client.algo("opencv/SmartThumbnail/0.1").pipe(input).result
+# -> [ASCII-8BIT string of binary data]
 ```
 
 ```java
@@ -362,6 +389,11 @@ from Algorithmia.algorithm import OutputType
 algo = client.algo('demo/Hello/0.1.1').set_options(output=OutputType.raw)
 ```
 
+```ruby
+algo = client.algo('demo/Hello/0.1.1').set_timeout(10).enable_stdout
+result = algo.pipe('HAL 9000').result
+```
+
 ```java
 Algorithm algo = client.algo("algo://demo/Hello/0.1.1?timeout=10");
 AlgoResponse result = algo.pipe("HAL 9000");
@@ -412,12 +444,12 @@ The API offers the following query parameters:
 > Output Spec
 
 ```json
-{ 
+{
   "result":"Hello HAL 9000",
   "error": {
         "message": "Authorization required",
         "stacktrace": ...
-    }, 
+    },
   "metadata": {
     "content_type": "text",
     "duration": 0.000447055,

@@ -78,6 +78,19 @@ for file in dir.files():
     print "File " + file.path + " at URL " + file.url + " last modified " + file.last_modified
 ```
 
+```ruby
+# List top level directoreis
+client.dir("data://.my").each_dir do |dir|
+    puts "Directory " + dir.data_uri
+end
+
+# List files in the 'robots' directory
+client.dir("data://.my/robots").each_file do |file|
+    puts "File " + file.data_uri
+end
+```
+
+
 ```java
 import com.algorithmia.*;
 import com.algorithmia.data.*;
@@ -168,7 +181,7 @@ acl | Include the directory ACL in the response (Default = false)
             "last_modified": "2012-04-21T18:25:43-05:00",
             "size": 48
         }
-    ], 
+    ],
     "marker": "12-bcdefgj9ao72LHhjglh3AcRtCuf7T1FeSoZTA1gycqRHaDrdp254LV9S1LjKgQZ",
     "acl": {
         "read": [ "algo://.my/*" ]
@@ -231,6 +244,11 @@ robots.create()
 # You can also create a directory with different permissions
 from Algorithmia.acl import ReadAcl
 robots.create(ReadAcl.public)  # Supported: ReadAcl.public, ReadAcl.private, ReadAcl.my_algos
+```
+
+```ruby
+robots = client.dir("data://.my/robots")
+robots.create
 ```
 
 ```java
@@ -367,6 +385,14 @@ if robots.exists():
 	robots.delete()
 ```
 
+```ruby
+robots = client.dir("data://.my/robots")
+robots.delete
+# to force deletion even if dir contains file, use:
+# robots.delete(true)
+```
+
+
 ```java
 DataDirectory robots = client.dir("data://.my/robots");
 robots.delete(false);
@@ -412,7 +438,7 @@ force            | if true, enables recursive delete of a non-empty directory
 {
     "result": {
         "deleted": 2
-    }, 
+    },
     "error": {
         "message": "Error Message",
         "deleted": 2
@@ -461,6 +487,21 @@ t800Json =  client.file("data://.my/robots/T-800.txt").getJson()
 
 # Get file's contents as a byte array
 t800Bytes = client.file("data://.my/robots/T-800.png").getBytes()
+```
+
+```ruby
+# Download file and get the file handle
+t800File = client.file("data://.my/robots/T-800.png").get_file
+
+# Get file's contents as a string
+t800Text = client.file("data://.my/robots/T-800.txt").get
+
+# Get file's contents as JSON
+t800JsonString = client.file("data://.my/robots/T-800.txt").get
+t800Json =  JSON.parse(t800JsonString)
+
+# Get file's contents as a byte array
+t800Bytes = client.file("data://.my/robots/T-800.png").get
 ```
 
 ```java
@@ -539,6 +580,11 @@ if client.file("data://.my/robots/T-800.png").exists()
     print("HAL 9000 exists")
 ```
 
+```ruby
+if client.file("data://.my/robots/T-800.png").exists?
+    puts "HAL 9000 exists"
+```
+
 ```java
 if(client.file("data://.my/robots/HAL_9000.png")){
     System.out.println("HAL 9000 exists");
@@ -611,6 +657,17 @@ client.file("data://.my/robots/Optimus_Prime.txt").put("Leader of the Autobots")
 client.file("data://.my/robots/Optimus_Prime.json").putJson({"faction": "Autobots"})
 ```
 
+```ruby
+robots = client.dir("data://.my/robots")
+
+# Upload local file
+robots.put_file("/path/to/Optimus_Prime.png")
+# Write a text file
+robots.file("Optimus_Prime.txt").put("Leader of the Autobots")
+# Write a binary file
+robots.file("Optimus_Prime.key").put([71, 101, 101, 107].pack('C*'))
+```
+
 ```java
 DataDirectory robots = client.dir("data://.my/robots");
 
@@ -678,6 +735,11 @@ c3po = client.file("data://.my/robots/C-3PO.txt")
 c3po.delete()
 ```
 
+```ruby
+c3po = client.file("data://.my/robots/C-3PO.txt")
+c3po.delete
+```
+
 ```java
 DataFile c3po = client.file("data://.my/robots/C-3PO.txt")
 c3po.delete();
@@ -710,11 +772,11 @@ To delete a file through the Algorithmia Data API, use the following endpoint:
 {
     "result": {
         "deleted": 0
-    }, 
+    },
     "error": {
         "message": "Error Message",
         "deleted": 0
-    } 
+    }
 }
 ```
 

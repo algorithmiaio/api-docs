@@ -9,6 +9,7 @@ language_tabs:
   - scala
   - javascript
   - nodejs
+  - ruby
 
 toc_footers:
   - <a href='https://algorithmia.com/'>Sign up for an Algorithmia Key</a>
