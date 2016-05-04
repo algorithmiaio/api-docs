@@ -40,21 +40,32 @@ raise NameError('Invalid graph structure')
 }
 ```
 
-Algorithms can throw any exception and they will be returned as an error via the Algorithmia API. Use standard Python exception conventions, such as NameError.
+Algorithms can throw any exception, and they will be returned as an error via the Algorithmia API. If you want to throw a generic exception message, use an `AlgorithmException`.
 
-#### JSON parsing
 
-> Within the receiving algorithm, the arguments would be retrieved as follows:
+#### I/O for Your Algorithms
+
+> Inputs that are sequences such as: strings, lists, dictionaries, tuples and bytearrays (binary byte sequence such as an image file) can be handled as you would any Python sequence, however you will want to check for the data type you are expecing to receive. For example:
 
 ```
 import Algorithmia
+
 def apply(input):
-    return 'Hello ' + str(input)
+    assert isinstance(input, list)
+    return 'Hello ' + input[0]
 ```
 
-For single arguments, JSON parsing works in a similar manner as it does for Java algorithms. However, to take multiple arguments to an algorithm, you must store them in a single python object such as a list, tuple or dictionary. For example: to pass `arg1` and `arg2` the first of which is a string and the second of which is a list of integers you would construct a dictionary. Below you'll see an example shown below as a JSON object:
+> Here is an example of a list input:
 
-`{"arg1": "word", "arg2": [1,2,3,4]}`
+`["Knights Who Say Ni", "Killer Rabbit of Caerbannog"]
+
+> Which will return:
+
+`"Hello Knights Who Say Ni"
+
+
+Note that you can also return any of these data structures in your algorithm.
+
 
 #### Calling Other Algorithms and Managing Data
 

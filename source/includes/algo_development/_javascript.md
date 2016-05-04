@@ -34,19 +34,28 @@ cb(error, input)
 
 Algorithms can throw any exception, and they will be returned as an error via the Algorithmia API. If you want to throw a generic exception message, use an `AlgorithmException`.
 
-#### JSON parsing
 
-> Within the receiving algorithm, the arguments would be retrieved as follows:
+#### I/O for Your Algorithms
+
+> Handling various data types for your inputs and outputs:
 
 ```
 exports.apply = function(input, cb) {
-    cb(null, "Hello " + input);
+    cb(null, "A few of the most starred node.js packages: " + input[0] + ", " + input[1] + ", " + input[2]);
 };
 ```
 
-For single arguments, JSON parsing works in a similar manner as it does for Java algorithms. However, to take multiple arguments to an algorithm, you must store them in a single javascript data structure such as an array, or object. For example, to pass `arg1` and `arg2` as the input, the first of which is a string and the second of which is a list of integers, you would construct a javascript object. Below you'll see an example shown below as a JSON object:
+> Here is an example of an array input:
 
-`{"arg1": "word", "arg2": [1,2,3,4]}`
+`["express", "gulp", "async"]`
+
+
+> Which will return:
+
+`"A few of the most starred node.js packages: express, gulp, async"
+
+
+Note that you can also return any of these data structures in your algorithm.
 
 #### Calling Other Algorithms and Managing Data
 
