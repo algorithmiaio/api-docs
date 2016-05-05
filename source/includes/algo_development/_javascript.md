@@ -20,28 +20,35 @@ Add dependencies by including the package name and version to the `package.json`
  }
  ```
 
-Note that you will still need to import your package to your algorithm file. For example to include your package async add
+Note that you will still need to import your package to your algorithm file. For example to include your package 'lodash' add:
 
 `lodash = require("lodash")();`
 
-#### Error Handling
-
-```
-var error = "Invalid graph structure"
-\// Where cb is a callback function passed into your apply  method
-cb(error, input)
-```
-
-Algorithms can throw any exception, and they will be returned as an error via the Algorithmia API. If you want to throw a generic exception message, use an `AlgorithmException`.
-
-
 #### I/O for Your Algorithms
 
-> Handling various data types for your inputs and outputs:
+When you are creating an algorithm that takes input from other algorithms it's important to understand what data types to expect and what data types you may return as output that the user of your algorithm will ingest.
+
+> Datatypes that are either sequences that you don't wish to iterate over such as strings or inputs that are scalar in nature such as a numeric data type can be accessed via input, however you will probably want to check for the data type you are expecing to receive.
 
 ```
 exports.apply = function(input, cb) {
-    cb(null, "A few of the most starred node.js packages: " + input[0] + ", " + input[1] + ", " + input[2]);
+	if (typeof input == String){
+    	cb(null, input);
+    }
+};
+```
+
+> A string input:
+
+`"~3.14159"
+
+```
+> Inputs that are sequences such as: arrays, objects and buffer (binary buffer sequence such as an image file) can be handled as you would any Python sequence, however you will probably want to check for the data type you are expecing to receive. For example:
+
+exports.apply = function(input, cb) {
+	if (typeof input == Array){
+	    cb(null, "A few of the most starred node.js packages: " + input[0] + ", " + input[1] + ", " + input[2]);
+	}    
 };
 ```
 
@@ -54,8 +61,17 @@ exports.apply = function(input, cb) {
 
 `"A few of the most starred node.js packages: express, gulp, async"
 
-
 Note that you can also return any of these data structures in your algorithm.
+
+#### Error Handling
+
+```
+var error = "Invalid graph structure"
+\// Where cb is a callback function passed into your apply  method
+cb(error, input)
+```
+
+Algorithms can throw any exception, and they will be returned as an error via the Algorithmia API. If you want to throw a generic exception message, use an `AlgorithmException`.
 
 #### Calling Other Algorithms and Managing Data
 

@@ -3,7 +3,7 @@
 #### Available APIs
 
 Algorithmia makes a number of libraries available to make algorithm development easier.
-The full <a href="">Ruby 2.2 language and standard library</a>
+The full <a href="http://ruby-doc.org/core-2.2.0/">Ruby 2.2 language and standard library</a>
 is available for you to use in your algorithms. Furthermore, algorithms can call other algorithms and manage data on the Algorithmia platform
 via the <a href="http://developers.algorithmia.com/clients/ruby/">Algorithmia Ruby Client</a>.
 
@@ -13,15 +13,61 @@ Algorithmia supports adding 3rd party dependencies via <a href="https://rubygems
 
 Add dependencies by adding the package name to the `Gemfile`.
 
-Note that you will still need to include an import statement to your algorithm file. For example, to make use of numpy, you would include the line
+Note that you will still need to include an import statement to your algorithm file. For example, to make use of nokogiri, you would include the line
 
-`numpy`
+`gem "nokogiri"`
 
 in the dependencies file and the line
 
-`import numpy as np`
+`require "nokogiri"`
 
 in the main file.
+
+#### I/O for Your Algorithms
+
+When you are creating an algorithm that takes input from other algorithms it's important to understand what data types to expect and what data types you may return as output that the user of your algorithm will ingest.
+
+> Datatypes that are either sequences that you don't wish to iterate over such as strings or inputs that are scalar in nature such as a numeric data type can be accessed via input, however you will probably want to check for the data type you are expecing to receive.
+
+```
+import Algorithmia
+
+def apply(input)
+    input.instance_of? String
+    return input
+end
+```
+
+> A string input:
+
+`"Ruby is such a gem!"`
+
+> Inputs that are sequences such as: strings, arrays, hashes or a ASCII-8BIT string of binary data (such as an image file) can be handled as you would any Ruby sequence. For example:
+
+```
+import Algorithmia
+
+def apply(input):
+	input.instance_of? Array
+    return 'The languages that influenced Ruby: ' + input[0] + input[1] + input[2] + input[3] + input[4]
+```
+
+> Here is an example of a list input:
+
+`["Perl", "Smalltalk", "Eiffel", "Ada", "Lisp"]`
+
+> Which will return:
+
+`"The languages that influenced Ruby: Perl, Smalltalk, Eiffel, Ada, Lisp"
+
+Note that you can also return any of these data structures in your algorithm.
+
+
+#### Calling Other Algorithms and Managing Data
+
+To call other algorithms or manage data from your algorithm, use the [Algorithmia Ruby Client](#ruby-client) which is automatically available to any algorithm you create on the Algorithmia platform.
+
+When designing your algorithm, don't forget that there are special data directories, `.session` and `.algo`, that are available only to algorithms to help you manage data over the course of the algorithm execution.
 
 #### Error Handling
 
@@ -40,29 +86,9 @@ raise NameError('Invalid graph structure')
 }
 ```
 
-Algorithms can throw any exception and they will be returned as an error via the Algorithmia API. Use standard Python exception conventions, such as NameError.
-
-#### JSON parsing
-
-> Within the receiving algorithm, the arguments would be retrieved as follows:
-
-```
-import Algorithmia
-def apply(input):
-    return 'Hello ' + str(input)
-```
-
-For single arguments, JSON parsing works in a similar manner as it does for Java algorithms. However, to take multiple arguments to an algorithm, you must store them in a single python object such as a list, tuple or dictionary. For example: to pass `arg1` and `arg2` the first of which is a string and the second of which is a list of integers you would construct a dictionary. Below you'll see an example shown below as a JSON object:
-
-`{"arg1": "word", "arg2": [1,2,3,4]}`
-
-#### Calling Other Algorithms and Managing Data
-
-To call other algorithms or manage data from your algorithm, use the [Algorithmia Python Client](#python-client) which is automatically available to any algorithm you create on the Algorithmia platform.
-
-When designing your algorithm, don't forget that there are special data directories, `.session` and `.algo`, that are available only to algorithms to help you manage data over the course of the algorithm execution.
+Algorithms can throw any exception, and they will be returned as an error via the Algorithmia API. If you want to throw a generic exception message, use an `AlgorithmException`.
 
 #### Additional Resources
 
-* <a href="http://developers.algorithmia.com/clients/python/">Algorithmia Client Python Docs <i class="fa fa-external-link"></i></a>
-* <a href="https://docs.python.org/2.7/">Python 2.7 Docs</a>
+* <a href="http://developers.algorithmia.com/clients/ruby/">Algorithmia Client Ruby Docs <i class="fa fa-external-link"></i></a>
+* <a href="http://ruby-doc.org/core-2.2.0/">Ruby 2.2 Docs</a>
