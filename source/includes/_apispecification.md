@@ -72,6 +72,15 @@ val result = algo.pipeJson(input)
 System.out.println(result.asJsonString)
 ```
 
+```rust
+use algorithmia::*;
+use algorithmia::algo::*;
+
+let input = "YOUR_NAME";
+let client = Algorithmia::client("YOUR_API_KEY");
+let algo = client.algo("algo://demo/Hello/0.1.1");
+```
+
 ```javascript
 // include the algorithmia.js library
 
@@ -150,9 +159,15 @@ System.out.println(result.asString());
 
 ```scala
 val algo = client.algo("algo://demo/Hello/0.1.1")
-val result = algo.pipe(input)
+val result = algo.pipe("HAL 9000")
 System.out.println(result.asString)
 // -> Hello HAL 9000
+```
+
+```rust
+let algo = client.algo("algo://demo/Hello/0.1.1");
+let response = algo.pipe("HAL 9000");
+println!("{}", response.as_string().unwrap());
 ```
 
 ```javascript
@@ -231,7 +246,19 @@ val anagrams = result.as(new TypeToken<List<String>>(){})
 
 // Or using raw JSON
 val result2 = algo.pipeJson("""["transformer", "terraforms", "retransform"]""")
-String anagrams =result.asJsonString();
+String anagrams = result.asJsonString();
+// -> "[\"transformer\", \"retransform\"]"
+```
+
+```rust
+let algo = client.algo("algo://WebPredict/ListAnagrams/0.1.0");
+let response = algo.pipe(vec!["transformer", "terraforms", "retransform"]).unwrap();
+let output: Vec<String> = response.decode().unwrap();
+// -> ["transformer", "retransform"] as Vec<String>
+
+// Or working with raw JSON
+let response2 = algo.pipe_json(r#"["transformer", "terraforms", "retransform"]"#);
+let output = response.as_json().unwrap().to_string();
 // -> "[\"transformer\", \"retransform\"]"
 ```
 
@@ -311,6 +338,14 @@ let input = Files.readAllBytes(new File("/path/to/bender.jpg").toPath())
 let result = client.algo("opencv/SmartThumbnail/0.1").pipe(input)
 let buffer = result.as(new TypeToken<byte[]>(){})
 // -> [byte array]
+```
+
+```rust
+let mut input = Vec::new();
+File::open("/path/to/bender.jpg").read_to_end(&mut input);
+let response = client.algo("opencv/SmartThumbnail/0.1").pipe(&input).unwrap();
+let output = response.as_bytes().unwrap();
+// -> Vec<u8>
 ```
 
 ```javascript
@@ -402,6 +437,12 @@ AlgoResponse result = algo.pipe("HAL 9000");
 ```scala
 val algo = client.algo("algo://demo/Hello/0.1.1?timeout=10")
 val result = algo.pipe(input)
+```
+
+```rust
+let mut algo = client.algo("algo://demo/Hello/0.1.1");
+let algo = algo.timeout(10).enable_stdout();
+let response = algo.pipe(input).unwrap();
 ```
 
 ```javascript

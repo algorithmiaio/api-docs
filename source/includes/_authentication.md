@@ -36,10 +36,18 @@ AlgorithmiaClient client = Algorithmia.client("YOUR_API_KEY");
 ```
 
 ```scala
-import com.algorithmia._
-import com.algorithmia.algo._
+import com.algorithmia.*
+import com.algorithmia.algo.*
 
-val client = Algorithmia.client("YOUR_API_KEY")
+val client = Algorithmia::client("YOUR_API_KEY")
+```
+
+```rust
+extern crate algorithmia
+use algorithmia::*;
+use algorithmia::algo::*;
+
+let client = Algorithmia::client("YOUR_API_KEY");
 ```
 
 ```javascript

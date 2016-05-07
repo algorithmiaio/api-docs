@@ -125,6 +125,25 @@ for(file <- robots.getFileIter) {
 }
 ```
 
+```rust
+use algorithmia::*;
+use algorithmia::data::*;
+
+// List top level directories
+let my_root = client.dir("data://.my");
+let listing = my_root.list();
+while let Ok(DirEntry::Dir(dir)) = listing.next() {
+    println!("Directory {}", dir.to_data_uri());
+}
+
+// List top level directories
+let my_root = client.dir("data://.my/robots");
+let listing = my_root.list();
+while let Ok(DirEntry::Dir(file)) = listing.next() {
+    println!("File {}", file.to_data_uri());
+}
+```
+
 ```nodejs
 // List top level directories
 client.dir("data://.my").forEachDir(function(err, dir) {
@@ -257,8 +276,13 @@ robots.create();
 ```
 
 ```scala
-let robots = client.dir("data://.my/robots")
+val robots = client.dir("data://.my/robots")
 robots.create()
+```
+
+```rust
+let robots = client.dir("data://.my/robots");
+robots.create(DataAcl::default())
 ```
 
 ```nodejs
@@ -400,8 +424,14 @@ robots.delete(false);
 ```
 
 ```scala
-let robots = client.dir("data://.my/robots")
+val robots = client.dir("data://.my/robots")
 robots.delete(false)
+// use `true` to force deletion even if dir contains files
+```
+
+```rust
+let robots = client.dir("data://.my/robots");
+robots.delete(false);
 // use `true` to force deletion even if dir contains files
 ```
 
@@ -518,16 +548,33 @@ byte[] t800Bytes = robots.file("T-800.png").getBytes();
 ```
 
 ```scala
-let robots = client.dir("data://.my/robots")
+val robots = client.dir("data://.my/robots")
 
 // Download file and get the file handle
-let t800File = robots.file("T-800.png").getFile()
+val t800File = robots.file("T-800.png").getFile()
 
 // Get the file's contents as a string
-let t800Text = robots.file("T-800.txt").getString()
+val t800Text = robots.file("T-800.txt").getString()
 
 // Get the file's contents as a byte array
-let t800Bytes = robots.file("T-800.png").getBytes()
+val t800Bytes = robots.file("T-800.png").getBytes()
+```
+
+```rust
+// Download and locally save file
+let mut t800_png_reader = client.file("data://.my/robots/T-800.png").get().unwrap();
+let mut t800_png = File::create("/path/to/save/t800.png").unwrap();
+std::io::copy(&mut t800_png_reader, &mut t800_png);
+
+// Get the file's contents as a string
+let t800_text_reader = robots.file("data://.my/robots/T-800.txt").get().unwrap();
+let mut t800_text = String::new();
+t800_text_reader.read_to_string(&mut t800_text);
+
+// Get the file's contents as a byte array
+let t800_png_reader = robots.file("data://.my/robots/T-800.png").getBytes();
+let mut t800_bytes = Vec::new();
+t800_png_reader.read_to_end(&mut t800_bytes);
 ```
 
 ```nodejs
@@ -586,14 +633,20 @@ if client.file("data://.my/robots/T-800.png").exists?
 ```
 
 ```java
-if(client.file("data://.my/robots/HAL_9000.png")){
+if(client.file("data://.my/robots/HAL_9000.png").exists()){
     System.out.println("HAL 9000 exists");
 }
 ```
 
 ```scala
-if(client.file("data://.my/robots/HAL_9000.png")){
+if(client.file("data://.my/robots/HAL_9000.png").exists()){
     System.out.println("HAL 9000 exists")
+}
+```
+
+```rust
+if client.file("data://.my/robots/HAL_9000.png").exists().unwrap() {
+    println!("HAL 9000 exists");
 }
 ```
 
@@ -680,7 +733,7 @@ robots.file("Optimus_Prime.key").put(new byte[] { (byte)0xe0, 0x4f, (byte)0xd0, 
 ```
 
 ```scala
-let robots = client.dir("data://.my/robots")
+val robots = client.dir("data://.my/robots")
 
 // Upload local file
 robots.putFile(new File("/path/to/Optimus_Prime.png"))
@@ -689,6 +742,18 @@ robots.file("Optimus_Prime.txt").put("Leader of the Autobots")
 // Write a binary file
 robots.file("Optimus_Prime.key").put(new byte[] { (byte)0xe0, 0x4f, (byte)0xd0, 0x20 })
 ```
+
+```rust
+let robots = client.dir("data://.my/robots");
+
+// Upload local file
+robots.put_file("/path/to/Optimus_Prime.png");
+// Write a text file
+robots.child::<DataFile>("Optimus_Prime.txt").put("Leader of the Autobots");
+// Write a binary file
+robots.child::<DataFile>("Optimus_Prime.key").put(b"transform");
+```
+
 
 ```nodejs
 var robots = client.dir("data://.my/robots");
@@ -746,8 +811,13 @@ c3po.delete();
 ```
 
 ```scala
-let c3po = client.file("data://.my/robots/C-3PO.txt")
+val c3po = client.file("data://.my/robots/C-3PO.txt")
 c3po.delete()
+```
+
+```rust
+let c3po = client.file("data://.my/robots/C-3PO.txt");
+c3po.delete();
 ```
 
 ```nodejs

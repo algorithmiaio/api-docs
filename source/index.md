@@ -10,6 +10,7 @@ language_tabs:
   - javascript
   - nodejs
   - ruby
+  - rust
 
 toc_footers:
   - <a href='https://algorithmia.com/'>Sign up for an Algorithmia Key</a>
