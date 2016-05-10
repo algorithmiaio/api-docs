@@ -36,6 +36,7 @@ includes:
   - algo_development/python
   - algo_development/javascript
   - algo_development/ruby
+  - algo_development/rust
   - help
 
 search: true
