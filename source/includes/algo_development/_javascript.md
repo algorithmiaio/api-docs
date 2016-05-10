@@ -13,20 +13,18 @@ Algorithmia supports adding 3rd party dependencies via the <a href="https://www.
 
 Add dependencies by including the package name and version to the `package.json` file.
 
-```
-"dependencies": {
+
+`"dependencies": {
 	"algorithmia": "0.3.x",
  	"lodash": "4.11.2"
- }
- ```
+ }`
+ 
 
 Note that you will still need to import your package to your algorithm file. For example to include your package 'lodash' add:
 
 `lodash = require("lodash")();`
 
-#### I/O for Your Algorithms
-
-When you are creating an algorithm that takes input from other algorithms it's important to understand what data types to expect and what data types you may return as output that the user of your algorithm will ingest.
+> #### I/O for Your Algorithms:
 
 > Datatypes that are either sequences that you don't wish to iterate over such as strings or inputs that are scalar in nature such as a numeric data type can be accessed via input, however you will probably want to check for the data type you are expecing to receive.
 
@@ -40,11 +38,14 @@ exports.apply = function(input, cb) {
 
 > A string input:
 
-`"~3.14159"
-
 ```
+"~3.14159"
+```
+
+
 > Inputs that are sequences such as: arrays, objects and buffer (binary buffer sequence such as an image file) can be handled as you would any Python sequence, however you will probably want to check for the data type you are expecing to receive. For example:
 
+```
 exports.apply = function(input, cb) {
 	if (typeof input == Array){
 	    cb(null, "A few of the most starred node.js packages: " + input[0] + ", " + input[1] + ", " + input[2]);
@@ -54,24 +55,33 @@ exports.apply = function(input, cb) {
 
 > Here is an example of an array input:
 
-`["express", "gulp", "async"]`
-
+```
+["express", "gulp", "async"]
+```
 
 > Which will return:
 
-`"A few of the most starred node.js packages: express, gulp, async"
+```
+"A few of the most starred node.js packages: express, gulp, async"
+```
+
+#### I/O for Your Algorithms
+
+When you are creating an algorithm that takes input from other algorithms it's important to understand what data types to expect and what data types you may return as output that the user of your algorithm will ingest.
 
 Note that you can also return any of these data structures in your algorithm.
 
 #### Error Handling
 
+Algorithms can throw any exception, and they will be returned as an error via the Algorithmia API. If you want to throw a generic exception message, use an `AlgorithmException`.
+
+> #### Error Handling:
+
 ```
 var error = "Invalid graph structure"
-\// Where cb is a callback function passed into your apply  method
+// Where cb is a callback function passed into your apply method
 cb(error, input)
 ```
-
-Algorithms can throw any exception, and they will be returned as an error via the Algorithmia API. If you want to throw a generic exception message, use an `AlgorithmException`.
 
 #### Calling Other Algorithms and Managing Data
 

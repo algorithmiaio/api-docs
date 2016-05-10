@@ -23,9 +23,7 @@ in the dependencies file and the line
 
 in the main file.
 
-#### I/O for Your Algorithms
-
-When you are creating an algorithm that takes input from other algorithms it's important to understand what data types to expect and what data types you may return as output that the user of your algorithm will ingest.
+> ####I/O for Your Algorithms:
 
 > Datatypes that are either sequences that you don't wish to iterate over such as strings or inputs that are scalar in nature such as a numeric data type can be accessed via input.
 
@@ -39,7 +37,9 @@ def apply(input):
 
 > A string input:
 
-`"It's just a flesh wound."`
+```
+"It's just a flesh wound."
+```
 
 > Inputs that are sequences such as: lists, dictionaries, tuples and bytearrays (binary byte sequence such as an image file) can be handled as you would any Python sequence, however you will probably want to check for the data type you are expecing to receive. For example:
 
@@ -53,11 +53,18 @@ def apply(input):
 
 > Here is an example of a list input:
 
-`["Knights Who Say Ni", "Killer Rabbit of Caerbannog"]`
+```
+["Knights Who Say Ni", "Killer Rabbit of Caerbannog"]
+```
 
 > Which will return:
 
-`"Hello Knights Who Say Ni"`
+```
+"Hello Knights Who Say Ni"
+```
+#### I/O for Your Algorithms
+
+When you are creating an algorithm that takes input from other algorithms it's important to understand what data types to expect and what data types you may return as output that the user of your algorithm will ingest.
 
 Note that you can also return any of these data structures in your algorithm.
 
@@ -69,6 +76,8 @@ To call other algorithms or manage data from your algorithm, use the [Algorithmi
 When designing your algorithm, don't forget that there are special data directories, `.session` and `.algo`, that are available only to algorithms to help you manage data over the course of the algorithm execution.
 
 #### Error Handling
+
+> ####Error Handling:
 
 ```
 raise NameError('Invalid graph structure')
