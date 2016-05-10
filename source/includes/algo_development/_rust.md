@@ -4,7 +4,8 @@ Algorithmia supports development of algorithms in Rust.
 
 #### Handling Input and Output
 
-> #### Handle text input by overriding `apply_str`:
+> #### Handle text input:
+> Text input is handled implementing `EntryPoint` to override `apply_str`.
 
 ```rust
 #[derive(Default)]
@@ -18,7 +19,8 @@ impl EntryPoint for Algo {
 }
 ```
 
-> #### Handle binary input by overriding `apply_bytes`:
+> #### Handle binary input:
+> Binary input is handled implementing `EntryPoint` to override `apply_bytes`.
 
 ```rust
 #[derive(Default)]
@@ -31,7 +33,10 @@ impl EntryPoint for Algo {
 }
 ```
 
-> #### Handle JSON input by overriding `apply_json`:
+> #### Handle JSON input:
+> JSON input can be handled by implementing `EntryPoint` to override `apply_bytes`.
+> This provides the algorithm with the `rustc_serialize` `Json` enum as input.
+> (See also the alternative ways of handling auto-decoded JSON input.)
 
 ```rust
 use rustc_serialize::json::Json;
@@ -47,7 +52,11 @@ impl EntryPoint for Algo {
 ```
 
 
-> #### Auto-decode simple JSON arrays:
+> #### Auto-decode JSON input:
+> JSON input can be automatically decoded to type of your choosing.
+> To do this, implement `DecodedEntryPoint` to override `apply_decoded`.
+> This also requires defining the trait's associated type named `Input`
+> to a type that you want input decoded into.
 
 ```rust
 #[derive(Default)]
@@ -62,7 +71,9 @@ impl DecodedEntryPoint for Algo {
 }
 ```
 
-> #### Auto-decode structured JSON input:
+> You can extend this idea to decode more complex, structured input JSON.
+> This example defines a struct that derives `RustcDecodable` so that input
+> is automatically decoded into a `TaskDefinition`
 
 ```rust
 #[derive(Default)]
