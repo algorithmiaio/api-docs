@@ -5,7 +5,7 @@
 Algorithmia makes a number of libraries available to make algorithm development easier.
 The full <a href="http://docs.oracle.com/javase/8/docs/technotes/guides/language/index.html">Java 8 language and standard library</a>
 is available for you to use in your algorithms. Furthermore, algorithms can call other algorithms and manage data on the Algorithmia platform
-via the [Algorithmia Java Client](../clients/java.md).
+via the <a href="http://developers.algorithmia.com/clients/scala/">Algorithmia & Scala</a>.
 
 #### Managing Dependencies
 
@@ -67,5 +67,5 @@ Some older algorithms use our deprecated Java client. If it has an import from t
 
 #### Additional Resources
 
-* <a href="/docs/lang/java">Algorithmia Client Java Docs <i class="fa fa-external-link"></i></a>
+* <a href="http://developers.algorithmia.com/clients/java/">Algorithmia Client Java Docs <i class="fa fa-external-link"></i></a>
 * <a href="http://docs.oracle.com/javase/8/docs/api/">Java 8 JDK API</a>

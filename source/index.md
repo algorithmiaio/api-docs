@@ -34,6 +34,8 @@ includes:
   - algo_development/java
   - algo_development/scala
   - algo_development/python
+  - algo_development/javascript
+  - algo_development/ruby
   - help
 
 search: true
