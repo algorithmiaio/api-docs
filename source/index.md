@@ -22,14 +22,7 @@ includes:
   - apispecification
   - data
   - dataapispecification
-  - clients/main
-  - clients/cli
-  - clients/curl
-  - clients/java
-  - clients/javascript
-  - clients/python
-  - clients/scala
-  - clients/lambda
+  - clients
   - algo_development/algorithmdevelopment
   - algo_development/java
   - algo_development/scala
