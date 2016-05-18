@@ -6,4 +6,4 @@ We have clients & libraries in multiple languages. We encourage you to click on 
 
 This documentation will serve as a reference as you start to integrate the Algorithmia API into your code.
 
-If this is your first time trying Algorithmia, you might find it useful to start with our [Getting Started guide](http://developers.algorithmia.com/guides/getting-started/), which can be found alongside many other resources in the [Algorithmia Developer Center](http://developers.algorithmia.com/).
+If this is your first time trying Algorithmia, you might find it useful to start with our [Getting Started guide](http://developers.algorithmia.com/basics/getting-started/), which can be found alongside many other resources in the [Algorithmia Developer Center](http://developers.algorithmia.com/).
