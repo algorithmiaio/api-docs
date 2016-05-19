@@ -68,9 +68,14 @@ $ algo ls -l data://.my/robots
 ```
 
 ```python
+# List top level directories
+from Algorithmia import client
+
+client = client()
+
 # List top level directoreis
-for dir in client.dir("data://.my").dirs():
-    print "Directory " + dir.path + " at URL " + dir.url
+for d in client.dir("data://.my").dirs():
+    print("Directory " + d.path + " at URL " + d.url)
 
 # List files in the 'robots' directory
 dir = client.dir("data://.my/robots")
@@ -79,7 +84,7 @@ for file in dir.files():
 ```
 
 ```ruby
-# List top level directoreis
+# List top level directories
 client.dir("data://.my").each_dir do |dir|
     puts "Directory " + dir.data_uri
 end
