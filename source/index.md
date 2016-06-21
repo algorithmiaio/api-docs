@@ -20,7 +20,6 @@ includes:
   - introduction
   - authentication
   - apispecification
-  - data
   - dataapispecification
   - clients
   - algo_development/algorithmdevelopment
