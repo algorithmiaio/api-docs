@@ -189,29 +189,6 @@ acl | Include the directory ACL in the response (Default = false)
 
 #### Response
 
-> Listing a directory output:
-
-```json
-{
-    "folders": [
-        {
-            "name": "friendly_robots"
-        }
-    ],
-    "files": [
-        {
-            "filename": "HAL 9000",
-            "last_modified": "2012-04-21T18:25:43-05:00",
-            "size": 48
-        }
-    ],
-    "marker": "12-bcdefgj9ao72LHhjglh3AcRtCuf7T1FeSoZTA1gycqRHaDrdp254LV9S1LjKgQZ",
-    "acl": {
-        "read": [ "algo://.my/*" ]
-    }
-}
-```
-
 Attribute | Description
 --------- | -----------
 folders | [Optional] array of subdirectories
@@ -467,18 +444,6 @@ force            | if true, enables recursive delete of a non-empty directory
 #### Response
 
 > Deleting a directory output:
-
-```json
-{
-    "result": {
-        "deleted": 2
-    },
-    "error": {
-        "message": "Error Message",
-        "deleted": 2
-    }
-}
-```
 
 Attribute | Description
 --------- | -----------
@@ -839,20 +804,6 @@ To delete a file through the Algorithmia Data API, use the following endpoint:
 `DELETE https://api.algorithmia.com/v1/data/:owner/:directory/:file_name`
 
 #### Response
-
-> Deleting a file output:
-
-```json
-{
-    "result": {
-        "deleted": 0
-    },
-    "error": {
-        "message": "Error Message",
-        "deleted": 0
-    }
-}
-```
 
 Attribute | Description
 --------- | -----------
