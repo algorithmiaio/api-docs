@@ -186,7 +186,7 @@ html, body {
     background-color: $nav-subitem-bg;
     font-weight: 500;
     .tocify-item>a {
-      // Styling here for a level 2 nesting. For example -> 
+      // Styling here for a level 2 nesting. For example ->
       padding-left: $nav-padding + $nav-indent * 1.5;
       font-size: 12px;
     }
@@ -374,7 +374,7 @@ html, body {
 
   h2 {
     @extend %header-font;
-    font-size: 20px;
+    font-size: 16px;
     margin-top: 4em;
     margin-bottom: 0;
     border-top: 1px solid #ccc;

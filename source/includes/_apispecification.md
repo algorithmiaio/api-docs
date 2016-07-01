@@ -105,18 +105,26 @@ client.algo("algo://demo/Hello/0.1.1")
        });
 ```
 
-
 > Make sure to replace `YOUR_NAME` with your name & `YOUR_API_KEY` with your API key.
 
+For each algorithm on the marketplace, you'll find an owner (the user who created the algorithm), an algorithm name, and a version number.
 
-For each algorithm on the marketplace, you'll find an owner (the user who created the algorithm), an algorithm name, and a version number. This is the information you need to format a call.
+`POST https://api.algorithmia.com/v1/algo/:owner/:algoname/[:version]`
 
-For a given user and algorithm name, API calls are made to the following url:
+Specifying a version is recommended, but optional. If not specified, the latest publicly published version will be used.
+When explicitly specifying a version, the following following formats are accepted:
 
-`POST https://api.algorithmia.com/v1/algo/:owner/:algoname`
+Version         | Description
+--------------  | --------------
+`1.1.1`         | Fully specified version
+`1.2.*`         | Specified to the minor level. Will resolve to the latest publicly published version with a minor version of 1.2
+`1.*`           | Specified to a major version. Will resolve to the latest publicly published version with major version 1
 
+<aside class="notice">
+To call private versions of an algorithm you own, you must use a fully specified semantic version or a version hash
+</aside>
 
-## Input
+## Input/Output
 
 > Text Input/Output
 
@@ -366,37 +374,35 @@ client.algo("opencv/SmartThumbnail")
     });
 ```
 
-The body of the request is the input to the algorithm you are calling.
-To specify the type, the Content-Type header is required.
+Algorithmia supports calling algorithms that use any combination of text, JSON, or binary as their input and output.
 
-Content-Type Header | Description
-------------------- | --------------
-application/json    | text/json for passing JSON encoded data (UTF-8 encoded)
-application/text    | text/plain for passing a basic String (UTF-8 encoded)
-application/octet-stream | binary data
+Each client SDK provides idiomatic abstractions for calling algorithms
+using common native types and automatic serializization and deserialization where reasonable.
+See the code samples to the right for examples in the language of your choice.
 
-Currently, there is no way to send a mixture of data objects (e.g. binary and JSON). If you need this enabled, please [contact us](https://algorithmia.com/contact) and we will prioritize it.
+#### HTTP input specification
 
-#### Versioning
+To specify input when making a raw HTTP request, the body of the request is the input to the algorithm you are calling.
+To specify the input type, set the `Content-Type` header accordingly. These are
 
-Specifying the version of an algorithm is optional and can be a partial semantic version.
-The format of the call with a specified version is as follows:
+Content-Type          | Description
+-------------------   | --------------
+`application/json`    | body specifies JSON input data (UTF-8 encoded)
+`application/text`    | body specifies text input data (UTF-8 encoded)
+`application/octet-stream` | body specifies binary input data (raw bytes)
 
-`POST https://api.algorithmia.com/v1/algo/:owner/:algoname/:version`
+#### HTTP output specification
 
+The `metadata.content_type` specifies which type of encoding the result element is in.
 
-Semantic Number | Description
+Content-Type | Description
 --------------  | --------------
-1.1.1           | Fully specified version
-1.2.*           | Specified to the minor level. Will resolce to the latest publicly published version with a minor version of 1.2
-1.*             | Specified to a major version. Will resolve to the latest publicly published version with major version 1
+void | The result element is null
+text | The result element is a JSON string using UTF-8 encoding
+json | The result element is any valid JSON type
+binary | The result element is a Base64 encoded binary data in a JSON String
 
-<aside class="notice">
-To call private versions of an algorithm, you must use a fully specified semantic version or a version hash
-</aside>
-
-
-## Query parameters
+## Query Parameters
 
 > Query Parameters
 
@@ -459,7 +465,14 @@ client.algo("algo://demo/Hello/0.1.1?timeout=10")
       });
 ```
 
-The API offers the following query parameters:
+The API also provides the following configurable parameters when calling an algorithm:
+
+Parameter             | Description
+-------------------   | --------------
+timeout               | number: Specifies a timeout for the call in seconds. default=300 (5min), max=3000 (50min)
+stdout                | boolean: Indicates algorithm stdout should be returned in the response metadata (ignored unless you are the algorithm owner)
+output                | raw|void: Indicates the algorithm
+
 
 * `timeout={seconds}`
   * Specifies a timeout for the call in seconds
@@ -478,37 +491,105 @@ The API offers the following query parameters:
   * Returns immediately and does not wait for the algorithm to run
   * The result of the algorithm will not be accessible; this is useful in some cases where an algorithm outputs to a `data://` file with a long running time (see [The Data API](#the-data-api) for more information)
 
-## Output
 
-> Output Spec
+## Error Handling
 
-```json
-{
-  "result":"Hello HAL 9000",
-  "error": {
-        "message": "Authorization required",
-        "stacktrace": ...
+> Error Handling
+
+```shell
+curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
+    -d '[]' -H 'Content-Type: application/json' \
+    https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
+
+-> {
+    "error":{
+      "message":"apply() functions do not match input data",
+      "stacktrace":"apply() functions do not match input data"
     },
-  "metadata": {
-    "content_type": "text",
-    "duration": 0.000447055,
-    "stdout": "a string",
-    "alerts": [
-            "a string"
-        ]
-    }
-  }
+    "metadata":{"duration":0.046542354}}
+}
 ```
 
-The `metadata.content_type` specifies which type of encoding the result element is in.
+```cli
+$ algo run demo/Hello/0.1.1 -d '[]'
+API error: apply() functions do not match input data
+apply() functions do not match input data
+```
 
-Content-Type | Description
---------------  | --------------
-void | The result element is null
-text | The result element is a JSON string using UTF-8 encoding
-json | The result element is any valid JSON type
-binary | The result element is a Base64 encoded binary data in a JSON String
+```python
+algo = client.algo('demo/Hello/0.1.1')
+print algo.pipe([]).error.message
+# -> API error: apply() functions do not match input data
+```
 
-<aside class="notice">
-Note that `error.stacktrace` will only display if the Algorithm is open source or if the Algorithm author initiates the call.
-</aside>
+```ruby
+algo = client.algo('demo/Hello/0.1.1')
+puts algo.pipe([]).error.message
+# -> API error: apply() functions do not match input data
+```
+
+```java
+Algorithm algo = client.algo("algo://demo/Hello/0.1.1");
+AlgoResponse result = algo.pipe([]);
+try {
+  result.asString();
+} catch (AlgorithmException ex) {
+  System.out.println(ex.getMessage());
+}
+// -> API error: apply() functions do not match input data
+```
+
+```scala
+val algo = client.algo("algo://demo/Hello/0.1.1")
+val result = algo.pipe("HAL 9000")
+try {
+  result.asString();
+} catch {
+  case ex: AlgorithmException => System.out.println(ex.getMessage)
+}
+// -> API error: apply() functions do not match input data
+```
+
+```rust
+let algo = client.algo("algo://demo/Hello/0.1.1");
+let response = algo.pipe(&[]);
+match response.as_string() {
+    Ok(output) => { /* success */ },
+    Err(err) => println!("{}", err),
+}
+// -> API error: apply() functions do not match input data
+```
+
+```javascript
+client.algo("algo://demo/Hello/0.1.1")
+      .pipe("HAL 9000")
+      .then(function(output) {
+        if(output.error) {
+          console.log(output.error.message);
+        }
+      });
+// -> API error: apply() functions do not match input data
+```
+
+```nodejs
+client.algo("algo://demo/Hello/0.1.1")
+      .pipe("HAL 9000")
+      .then(function(response) {
+        if(response.error) {
+          console.log(response.error.message);
+        }
+      });
+// -> API error: apply() functions do not match input data
+```
+
+If an error occurs, the response will contain the following fields:
+
+Field            | Description
+--------------   | --------------
+error.message    | The error message
+error.stacktrace | (Optional) a stacktrace if the error occurred within the algorithm (only if caller has access to algorithm source)
+
+Each client provides a language-specific solution for error handling. The examples on the right
+come from calling an algorithm that expects text input in it's implementation of the `apply` entrypoint,
+but instead receives a JSON array as input.
+
