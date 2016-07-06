@@ -108,6 +108,7 @@ client.algo("algo://demo/Hello/0.1.1")
 > Make sure to replace `YOUR_NAME` with your name & `YOUR_API_KEY` with your API key.
 
 For each algorithm on the marketplace, you'll find an owner (the user who created the algorithm), an algorithm name, and a version number.
+Algorithms are called using this HTTP endpoint:
 
 `POST https://api.algorithmia.com/v1/algo/:owner/:algoname/[:version]`
 
