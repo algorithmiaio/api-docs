@@ -1,8 +1,10 @@
 # Clients
 
-Our Algorithmia clients are available as libraries for you to use inside your project.
-See the client-specific guides in the [Algorithmia Developer Center](http://developers.algorithmia.com).
+Algorithmia clients are available as libraries for you to use inside your project.
+In addition to browsing the API specification to see language-specific usage for each API endpoint,
+client-specific guides are located in the [Algorithmia Developer Center](http://developers.algorithmia.com).
 
+This table provides links to various resources for each client:
 
 Client      |  DevCenter Guide   |  GitHub Repo  |  Language Docs  |  Package
 ----------- | -------- | ------------- | --------------- | -----------
