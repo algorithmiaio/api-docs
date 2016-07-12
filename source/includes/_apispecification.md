@@ -173,7 +173,7 @@ System.out.println(result.asString)
 
 ```rust
 let algo = client.algo("algo://demo/Hello/0.1.1");
-let response = algo.pipe("HAL 9000");
+let response = algo.pipe("HAL 9000").unwrap();
 println!("{}", response.as_string().unwrap());
 ```
 
@@ -239,7 +239,7 @@ List<String> anagrams = result.as(new TypeToken<List<String>>(){});
 
 // Or using raw JSON
 String jsonWords = "[\"transformer\", \"terraforms\", \"retransform\"]"
-AlgoResponse result2 = algo.pipe(jsonWords);
+AlgoResponse result2 = algo.pipeJson(jsonWords);
 String anagrams = result2.asJsonString();
 // -> "[\"transformer\", \"retransform\"]"
 ```
@@ -264,8 +264,8 @@ let output: Vec<String> = response.decode().unwrap();
 // -> ["transformer", "retransform"] as Vec<String>
 
 // Or working with raw JSON
-let response2 = algo.pipe_json(r#"["transformer", "terraforms", "retransform"]"#);
-let output = response.as_json().unwrap().to_string();
+let response2 = algo.pipe_json(r#"["transformer", "terraforms", "retransform"]"#).unwrap();
+let output = response2.as_json().unwrap().to_string();
 // -> "[\"transformer\", \"retransform\"]"
 ```
 
@@ -448,6 +448,9 @@ val result = algo.pipe(input)
 let mut algo = client.algo("algo://demo/Hello/0.1.1");
 let algo = algo.timeout(10).enable_stdout();
 let response = algo.pipe(input).unwrap();
+if let Some(ref stdout) = response.metadata.stdout {
+      println!("{}", stdout);
+}
 ```
 
 ```javascript
@@ -553,12 +556,11 @@ try {
 
 ```rust
 let algo = client.algo("algo://demo/Hello/0.1.1");
-let response = algo.pipe(&[]);
-match response.as_string() {
-    Ok(output) => { /* success */ },
-    Err(err) => println!("{}", err),
+match algo.pipe(&[]) {
+    Ok(response) => { /* success */ },
+    Err(err) => println!("error calling demo/Hello: {}", err),
 }
-// -> API error: apply() functions do not match input data
+// -> error calling demo/Hello: apply() functions do not match input data
 ```
 
 ```javascript

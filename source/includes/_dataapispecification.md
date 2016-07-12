@@ -136,13 +136,13 @@ import com.algorithmia.data.*;
 
 // List top level directories
 DataDirectory myRoot = client.dir("data://.my");
-for(DataDirectory dir : myRoot.getDirIter()) {
+for(DataDirectory dir : myRoot.dirs()) {
     System.out.println("Directory " + dir.toString() + " at URL " + dir.url());
 }
 
 // List files in the 'robots' directory
 DataDirectory robots = client.dir("data://.my/robots");
-for(DataFile file : robots.getFileIter()) {
+for(DataFile file : robots.files()) {
     System.out.println("File " + file.toString() + " at URL: " + file.url());
 }
 ```
@@ -168,18 +168,13 @@ for(file <- robots.getFileIter) {
 use algorithmia::*;
 use algorithmia::data::*;
 
-// List top level directories
-let my_root = client.dir("data://.my");
-let listing = my_root.list();
-while let Ok(DirEntry::Dir(dir)) = listing.next() {
-    println!("Directory {}", dir.to_data_uri());
-}
-
-// List top level directories
-let my_root = client.dir("data://.my/robots");
-let listing = my_root.list();
-while let Ok(DirEntry::Dir(file)) = listing.next() {
-    println!("File {}", file.to_data_uri());
+let my_robots = client.dir("data://.my/robots");
+for entry in my_robots.list() {
+    match entry {
+        Ok(DirEntry::Dir(dir)) => println!("Directory {}", dir.to_data_uri()),
+        Ok(DirEntry::File(file)) => println!("File {}", file.to_data_uri()),
+        Err(err) => println!("Error listing my robots: {}", err),
+    }
 }
 ```
 
@@ -613,12 +608,12 @@ let mut t800_png = File::create("/path/to/save/t800.png").unwrap();
 std::io::copy(&mut t800_png_reader, &mut t800_png);
 
 // Get the file's contents as a string
-let t800_text_reader = robots.file("data://.my/robots/T-800.txt").get().unwrap();
+let mut t800_text_reader = robots.file("data://.my/robots/T-800.txt").get().unwrap();
 let mut t800_text = String::new();
 t800_text_reader.read_to_string(&mut t800_text);
 
 // Get the file's contents as a byte array
-let t800_png_reader = robots.file("data://.my/robots/T-800.png").getBytes();
+let mut t800_png_reader = robots.file("data://.my/robots/T-800.png").get().unwrap();
 let mut t800_bytes = Vec::new();
 t800_png_reader.read_to_end(&mut t800_bytes);
 ```
