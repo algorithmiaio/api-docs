@@ -15,7 +15,7 @@ with support for Algorithmia Hosted Data as well as working directly with data
 in your Dropbox account or Amazon S3 buckets.
 For an introduction to working with data from these different data sources,
 see the data portal guides [for Algorithm Developers](http://developers.algorithmia.com/algorithm-development/data-sources/)
-or [for Application Developers](http://developers.algorithmia.com/application-development/data-connector-guides/).
+or [for Application Developers](http://developers.algorithmia.com/application-development/data-sources/).
 
 ## Data URI
 
