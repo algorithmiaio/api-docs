@@ -10,13 +10,48 @@
 */
 ```
 
+The Algorithmia Data API provides a way of getting data into and out of algorithms
+with support for Algorithmia Hosted Data as well as working directly with data
+in your Dropbox account or Amazon S3 buckets.
+For an introduction to working with data from these different data sources,
+see the data portal guides [for Algorithm Developers](http://developers.algorithmia.com/algorithm-development/data-sources/)
+or [for Application Developers](http://developers.algorithmia.com/application-development/data-connector-guides/).
+
+## Data URI
+
+A Data URI uniquely identifies files and directories. A Data URI is composed of a protocol and a path (e.g. `data://.my/photos`).
+Each connected data source has has a unique protocol. Supported protocols include:
+
+Protocol         | Description
+---------------- | -----------
+`data://`        | Algorithmia hosted data
+`dropbox://`     | Dropbox default connected account
+`s3://`          | Amazon S3 default connected account
+
+Additionally, if you connect multiple accounts from the same source,
+they can be uniquely identified by their label, e.g. `dropbox+mylabel://`.
+
+The path part of a Data URI is understood in the context of each source:
+
+URI               | Description
+----------------- | -----------
+`data://.my/foo`  | The `foo` collection of your Algorithmia hosted data
+`dropbox://foo`   | The `foo` file or directory in the root of your default Dropbox connected account
+`s3://foo`        | The `foo` bucket of your S3 account
+
+
+<aside class="notice">
+  It is very common to use <code>data://.my</code> to refer to the hosted data collections belonging to the authenticated user.
+</aside>
+
+
+The remainder of this documentation provides the specification for working with directories and files
+regardless of what data source they come from.
+
 ## Directories
 
 Directories are a collection of files or other directories.
 
-<aside class="notice">
-  It is very common to use the <code>.my</code> pseudonym as the owner of a directory to indicate the authenticated user.
-</aside>
 
 ### Listing a directory
 
@@ -25,7 +60,7 @@ Directories are a collection of files or other directories.
 ```shell
 # List top-level user directory
 curl -H 'Authorization: Simple YOUR_API_KEY' \
-    https://api.algorithmia.com/v1/data/.my
+    https://api.algorithmia.com/v1/connector/data/.my
 
 -> {
     "folders": [
@@ -36,7 +71,7 @@ curl -H 'Authorization: Simple YOUR_API_KEY' \
 
 # List a directory with ACLs
 curl -H 'Authorization: Simple YOUR_API_KEY' \
-    https://api.algorithmia.com/v1/data/.my/robots?acl=true
+    https://api.algorithmia.com/v1/connector/data/.my/robots?acl=true
 
 -> {
     "files": [
@@ -101,13 +136,13 @@ import com.algorithmia.data.*;
 
 // List top level directories
 DataDirectory myRoot = client.dir("data://.my");
-for(DataDirectory dir : myRoot.getDirIter()) {
+for(DataDirectory dir : myRoot.dirs()) {
     System.out.println("Directory " + dir.toString() + " at URL " + dir.url());
 }
 
 // List files in the 'robots' directory
 DataDirectory robots = client.dir("data://.my/robots");
-for(DataFile file : robots.getFileIter()) {
+for(DataFile file : robots.files()) {
     System.out.println("File " + file.toString() + " at URL: " + file.url());
 }
 ```
@@ -133,18 +168,13 @@ for(file <- robots.getFileIter) {
 use algorithmia::*;
 use algorithmia::data::*;
 
-// List top level directories
-let my_root = client.dir("data://.my");
-let listing = my_root.list();
-while let Ok(DirEntry::Dir(dir)) = listing.next() {
-    println!("Directory {}", dir.to_data_uri());
-}
-
-// List top level directories
-let my_root = client.dir("data://.my/robots");
-let listing = my_root.list();
-while let Ok(DirEntry::Dir(file)) = listing.next() {
-    println!("File {}", file.to_data_uri());
+let my_robots = client.dir("data://.my/robots");
+for entry in my_robots.list() {
+    match entry {
+        Ok(DirEntry::Dir(dir)) => println!("Directory {}", dir.to_data_uri()),
+        Ok(DirEntry::File(file)) => println!("File {}", file.to_data_uri()),
+        Err(err) => println!("Error listing my robots: {}", err),
+    }
 }
 ```
 
@@ -175,42 +205,34 @@ client.dir("data://.my/robots").forEachFile(function(err, file) {
 
 ```
 
-To list contents of a directory through the Algorithmia Data API, use the following endpoints:
+List the contents of a directory with this HTTP endpoint:
 
-`GET https://api.algorithmia.com/api/v1/data/:owner`
+`GET https://api.algorithmia.com/api/v1/connector/:connector/*path`
 
-`GET https://api.algorithmia.com/api/v1/data/:owner/:directory`
+- `:connector` is the data source: `data`, `dropbox`, `s3`, or a labeled variant (e.g. `dropbox+mylabel`).
+- `*path` is relative to the root of a given data source.
 
-#### Query Parameters
+<aside class="notice">
+Each client SDK provides a way to iterate through contents of a directory using its <a href="#data-uri">Data URI</a>.
+These iterators manage the marker-based pagination and fetch additional contents for large directories as needed.
+See the language-specific examples to the right.
+</aside>
+
+<aside class="warning">
+  This endpoint overlaps with the endpoint for fetching a file. If you aren't sure if a path refers to a file or directory,
+  you should first check if it exists. The `exists` methods make a `HEAD` request that check the `X-Data-Type` response header.
+</aside>
+
+##### Query Parameters
+
 Parameters | Description
 ---------------- | -----------
 marker | Indicates the page of results to return. Only valid when using markers previously returned by this API. If this parameter is omited then the first page is returned
-acl | Include the directory ACL in the response (Default = false)
+acl | Include the directory ACL in the response. (Default = false)
 
-#### Response
+##### HTTP Response
 
-> Listing a directory output:
-
-```json
-{
-    "folders": [
-        {
-            "name": "friendly_robots"
-        }
-    ],
-    "files": [
-        {
-            "filename": "HAL 9000",
-            "last_modified": "2012-04-21T18:25:43-05:00",
-            "size": 48
-        }
-    ],
-    "marker": "12-bcdefgj9ao72LHhjglh3AcRtCuf7T1FeSoZTA1gycqRHaDrdp254LV9S1LjKgQZ",
-    "acl": {
-        "read": [ "algo://.my/*" ]
-    }
-}
-```
+The response JSON contains the following attributes:
 
 Attribute | Description
 --------- | -----------
@@ -219,9 +241,8 @@ files | [Optional] array of files in directory. `last_modified` is an ISO-8601 t
 marker | [Optional] string that indicates there are more files or folders within this directory that can be queried for using the marker query parameter
 acl.read | [Optional] array of ACL strings defining who has read permissions to this directory. Explanation of ACL strings provided below.
 
-<aside class="notice">
-  Most of the clients opt to abstract directory listing into an iterator over files and folders within the directory while hiding the marker-based pagination that happens in the background.
-</aside>
+The API is limited to returning 1000 folders or files at a time, so listing
+all contents of a directory may require multiple paginated requests.
 
 **ACL Strings:**
 
@@ -244,14 +265,14 @@ acl.read | [Optional] array of ACL strings defining who has read permissions to 
 curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
     -H 'Content-Type: application/json' \
     -d '{"name": "robots"}' \
-    https://api.algorithmia.com/v1/data/.my
+    https://api.algorithmia.com/v1/connector/data/.my
 # Empty 200 response on success
 
 # Create a publicly accessible directory named 'public_robots'
 curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
     -H 'Content-Type: application/json' \
     -d '{"name": "public_robots", "acl": {"read": ["user://*"]}}' \
-    https://api.algorithmia.com/v1/data/.my
+    https://api.algorithmia.com/v1/connector/data/.my
 # Empty 200 response on success
 ```
 
@@ -266,7 +287,8 @@ robots.create()
 
 # You can also create a directory with different permissions
 from Algorithmia.acl import ReadAcl
-robots.create(ReadAcl.public)  # Supported: ReadAcl.public, ReadAcl.private, ReadAcl.my_algos
+# Supports: ReadAcl.public, ReadAcl.private, ReadAcl.my_algos
+robots.create(ReadAcl.public)
 ```
 
 ```ruby
@@ -299,21 +321,33 @@ robots.create(function(response) {
 });
 ```
 
+
 To create a directory through the Algorithmia Data API, use the following endpoint:
 
-`POST https://api.algorithmia.com/v1/data/:owner`
+`POST https://api.algorithmia.com/v1/connector/:connector/*path`
 
-#### JSON Input
+- `:connector` is the data source: `data`, `dropbox`, `s3`, or a labeled variant (e.g. `dropbox+mylabel`).
+- `*path` refers to the path of the existing parent directory of the directory that should be created.
+
+<aside class="notice">
+Each client SDK provides a method for creading a directory using its <a href="#data-uri">Data URI</a>.
+See the language-specific examples to the right.
+</aside>
+
+<aside class="warning">
+  Algorithmia hosted directories are currently only supported as top-level directories under your user (e.g. <code>data://.my</code>).
+  Additionally, directories cannot be created in the S3 root namespace (e.g. <code>s3://</code>) as creating S3 buckets is not supported.
+  If you configured path restrictions when connecting an external data source, then additional limitations may exist.
+</aside>
+
+##### Input
+Input is JSON and requires the header: `Content-Type: application/json`
+
 Attribute | Description
 --------- | -----------
 name      | Name of the directory to create
 acl       | [Optional] JSON object specifying permissions of the directory
 
-<aside class="notice">
-    Currently directories may only be created within the top-level user directory.
-</aside>
-
-**Required Header:** `Content-Type: application/json`
 
 **ACL Attribute:**
 
@@ -330,7 +364,7 @@ Example: `"acl": {"read": []}` implies the directory is fully private
     Write ACLs are not currently configurable. Only the directory owner has write access to a directory.
 </aside>
 
-#### Response:
+##### Response:
 
 Empty 200 response on success
 
@@ -343,7 +377,7 @@ Empty 200 response on success
 curl -X PATCH -H 'Authorization: Simple YOUR_API_KEY' \
     -H 'Content-Type: application/json' \
     -d '{"acl": {"read": ["user://*"]}}' \
-    https://api.algorithmia.com/v1/data/.my
+    https://api.algorithmia.com/v1/connector/data/.my
 # Empty 200 response on success
 ```
 
@@ -352,15 +386,20 @@ from Algorithmia.acl import ReadAcl, AclType
 robots = client.dir("data://.my/robots")
 robots.create()
 print robots.get_permissions().read_acl == AclType.my_algos #  True
+# Supports: ReadAcl.public, ReadAcl.private, ReadAcl.my_algos
 robots.update_permissions(ReadAcl.private)  # True if update succeeded
 ```
 
 To update a directory, use the following API:
 
-`PATCH https://api.algorithmia.com/v1/data/:owner/:directory`
+`PATCH https://api.algorithmia.com/v1/connector/*path`
 
-#### Input:
-Input is JSON and requires the Content-Type header: `"application/json"`
+- `:connector` is the data source: `data`, `dropbox`, `s3`, or a labeled variant (e.g. `dropbox+mylabel`).
+- `*path` is relative to the root of a given data source.
+
+
+##### Input:
+Input is JSON and requires the header: `Content-Type: application/json`
 
 Attribute | Description
 --------- | -----------
@@ -377,7 +416,7 @@ Permission for a directory are determined by setting `acl.read` to an array of A
 
 Example: `"acl": {"read": []}` implies the directory is fully private
 
-#### Output:
+##### Output:
 
 Empty 200 response on success
 
@@ -388,13 +427,13 @@ Empty 200 response on success
 ```shell
 # Delete the empty directory data://.my/public_robots
 curl -X DELETE -H 'Authorization: Simple YOUR_API_KEY' \
-    https://api.algorithmia.com/v1/data/.my/public_robots
+    https://api.algorithmia.com/v1/connector/data/.my/public_robots
 
 -> { "result": { "deleted": 0 }}
 
 # Force delete the directory data://.my/robots even if it contains files
 curl -X DELETE -H 'Authorization: Simple YOUR_API_KEY' \
-    https://api.algorithmia.com/v1/data/.my/robots?force=true
+    https://api.algorithmia.com/v1/connector/data/.my/robots?force=true
 
 -> { "result": { "deleted": 25 }}
 ```
@@ -455,30 +494,26 @@ robots.delete(false, function(response) {
 
 To delete a directory, use the following endpoint:
 
-`DELETE https://api.algorithmia.com/v1/data/:owner/:directory`
+`DELETE https://api.algorithmia.com/v1/connector/:connector/*path`
 
-#### Query Paramters
+- `:connector` is the data source: `data`, `dropbox`, `s3`, or a labeled variant (e.g. `dropbox+mylabel`).
+- `*path` is relative to the root of a given data source.
+
+<aside class="notice">
+Each client SDK provides a method for deleting a directory using its <a href="#data-uri">Data URI</a>.
+The method for deleting a directory may take a boolean argument that specifies if the directory should
+be forcibly deleting even if the directory has contents.
+See the language-specific examples to the right.
+</aside>
+
+
+##### Query Parameters
 
 Parameters | Description
 ---------------- | -----------
 force            | if true, enables recursive delete of a non-empty directory
 
-
-#### Response
-
-> Deleting a directory output:
-
-```json
-{
-    "result": {
-        "deleted": 2
-    },
-    "error": {
-        "message": "Error Message",
-        "deleted": 2
-    }
-}
-```
+##### Response
 
 Attribute | Description
 --------- | -----------
@@ -488,13 +523,15 @@ error.deleted   | The number of files successfully deleted if an error encounter
 
 ## Files
 
+Files can be any type of data and are uniquely identified by a <a href="#data-uri">Data URI</a>
+
 ### Getting a file
 
 > Getting a file:
 
 ```shell
 curl -O -H 'Authorization: Simple YOUR_API_KEY' \
-    https://api.algorithmia.com/v1/data/.my/robots/T-800.png
+    https://api.algorithmia.com/v1/connector/data/.my/robots/T-800.png
 # Downloaded to `T-800.png` in local working directory
 ```
 
@@ -571,12 +608,12 @@ let mut t800_png = File::create("/path/to/save/t800.png").unwrap();
 std::io::copy(&mut t800_png_reader, &mut t800_png);
 
 // Get the file's contents as a string
-let t800_text_reader = robots.file("data://.my/robots/T-800.txt").get().unwrap();
+let mut t800_text_reader = robots.file("data://.my/robots/T-800.txt").get().unwrap();
 let mut t800_text = String::new();
 t800_text_reader.read_to_string(&mut t800_text);
 
 // Get the file's contents as a byte array
-let t800_png_reader = robots.file("data://.my/robots/T-800.png").getBytes();
+let mut t800_png_reader = robots.file("data://.my/robots/T-800.png").get().unwrap();
 let mut t800_bytes = Vec::new();
 t800_png_reader.read_to_end(&mut t800_bytes);
 ```
@@ -597,9 +634,23 @@ robots.file("T-800.json").getJson(function(response) {
 
 To retieve a file through the Algorithmia Data API, use the following endpoint:
 
-`GET https://api.algorithmia.com/v1/data/:owner/:directory/:file_name`
+`GET https://api.algorithmia.com/v1/connector/:connector/*path`
 
-#### Response
+- `:connector` is the data source: `data`, `dropbox`, `s3`, or a labeled variant (e.g. `dropbox+mylabel`).
+- `*path` is relative to the root of a given data source.
+
+<aside class="notice">
+  Each client SDK provides one or more methods for downloading a file using its <a href="#data-uri">Data URI</a>.
+  In general, these clients make it easy retrieve into common data structure ranging from strings, to byte streams, to temporary files.
+  See the language-specific examples to the right.
+</aside>
+
+<aside class="warning">
+  This endpoint overlaps with the endpoint for listing a directory. If you aren't sure if a path refers to a file or directory,
+  you should first check if it exists. The `exists` methods make a `HEAD` request that check the `X-Data-Type` response header.
+</aside>
+
+##### Response
 
 Upon 200 success, response body is the content of the file.
 
@@ -614,7 +665,7 @@ Upon 200 success, response body is the content of the file.
 
 ```shell
 curl -I -H 'Authorization: Simple YOUR_API_KEY' \
-    https://api.algorithmia.com/v1/data/.my/robots/HAL9000.png
+    https://api.algorithmia.com/v1/connector/data/.my/robots/HAL9000.png
 
 ->
 HTTP/1.1 200 OK
@@ -666,10 +717,23 @@ hal.exists(function(exists) {
 
 To check if a file exists without downloading it, use the following endpoint:
 
-`HEAD https://api.algorithmia.com/v1/data/:owner/:directory/:file_name`
+`HEAD https://api.algorithmia.com/v1/connector/:connector/*path`
 
+- `:connector` is the data source: `data`, `dropbox`, `s3`, or a labeled variant (e.g. `dropbox+mylabel`).
+- `*path` is relative to the root of a given data source.
 
-#### Response
+<aside class="notice">
+  Each client SDK provides one or more methods for downloading a file using its <a href="#data-uri">Data URI</a>.
+  In general, these clients make it easy retrieve into common data structure ranging from strings, to byte streams, to temporary files.
+  See the language-specific examples to the right.
+</aside>
+
+<aside class="warning">
+  This endpoint overlaps with the endpoint for checking if a directory exists. Verify the `X-Data-Type` response header on success.
+  The client SDKs will verify this automatically.
+</aside>
+
+##### Response
 
 200 success indicates the file exists
 
@@ -686,14 +750,14 @@ To check if a file exists without downloading it, use the following endpoint:
 # Write a text file
 curl -X PUT -H 'Authorization: Simple YOUR_API_KEY' \
     -d 'Leader of the Autobots' \
-    https://api.algorithmia.com/v1/data/.my/robots/Optimus_Prime.txt
+    https://api.algorithmia.com/v1/connector/data/.my/robots/Optimus_Prime.txt
 
 -> { "result": "data://.my/robots/Optimus_Prime.txt" }
 
 # Upload local file
 curl -X PUT -H 'Authorization: Simple YOUR_API_KEY' \
     --data-binary @Optimus_Prime.png \
-    https://api.algorithmia.com/v1/data/.my/robots/Optimus_Prime.png
+    https://api.algorithmia.com/v1/connector/data/.my/robots/Optimus_Prime.png
 
 -> { "result": "data://.my/robots/Optimus_Prime.png" }
 ```
@@ -771,13 +835,28 @@ robots.file("Optimus_Prime.json").putJson({"faction": "Autobots"});
 
 To upload a file through the Algorithmia Data API, use the following endpoint:
 
-`PUT https://api.algorithmia.com/v1/data/:owner/:directory/:file_name`
+`PUT https://api.algorithmia.com/v1/connector/data/:owner/*path`
 
-Input:
+- `:connector` is the data source: `data`, `dropbox`, `s3`, or a labeled variant (e.g. `dropbox+mylabel`).
+- `*path` is relative to the root of a given data source.
 
-`[Body of the request is the content of the file that will be created]`
+<aside class="notice">
+  Each client SDK provides one or more methods for uploading a file using its <a href="#data-uri">Data URI</a>.
+  In general, these clients make it easy upload data from common data structures ranging from strings, to byte streams, to files.
+  See the language-specific examples to the right.
+</aside>
 
-#### Response
+<aside class="warning">
+  This endpoint will replace a file if it already exists.
+  If you wish to avoid replacing a file, <a href="#check-if-file-exists">check if the file exists</a> before using this endpoint.
+</aside>
+
+
+##### Input
+
+Body of the request is the content of the file that will be created.
+
+##### Response
 
 Attribute | Description
 --------- | -----------
@@ -789,7 +868,7 @@ result    | The full Data URI of resulting file
 
 ```shell
 curl -X DELETE -H 'Authorization: Simple YOUR_API_KEY' \
-    https://api.algorithmia.com/v1/data/.my/robots/C-3PO.txt
+    https://api.algorithmia.com/v1/connector/data/.my/robots/C-3PO.txt
 
 -> { "result": { "deleted": 1 }}
 ```
@@ -836,23 +915,17 @@ c3po.delete(function(response) {
 
 To delete a file through the Algorithmia Data API, use the following endpoint:
 
-`DELETE https://api.algorithmia.com/v1/data/:owner/:directory/:file_name`
+`DELETE https://api.algorithmia.com/v1/connector/data/*path`
 
-#### Response
+- `:connector` is the data source: `data`, `dropbox`, `s3`, or a labeled variant (e.g. `dropbox+mylabel`).
+- `*path` is relative to the root of a given data source.
 
-> Deleting a file output:
+<aside class="notice">
+  Each client SDK provides a method for deleting a file using its <a href="#data-uri">Data URI</a>.
+  See the language-specific examples to the right.
+</aside>
 
-```json
-{
-    "result": {
-        "deleted": 0
-    },
-    "error": {
-        "message": "Error Message",
-        "deleted": 0
-    }
-}
-```
+##### Response
 
 Attribute | Description
 --------- | -----------
@@ -860,29 +933,20 @@ result.deleted  | The number of files successfully deleted
 error.deleted   | The number of files successfully deleted if an error encountered during deletion
 
 
-#### Versioning
+# API Versioning
 
 Algorithmia API is versioned with the version specified on the URL route:
 
 `[ANY] api.algorithmia.com/:version/:route`
 
-For example:
+The current supported API version is `v1` (i.e. `api.algorithmia.com/v1/:route`)
 
-`[ANY] api.algorithmia.com/v1/:route`
 
-`[ANY] api.algorithmia.com/v2/:route`
+##### Deprecated Versions
 
-`[ANY] api.algorithmia.com/v3/:route`
+Algorithm API calls defined with unversioned routes are deprecated. Planned support for them ended 2015-12-31.
 
-Each version will be supported for 18 months after the version is marked as deprecated.
-
-#### Deprecated Versions
-
-##### v0 (Unversioned routes)
-
-Algorithm API calls defined with unversioned routes are deprecated. They will be supported until 2015-12-31.
-
-An unversioned route appears as such:
+Unversioned routes are routes that use the following format:
 
 `[ANY] api.algorithmia.com/api/:route`
 

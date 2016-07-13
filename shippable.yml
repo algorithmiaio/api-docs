@@ -11,5 +11,5 @@ after_success:
 
 # exclude
 branches:
-  except:
-    - gh-pages
+  only:
+    - master
