@@ -8,7 +8,7 @@ This table provides links to various resources for each client:
 
 Client      |  DevCenter Guide   |  GitHub Repo  |  Language Docs  |  Package
 ----------- | -------- | ------------- | --------------- | -----------
-cURL | [Guide](http://developers.algorithmia.com//application-development/guides/cURL) | n/a | n/a | n/a
+cURL | [Guide](http://developers.algorithmia.com/application-development/guides/curl) | n/a | n/a | n/a
 CLI | [Guide](http://developers.algorithmia.com/application-development/guides/cli) | [algorithmia-cli](https://github.com/algorithmiaio/algorithmia-cli) | n/a | [Download](https://github.com/algorithmiaio/algorithmia-cli/releases)
 Java | [Guild](http://developers.algorithmia.com/application-development/guides/java) | [algorithmia-java](https://github.com/algorithmiaio/algorithmia-java) | [JavaDocs](http://www.javadoc.io/doc/com.algorithmia/algorithmia-client) | [Maven](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.algorithmia%22%20AND%20a%3A%22algorithmia-client%22)
 JavaScript | [Guide](http://developers.algorithmia.com/application-development/guides/javascript) | n/a | n/a | [Download](https://algorithmia.com/v1/clients/js/algorithmia-0.2.0.js)

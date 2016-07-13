@@ -9,7 +9,7 @@ script: bundle exec rake build
 after_success:
   - bundle exec rake shippable:publish
 
-# exclude
+# only deploy for master
 branches:
   only:
     - master
