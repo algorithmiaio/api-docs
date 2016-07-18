@@ -621,14 +621,16 @@ t800_png_reader.read_to_end(&mut t800_bytes);
 ```nodejs
 var robots = client.dir("data://.my/robots");
 
-// Get the file's contents as a string
-robots.file("T-800.txt").getString(function(response) {
-	console.log(response);
+// Get the file's contents
+robots.file("T-800.txt").get(function(err, data) {
+  // on success, data will be string or Buffer
+  console.log(response);
 });
 
-// Get a JSON file's contents as a JS object
-robots.file("T-800.json").getJson(function(response) {
-	console.log(response);
+// Get a file and write it to a local file
+robots.file("T-800.jpg").get(function(err, data) {
+  console.log("Read " + data.length + " bytes");
+  fs.writeFileSync("/path/to/save/T-800.jpg", data);
 });
 ```
 
@@ -826,10 +828,18 @@ robots.child::<DataFile>("Optimus_Prime.key").put(b"transform");
 ```nodejs
 var robots = client.dir("data://.my/robots");
 
-// Write a plain text file
-robots.file("Optimus_Prime.txt").putString("Leader of the Autobots");
-// Write an JS object to a JSON file
-robots.file("Optimus_Prime.json").putJson({"faction": "Autobots"});
+// Upload a file from a local path
+robots.putFile("/path/to/Optimus_Prime.jpg", function(response) {
+  if(response.error) {
+    return console.log("Error: " + response.error.message);
+  }
+  console.log("Success");
+});
+
+// Write string or Buffer to a file
+robots.file("Optimus_Prime.txt").put("Leader of the Autobots", function(response) {
+    /* check for error or success */
+);
 ```
 
 
