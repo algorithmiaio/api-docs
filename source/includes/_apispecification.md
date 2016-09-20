@@ -39,6 +39,16 @@ print result   # Hello YOUR_NAME
 # There are many other features missing in 0.9.x, to upgrade see the github docs
 ```
 
+```r
+import Algorithmia
+
+input = "YOUR_NAME"
+client = Algorithmia$client('YOUR_API_KEY')
+algo = client$algo('demo/Hello/0.1.1')
+result = algo$pipe(input)$result
+print(result)
+```
+
 ```ruby
 require 'algorithmia'
 
@@ -151,6 +161,12 @@ print algo.pipe("HAL 9000").result
 # -> Hello HAL 9000
 ```
 
+```r
+algo = client$algo('demo/Hello/0.1.1')
+print algo$pipe("HAL 9000")$result
+# -> Hello HAL 9000
+```
+
 ```ruby
 algo = client.algo('demo/Hello/0.1.1')
 puts algo.pipe('HAL 9000').result
@@ -221,6 +237,17 @@ $ algo run WebPredict/ListAnagrams/0.1 \
 algo = client.algo('WebPredict/ListAnagrams/0.1.0')
 result = algo.pipe(["transformer", "terraforms", "retransform"]).result
 # -> ["transformer","retransform"]
+```
+
+```r
+algo = client$algo('WebPredict/ListAnagrams/0.1.0')
+result = algo$pipe(["transformer", "terraforms", "retransform"])$result
+# Returns a list in R
+[[1]]
+[1] "transformer"
+
+[[2]]
+[1] "retransform"
 ```
 
 ```ruby
@@ -327,6 +354,12 @@ result = client.algo("opencv/SmartThumbnail/0.1").pipe(input).result
 # -> [binary byte sequence]
 ```
 
+```r
+algo = client$algo("opencv/SmartThumbnail/0.1")
+response = algo$pipe(input)$result
+# -> [raw vector]
+```
+
 ```ruby
 input = File.binread("/path/to/bender.png")
 result = client.algo("opencv/SmartThumbnail/0.1").pipe(input).result
@@ -429,6 +462,11 @@ from Algorithmia.algorithm import OutputType
 algo = client.algo('demo/Hello/0.1.1').set_options(output=OutputType.raw)
 ```
 
+```r
+algo = client$algo('util/echo')$set_options(timeout=60, stdout=False)
+result = algo$pipe('HAL 9000')$result
+```
+
 ```ruby
 algo = client.algo('demo/Hello/0.1.1').set_timeout(10).enable_stdout
 result = algo.pipe('HAL 9000').result
@@ -523,6 +561,12 @@ apply() functions do not match input data
 ```python
 algo = client.algo('demo/Hello/0.1.1')
 print algo.pipe([]).error.message
+# -> API error: apply() functions do not match input data
+```
+
+```r
+algo = client$algo('demo/Hello/0.1.1')
+algo$pipe(list())$error$message
 # -> API error: apply() functions do not match input data
 ```
 

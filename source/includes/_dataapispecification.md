@@ -117,6 +117,26 @@ for file in dir.files():
     print "File " + file.path + " at URL " + file.url + " last modified " + file.last_modified
 ```
 
+```r
+# List top level directories
+dir = client$dir("data://.my/")
+dirs = dir$dirs()
+
+while (TRUE) {
+  d = try(dirs$getNext())
+  if (dirs$hasNext() == FALSE) break
+  print(paste(d$dataDirectoryUrl, d$dataDirectoryPath))
+}
+
+# List files in the 'robots' directory
+robots = client$dir("data://.my/robots")
+while (TRUE) {
+  d = try(robots$getNext())
+  if (robots$hasNext() == FALSE) break
+  print(paste(d$dataDirectoryUrl, d$dataDirectoryPath))
+}
+```
+
 ```ruby
 # List top level directories
 client.dir("data://.my").each_dir do |dir|
@@ -291,6 +311,11 @@ from Algorithmia.acl import ReadAcl
 robots.create(ReadAcl.public)
 ```
 
+```r
+robots = client$dir("data://.my/robots")
+robots$create()
+```
+
 ```ruby
 robots = client.dir("data://.my/robots")
 robots.create
@@ -390,6 +415,18 @@ print robots.get_permissions().read_acl == AclType.my_algos #  True
 robots.update_permissions(ReadAcl.private)  # True if update succeeded
 ```
 
+
+```r
+robots = client$dir("data://.my/robots")
+# ReadAcl$PUBLIC is a wrapper for Acl(AclType$PUBLIC) to make things easier
+robots$create(ReadAcl.PUBLIC)
+acl = robots$get_permissions()  # Acl object
+acl$read_acl == AclType$PUBLIC  # True
+
+robots$updatePermissions(ReadAcl$PRIVATE)
+robots$get_permissions()$read_acl == AclType$PRIVATE # True
+```
+
 To update a directory, use the following API:
 
 `PATCH https://api.algorithmia.com/v1/connector/*path`
@@ -450,6 +487,13 @@ Deleted directory: data://.my/robots
 robots = client.dir("data://.my/robots")
 if robots.exists():
 	robots.delete()
+```
+
+```r
+robots = client$dir("data://.my/robots")
+if (robots$exists()){
+  robots$delete()
+}
 ```
 
 ```ruby
@@ -558,6 +602,20 @@ t800Json =  client.file("data://.my/robots/T-800.txt").getJson()
 
 # Get file's contents as a byte array
 t800Bytes = client.file("data://.my/robots/T-800.png").getBytes()
+```
+
+```r
+# Download file and get the file handle
+t800File = client$file("data://.my/robots/T-800.png")$getFile()
+
+# Get file's contents as a string
+t800Text = client$file("data://.my/robots/T-800.txt")$getString()
+
+# Get file's contents as JSON
+t800Json =  client$file("data://.my/robots/T-800.txt")$getJson()
+
+# Get file's contents as a byte array
+t800Bytes = client$file("data://.my/robots/T-800.png")$getBytes()
 ```
 
 ```ruby
@@ -684,6 +742,12 @@ if client.file("data://.my/robots/T-800.png").exists()
     print("HAL 9000 exists")
 ```
 
+```r
+if (client$file("data://.my/robots/T-800.png")$exists()){
+    print("HAL 9000 exists")
+}
+```
+
 ```ruby
 if client.file("data://.my/robots/T-800.png").exists?
     puts "HAL 9000 exists"
@@ -778,6 +842,15 @@ client.file("data://.my/robots/Optimus_Prime.png").putFile("/path/to/Optimus_Pri
 client.file("data://.my/robots/Optimus_Prime.txt").put("Leader of the Autobots")
 # Write a dict to a JSON file
 client.file("data://.my/robots/Optimus_Prime.json").putJson({"faction": "Autobots"})
+```
+
+```r
+# Upload local file
+client$file("data://.my/robots/Optimus_Prime.png")$putFile("/path/to/Optimus_Prime.png")
+# Write a text file
+client$file("data://.my/robots/Optimus_Prime.txt")$put("Leader of the Autobots")
+# Write a dict to a JSON file
+client$file("data://.my/robots/Optimus_Prime.json")$putJson({"faction": "Autobots"})
 ```
 
 ```ruby
@@ -891,6 +964,11 @@ Deleted file data://.my/robots/C-3PO.txt
 ```python
 c3po = client.file("data://.my/robots/C-3PO.txt")
 c3po.delete()
+```
+
+```r
+c3po = client$file("data://.my/robots/C-3PO.txt")
+c3po$delete()
 ```
 
 ```ruby

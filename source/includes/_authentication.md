@@ -21,6 +21,12 @@ import Algorithmia
 client = Algorithmia.client('YOUR_API_KEY')
 ```
 
+```r
+import Algorithmia
+
+client = Algorithmia$client('YOUR_API_KEY')
+```
+
 ```ruby
 require 'algorithmia'
 
