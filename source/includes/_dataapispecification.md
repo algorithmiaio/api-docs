@@ -119,11 +119,11 @@ for file in dir.files():
 
 ```r
 # List top level directories
-dir = client$dir("data://.my/")
-dirs = dir$dirs()
+dir <- client$dir("data://.my/")
+dirs <- dir$dirs()
 
 while (TRUE) {
-  d = try(dirs$getNext())
+  d <- try(dirs$getNext())
   if (dirs$hasNext() == FALSE) break
   print(paste(d$dataDirectoryUrl, d$dataDirectoryPath))
 }
@@ -131,7 +131,7 @@ while (TRUE) {
 # List files in the 'robots' directory
 robots = client$dir("data://.my/robots")
 while (TRUE) {
-  d = try(robots$getNext())
+  d <- try(robots$getNext())
   if (robots$hasNext() == FALSE) break
   print(paste(d$dataDirectoryUrl, d$dataDirectoryPath))
 }
@@ -312,7 +312,7 @@ robots.create(ReadAcl.public)
 ```
 
 ```r
-robots = client$dir("data://.my/robots")
+robots <- client$dir("data://.my/robots")
 robots$create()
 ```
 
@@ -417,10 +417,10 @@ robots.update_permissions(ReadAcl.private)  # True if update succeeded
 
 
 ```r
-robots = client$dir("data://.my/robots")
+robots <- client$dir("data://.my/robots")
 # ReadAcl$PUBLIC is a wrapper for Acl(AclType$PUBLIC) to make things easier
 robots$create(ReadAcl.PUBLIC)
-acl = robots$get_permissions()  # Acl object
+acl <- robots$get_permissions()  # Acl object
 acl$read_acl == AclType$PUBLIC  # True
 
 robots$updatePermissions(ReadAcl$PRIVATE)
@@ -490,7 +490,7 @@ if robots.exists():
 ```
 
 ```r
-robots = client$dir("data://.my/robots")
+robots <- client$dir("data://.my/robots")
 if (robots$exists()){
   robots$delete()
 }
@@ -606,16 +606,16 @@ t800Bytes = client.file("data://.my/robots/T-800.png").getBytes()
 
 ```r
 # Download file and get the file handle
-t800File = client$file("data://.my/robots/T-800.png")$getFile()
+t800File <- client$file("data://.my/robots/T-800.png")$getFile()
 
 # Get file's contents as a string
-t800Text = client$file("data://.my/robots/T-800.txt")$getString()
+t800Text <- client$file("data://.my/robots/T-800.txt")$getString()
 
 # Get file's contents as JSON
-t800Json =  client$file("data://.my/robots/T-800.txt")$getJson()
+t800Json <-  client$file("data://.my/robots/T-800.txt")$getJson()
 
 # Get file's contents as a byte array
-t800Bytes = client$file("data://.my/robots/T-800.png")$getBytes()
+t800Bytes <- client$file("data://.my/robots/T-800.png")$getBytes()
 ```
 
 ```ruby
@@ -967,7 +967,7 @@ c3po.delete()
 ```
 
 ```r
-c3po = client$file("data://.my/robots/C-3PO.txt")
+c3po <- client$file("data://.my/robots/C-3PO.txt")
 c3po$delete()
 ```
 

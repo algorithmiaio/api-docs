@@ -26,7 +26,7 @@ client = Algorithmia.client('YOUR_API_KEY')
 # access you can email us at: info@algorithmia.com
 import Algorithmia
 
-client = Algorithmia$client('YOUR_API_KEY')
+client <- Algorithmia$client('YOUR_API_KEY')
 ```
 
 ```ruby

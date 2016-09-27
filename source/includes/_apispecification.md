@@ -42,10 +42,10 @@ print result   # Hello YOUR_NAME
 ```r
 import Algorithmia
 
-input = "YOUR_NAME"
-client = Algorithmia$client('YOUR_API_KEY')
-algo = client$algo('demo/Hello/0.1.1')
-result = algo$pipe(input)$result
+input <- "YOUR_NAME"
+client <- Algorithmia$client('YOUR_API_KEY')
+algo <- client$algo('demo/Hello/0.1.1')
+result <- algo$pipe(input)$result
 print(result)
 ```
 
@@ -162,8 +162,8 @@ print algo.pipe("HAL 9000").result
 ```
 
 ```r
-algo = client$algo('demo/Hello/0.1.1')
-print algo$pipe("HAL 9000")$result
+algo <- client$algo('demo/Hello/0.1.1')
+print(algo$pipe("HAL 9000")$result)
 # -> Hello HAL 9000
 ```
 
@@ -240,8 +240,8 @@ result = algo.pipe(["transformer", "terraforms", "retransform"]).result
 ```
 
 ```r
-algo = client$algo('WebPredict/ListAnagrams/0.1.0')
-result = algo$pipe(["transformer", "terraforms", "retransform"])$result
+algo <- client$algo('WebPredict/ListAnagrams/0.1.0')
+result <- algo$pipe(["transformer", "terraforms", "retransform"])$result
 # Returns a list in R
 [[1]]
 [1] "transformer"
@@ -355,8 +355,8 @@ result = client.algo("opencv/SmartThumbnail/0.1").pipe(input).result
 ```
 
 ```r
-algo = client$algo("opencv/SmartThumbnail/0.1")
-response = algo$pipe(input)$result
+algo <- client$algo("opencv/SmartThumbnail/0.1")
+response <- algo$pipe(input)$result
 # -> [raw vector]
 ```
 
@@ -463,8 +463,8 @@ algo = client.algo('demo/Hello/0.1.1').set_options(output=OutputType.raw)
 ```
 
 ```r
-algo = client$algo('util/echo')$set_options(timeout=60, stdout=False)
-result = algo$pipe('HAL 9000')$result
+algo <- client$algo('util/echo')$set_options(timeout=60, stdout=False)
+result <- algo$pipe('HAL 9000')$result
 ```
 
 ```ruby
@@ -565,7 +565,7 @@ print algo.pipe([]).error.message
 ```
 
 ```r
-algo = client$algo('demo/Hello/0.1.1')
+algo <- client$algo('demo/Hello/0.1.1')
 algo$pipe(list())$error$message
 # -> API error: apply() functions do not match input data
 ```
