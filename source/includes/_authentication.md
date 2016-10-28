@@ -22,8 +22,6 @@ client = Algorithmia.client('YOUR_API_KEY')
 ```
 
 ```r
-# Please note that R is in beta, and if you would like to request
-# access you can email us at: info@algorithmia.com
 import Algorithmia
 
 client <- Algorithmia$client('YOUR_API_KEY')
