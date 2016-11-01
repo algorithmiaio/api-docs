@@ -419,10 +419,10 @@ robots <- client$dir("data://.my/robots")
 # ReadAcl$PUBLIC is a wrapper for Acl(AclType$PUBLIC) to make things easier
 robots$create(ReadAcl.PUBLIC)
 acl <- robots$get_permissions()  # Acl object
-acl$read_acl == AclType$PUBLIC  # True
+acl$read_acl == AclType$PUBLIC  # TRUE
 
 robots$updatePermissions(ReadAcl$PRIVATE)
-robots$get_permissions()$read_acl == AclType$PRIVATE # True
+robots$get_permissions()$read_acl == AclType$PRIVATE # TRUE
 ```
 
 To update a directory, use the following API:
