@@ -122,17 +122,15 @@ for file in dir.files():
 dir <- client$dir("data://.my/")
 dirs <- dir$dirs()
 
-while (TRUE) {
+while (dirs$hasNext()) {
   d <- try(dirs$getNext())
-  if (dirs$hasNext() == FALSE) break
   print(paste(d$dataDirectoryUrl, d$dataDirectoryPath))
 }
 
 # List files in the 'robots' directory
 robots = client$dir("data://.my/robots")
-while (TRUE) {
+while (robots$hasNext()) {
   d <- try(robots$getNext())
-  if (robots$hasNext() == FALSE) break
   print(paste(d$dataDirectoryUrl, d$dataDirectoryPath))
 }
 ```
