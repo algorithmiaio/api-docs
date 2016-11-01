@@ -40,7 +40,7 @@ print result   # Hello YOUR_NAME
 ```
 
 ```r
-import Algorithmia
+library(algorithmia)
 
 input <- "YOUR_NAME"
 client <- Algorithmia$client('YOUR_API_KEY')

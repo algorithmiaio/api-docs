@@ -22,7 +22,7 @@ client = Algorithmia.client('YOUR_API_KEY')
 ```
 
 ```r
-import Algorithmia
+library(algorithmia)
 
 client <- Algorithmia$client('YOUR_API_KEY')
 ```
