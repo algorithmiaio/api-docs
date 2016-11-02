@@ -463,7 +463,8 @@ algo = client.algo('demo/Hello/0.1.1').set_options(output=OutputType.raw)
 ```
 
 ```r
-algo <- client$algo('util/echo')$set_options(timeout=60, stdout=FALSE)
+algo <- client$algo('util/echo')
+algo$setOptions(timeout=60, stdout=FALSE)
 result <- algo$pipe('HAL 9000')$result
 ```
 
