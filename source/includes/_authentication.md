@@ -45,7 +45,7 @@ AlgorithmiaClient client = Algorithmia.client("YOUR_API_KEY");
 import com.algorithmia.*
 import com.algorithmia.algo.*
 
-val client = Algorithmia::client("YOUR_API_KEY")
+val client = Algorithmia.client("YOUR_API_KEY")
 ```
 
 ```rust
