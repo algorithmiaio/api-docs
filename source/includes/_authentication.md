@@ -42,8 +42,8 @@ AlgorithmiaClient client = Algorithmia.client("YOUR_API_KEY");
 ```
 
 ```scala
-import com.algorithmia.*
-import com.algorithmia.algo.*
+import com.algorithmia._
+import com.algorithmia.algo._
 
 val client = Algorithmia.client("YOUR_API_KEY")
 ```
