@@ -108,11 +108,21 @@ import Algorithmia
 
 client = Algorithmia.client()
 
+# The .dir() method takes a Data URI path and returns an Algorithmia.datadirectory.DataDirectory object for the child directory.
+client.dir("data://.my")
+
+# Check if a specific directory exists
+client.dir("data://.my/robots").exists()
+
+# The .dirs() method returns a generator object of all the child directories.
 for dir in client.dir("data://.my").dirs():
+    # The .url is a convenience field that holds "/v1/data/" + dir.path
+    # The .path is the path to the directory
     print "Directory " + dir.path + " at URL " + dir.url
 
 # List files in the 'robots' directory
 dir = client.dir("data://.my/robots")
+# The .files() method returns a generator object of all the files in directory
 for file in dir.files():
     print "File " + file.path + " at URL " + file.url + " last modified " + file.last_modified
 ```
@@ -312,6 +322,10 @@ robots.create(ReadAcl.public)
 ```r
 robots <- client$dir("data://.my/robots")
 robots$create()
+
+# You can also create a directory with different permissions
+# Supports: ReadAcl.public, ReadAcl.private, ReadAcl.my_algos
+robots$create(ReadAcl.public)
 ```
 
 ```ruby
@@ -416,13 +430,14 @@ robots.update_permissions(ReadAcl.private)  # True if update succeeded
 
 ```r
 robots <- client$dir("data://.my/robots")
-# ReadAcl$PUBLIC is a wrapper for Acl(AclType$PUBLIC) to make things easier
+# ReadAcl.PUBLIC is a wrapper for Acl(AclType.PUBLIC) to make things easier
 robots$create(ReadAcl.PUBLIC)
-acl <- robots$get_permissions()  # Acl object
+acl <- robots$getPermissions()  # Acl object
 acl$read_acl == AclType$PUBLIC  # TRUE
 
+# Supports: ReadAcl.PUBLIC, ReadAcl.PRIVATE, and ReadAcl.MY_ALGORITHMS.
 robots$updatePermissions(ReadAcl$PRIVATE)
-robots$get_permissions()$read_acl == AclType$PRIVATE # TRUE
+robots$getPermissions()$read_acl == AclType.PRIVATE # TRUE
 ```
 
 To update a directory, use the following API:
@@ -690,7 +705,7 @@ robots.file("T-800.jpg").get(function(err, data) {
 });
 ```
 
-To retieve a file through the Algorithmia Data API, use the following endpoint:
+To retrieve a file through the Algorithmia Data API, use the following endpoint:
 
 `GET https://api.algorithmia.com/v1/connector/:connector/*path`
 

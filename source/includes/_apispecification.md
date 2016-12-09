@@ -26,17 +26,19 @@ import Algorithmia
 
 input = "YOUR_NAME"
 client = Algorithmia.client('YOUR_API_KEY')
+# Pass in the unique algoUrl path found on each algorithm description page.
 algo = client.algo('demo/Hello/0.1.1')
+# Calls an algorithm with the input provided.
 result = algo.pipe(input)
 
-# If you are using the 1.0+ client you can access both the output and the metadata
+# If you are using the 1.0+ client you can access both the output and the metadata.
 print result.result    # Hello YOUR_NAME
 print result.metadata  # Metadata(content_type='text',duration=0.0002127)
 
 # If you are using 0.9.x you can only get the algorithm output
 print result   # Hello YOUR_NAME
 
-# There are many other features missing in 0.9.x, to upgrade see the github docs
+# There are many other features missing in 0.9.x, to upgrade see the github docs.
 ```
 
 ```r
