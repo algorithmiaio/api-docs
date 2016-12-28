@@ -862,8 +862,8 @@ client.file("data://.my/robots/Optimus_Prime.json").putJson({"faction": "Autobot
 client$file("data://.my/robots/Optimus_Prime.png")$putFile("/path/to/Optimus_Prime.png")
 # Write a text file
 client$file("data://.my/robots/Optimus_Prime.txt")$put("Leader of the Autobots")
-# Write a dict to a JSON file
-client$file("data://.my/robots/Optimus_Prime.json")$putJson({"faction": "Autobots"})
+# Write a list to a JSON file
+client$file("data://.my/robots/Optimus_Prime.json")$putJson(list(faction="Autobots"))
 ```
 
 ```ruby
