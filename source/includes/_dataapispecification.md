@@ -324,8 +324,8 @@ robots <- client$dir("data://.my/robots")
 robots$create()
 
 # You can also create a directory with different permissions
-# Supports: ReadAcl.public, ReadAcl.private, ReadAcl.my_algos
-robots$create(ReadAcl.public)
+# Supports: ReadAcl.PUBLIC, ReadAcl.PRIVATE, ReadAcl.MY_ALGORITHMS
+robots$create(ReadAcl.PUBLIC)
 ```
 
 ```ruby
@@ -430,14 +430,14 @@ robots.update_permissions(ReadAcl.private)  # True if update succeeded
 
 ```r
 robots <- client$dir("data://.my/robots")
-# ReadAcl.PUBLIC is a wrapper for Acl(AclType.PUBLIC) to make things easier
+# Create a directory with public permissions
 robots$create(ReadAcl.PUBLIC)
 acl <- robots$getPermissions()  # Acl object
-acl$read_acl == AclType$PUBLIC  # TRUE
+acl$read_acl # Returns Permission Type, "PUBLIC" if update succeeded.
 
 # Supports: ReadAcl.PUBLIC, ReadAcl.PRIVATE, and ReadAcl.MY_ALGORITHMS.
-robots$updatePermissions(ReadAcl$PRIVATE)
-robots$getPermissions()$read_acl == AclType.PRIVATE # TRUE
+robots$updatePermissions(ReadAcl.PRIVATE)
+acl$read_acl # Returns Permission Type, "PRIVATE" if update succeeded.
 ```
 
 To update a directory, use the following API:
