@@ -440,6 +440,21 @@ robots$updatePermissions(ReadAcl.PRIVATE)
 acl$read_acl # Returns Permission Type, "PRIVATE" if update succeeded.
 ```
 
+```java
+DataDirectory robots = client.dir("data://.my/robots");
+
+// Create the directory as private
+robots.create(DataAcl.PRIVATE);
+
+// Supports: DataAcl.PUBLIC, DataAcl.PRIVATE, DataAcl.My_ALGOS
+robots.updatePermissions(DataAcl.PUBLIC);
+
+// Check a directory's permissions
+if (robots.getPermissions().getReadPermissions() == DataAclType.PRIVATE) {
+    System.out.println("fooLimited is private");
+}
+```
+
 To update a directory, use the following API:
 
 `PATCH https://api.algorithmia.com/v1/connector/*path`
