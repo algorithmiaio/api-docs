@@ -58,6 +58,7 @@ let client = Algorithmia::client("YOUR_API_KEY");
 
 ```javascript
 // include the algorithmia.js library
+// https://algorithmia.com/v1/clients/js/algorithmia-0.2.0.js
 
 var client = Algorithmia.client('YOUR_API_KEY');
 ```

@@ -93,6 +93,7 @@ let algo = client.algo("algo://demo/Hello/0.1.1");
 
 ```javascript
 // include the algorithmia.js library
+// https://algorithmia.com/v1/clients/js/algorithmia-0.2.0.js
 
 var input = "YOUR_NAME";
 Algorithmia.client("YOUR_API_KEY");
