@@ -414,7 +414,7 @@ client.algo("opencv/SmartThumbnail")
 Algorithmia supports calling algorithms that use any combination of text, JSON, or binary as their input and output.
 
 Each client SDK provides idiomatic abstractions for calling algorithms
-using common native types and automatic serializization and deserialization where reasonable.
+using common native types and automatic serialization and deserialization where reasonable.
 See the code samples to the right for examples in the language of your choice.
 
 #### HTTP input specification
