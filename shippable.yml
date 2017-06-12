@@ -6,10 +6,6 @@ rvm: 2.0.0-p247
 
 script: bundle exec rake build
 
-after_success:
-  - bundle exec rake shippable:publish
+on_success:
+  - if [ "$BRANCH" == "master" ]; then bundle exec rake shippable:publish; fi
 
-# only deploy for master
-branches:
-  only:
-    - master
