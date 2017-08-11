@@ -24,7 +24,7 @@ client = Algorithmia.client('YOUR_API_KEY')
 ```r
 library(algorithmia)
 
-client <- Algorithmia$client('YOUR_API_KEY')
+client <- getAlgorithmiaClient('YOUR_API_KEY')
 ```
 
 ```ruby
