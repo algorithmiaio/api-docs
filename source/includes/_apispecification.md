@@ -504,7 +504,7 @@ client.algo("algo://demo/Hello/?timeout=10")
 ```
 
 ```nodejs
-client.algo("algo://demo/Hello/0.1.1?timeout=10")
+client.algo("algo://demo/Hello/?timeout=10")
       .pipe("HAL 9000")
       .then(function(output) {
         console.log(output);
@@ -545,7 +545,7 @@ output                | raw|void: Indicates the algorithm
 ```shell
 curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
     -d '[]' -H 'Content-Type: application/json' \
-    https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
+    https://api.algorithmia.com/v1/algo/demo/Hello/
 
 -> {
     "error":{
@@ -557,31 +557,31 @@ curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
 ```
 
 ```cli
-$ algo run demo/Hello/0.1.1 -d '[]'
+$ algo run demo/Hello/ -d '[]'
 API error: apply() functions do not match input data
 apply() functions do not match input data
 ```
 
 ```python
-algo = client.algo('demo/Hello/0.1.1')
+algo = client.algo('demo/Hello/')
 print algo.pipe([]).error.message
 # -> API error: apply() functions do not match input data
 ```
 
 ```r
-algo <- client$algo('demo/Hello/0.1.1')
+algo <- client$algo('demo/Hello/')
 algo$pipe(list())$error$message
 # -> API error: apply() functions do not match input data
 ```
 
 ```ruby
-algo = client.algo('demo/Hello/0.1.1')
+algo = client.algo('demo/Hello/')
 puts algo.pipe([]).error.message
 # -> API error: apply() functions do not match input data
 ```
 
 ```java
-Algorithm algo = client.algo("algo://demo/Hello/0.1.1");
+Algorithm algo = client.algo("algo://demo/Hello/");
 AlgoResponse result = algo.pipe([]);
 try {
   result.asString();
@@ -592,7 +592,7 @@ try {
 ```
 
 ```scala
-val algo = client.algo("algo://demo/Hello/0.1.1")
+val algo = client.algo("algo://demo/Hello/")
 val result = algo.pipe("HAL 9000")
 try {
   result.asString();
@@ -603,7 +603,7 @@ try {
 ```
 
 ```rust
-let algo = client.algo("algo://demo/Hello/0.1.1");
+let algo = client.algo("algo://demo/Hello/");
 match algo.pipe(&[]) {
     Ok(response) => { /* success */ },
     Err(err) => println!("error calling demo/Hello: {}", err),
@@ -612,7 +612,7 @@ match algo.pipe(&[]) {
 ```
 
 ```javascript
-client.algo("algo://demo/Hello/0.1.1")
+client.algo("algo://demo/Hello/")
       .pipe("HAL 9000")
       .then(function(output) {
         if(output.error) {
@@ -623,7 +623,7 @@ client.algo("algo://demo/Hello/0.1.1")
 ```
 
 ```nodejs
-client.algo("algo://demo/Hello/0.1.1")
+client.algo("algo://demo/Hello/")
       .pipe("HAL 9000")
       .then(function(response) {
         if(response.error) {
