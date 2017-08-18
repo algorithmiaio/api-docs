@@ -13,11 +13,11 @@ The size limit for a request is 10MiB. Check out the [Data API](#the-data-api) f
 ```shell
 curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
     -d 'YOUR_NAME' -H 'Content-Type: text/plain' \
-    https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
+    https://api.algorithmia.com/v1/algo/demo/Hello/
 ```
 
 ```cli
-$ algo run -d 'YOUR_NAME' demo/Hello/0.1.1
+$ algo run -d 'YOUR_NAME' demo/Hello/
 Hello YOUR_NAME
 ```
 
@@ -27,7 +27,7 @@ import Algorithmia
 input = "YOUR_NAME"
 client = Algorithmia.client('YOUR_API_KEY')
 # Pass in the unique algoUrl path found on each algorithm description page.
-algo = client.algo('demo/Hello/0.1.1')
+algo = client.algo('demo/Hello/')
 # Calls an algorithm with the input provided.
 result = algo.pipe(input)
 
@@ -46,7 +46,7 @@ library(algorithmia)
 
 input <- "YOUR_NAME"
 client <- getAlgorithmiaClient('YOUR_API_KEY')
-algo <- client$algo('demo/Hello/0.1.1')
+algo <- client$algo('demo/Hello/')
 result <- algo$pipe(input)$result
 print(result)
 ```
@@ -55,7 +55,7 @@ print(result)
 require 'algorithmia'
 
 client = Algorithmia.client('YOUR_API_KEY')
-algo = client.algo('demo/Hello/0.1.1')
+algo = client.algo('demo/Hello/')
 response = algo.pipe('YOUR_NAME')
 puts response.result
 ```
@@ -66,7 +66,7 @@ import com.algorithmia.algo.*;
 
 String input = "\"YOUR_NAME\"";
 AlgorithmiaClient client = Algorithmia.client("YOUR_API_KEY");
-Algorithm algo = client.algo("algo://demo/Hello/0.1.1");
+Algorithm algo = client.algo("algo://demo/Hello/");
 AlgoResponse result = algo.pipe(input);
 System.out.println(result.asJsonString());
 ```
@@ -77,7 +77,7 @@ import com.algorithmia.algo._
 
 val input = "YOUR_NAME"
 val client = Algorithmia.client("YOUR_API_KEY")
-val algo = client.algo("algo://demo/Hello/0.1.1")
+val algo = client.algo("algo://demo/Hello/")
 val result = algo.pipeJson(input)
 System.out.println(result.asJsonString)
 ```
@@ -88,7 +88,7 @@ use algorithmia::algo::*;
 
 let input = "YOUR_NAME";
 let client = Algorithmia::client("YOUR_API_KEY");
-let algo = client.algo("algo://demo/Hello/0.1.1");
+let algo = client.algo("algo://demo/Hello/");
 ```
 
 ```javascript
@@ -98,7 +98,7 @@ let algo = client.algo("algo://demo/Hello/0.1.1");
 var input = "YOUR_NAME";
 Algorithmia.client("YOUR_API_KEY");
 
-client.algo("algo://demo/Hello/0.1.1")
+client.algo("algo://demo/Hello/")
       .pipe(input)
       .then(function(output) {
         console.log(output);
@@ -111,7 +111,7 @@ var algorithmia = require("algorithmia");
 var input = "YOUR_NAME";
 var client = algorithmia.client("YOUR_API_KEY");
 
-client.algo("algo://demo/Hello/0.1.1")
+client.algo("algo://demo/Hello/")
        .pipe(input)
        .then(function(response) {
          console.log(response.get());
@@ -145,7 +145,7 @@ To call private versions of an algorithm you own, you must use a fully specified
 ```shell
 curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
     -d 'HAL 9000' -H 'Content-Type: text/plain' \
-    https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1
+    https://api.algorithmia.com/v1/algo/demo/Hello/
 
 -> {
     "result":"Hello HAL 9000",
@@ -154,50 +154,50 @@ curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
 ```
 
 ```cli
-$ algo run demo/Hello/0.1.1 -d 'HAL 9000'
+$ algo run demo/Hello/ -d 'HAL 9000'
 Hello HAL 9000
 ```
 
 ```python
-algo = client.algo('demo/Hello/0.1.1')
+algo = client.algo('demo/Hello/')
 print algo.pipe("HAL 9000").result
 # -> Hello HAL 9000
 ```
 
 ```r
-algo <- client$algo('demo/Hello/0.1.1')
+algo <- client$algo('demo/Hello/')
 print(algo$pipe("HAL 9000")$result)
 # -> Hello HAL 9000
 ```
 
 ```ruby
-algo = client.algo('demo/Hello/0.1.1')
+algo = client.algo('demo/Hello/')
 puts algo.pipe('HAL 9000').result
 # -> Hello HAL 900
 ```
 
 ```java
-Algorithm algo = client.algo("algo://demo/Hello/0.1.1");
+Algorithm algo = client.algo("algo://demo/Hello/");
 AlgoResponse result = algo.pipe("HAL 9000");
 System.out.println(result.asString());
 // -> Hello HAL 9000
 ```
 
 ```scala
-val algo = client.algo("algo://demo/Hello/0.1.1")
+val algo = client.algo("algo://demo/Hello/")
 val result = algo.pipe("HAL 9000")
 System.out.println(result.asString)
 // -> Hello HAL 9000
 ```
 
 ```rust
-let algo = client.algo("algo://demo/Hello/0.1.1");
+let algo = client.algo("algo://demo/Hello/");
 let response = algo.pipe("HAL 9000").unwrap();
 println!("{}", response.as_string().unwrap());
 ```
 
 ```javascript
-client.algo("algo://demo/Hello/0.1.1")
+client.algo("algo://demo/Hello/")
       .pipe("HAL 9000")
       .then(function(output) {
         console.log(output.result);
@@ -206,7 +206,7 @@ client.algo("algo://demo/Hello/0.1.1")
 ```
 
 ```nodejs
-client.algo("algo://demo/Hello/0.1.1")
+client.algo("algo://demo/Hello/")
       .pipe("HAL 9000")
       .then(function(response) {
         console.log(response.get());
@@ -446,23 +446,23 @@ binary | The result element is a Base64 encoded binary data in a JSON String
 ```shell
 curl -X POST -H 'Authorization: Simple YOUR_API_KEY' \
     -d 'HAL 9000' -H 'Content-Type: text/plain' \
-    https://api.algorithmia.com/v1/algo/demo/Hello/0.1.1?timeout=10
+    https://api.algorithmia.com/v1/algo/demo/Hello/?timeout=10
 ```
 
 ```cli
 # use --timeout to set the call timeout
-$ algo run demo/Hello/0.1.1 -d 'HAL 9000' --timeout 10
+$ algo run demo/Hello/ -d 'HAL 9000' --timeout 10
 
 # use --debug to print STDOUT if available
-$ algo run demo/Hello/0.1.1 -d 'HAL 9000' --debug
+$ algo run demo/Hello/ -d 'HAL 9000' --debug
 ```
 
 ```python
-algo = client.algo('demo/Hello/0.1.1').set_options(timeout=10, stdout=True)
+algo = client.algo('demo/Hello/').set_options(timeout=10, stdout=True)
 result = algo.pipe("HAL 9000")
 
 from Algorithmia.algorithm import OutputType
-algo = client.algo('demo/Hello/0.1.1').set_options(output=OutputType.raw)
+algo = client.algo('demo/Hello/').set_options(output=OutputType.raw)
 ```
 
 ```r
@@ -472,22 +472,22 @@ result <- algo$pipe('HAL 9000')$result
 ```
 
 ```ruby
-algo = client.algo('demo/Hello/0.1.1').set_timeout(10).enable_stdout
+algo = client.algo('demo/Hello/').set_timeout(10).enable_stdout
 result = algo.pipe('HAL 9000').result
 ```
 
 ```java
-Algorithm algo = client.algo("algo://demo/Hello/0.1.1?timeout=10");
+Algorithm algo = client.algo("algo://demo/Hello/?timeout=10");
 AlgoResponse result = algo.pipe("HAL 9000");
 ```
 
 ```scala
-val algo = client.algo("algo://demo/Hello/0.1.1?timeout=10")
+val algo = client.algo("algo://demo/Hello/?timeout=10")
 val result = algo.pipe(input)
 ```
 
 ```rust
-let mut algo = client.algo("algo://demo/Hello/0.1.1");
+let mut algo = client.algo("algo://demo/Hello/");
 let algo = algo.timeout(10).enable_stdout();
 let response = algo.pipe(input).unwrap();
 if let Some(ref stdout) = response.metadata.stdout {
@@ -496,7 +496,7 @@ if let Some(ref stdout) = response.metadata.stdout {
 ```
 
 ```javascript
-client.algo("algo://demo/Hello/0.1.1?timeout=10")
+client.algo("algo://demo/Hello/?timeout=10")
       .pipe("HAL 9000")
       .then(function(output) {
         console.log(output);
