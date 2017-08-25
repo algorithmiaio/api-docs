@@ -165,13 +165,13 @@ import com.algorithmia.data.*;
 // List top level directories
 DataDirectory myRoot = client.dir("data://.my");
 for(DataDirectory dir : myRoot.dirs()) {
-    System.out.println("Directory " + dir.toString() + " at URL " + dir.url());
+    System.out.println("Directory " + dir + " at URL " + dir.url());
 }
 
 // List files in the 'robots' directory
 DataDirectory robots = client.dir("data://.my/robots");
 for(DataFile file : robots.files()) {
-    System.out.println("File " + file.toString() + " at URL: " + file.url());
+    System.out.println("File " + file + " at URL: " + file.url());
 }
 ```
 
@@ -182,13 +182,13 @@ import com.algorithmia.data._
 // List top level directories
 val myRoot = client.dir("data://.my")
 for(dir <- myRoot.getDirIter) {
-  println(s"Directory ${dir.toString} at URL: ${dir.url}")
+  println(s"Directory ${dir} at URL: ${dir.url}")
 }
 
 // List files in the 'robots' directory
 val robots = client.dir("data://.my/robots")
 for(file <- robots.getFileIter) {
-  println(s"File ${file.toString} at URL: ${file.url}")
+  println(s"File ${file} at URL: ${file.url}")
 }
 ```
 
