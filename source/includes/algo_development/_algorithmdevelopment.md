@@ -9,5 +9,5 @@ We currently support algorithm development in:
 * [Python](http://developers.algorithmia.com/algorithm-development/guides/python-guide/)
 * [R](http://developers.algorithmia.com/algorithm-development/client-guides/r)
 * [Ruby](http://developers.algorithmia.com/algorithm-development/guides/ruby-guide/)
-* [Rust](http://developers.algorithmia.com/algorithm-development/guides/rust-guide//)
+* [Rust](http://developers.algorithmia.com/algorithm-development/guides/rust-guide/)
 * [Scala](http://developers.algorithmia.com/algorithm-development/guides/scala-guide/)
