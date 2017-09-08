@@ -766,7 +766,7 @@ Connection: keep-alive
 ```
 
 ```python
-if client.file("data://.my/robots/T-800.png").exists()
+if client.file("data://.my/robots/T-800.png").exists():
     print("HAL 9000 exists")
 ```
 
