@@ -477,7 +477,7 @@ result = algo.pipe('HAL 9000').result
 ```
 
 ```java
-Algorithm algo = client.algo("algo://demo/Hello/?timeout=10");
+Algorithm algo = client.algo("algo://demo/Hello/").setTimeout(10L, TimeUnit.SECONDS);
 AlgoResponse result = algo.pipe("HAL 9000");
 ```
 
