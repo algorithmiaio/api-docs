@@ -26,13 +26,17 @@ namespace :shippable do
       pwd = Dir.pwd
       Dir.chdir tmp
 
-      system "git init"
-      system "git add ."
+      try "git init"
+      try "git add ."
       message = "Site updated at #{Time.now.utc}"
-      system "git commit -m #{message.inspect}"
-      system "git remote add origin git@github.com:#{GITHUB_REPONAME}.git"
-      system "git push origin master:refs/heads/gh-pages --force"
-      system "echo Site updated! 💃"
+      if ! system "git config --get user.email" then
+        config = "-c user.name='Shippable' -c user.email='devops@algorithmia.com'"
+        puts "Overriding git user config"
+      end
+      try "git #{config} commit -m #{message.inspect}"
+      try "git remote add origin git@github.com:#{GITHUB_REPONAME}.git"
+      try "git push origin master:refs/heads/gh-pages --force"
+      try "echo Site updated! 💃"
 
       Dir.chdir pwd
     end
