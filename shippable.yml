@@ -4,8 +4,8 @@ language: ruby
 # version numbers
 rvm: 2.0.0-p247
 
-script: bundle exec rake build
-
-on_success:
-  - if [ "$BRANCH" == "master" ]; then bundle exec rake shippable:publish; fi
+build:
+  ci: bundle exec rake build
+  on_success:
+    - if [ "$BRANCH" == "master" ]; then bundle exec rake shippable:publish; fi
 
