@@ -2,7 +2,7 @@
 language: ruby
 
 # version numbers
-rvm: 2.0.0-p247
+rvm: 2.4.1
 
 build:
   ci: bundle exec rake build
