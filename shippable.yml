@@ -4,6 +4,8 @@ language: ruby
 # version numbers
 rvm: 2.4.1
 
+# Build for all branches except gh-pages (which is an orphan branch for publishing)
+# Only publish on successful build of master
 build:
   ci:
     - bundle install
@@ -11,3 +13,6 @@ build:
   on_success:
     - if [ "$BRANCH" == "master" ]; then bundle exec rake shippable:publish; fi
 
+branches:
+  except:
+    - gh-pages
