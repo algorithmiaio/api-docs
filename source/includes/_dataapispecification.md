@@ -766,6 +766,20 @@ robots.file("T-800.jpg").get(function(err, data) {
 
 ```php
 <?
+// Download file to tmpdir and get the file handle
+$temp_file_name = $foo_dir->file("data://.my/robots/T-800.png")->getFile();
+
+// Download file to specified dir and get the file handle
+$specified_file_name = $foo_dir->file("data://.my/robots/T-800.png")->getFile('/path/to/file');
+
+// Get file's contents as a string
+$file_content_text = $foo_dir->file("data://.my/robots/T-800.txt")->getString();  # String object
+
+// Get file's contents as JSON
+$json_object = $foo_dir->file("data://.my/robots/T-800.txt")->getJson(); #Json object
+
+// Get file's contents as a byte array
+$binary_content = $foo_dir->file("data://.my/robots/T-800.png")->getBytes();  # Binary data
 ?>
 ```
 
@@ -860,6 +874,9 @@ hal.exists(function(exists) {
 
 ```php
 <?
+if($client->dir("data://.my/robots/HAL_9000.png")->exists()) {
+    echo "HAL 9000 exists";
+}
 ?>
 ```
 
@@ -999,6 +1016,12 @@ robots.file("Optimus_Prime.txt").put("Leader of the Autobots", function(response
 
 ```php
 <?
+// Upload local file
+$client->file("data://.my/robots/Optimus_Prime.png")->put("/path/to/Optimus_Prime.png");
+// Write a text file
+$client->file("data://.my/robots/Optimus_Prime.txt")->put("Leader of the Autobots");
+// Write a dict to a JSON file
+$client->file("data://.my/robots/Optimus_Prime.json")->putJson(array("faction"=>"Autobots"));
 ?>
 ```
 
@@ -1090,6 +1113,7 @@ c3po.delete(function(response) {
 
 ```php
 <?
+$client->file("data://.my/robots/C-3PO.txt")->delete();
 ?>
 ```
 
