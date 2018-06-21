@@ -118,6 +118,17 @@ client.algo("algo://demo/Hello/")
        });
 ```
 
+```php
+<?
+require_once "vendor/autoload.php";
+
+$input = "YOUR_NAME";
+$client = Algorithmia::client("YOUR_API_KEY");
+$algo = $client->algo("demo/Hello/0.1.0");
+echo $algo->pipe($input)->result;
+?>
+```
+
 > Make sure to replace `YOUR_NAME` with your name & `YOUR_API_KEY` with your API key.
 
 For each algorithm on the marketplace, you'll find an owner (the user who created the algorithm), an algorithm name, and a version number.
@@ -212,6 +223,14 @@ client.algo("algo://demo/Hello/")
         console.log(response.get());
       });
 // -> Hello HAL 9000
+```
+
+```php
+<?
+$algo = $client->algo("demo/Hello/0.1.0");
+echo $algo->pipe("HAL 9000")->result;
+// -> Hello HAL 9000
+?>
 ```
 
 > JSON Input/Output (including serialized objects/arrays)
@@ -333,6 +352,13 @@ client.algo("algo://WebPredict/ListAnagrams/0.1.0")
       });
 ```
 
+```php
+<?
+$algo = $client->algo("algo://WebPredict/ListAnagrams/0.1.0");
+print_r($algo->pipe(["transformer", "terraforms", "retransform"])->result);
+?>
+```
+
 > Binary Input/Output
 
 ```shell
@@ -409,6 +435,15 @@ client.algo("opencv/SmartThumbnail")
         var buffer = response.get();
         // -> Buffer(...)
     });
+```
+
+```php
+<?
+$algo = $client->algo("opencv/SmartThumbnail/0.1");
+$input = new Algorithmia\ByteArray(file_get_contents("/path/to/myimage.png"));
+print_r($algo->pipe($input)->result);
+// -> [binary byte sequence]
+?>
 ```
 
 Algorithmia supports calling algorithms that use any combination of text, JSON, or binary as their input and output.
@@ -509,6 +544,13 @@ client.algo("algo://demo/Hello/?timeout=10")
       .then(function(output) {
         console.log(output);
       });
+```
+
+```php
+<?
+$algo = $client->algo("demo/Hello/")->setOptions(["timeout" => 60]);
+echo $algo->pipe("HAL 9000")->result;
+?>
 ```
 
 The API also provides the following configurable parameters when calling an algorithm:
@@ -631,6 +673,17 @@ client.algo("algo://demo/Hello/")
         }
       });
 // -> API error: apply() functions do not match input data
+```
+
+```php
+<?
+try {
+  $client->algo("util/whoopsWrongAlgo")->pipe("Hello, world!");
+} catch (Algorithmia\AlgoException $x) {
+    echo $x;
+}
+// -> Algorithmia\\AlgoException: algorithm algo://util/whoopsWrongAlgo not found
+?>
 ```
 
 If an error occurs, the response will contain the following fields:

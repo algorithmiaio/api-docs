@@ -230,7 +230,23 @@ client.dir("data://.my/robots").forEachFile(function(err, file) {
     console.log("Finished listing directory");
 });
 
+```
 
+```php
+<?
+$mydir = $client->dir("data://.my");
+// List files in $mydir
+foreach($mydir->files() as $file){
+    echo $file->getPath()."\n";
+}
+// List directories in $mydir
+foreach ($mydir->folders() as $dir){
+    echo $dir->getPath()."\n";
+}
+// List everything in $mydir
+foreach ($mydir->list() as $item) {
+    echo $item->getPath()."\n";
+}
 ```
 
 List the contents of a directory with this HTTP endpoint:
@@ -358,6 +374,15 @@ robots.create(function(response) {
 });
 ```
 
+```php
+<?
+$robots = dir("data://.my/robots");
+if(!$robots->exists()) {
+  $robots->create();
+}
+?>
+```
+
 
 To create a directory through the Algorithmia Data API, use the following endpoint:
 
@@ -453,6 +478,18 @@ robots.updatePermissions(DataAcl.PUBLIC);
 if (robots.getPermissions().getReadPermissions() == DataAclType.PRIVATE) {
     System.out.println("fooLimited is private");
 }
+```
+
+```php
+<?
+$robots = dir("data://.my/robots");
+// Create the directory as private
+$robots->create(ACL::FULLY_PRIVATE);
+// Supports: PUBLIC, FULLY_PRIVATE, MY_ALGORITHMS
+$robots->create(ACL::MY_ALGORITHMS)
+// Check a directory's permissions
+echo $robots>getReadAcl();
+?>
 ```
 
 To update a directory, use the following API:
@@ -562,6 +599,13 @@ robots.delete(false, function(response) {
   Use `robots.delete(true, callback)`
   to force deletion even if dir contains files
 */
+```
+
+```php
+<?
+$robots = dir("data://.my/robots");
+$robots->delete();
+?>
 ```
 
 To delete a directory, use the following endpoint:
@@ -720,6 +764,11 @@ robots.file("T-800.jpg").get(function(err, data) {
 });
 ```
 
+```php
+<?
+?>
+```
+
 To retrieve a file through the Algorithmia Data API, use the following endpoint:
 
 `GET https://api.algorithmia.com/v1/connector/:connector/*path`
@@ -807,6 +856,11 @@ hal.exists(function(exists) {
         console.log("HAL 9000 exists");
     }
 });
+```
+
+```php
+<?
+?>
 ```
 
 To check if a file exists without downloading it, use the following endpoint:
@@ -943,6 +997,11 @@ robots.file("Optimus_Prime.txt").put("Leader of the Autobots", function(response
 );
 ```
 
+```php
+<?
+?>
+```
+
 
 To upload a file through the Algorithmia Data API, use the following endpoint:
 
@@ -1027,6 +1086,11 @@ c3po.delete(function(response) {
     }
     console.log("Deleted file: " + c3po.data_path);
 });
+```
+
+```php
+<?
+?>
 ```
 
 To delete a file through the Algorithmia Data API, use the following endpoint:

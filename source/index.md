@@ -5,10 +5,11 @@ language_tabs:
   - shell: cURL
   - cli: CLI
   - python
+  - php
   - java
   - scala
-  - javascript
-  - nodejs
+  - javascript: js
+  - nodejs: node
   - ruby
   - rust
   - r

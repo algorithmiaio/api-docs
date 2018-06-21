@@ -67,6 +67,12 @@ var client = Algorithmia.client('YOUR_API_KEY');
 var client = Algorithmia.client('YOUR_API_KEY');
 ```
 
+```php
+<?
+$client = Algorithmia::client("YOUR_API_KEY");
+?>
+```
+
 
 > Make sure to replace `YOUR_API_KEY` with your API key.
 
