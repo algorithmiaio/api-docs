@@ -566,6 +566,7 @@ output                | raw|void: Indicates the algorithm
   * Specifies a timeout for the call in seconds
   * The default timeout is 5 minutes
   * The maximum configurable timeout is 50 minutes
+  * If the algorithm recursively calls other algorithms, these child calls use the default timeout
 
 * `stdout=true`
   * Returns the stdout that the algorithm produced during the call
