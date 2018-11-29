@@ -79,7 +79,7 @@ val input = "YOUR_NAME"
 val client = Algorithmia.client("YOUR_API_KEY")
 val algo = client.algo("algo://demo/Hello/")
 val result = algo.pipeJson(input)
-System.out.println(result.asJsonString)
+System.out.println(result.asString)
 ```
 
 ```rust
