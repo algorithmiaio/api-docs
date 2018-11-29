@@ -302,7 +302,7 @@ val anagrams = result.as(new TypeToken<List<String>>(){})
 
 // Or using raw JSON
 val result2 = algo.pipeJson("""["transformer", "terraforms", "retransform"]""")
-String anagrams = result.asJsonString();
+String anagrams = result.asString;
 // -> "[\"transformer\", \"retransform\"]"
 ```
 
