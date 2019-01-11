@@ -138,10 +138,12 @@ while (dirs$hasNext()) {
 }
 
 # List files in the 'robots' directory
-robots = client$dir("data://.my/robots")
-while (robots$hasNext()) {
-  d <- try(robots$getNext())
-  print(paste(d$dataDirectoryUrl, d$dataDirectoryPath))
+file_dir <- client$dir("data://.my/robots/")
+get_files <- file_dir$files()
+
+while (get_files$hasNext()) {
+  d <- try(get_files$getNext())
+  print(paste(d$dataFileUrl))
 }
 ```
 
