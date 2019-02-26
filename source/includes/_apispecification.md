@@ -507,7 +507,7 @@ result <- algo$pipe('HAL 9000')$result
 ```
 
 ```ruby
-algo = client.algo('demo/Hello/').set_timeout(10).enable_stdout
+algo = client.algo('demo/Hello/').set('timeout':300)
 result = algo.pipe('HAL 9000').result
 ```
 
