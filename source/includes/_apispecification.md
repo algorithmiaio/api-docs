@@ -32,13 +32,8 @@ algo = client.algo('demo/Hello/')
 result = algo.pipe(input)
 
 # If you are using the 1.0+ client you can access both the output and the metadata.
-print result.result    # Hello YOUR_NAME
-print result.metadata  # Metadata(content_type='text',duration=0.0002127)
-
-# If you are using 0.9.x you can only get the algorithm output
-print result   # Hello YOUR_NAME
-
-# There are many other features missing in 0.9.x, to upgrade see the github docs.
+print(result.result)    # Hello YOUR_NAME
+print(result.metadata)  # Metadata(content_type='text',duration=0.0002127)
 ```
 
 ```r
@@ -171,7 +166,7 @@ Hello HAL 9000
 
 ```python
 algo = client.algo('demo/Hello/')
-print algo.pipe("HAL 9000").result
+print(algo.pipe("HAL 9000").result)
 # -> Hello HAL 9000
 ```
 
@@ -607,7 +602,7 @@ apply() functions do not match input data
 
 ```python
 algo = client.algo('demo/Hello/')
-print algo.pipe([]).error.message
+print(algo.pipe([]).error.message)
 # -> API error: apply() functions do not match input data
 ```
 

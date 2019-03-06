@@ -106,7 +106,7 @@ $ algo ls -l data://.my/robots
 # List top level directories
 import Algorithmia
 
-client = Algorithmia.client()
+client = Algorithmia.client('YOUR_API_KEY')
 
 # The .dir() method takes a Data URI path and returns an Algorithmia.datadirectory.DataDirectory object for the child directory.
 client.dir("data://.my")
@@ -118,13 +118,13 @@ client.dir("data://.my/robots").exists()
 for dir in client.dir("data://.my").dirs():
     # The .url is a convenience field that holds "/v1/data/" + dir.path
     # The .path is the path to the directory
-    print "Directory " + dir.path + " at URL " + dir.url
+    print("Directory %s  at URL %s" % (dir.path, dir.url))
 
 # List files in the 'robots' directory
 dir = client.dir("data://.my/robots")
 # The .files() method returns a generator object of all the files in directory
 for file in dir.files():
-    print "File " + file.path + " at URL " + file.url + " last modified " + file.last_modified
+    print("File %s at URL %s last modified %s" % (file.path, file.url, file.last_modified))
 ```
 
 ```r
@@ -449,7 +449,7 @@ curl -X PATCH -H 'Authorization: Simple YOUR_API_KEY' \
 from Algorithmia.acl import ReadAcl, AclType
 robots = client.dir("data://.my/robots")
 robots.create()
-print robots.get_permissions().read_acl == AclType.my_algos #  True
+print(robots.get_permissions().read_acl == AclType.my_algos) # True
 # Supports: ReadAcl.public, ReadAcl.private, ReadAcl.my_algos
 robots.update_permissions(ReadAcl.private)  # True if update succeeded
 ```
