@@ -25,6 +25,7 @@ includes:
   - dataapispecification
   - clients
   - algo_development/algorithmdevelopment
+  - algo_development/algorithmmanagement
   - help
 
 search: true
