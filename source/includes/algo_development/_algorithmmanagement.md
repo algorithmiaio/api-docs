@@ -67,15 +67,6 @@ Using the Algorithm Management APIs, you can create, publish, update, and inspec
 ?>
 ```
 
-
-## Parameter definitions
-
-* [details](https://github.com/algorithmiaio/algorithmia-api-client/blob/eb9d99f9317d0a4969e4d30a0ae40d159bcd58f5/python/algorithmia_api_client/models/details.py)
-* [settings](https://github.com/algorithmiaio/algorithmia-api-client/blob/eb9d99f9317d0a4969e4d30a0ae40d159bcd58f5/python/algorithmia_api_client/models/settings.py)
-* [version_info](https://github.com/algorithmiaio/algorithmia-api-client/blob/eb9d99f9317d0a4969e4d30a0ae40d159bcd58f5/python/algorithmia_api_client/models/version_info.py)
-
-(Some dictionary entries may be optional; see the [OpenAPI spec](https://algorithmia.com/v1/openapispec) for info)
-
 ## Create an Algorithm
 
 First, define an algo using client.algo('USERNAME/ALGONAME'), making sure that "USERNAME/ALGONAME" is *not* the name of an existing Algorithm
@@ -121,7 +112,7 @@ algo.update(details, settings, version_info)
 
 ## Optional: Recompile your Algorithm
 
-Any `git push` to your Algorithm's repo implicitly causes a compile to run on Algorithmia's servers. However, you can also manually force a compile if desired, using algo.compile()
+Any `git push` to your Algorithm's repo implicitly causes a compile to run on Algorithmia's servers. However, you can also manually force a compile if desired, using .compile()
 
 ```python
 algo.compile()
