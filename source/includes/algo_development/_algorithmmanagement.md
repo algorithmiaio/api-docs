@@ -70,11 +70,11 @@ Using the Algorithm Management APIs, you can create, publish, update, and inspec
 
 ## Parameter definitions
 
-details: https://github.com/algorithmiaio/algorithmia-api-client/blob/eb9d99f9317d0a4969e4d30a0ae40d159bcd58f5/python/algorithmia_api_client/models/details.py
-settings: https://github.com/algorithmiaio/algorithmia-api-client/blob/eb9d99f9317d0a4969e4d30a0ae40d159bcd58f5/python/algorithmia_api_client/models/settings.py
-version_info: https://github.com/algorithmiaio/algorithmia-api-client/blob/eb9d99f9317d0a4969e4d30a0ae40d159bcd58f5/python/algorithmia_api_client/models/version_info.py
+* [details](https://github.com/algorithmiaio/algorithmia-api-client/blob/eb9d99f9317d0a4969e4d30a0ae40d159bcd58f5/python/algorithmia_api_client/models/details.py)
+* [settings](https://github.com/algorithmiaio/algorithmia-api-client/blob/eb9d99f9317d0a4969e4d30a0ae40d159bcd58f5/python/algorithmia_api_client/models/settings.py)
+* [version_info](https://github.com/algorithmiaio/algorithmia-api-client/blob/eb9d99f9317d0a4969e4d30a0ae40d159bcd58f5/python/algorithmia_api_client/models/version_info.py)
 
-(Some dictionary entries may be optional; see https://algorithmia.com/v1/openapispec for specifics)
+(Some dictionary entries may be optional; see the [OpenAPI spec](https://algorithmia.com/v1/openapispec) for info)
 
 ## Create an Algorithm
 
