@@ -139,5 +139,5 @@ algo.info() #optional params: algo_hash
 To get info about every individual published version of your Algorithm, use .versions()
 
 ```python
-algo.versions() $optional params: limit (<int>), marker (<string>), published (<boolean>), callable (<boolean>)
+algo.versions() #optional params: limit (<int>), marker (<string>), published (<boolean>), callable (<boolean>)
 ```
