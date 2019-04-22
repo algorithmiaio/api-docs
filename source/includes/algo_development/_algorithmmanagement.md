@@ -16,7 +16,7 @@ Then, call .create() on that algo, setting the details, settings, and version in
 
 Once this has been done, your algorithm will be visible at https://algorithmia.com/algorithms/USERNAME/ALGONAME -- but it doesn't have any code yet. You'll need to `git clone https://git.algorithmia.com/git/USERNAME/ALGONAME.git`, then add and commit code, before continuing on to the Publishing step.
 
----
+<pre>
 details = {
     "label": "<string>", #user-readable name of the algorithm
     "tagline": "<string>", #(optional) one-liner summarizing the Algorithm's purpose
@@ -31,7 +31,7 @@ settings = {
     "environment": "<string>", #cpu, gpu
     "royalty_microcredits": <integer> #(optional) 0 for none
 }
----
+</pre>
 
 ```python
 client=Algorithmia.client('MANAGEMENT_API_KEY')
@@ -117,7 +117,7 @@ algo.create(
 
 If you need to change an Algorithm's settings after it cas been created, this can be done with a call to .update(), which takes these parameters:
 
----
+<pre>
 details = {
     "label": "<string>", #user-readable name of the algorithm
     "tagline": "<string>", #(optional) one-liner summarizing the Algorithm's purpose
@@ -130,7 +130,7 @@ settings = {
     "pipeline_enabled": <boolean>, #can this algo call other algos?
     "environment": "<string>", #cpu, gpu
 }
----
+</pre>
 
 ```python
 algo.update(
@@ -163,7 +163,7 @@ Note the addition of "algorithm_callability" to the settings parameter: if this 
 
 Under version_info, even if your sample_input is a dictionary, it must be encapsulated as a string, such as `"sample_input": "{\"text\": \"This is a very positive review for the movie. I absolutely loved it!\"}"`
 
----
+<pre>
 details = {
     "summary": "<string>", #markdown describing the Algorithm, for the "docs" tab
     "tagline": "<string>" #one-liner summarizing the Algorithm's purpose
@@ -177,7 +177,7 @@ settings = {
 version_info = {
     "sample_input": "<string>" #example input visible to end-user
 }
----
+</pre>
 
 ```python
 algo.publish(
