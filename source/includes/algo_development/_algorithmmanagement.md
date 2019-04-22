@@ -12,26 +12,24 @@ IMPORTANT:
 
 First, define an algo using client.algo('USERNAME/ALGONAME'), making sure that "USERNAME/ALGONAME" is *not* the name of an existing Algorithm
 
-Then, call .create() on that algo, setting the details, settings, and version info as shown in the codesample.
+Then, call .create(details, settings) on that algo. The parameters are dictionaries with the following keys:
+
+*details:*
+* "label": "\<string>", #user-readable name of the algorithm
+* "tagline": "\<string>", #(optional) one-liner summarizing the Algorithm's purpose
+* "summary": "\<string>" #(optional)markdown describing the Algorithm, for the "docs" tab
+
+*settings:*
+* "language": "\<string>", #java, javascript, python2-langpack, python3-1, r, ruby, rust, scala
+* "source_visibility": "\<string>", #open, closed
+* "license": "\<string>", #apl, apache2, gpl3, mit
+* "network_access": "\<string>", #isolated, full
+* "pipeline_enabled": \<boolean>, #can this algo call other algos?
+* "environment": "\<string>", #cpu, gpu
+* "royalty_microcredits": \<integer> #(optional) 0 for none
+</pre>
 
 Once this has been done, your algorithm will be visible at https://algorithmia.com/algorithms/USERNAME/ALGONAME -- but it doesn't have any code yet. You'll need to `git clone https://git.algorithmia.com/git/USERNAME/ALGONAME.git`, then add and commit code, before continuing on to the Publishing step.
-
-<pre>
-details = {
-    "label": "<string>", #user-readable name of the algorithm
-    "tagline": "<string>", #(optional) one-liner summarizing the Algorithm's purpose
-    "summary": "<string>" #(optional)markdown describing the Algorithm, for the "docs" tab
-}
-settings = {
-    "language": "<string>", #java, javascript, python2-langpack, python3-1, r, ruby, rust, scala
-    "source_visibility": "<string>", #open, closed
-    "license": "<string>", #apl, apache2, gpl3, mit
-    "network_access": "<string>", #isolated, full
-    "pipeline_enabled": <boolean>, #can this algo call other algos?
-    "environment": "<string>", #cpu, gpu
-    "royalty_microcredits": <integer> #(optional) 0 for none
-}
-</pre>
 
 ```python
 client=Algorithmia.client('MANAGEMENT_API_KEY')
@@ -115,22 +113,20 @@ algo.create(
 
 ## Optional: Update an Algorithm
 
-If you need to change an Algorithm's settings after it cas been created, this can be done with a call to .update(), which takes these parameters:
+If you need to change an Algorithm's settings after it cas been created, this can be done with a call to .update(details, settings), which takes these parameters:
 
-<pre>
-details = {
-    "label": "<string>", #user-readable name of the algorithm
-    "tagline": "<string>", #(optional) one-liner summarizing the Algorithm's purpose
-    "summary": "<string>" #(optional)markdown describing the Algorithm, for the "docs" tab
+*details:*
+* "label": "\<string>", #user-readable name of the algorithm
+* "tagline": "\<string>", #(optional) one-liner summarizing the Algorithm's purpose
+* "summary": "\<string>" #(optional) markdown describing the Algorithm, for the "docs" tab
+
+*settings:*
+* "source_visibility": "\<string>", #open, closed
+* "license": "\<string>", #apl, apache2, gpl3, mit
+* "network_access": "\<string>", #isolated, full
+* "pipeline_enabled": \<boolean>, #can this algo call other algos?
+* "environment": "\<string>", #cpu, gpu
 }
-settings = {
-    "source_visibility": "<string>", #open, closed
-    "license": "<string>", #apl, apache2, gpl3, mit
-    "network_access": "<string>", #isolated, full
-    "pipeline_enabled": <boolean>, #can this algo call other algos?
-    "environment": "<string>", #cpu, gpu
-}
-</pre>
 
 ```python
 algo.update(
@@ -157,27 +153,24 @@ algo.compile()
 
 ## Publish an Algorithm
 
-Once you've committed code, you can use .publish() to make the Algorithm callable. All parameters are optional, and will overwrite those specified in the initial create() call if they conflict.
+Once you've committed code, you can use .publish(details, settings, version_info) to make the Algorithm callable. All parameters are optional, and will overwrite those specified in the initial create() call if they conflict.
 
 Note the addition of "algorithm_callability" to the settings parameter: if this is set to "public", your Algorithm will be published publicly, allowing any registered user to call it.
 
 Under version_info, even if your sample_input is a dictionary, it must be encapsulated as a string, such as `"sample_input": "{\"text\": \"This is a very positive review for the movie. I absolutely loved it!\"}"`
 
-<pre>
-details = {
-    "summary": "<string>", #markdown describing the Algorithm, for the "docs" tab
-    "tagline": "<string>" #one-liner summarizing the Algorithm's purpose
-}
-settings = {
-    "algorithm_callability": "<string>", #private, public
-    "source_visibility": "<string>", #open, closed
-    "license": "<string>", #apl, apache2, gpl3, mit
-    "royalty_microcredits": <integer> #0 for none
-}
-version_info = {
-    "sample_input": "<string>" #example input visible to end-user
-}
-</pre>
+*details:*
+* "summary": "\<string>", #markdown describing the Algorithm, for the "docs" tab
+* "tagline": "\<string>" #one-liner summarizing the Algorithm's purpose
+
+*settings:*
+* "algorithm_callability": "\<string>", #private, public
+* "source_visibility": "\<string>", #open, closed
+* "license": "\<string>", #apl, apache2, gpl3, mit
+* "royalty_microcredits": \<integer> #0 for none
+
+*version_info:*
+* "sample_input": "\<string>" #example input visible to end-user
 
 ```python
 algo.publish(
