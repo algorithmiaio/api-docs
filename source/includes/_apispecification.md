@@ -602,13 +602,20 @@ apply() functions do not match input data
 
 ```python
 algo = client.algo('demo/Hello/')
-print(algo.pipe([]).error.message)
+try:
+    print(algo.pipe([]).result)
+except Exception as x:
+    print(x)
 # -> API error: apply() functions do not match input data
 ```
 
 ```r
 algo <- client$algo('demo/Hello/')
-algo$pipe(list())$error$message
+tryCatch({
+    algo$pipe(list())$result
+}, error = function(e) {
+    e
+})
 # -> API error: apply() functions do not match input data
 ```
 
