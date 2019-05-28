@@ -621,7 +621,11 @@ tryCatch({
 
 ```ruby
 algo = client.algo('demo/Hello/')
-puts algo.pipe([]).error.message
+begin
+  puts puts algo.pipe([]).result
+rescue Exception => x
+  puts x
+end
 # -> API error: apply() functions do not match input data
 ```
 
