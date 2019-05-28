@@ -693,7 +693,7 @@ try {
 ?>
 ```
 
-If an error occurs, the response will contain the following fields:
+If an error occurs, an Exception will be raised/thrown (Java, Python, PHP, R, Ruby, Rust, Scala) or the response be modified (JavaScript, NodeJS) to contain the following fields:
 
 Field            | Description
 --------------   | --------------
