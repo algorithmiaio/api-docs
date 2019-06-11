@@ -24,7 +24,7 @@ You're going to need:
  2. Clone *your forked repository* with `git clone https://github.com/YOURUSERNAME/api-docs.git`
  3. `cd api-docs`
  4. Install all dependencies: `bundle install`. If you are having trouble with some of the gems, try running `bundle update`, then run `bundle install` again.
- 5. Start the test server: `bundle exec middleman server`
+ 5. Start the test server: `rake serve`
 
 You can now see the docs at <http://localhost:4567>. Whoa! That was fast!
 

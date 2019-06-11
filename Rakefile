@@ -12,6 +12,11 @@ task :build do
   puts "Build complete 🛠"
 end
 
+desc "Serve the static site"
+task :serve do
+  try "bundle exec middleman server"
+end
+
 GITHUB_REPONAME = "algorithmiaio/api-docs"
 
 desc "Generate and publish blog to gh-pages"
