@@ -115,7 +115,7 @@ algo.create(
 ?>
 ```
 
-## Optional: Update an Algorithm
+## Update an Algorithm
 
 If you need to change an Algorithm's settings after it cas been created, this can be done with a call to `algo.update(details, settings)` which takes these parameters:
 
@@ -148,7 +148,7 @@ algo.update(
 )
 ```
 
-## Optional: Recompile your Algorithm
+## Recompile your Algorithm
 
 Any `git push` to your Algorithm's repo implicitly causes a compile to run on Algorithmia's servers. However, you can also manually force a compile if desired, using `algo.compile()`
 
