@@ -156,6 +156,81 @@ Any `git push` to your Algorithm's repo implicitly causes a compile to run on Al
 algo.compile()
 ```
 
+## Get List of Algorithm Builds
+
+`GET https://api.algorithmia.com/api/v1/:owner/:algoname/builds`
+
+##### Query Parameters
+
+Parameter | Description
+--------- | -----------
+marker | [Optional] Indicates the page of results to return. Only valid when using markers previously returned by this API. If omitted, then the first page is returned
+limit | [Optional] The number of builds to return. Defaults to 10, if omitted.
+
+##### HTTP Response
+
+The response JSON contains the following attributes:
+
+Attribute | Description
+----------|------------
+results | array of builds
+marker | [Optional] string, indicates that there are more builds of this algorithm that can be queried for using the `marker` query parameter 
+next_link | [Optional] string, hyperlink to next page of results
+
+##### Build Object
+
+A single build in the array of _builds_ contains:
+
+Attribute | Description
+----------|------------
+build_id | string, an opaque build identifier
+status | string, enum, one of: `in-progress`, `succeeded`, `failed`
+commit_sha | string, version-controlled revision of the algorithm that was built
+started_at | string, date-time, ISO-8601 timestamp of when the build started
+finished_at | [Optional] string, date-time, ISO-8601 timestamp of when the build finished if it has a _completed_ status such as `succeeded` or `failed`; otherwise null.
+resource_type | [Optional] string, always "algorithm_build"
+
+## Get Algorithm Build
+
+`GET https://api.algorithmia.com/api/v1/:owner/:algoname/builds/:build_id`
+
+##### Path Parameters
+
+Parameter | Description
+--------- | -----------
+build_id | string, build identifier
+
+##### HTTP Response
+
+The response JSON contains the following attributes:
+
+Attribute | Description
+----------|------------
+build_id | string, an opaque build identifier
+status | string, enum, one of: `in-progress`, `succeeded`, `failed`
+commit_sha | string, version-controlled revision of the algorithm that was built
+started_at | string, date-time, ISO-8601 timestamp of when the build started
+finished_at | [Optional] string, date-time, ISO-8601 timestamp of when the build finished if it has a _completed_ status such as `succeeded` or `failed`; otherwise null.
+resource_type | [Optional] string, always "algorithm_build"
+
+## Get Algorithm Build Logs
+
+`GET https://api.algorithmia.com/api/v1/:owner/:algoname/builds/:build_id/logs`
+
+##### Path Parameters
+
+Parameters | Description
+-----------|------------
+build_id | string, build identifier
+
+##### HTTP Response
+
+The response JSON contains the following:
+
+Attribute | Description
+----------|------------
+logs | string, a set of newline separated logs that were output during a build. Note, these logs may be large in size.
+
 ## Publish an Algorithm
 
 Once you've committed code, you can use `algo.publish(details, settings, version_info)` to make the Algorithm callable. All parameters are optional, and will overwrite those specified in the initial create() call if they conflict.
