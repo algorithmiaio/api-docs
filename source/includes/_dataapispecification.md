@@ -353,7 +353,8 @@ robots.create
 
 ```java
 DataDirectory robots = client.dir("data://.my/robots");
-robots.create();
+//optional: com.algorithmia.data.DataAcl.PUBLIC, DataAcl.PRIVATE, DataAcl.MY_ALGOS
+robots.create(DataAcl.PUBLIC);
 ```
 
 ```scala
