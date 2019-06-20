@@ -158,9 +158,9 @@ algo.compile()
 
 ## Get List of Algorithm Builds
 
-##### Query Parameters
-
 `GET https://api.algorithmia.com/v1/algorithms/:owner/:algoname/builds/:build_id`
+
+##### Query Parameters
 
 Parameter | Description
 --------- | -----------
