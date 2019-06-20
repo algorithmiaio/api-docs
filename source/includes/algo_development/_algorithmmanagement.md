@@ -160,6 +160,63 @@ algo.compile()
 
 `GET https://api.algorithmia.com/v1/algorithms/:owner/:algoname/builds/:build_id`
 
+```javascript
+  // This client does not currently support Algorithm Builds.
+  // Please use cURL instead.
+```
+
+```shell
+curl -H 'Authorization: Simple MANAGEMENT_API_KEY' \
+    https://api.algorithmia.com/v1/algorithms/demo/Hello/builds
+```
+
+```cli
+  // This client does not currently support Algorithm Builds.
+  // Please use cURL instead.
+```
+
+```python
+  // This client does not currently support Algorithm Builds.
+  // Please use cURL instead.
+```
+
+```r
+  // This client does not currently support Algorithm Builds.
+  // Please use cURL instead.
+```
+
+```ruby
+  // This client does not currently support Algorithm Builds.
+  // Please use cURL instead.
+```
+
+```java
+  // This client does not currently support Algorithm Builds.
+  // Please use cURL instead.
+```
+
+```scala
+  // This client does not currently support Algorithm Builds.
+  // Please use cURL instead.
+```
+
+```rust
+  // This client does not currently support Algorithm Builds.
+  // Please use cURL instead.
+```
+
+```nodejs
+  // This client does not currently support Algorithm Builds.
+  // Please use cURL instead.
+```
+
+```php
+<?
+  // This client does not currently support Algorithm Builds.
+  // Please use cURL instead.
+?>
+```
+
 ##### Query Parameters
 
 Parameter | Description
@@ -190,6 +247,10 @@ started_at | string, date-time, ISO-8601 timestamp of when the build started
 finished_at | [Optional] string, date-time, ISO-8601 timestamp of when the build finished if it has a _completed_ status such as `succeeded` or `failed`; otherwise null.
 resource_type | [Optional] string, always "algorithm_build"
 
+## Get Algorithm Build
+
+`GET https://api.algorithmia.com/v1/algorithms/:owner/:algoname/builds/:build_id`
+
 ```javascript
   // This client does not currently support Algorithm Builds.
   // Please use cURL instead.
@@ -197,10 +258,15 @@ resource_type | [Optional] string, always "algorithm_build"
 
 ```shell
 curl -H 'Authorization: Simple MANAGEMENT_API_KEY' \
-    https://api.algorithmia.com/v1/algorithms/demo/Hello/builds
+    https://api.algorithmia.com/v1/algorithms/demo/Hello/builds/b57ee29b-31dd-4252-839d-edcb7e0c0ae3
 ```
 
 ```cli
+  // This client does not currently support Algorithm Builds.
+  // Please use cURL instead.
+```
+
+```python
   // This client does not currently support Algorithm Builds.
   // Please use cURL instead.
 ```
@@ -241,10 +307,6 @@ curl -H 'Authorization: Simple MANAGEMENT_API_KEY' \
   // Please use cURL instead.
 ?>
 ```
-
-## Get Algorithm Build
-
-`GET https://api.algorithmia.com/v1/algorithms/:owner/:algoname/builds/:build_id`
 
 ##### Path Parameters
 
@@ -265,75 +327,9 @@ started_at | string, date-time, ISO-8601 timestamp of when the build started
 finished_at | [Optional] string, date-time, ISO-8601 timestamp of when the build finished if it has a _completed_ status such as `succeeded` or `failed`; otherwise null.
 resource_type | [Optional] string, always "algorithm_build"
 
-```javascript
-  // This client does not currently support Algorithm Builds.
-  // Please use cURL instead.
-```
-
-```shell
-curl -H 'Authorization: Simple MANAGEMENT_API_KEY' \
-    https://api.algorithmia.com/v1/algorithms/demo/Hello/builds/b57ee29b-31dd-4252-839d-edcb7e0c0ae3
-```
-
-```cli
-  // This client does not currently support Algorithm Builds.
-  // Please use cURL instead.
-```
-
-```r
-  // This client does not currently support Algorithm Builds.
-  // Please use cURL instead.
-```
-
-```ruby
-  // This client does not currently support Algorithm Builds.
-  // Please use cURL instead.
-```
-
-```java
-  // This client does not currently support Algorithm Builds.
-  // Please use cURL instead.
-```
-
-```scala
-  // This client does not currently support Algorithm Builds.
-  // Please use cURL instead.
-```
-
-```rust
-  // This client does not currently support Algorithm Builds.
-  // Please use cURL instead.
-```
-
-```nodejs
-  // This client does not currently support Algorithm Builds.
-  // Please use cURL instead.
-```
-
-```php
-<?
-  // This client does not currently support Algorithm Builds.
-  // Please use cURL instead.
-?>
-```
-
 ## Get Algorithm Build Logs
 
 `GET https://api.algorithmia.com/v1/algorithms/:owner/:algoname/builds/:build_id/logs`
-
-##### Path Parameters
-
-Parameters | Description
------------|------------
-build_id | string, build identifier
-
-##### HTTP Response
-
-The response JSON contains the following:
-
-Attribute | Description
-----------|------------
-logs | string, a set of newline separated logs that were output during a build. Note, these logs may be large in size.
 
 ```javascript
   // This client does not currently support Algorithm Builds.
@@ -350,6 +346,11 @@ curl -H 'Authorization: Simple MANAGEMENT_API_KEY' \
   // Please use cURL instead.
 ```
 
+```python
+  // This client does not currently support Algorithm Builds.
+  // Please use cURL instead.
+```
+
 ```r
   // This client does not currently support Algorithm Builds.
   // Please use cURL instead.
@@ -386,6 +387,20 @@ curl -H 'Authorization: Simple MANAGEMENT_API_KEY' \
   // Please use cURL instead.
 ?>
 ```
+
+##### Path Parameters
+
+Parameters | Description
+-----------|------------
+build_id | string, build identifier
+
+##### HTTP Response
+
+The response JSON contains the following:
+
+Attribute | Description
+----------|------------
+logs | string, a set of newline separated logs that were output during a build. Note, these logs may be large in size.
 
 ## Publish an Algorithm
 
