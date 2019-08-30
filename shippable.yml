@@ -10,8 +10,6 @@ build:
   ci:
     - bundle install
     - bundle exec rake build
-  on_success:
-    - if [ "$BRANCH" == "master" ]; then bundle exec rake shippable:publish; fi
 
 branches:
   except:
