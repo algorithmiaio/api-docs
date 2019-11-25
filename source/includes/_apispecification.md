@@ -554,7 +554,7 @@ Parameter             | Description
 -------------------   | --------------
 timeout               | number: Specifies a timeout for the call in seconds. default=300 (5min), max=3000 (50min)
 stdout                | boolean: Indicates algorithm stdout should be returned in the response metadata (ignored unless you are the algorithm owner)
-output                | raw|void: Indicates the algorithm
+output                | raw or void: Indicates the format for returned data
 
 
 * `timeout={seconds}`
