@@ -13,7 +13,7 @@ IMPORTANT:
 ## Create an Algorithm
 
 ```python
-client=Algorithmia.client('MANAGEMENT_API_KEY')
+client=Algorithmia.client('API_KEY')
 algo = client.algo('demo/Hello')
 algo.create(
     details = {
@@ -290,7 +290,7 @@ Any `git push` to your Algorithm's repo implicitly causes a compile to run on Al
 ```
 
 ```shell
-curl -H 'Authorization: Simple MANAGEMENT_API_KEY' \
+curl -H 'Authorization: Simple API_KEY' \
     https://api.algorithmia.com/v1/algorithms/demo/Hello/builds
 ```
 
@@ -381,7 +381,7 @@ resource_type | [Optional] string, always "algorithm_build"
 ```
 
 ```shell
-curl -H 'Authorization: Simple MANAGEMENT_API_KEY' \
+curl -H 'Authorization: Simple API_KEY' \
     https://api.algorithmia.com/v1/algorithms/demo/Hello/builds/b57ee29b-31dd-4252-839d-edcb7e0c0ae3
 ```
 
@@ -461,7 +461,7 @@ resource_type | [Optional] string, always "algorithm_build"
 ```
 
 ```shell
-curl -H 'Authorization: Simple MANAGEMENT_API_KEY' \
+curl -H 'Authorization: Simple API_KEY' \
     https://api.algorithmia.com/v1/algorithms/demo/Hello/builds/b57ee29b-31dd-4252-839d-edcb7e0c0ae3/logs
 ```
 
