@@ -1,6 +1,6 @@
-# Algorithm Management API
+# Algorithm Management
 
-Using the Algorithm Management APIs, you can create, publish, update, and inspect individual algorithms. At present, these are only available in Python.
+Using the Algorithmia API, you can create, publish, update, and inspect individual algorithms. At present, these are only available in Python.
 
 To try out a complete training-to-deployment pipeline, get the [runnable Jupyter Notebook](https://github.com/algorithmiaio/model-deployment).
 
@@ -33,62 +33,62 @@ algo.create(
 ```javascript
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```shell
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```cli
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```r
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```ruby
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```java
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```scala
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```rust
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```nodejs
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```php
 <?
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ?>
 ```
 
@@ -135,62 +135,62 @@ algo.update(
 ```javascript
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```shell
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```cli
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```r
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```ruby
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```java
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```scala
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```rust
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```nodejs
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```php
 <?
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ?>
 ```
 
@@ -219,62 +219,62 @@ algo.compile()
 ```javascript
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```shell
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```cli
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```r
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```ruby
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```java
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```scala
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```rust
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```nodejs
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```php
 <?
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ?>
 ```
 
@@ -539,62 +539,62 @@ algo.publish(
 ```javascript
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```shell
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```cli
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```r
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```ruby
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```java
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```scala
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```rust
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```nodejs
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```php
 <?
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ?>
 ```
 
@@ -629,62 +629,62 @@ algo.info() #optional params: algo_hash
 ```javascript
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```shell
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```cli
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```r
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```ruby
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```java
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```scala
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```rust
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```nodejs
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```php
 <?
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ?>
 ```
 
@@ -699,62 +699,62 @@ algo.versions() #optional params: limit (<int>), marker (<string>), published (<
 ```javascript
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```shell
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```cli
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```r
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```ruby
   # This client does not currently support Algorithm Management.
   # Use Python or the OpenAPI spec instead:
-  # https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  # https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```java
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```scala
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```rust
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```nodejs
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ```
 
 ```php
 <?
   // This client does not currently support Algorithm Management.
   // Use Python or the OpenAPI spec instead:
-  // https://algorithmia.com/developers/algorithm-development/algorithm-management-api
+  // https://algorithmia.com/developers/algorithm-development/algorithm-management
 ?>
 ```
 
