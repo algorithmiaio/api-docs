@@ -1,6 +1,6 @@
 # Algorithm Management
 
-Using the Algorithmia API, you can create, publish, update, and inspect individual algorithms. At present, these are only available in Python.
+Using the Algorithmia API, you can create, publish, update, and inspect individual algorithms. At present, only our Python client supports algorithm management, and we've provided cURL examples for those algorithm management endpoints which our Python client does not yet support.
 
 To try out a complete training-to-deployment pipeline, get the [runnable Jupyter Notebook](https://github.com/algorithmiaio/model-deployment).
 
