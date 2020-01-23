@@ -920,6 +920,8 @@ To get info about every individual published version of your Algorithm, use `alg
 
 ## Get Algorithm Repository Host Connection Status
 
+If your algorithm's source code is hosted on a platform like GitHub, you can use this endpoint to determine if Algorithmia is still able to properly communicate with the repository host and fetch source code.
+
 `GET https://api.algorithmia.com/v1/algorithms/:owner/:algoname/scm/status`
 
 ```javascript
