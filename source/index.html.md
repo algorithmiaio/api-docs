@@ -6,6 +6,8 @@ language_tabs:
   - python: Python
 includes:
   - algorithms
+  - algorithm_builds
+  - algorithm_versions
   - connectors
   - organizations
   - scms
@@ -13,14 +15,3 @@ includes:
   - users 
 search: true
 ---
-# Introduction
-
-Welcome to the Algorithmia API.
-
-# Authentication
-
-Use an API key.
-
-# Errors
-
-They happen! Be prepared.
