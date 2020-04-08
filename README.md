@@ -19,7 +19,7 @@ Then run the following to fire up a development server:
 bundle exec middleman server
 ```
 
-And voila! Your development server will automatically update with any changes you make.
+And voila! Your development server is available at `localhost:4567`, and will automatically update with any changes you make.
 
 ### Building for Production
 
