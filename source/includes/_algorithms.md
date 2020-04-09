@@ -4,6 +4,16 @@
 
 ```json
 {
+  "build": {
+    "build_id": "j85f8087db281388d79fb224853864da73bff865",
+    "status": "succeeded",
+    "commit_sha": "j85f8087db281388d79fb224853864da73bff865",
+    "started_at": "2019-05-07T21:16:40.148Z",
+    "finished_at": "2019-05-07T21:16:43.121Z",
+    "version_info": {
+      "semantic_version": "0.1.0"
+    }
+  },
   "compilation": {
     "output": "Building algorithm...\nSuccess!",
     "successful": true
@@ -48,14 +58,17 @@
   },
   "version_info": {
     "git_hash": "a501ed74fd91548dedd50dffa59e9f0e53ce49a3",
+    "release_notes": "Fixed a bug that resulted in overly-enthusiastic greetings.",
     "sample_input": "Mia",
-    "sample_output": "Hello Mia!"
+    "sample_output": "Hello Mia!",
+    "semantic_version": "0.1.0"
   }
 }
 ```
 
 |Attribute|Type|Description|
 |-|-|-|
+|`build`|Object|The [algorithm build](#the-algorithm-build-object) which resulted in the present algorithm version. If the algorithm has not yet been built, this field will be empty.|
 |`compilation.output`|String|The logs for the algorithm's most recent build.|
 |`compilation.successful`|Boolean|Whether the algorithm's most recent build succeeded or failed.|
 |`details.label`|String|The human-readable name for an algorithm.|
@@ -78,8 +91,10 @@
 |`source.repository_ssh_url`|String|The SSH URL of the algorithm's Git repository (if the repository is hosted externally to the Algorithmia platform).|
 |`source.scm`|Object|The SCM object representing the repository host for this algorithm.|
 |`version_info.git_hash`|String|The Git SHA of the algorithm's most recent version.|
-|`version_info.sample_input`|String|An example of a valid text input to the algorithm.|
+|`version_info.release_notes`|String|If this version of the algorithm has been published, this field informs consumers of any new changes in the algorithm.|
+|`version_info.sample_input`|String|An example of a valid text input to the algorithm. Only configurable for algorithm versions that have been published publicly or privately.|
 |`version_info.sample_output`|String|An example of what the algorithm's output would be given the text provided in `version_info.sample_input`.|
+|`version_info.semantic_version`|String|If this version of the algorithm has been published publicly or privately, this is semantic version that can be used to call said published version.|
 
 ## Create an algorithm
 
