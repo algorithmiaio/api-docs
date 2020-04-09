@@ -33,7 +33,7 @@
 ## Create an SCM
 
 ```shell
-curl https://api.algorithmia.com/v1/scms \
+curl https://api.algorithmia.com/v1/admin/scms \
   -X POST
   -H 'Authorization: Simple ADMIN_API_KEY'
   -d `{
@@ -56,7 +56,7 @@ curl https://api.algorithmia.com/v1/scms \
 # Creating an SCM is not yet supported by our Python client library.
 ```
 
-`POST https://api.algorithmia.com/v1/scms`
+`POST https://api.algorithmia.com/v1/admin/scms`
 
 ### Authorization
 
@@ -158,7 +158,7 @@ A single [SCM object](#the-scm-object) if a valid identifier was passed, otherwi
 ## Update an SCM
 
 ```shell
-curl https://api.algorithmia.com/v1/scms/:scm_id \
+curl https://api.algorithmia.com/v1/admin/scms/:scm_id \
   -X PATCH
   -H 'Authorization: Simple ADMIN_API_KEY'
   -d '{
@@ -170,7 +170,7 @@ curl https://api.algorithmia.com/v1/scms/:scm_id \
 # Updating an SCM is not yet supported by our Python client library.
 ```
 
-`PATCH https://api.algorithmia.com/v1/scms/:scm_id`
+`PATCH https://api.algorithmia.com/v1/admin/scms/:scm_id`
 
 ### Authorization
 
@@ -212,7 +212,7 @@ An [SCM object](#the-scm-object) representing the updated SCM if the payload was
 ## Set the default SCM
 
 ```shell
-curl https://api.algorithmia.com/v1/scms/:scm_id/default \
+curl https://api.algorithmia.com/v1/admin/scms/:scm_id/default \
   -X POST
   -H 'Authorization: Simple ADMIN_API_KEY'
 ```
@@ -221,7 +221,7 @@ curl https://api.algorithmia.com/v1/scms/:scm_id/default \
 # Setting the default SCM is not yet supported by our Python client library.
 ```
 
-`POST https://api.algorithmia.com/v1/scms/:scm_id/default`
+`POST https://api.algorithmia.com/v1/admin/scms/:scm_id/default`
 
 ### Authorization
 
@@ -231,16 +231,16 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 
 |Parameter|Type|Description|
 |-|-|-|
-|`scm_id`|String|The the unique `id` for the SCM you wish to update.|
+|`scm_id`|String|The the unique `id` for the SCM you wish to set as the default SCM.|
 
 ### Returns 
 
-No content if the operation was successful, otherwise an error. Note that you cannot set a disabled SCM to become the default: it must be enabled first.
+No content if the operation was successful, otherwise an error. Note that a disabled SCM cannot become the default SCM for the platform: it must be enabled first.
 
 ## Delete an SCM
 
 ```shell
-curl https://api.algorithmia.com/v1/scms/:scm_id \
+curl https://api.algorithmia.com/v1/admin/scms/:scm_id \
   -X DELETE
   -H 'Authorization: Simple ADMIN_API_KEY'
 ```
@@ -249,7 +249,7 @@ curl https://api.algorithmia.com/v1/scms/:scm_id \
 # Deleting an SCM is not yet supported by our Python client library.
 ```
 
-`DELETE https://api.algorithmia.com/v1/scms/:scm_id`
+`DELETE https://api.algorithmia.com/v1/admin/scms/:scm_id`
 
 ### Authorization
 
