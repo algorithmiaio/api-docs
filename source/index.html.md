@@ -10,6 +10,7 @@ includes:
   - algorithm_versions
   - connectors
   - organizations
+  - organization_members
   - scms
   - usage
   - users 
