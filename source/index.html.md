@@ -17,13 +17,25 @@ search: true
 ---
 # Introduction
 
-Welcome to Algorithmia's API documentation. Here you will find examples of how to manage algorithms, data, and admin resources using our REST API and Python client library.
+Welcome to Algorithmia's API documentation. Here you will find examples of how to manage algorithms, data, and admin resources using Algorithmia's REST API and Python client library.
 
 By default, we provide examples using the `https://api.algorithmia.com` domain, but if you are using an enterprise version of Algorithmia hosted under a different domain, you should ensure you appropriately modify any code samples as necessary.
 
 ## Authentication
 
-You may authenticate with the Algorithmia API via two different sets of credentials.
+```shell
+curl https://api.algorithmia.com/v1/scms
+  -H 'Authorization: Simple API_KEY'
+```
+
+```python
+import Algorithmia
+
+client = Algorithmia.client('API_KEY')
+```
+
+
+If you are interacting directly with Algorithmia's REST API, provide your API key via an `Authorization` header with the prefix `Simple`. If you are using on of our client libraries, follow the instructions specific to that client library. This holds true for both standard and admin API keys. Learn more about API keys [in our devcenter](/developers/platform/customizing-api-keys).
 
 ## Errors
 
@@ -35,7 +47,7 @@ You may authenticate with the Algorithmia API via two different sets of credenti
 }
 ```
 
-Should an error occur while fulfilling an API request, you will be returned an object possessing the following attributes. 
+Should an error occur while fulfilling a request, you will be returned an object possessing the following attributes. 
 
 |Attribute|Type|Description|
 |-|-|-|
@@ -140,7 +152,7 @@ The full list of error codes can be viewed by expanding the list below:
 }
 ```
 
-If you are querying a collection of objects, and there are more results available than can be displayed in a single response, you may paginate results with *markers*. Our client library 
+If you are querying a collection of objects, and there are more results available than can be displayed in a single response, you may paginate results with *markers*.
 
 A collection response will contain two properties that allow you to fetch further pages of a response: `marker` and `next_link`. `marker` can be supplied as a query parameter to a subsequent request, informing the API that you wish to obtain the next page of results for your prior query. Conveniently, the `next_link` property contains the preconstructed URL for you to make just such a query.
 
