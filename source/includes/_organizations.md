@@ -43,7 +43,7 @@ curl https://api.algorithmia.com/v1/organizations \
 # Creating an organization is not yet supported by our Python client library.
 ```
 
-`POST https://api.algorithmia.com/v1/organizations`
+`POST /v1/organizations`
 
 ### Authorization
 
@@ -70,7 +70,7 @@ curl https://api.algorithmia.com/v1/organizations \
 # Listing organizations is not yet supported by our Python client library.
 ```
 
-`GET https://api.algorithmia.com/v1/organizations`
+`GET /v1/organizations`
 
 ### Query Parameters
 
@@ -98,7 +98,7 @@ curl https://api.algorithmia.com/v1/organizations/:org_name \
 # Getting an organization is not yet supported by our Python client library.
 ```
 
-`GET https://api.algorithmia.com/v1/organizations/:org_name`
+`GET /v1/organizations/:org_name`
 
 ### Path Parameters
 
@@ -122,7 +122,7 @@ curl https://api.algorithmia.com/v1/organizations/:org_name \
 # Deleting an organization is not yet supported by our Python client library.
 ```
 
-`DELETE https://api.algorithmia.com/v1/organizations/:org_name`
+`DELETE /v1/organizations/:org_name`
 
 ### Path Parameters
 

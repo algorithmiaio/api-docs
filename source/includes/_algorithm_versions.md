@@ -6,7 +6,7 @@ Algorithm version objects are identical to the [algorithm object](#the-algorithm
 
 ## Publish an algorithm version
 
-`POST https://api.algorithmia.com/v1/algorithms/:username/:algoname/version`
+`POST /v1/algorithms/:username/:algoname/version`
 
 ### Path Parameters
 
@@ -28,7 +28,7 @@ Returns an [algorithm object](#the-algorithm-object) representing the published 
 
 ## List algorithm versions
 
-`GET https://api.algorithmia.com/v1/algorithms/:username/:algoname/versions`
+`GET /v1/algorithms/:username/:algoname/versions`
 
 ### Path Parameters
 
@@ -54,7 +54,7 @@ Returns an [algorithm object](#the-algorithm-object) representing the published 
 
 ## Get algorithm version
 
-`GET https://api.algorithmia.com/v1/algorithms/:username/:algoname/versions/:git_hash`
+`GET /v1/algorithms/:username/:algoname/versions/:git_hash`
 
 ### Path Parameters
 

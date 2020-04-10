@@ -26,10 +26,10 @@ curl https://api.algorithmia.com/v1/organizations/:org_name/members \
 ```
 
 ```python
-# Creating an SCM is not yet supported by our Python client library.
+# Querying organization members is not yet supported by our Python client library.
 ```
 
-`POST https://api.algorithmia.com/v1/scms`
+`GET /v1/organizations/:org_name/members`
 
 ### Authorization
 
@@ -81,7 +81,7 @@ curl https://api.algorithmia.com/v1/organizations/:org_name/members/:username \
 # Adding organization members is not yet supported by our Python client library.
 ```
 
-`PUT https://api.algorithmia.com/v1/organizations/:org_name/members/:username`
+`PUT /v1/organizations/:org_name/members/:username`
 
 ### Authorization
 

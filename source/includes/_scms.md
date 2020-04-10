@@ -107,7 +107,7 @@ curl https://api.algorithmia.com/v1/scms \
 # Listing SCMs is not yet supported by our Python client library.
 ```
 
-`GET https://api.algorithmia.com/v1/scms`
+`GET /v1/scms`
 
 ### Returns
 
@@ -126,7 +126,7 @@ curl https://api.algorithmia.com/v1/scms/:scm_id \
 # Getting an SCM is not yet supported by our Python client library.
 ```
 
-`GET https://api.algorithmia.com/v1/scms/:scm_id`
+`GET /v1/scms/:scm_id`
 
 ### Path Parameters
 
@@ -170,7 +170,7 @@ curl https://api.algorithmia.com/v1/admin/scms/:scm_id \
 # Updating an SCM is not yet supported by our Python client library.
 ```
 
-`PATCH https://api.algorithmia.com/v1/admin/scms/:scm_id`
+`PATCH /v1/admin/scms/:scm_id`
 
 ### Authorization
 
@@ -221,7 +221,7 @@ curl https://api.algorithmia.com/v1/admin/scms/:scm_id/default \
 # Setting the default SCM is not yet supported by our Python client library.
 ```
 
-`POST https://api.algorithmia.com/v1/admin/scms/:scm_id/default`
+`POST /v1/admin/scms/:scm_id/default`
 
 ### Authorization
 
@@ -249,7 +249,7 @@ curl https://api.algorithmia.com/v1/admin/scms/:scm_id \
 # Deleting an SCM is not yet supported by our Python client library.
 ```
 
-`DELETE https://api.algorithmia.com/v1/admin/scms/:scm_id`
+`DELETE /v1/admin/scms/:scm_id`
 
 ### Authorization
 
