@@ -239,7 +239,7 @@ print(result.metadata)  # Metadata(content_type='text',duration=0.0002127)
 |-|-|-|
 |`output`|String|Determines how the algorithm's response is handled. Choose from `raw` (response is returned without a JSON wrapper) or `void` (algorithm call is made asynchronously and no output is returned).|
 |`stdout`|Boolean|Whether the `stdout` of the algorithm should be returned in the response. Only available to the owner of the algorithm. Defaults to `false`.|
-|`timeout`|Number|Duration, in seconds, that should pass before the invocation should timeout. Defaults to `300` (5 minutes).|
+|`timeout`|Number|Duration, in seconds, that should pass before the invocation should timeout. Defaults to `300` (5 minutes). Maximum value is `3000` (50 minutes).|
 
 ### Payload Parameters
 
