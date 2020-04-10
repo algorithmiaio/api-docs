@@ -4,19 +4,15 @@
 
 Connectors offer you a convenient API by which to access data stored across multiple storage providers, from Algorithmia's built-in data store to Amazon S3. You can learn more about the connectors Algorithmia supports [in our documentation](/developers/data). The various connector types are identified as follows:
 
-`data`: Algorithmia's built-in data storage solution.
-
-`azureblob`: Microsoft Azure Blob Storage
-
-`dropbox`: Dropbox
-
-`gs`: Google Cloud Storage
-
-`s3`: Amazon S3
+- `data`: Algorithmia's built-in data storage solution.
+- `azureblob`: Microsoft Azure Blob Storage
+- `dropbox`: Dropbox
+- `gs`: Google Cloud Storage
+- `s3`: Amazon S3
 
 With the exception of `data`, connectors may also be identified by a *label*, or no label if a specific connector is the default for its connector type. These options can be configured for a given connector in your [data portal](/data).
 
-For example, if you create an S3 data connector with the label `test`, you would identify it to the API as `s3+test`. If you set your S3 data connector as the default S3 connector for your account, you would not need to supply this label.
+For example, if you create an S3 data connector with the label `test`, you would identify it to the API as `s3+test`. However, if a specific connector is the default for it's type, you can omit the label and simply use the connector's type instead. Thus, your default S3 connector would be identified to the API as simply `s3`.
 
 ### Data URIs
 
@@ -78,7 +74,7 @@ curl https://api.algorithmia.com/v1/connector/data/demo \
   -H 'Authorization: Simple API_KEY' \
   -H 'Content-Type: application/json' \
   -d '{
-    "name": "example-folder",
+    "name": "example_collection",
     "acl": {
       "read": [
         "user://*"
@@ -93,9 +89,9 @@ from Algorithmia.acl import ReadAcl
 
 client = Algorithmia.client('YOUR_API_KEY')
 
-robots = client.dir("data://.my/robots")
+example_collection = client.dir("data://demo/example_collection")
 
-robots.create(ReadAcl.public)
+example_collection.create(ReadAcl.public)
 ```
 
 `POST /v1/connector/:connector_id/:connector_path`
@@ -104,7 +100,7 @@ robots.create(ReadAcl.public)
 
 |Parameter|Type|Description|
 |-|-|-|
-|`connector_id`|String|The ID of the specific connector you wish to create directory within. |
+|`connector_id`|String|The ID of the specific connector you wish to create directory within. Learn more in the [connectors section](#connectors) above.|
 |`connector_path`|String|The path under which you wish to create the directory. Note that this path is contextual to the type of connector you are interacting with.|
 
 ### Payload Parameters
@@ -116,14 +112,41 @@ robots.create(ReadAcl.public)
 
 ### Returns
 
-An empty response upon success, or an error otherwise.
+```json
+{
+  "result": "data://demo/example_collection"
+}
+```
+
+Returns the following JSON payload upon successful directory creation, otherwise an error.
+
+|Attribute|Type|Description|
+|-|-|-|
+|`result`|String|The data URI of the resulting directory.|
 
 ## Get a file or folder
 
 ```shell
 curl https://api.algorithmia.com/v1/connector/data/demo/example.png \
-  -H 'Authorization: Simple API_KEY' \
-  -H 'Content-Type: application/json' \
+  -H 'Authorization: Simple API_KEY'
+```
+
+```python
+import Algorithmia
+
+client = Algorithmia.client('YOUR_API_KEY')
+
+# Download file and get the file handle
+exampleFile = client.file("data://demo/example_collection/example.png").getFile()
+
+# Get file's contents as a string
+exampleText = client.file("data://demo/example_collection/example.txt").getString()
+
+# Get file's contents as JSON
+exampleJson =  client.file("data://demo/example_collection/example.txt").getJson()
+
+# Get file's contents as a byte array
+exampleBytes = client.file("data://demo/example_collection/example.png").getBytes()
 ```
 
 `GET /v1/connector/:connector_id/:connector_path`
@@ -132,19 +155,21 @@ curl https://api.algorithmia.com/v1/connector/data/demo/example.png \
 
 |Parameter|Type|Description|
 |-|-|-|
-|`connector_id`|String|The ID of the specific connector you wish to retrieve data from.|
+|`connector_id`|String|The ID of the specific connector you wish to retrieve data from. Learn more in the [connectors section](#connectors) above.|
 |`connector_path`|String|The connector path for which you wish to retrieve contents.|
 
 ### Returns
 
-If the `connector_path` identifies a file, the file's contents will be returned to you if you have sufficient access.
+If the `connector_path` identifies a file, the file's contents will be returned to you.
 
-If the `connector_path` identifies a folder, the folder's contents will be described in a JSON response.
+If the `connector_path` identifies a folder, the folder's contents will be described by the following JSON structure.
 
 |Attribute|Type|Description|
 |-|-|-|
 |`folders`|String|A list of zero or more folder stored at this path.|
 |`files`|String|A list of zero or more files stored at this path.|
+
+Otherwise, an error object will be returned to you.
 
 ## Upload a file
 
@@ -166,16 +191,16 @@ curl https://api.algorithmia.com/v1/connector/data/demo/example_collection/examp
 import Algorithmia
 from Algorithmia.acl import ReadAcl
 
-client = Algorithmia.client('YOUR_API_KEY')
+client = Algorithmia.client('API_KEY')
 
 # Uploading a local file
-client.file("data://.my/robots/Optimus_Prime.png").putFile("/path/to/Optimus_Prime.png")
+client.file("data://demo/example_collection/example.png").putFile("/my/local/path")
 
-# Upload text
-client.file("data://.my/robots/Optimus_Prime.txt").put("Leader of the Autobots")
+# Uploading text
+client.file("data://demo/example_collection/example.txt").put("Hello world!")
 
 # Uploading a dict as JSON
-client.file("data://.my/robots/Optimus_Prime.json").putJson({"faction": "Autobots"})
+client.file("data://demo/example_collection/example.json").putJson({"hello": "world"})
 ```
 
 `PUT /v1/connector/:connector_id/:connector_path`
@@ -200,8 +225,59 @@ Returns the following JSON payload upon successful upload, otherwise an error.
 
 ## Verify file existence
 
+```shell
+curl https://api.algorithmia.com/v1/connector/data/demo/example.png \
+  -I \
+  -H 'Authorization: Simple API_KEY'
+```
+
+```python
+import Algorithmia
+
+client = Algorithmia.client('API_KEY')
+
+if client.file("data://demo/example_collection/example.png").exists():
+  print("File exists!")
+```
+
 `HEAD /v1/connector/:connector_id/:connector_path`
 
-## Delete a file or folder
+### Returns
 
-...
+Returns an affirmative response if the file exists (such as a 200 status code), otherwise an error.
+
+## Delete a file or directory
+
+```shell
+curl https://api.algorithmia.com/v1/connector/data/demo/example_collection/example.txt \
+  -X DELETE \
+  -H 'Authorization: Simple API_KEY'
+```
+
+```python
+import Algorithmia
+
+client = Algorithmia.client('YOUR_API_KEY')
+
+exampleFile = client.file("data://demo/example_collection/example.png")
+
+exampleFile.delete()
+```
+
+`DELETE /:connector_id/:connector_path`
+
+### Query Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`force`|Boolean|If attempting to delete a non-empty directory, forces deletion. Defaults to `false`.|
+
+### Returns
+
+A JSON payload of the following structure if the request succeeds (or suceeds partially), otherwise an error.
+
+|Attribute|Type|Description|
+|-|-|-|
+|`result.deleted`|Number|I|
+|`error.deleted`|Number|If an error occurred during deletion, this property indicates how many files were deleted before the error occurred.|
+
