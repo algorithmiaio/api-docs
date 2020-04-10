@@ -64,6 +64,7 @@ $default: auto;
     &>ul,
     &>ol,
     &>aside,
+    &>details,
     &>dl {
         margin-#{left}: $examples-width;
         margin-#{right}: $default !important;
