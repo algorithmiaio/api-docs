@@ -29,7 +29,7 @@
 
 ```shell
 curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds \
-  -H 'Authorization: Simple YOUR_API_KEY'
+  -H 'Authorization: Simple API_KEY'
 ```
 
 ```python
@@ -50,22 +50,21 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds \
 |Parameter|Type|Description|
 |-|-|-|
 |`limit`|Number|The maximum number of items to return in the response. Defaults to 10.|
-|`marker`|String|Used for paginating results from previous queries. See the [versioning section](#versioning) above.|
+|`marker`|String|Used for paginating results from previous queries. See the [pagination section](#pagination) above.|
 
 ### Returns
 
 |Attribute|Type|Description|
 |-|-|-|
-|`marker`|String|If more results are available than can be shown based on the supplied `limit`, this value can be used to paginate results. See the [versioning section](#versioning) above.|
-|`next_link`|String|A link to the next page of builds, if more results exist.|
+|`marker`|String|If more results are available than can be shown based on the supplied `limit`, this value can be used to paginate results. See the [pagination section](#pagination) above.|
+|`next_link`|String|A link to the next page of results, if more results exist.|
 |`results`|Array|A list of zero or more [algorithm build](#the-algorithm-build-object) objects for the algorithm.|
-
 
 ## Get an algorithm build
 
 ```shell
 curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds/:build_id \
-  -H 'Authorization: Simple YOUR_API_KEY'
+  -H 'Authorization: Simple API_KEY'
 ```
 
 ```python
@@ -88,7 +87,7 @@ An [algorithm build](#the-algorithm-build-object) object.
 
 ```shell
 curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds/:build_id/logs \
-  -H 'Authorization: Simple YOUR_API_KEY'
+  -H 'Authorization: Simple API_KEY'
 ```
 
 ```python
