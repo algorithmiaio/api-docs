@@ -19,7 +19,13 @@ search: true
 
 Welcome to Algorithmia's API documentation. Here you will find examples of how to manage algorithms, data, and admin resources using Algorithmia's REST API and Python client library.
 
-By default, we provide examples using the `https://api.algorithmia.com` domain, but if you are using an enterprise version of Algorithmia hosted under a different domain, you should ensure you appropriately modify any code samples as necessary.
+If this is your first time trying Algorithmia, you might find it useful to start with our [Getting Started guide](/getting-started), which can be found alongside many other resources in the [Algorithmia Developer Center](/developers).
+
+## Base URL
+
+By default, we provide examples using the `https://api.algorithmia.com/v1` base URL, but if you are using an enterprise version of Algorithmia hosted under a different domain, you should ensure you modify any code samples as necessary.
+
+Per our [versioning scheme](#versioning), ensure that you supply the appropriate version prefix in addition to the REST API endpoint you wish to use. Thus, if your Algorithmia instance was hosted at `example.com`, your base URL would be `https://api.example.com/v1`.
 
 ## Authentication
 
@@ -76,9 +82,9 @@ The full list of error codes can be viewed by expanding the list below:
       <tr><td>1006</td><td>Unable to update package set.</td></tr>
       <tr><td>1007</td><td>Version already published. Please compile your algorithm.</td></tr>
       <tr><td>1008</td><td>Failed to create algorithm on backing SCM.</td></tr>
-      <tr><td>1009</td><td>An algorithm with the requested id does not exist.</td></tr>
+      <tr><td>1009</td><td>An algorithm with the requested ID does not exist.</td></tr>
       <tr><td>2001</td><td>Caller is not authorized to perform the operation.</td></tr>
-      <tr><td>2002</td><td>Unknown or invalid api key.</td></tr>
+      <tr><td>2002</td><td>Unknown or invalid API key.</td></tr>
       <tr><td>2011</td><td>A package with that name already exists.</td></tr>
       <tr><td>2012</td><td>Invalid build status.</td></tr>
       <tr><td>2013</td><td>Invalid JSON.</td></tr>
@@ -88,18 +94,18 @@ The full list of error codes can be viewed by expanding the list below:
       <tr><td>2017</td><td>The status is invalid or the operation is not valid for a package set with its status.</td></tr>
       <tr><td>2018</td><td>Request body is invalid, missing field: 'owner'.</td></tr>
       <tr><td>3000</td><td>The requested user was not found.</td></tr>
-      <tr><td>3001</td><td>Malformed user json in request.</td></tr>
+      <tr><td>3001</td><td>Malformed user JSON in request.</td></tr>
       <tr><td>3003</td><td>The username is already taken.</td></tr>
       <tr><td>3004</td><td>The email address is already taken by a different username.</td></tr>
       <tr><td>3005</td><td>Not all required fields have been provided.</td></tr>
       <tr><td>3007</td><td>The username in the request body does not match the username in the request path.</td></tr>
       <tr><td>3008</td><td>Updating the email of a user is not allowed.</td></tr>
       <tr><td>3009</td><td>Invalid sign-up form.</td></tr>
-      <tr><td>3010</td><td>Invalid json to create a package.</td></tr>
+      <tr><td>3010</td><td>Invalid JSON to create a package.</td></tr>
       <tr><td>3100</td><td>The requested organization was not found.</td></tr>
       <tr><td>3101</td><td>An organization already exists with this name.</td></tr>
       <tr><td>3102</td><td>Unable to remove the last owner of an organization.</td></tr>
-      <tr><td>3104</td><td>Adding an organization failed trying to reserve an organization user.</td></tr>
+      <tr><td>3104</td><td>Failed to reserve an organization user while adding an organization.</td></tr>
       <tr><td>3103</td><td>Malformed organization JSON in request.</td></tr>
       <tr><td>3105</td><td>Favicon cannot exceed maximum size.</td></tr>
       <tr><td>3106</td><td>Invalid file to upload.</td></tr>
