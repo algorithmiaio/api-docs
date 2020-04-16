@@ -89,7 +89,7 @@ algo.publish(
 )
 ```
 
-`POST /v1/algorithms/:username/:algoname/versions`
+`POST /algorithms/:username/:algoname/versions`
 
 <aside class="notice">
 You may only publish the most recent compiled version of an algorithm. If the most recent compiled version has already been published, you will need to <a href="#compile-an-algorithm">recompile your algorithm</a> in order to publish a new version. 
@@ -181,7 +181,7 @@ algo = client.algo(':username/:algoname')
 print(algo.versions(limit=10))
 ```
 
-`GET /v1/algorithms/:username/:algoname/versions`
+`GET /algorithms/:username/:algoname/versions`
 
 ### Path Parameters
 
@@ -252,11 +252,13 @@ print(algo.versions(limit=10))
 }
 ```
 
+A collection of [algorithm](#the-algorithm-build-object) objects, otherwise an [error](#errors).
+
 |Attribute|Type|Description|
 |-|-|-|
 |`marker`|String|If more results are available than can be shown based on the supplied `limit`, this value can be used to paginate results. See the [versioning section](#versioning) above.|
 |`next_link`|String|A link to the next page of results, if more results exist.|
-|`results`|Array|A list of zero or more [algorithm](#the-algorithm-build-object) objects representing versions of the algorithm.|
+|`results`|Array|A list of [algorithm](#the-algorithm-build-object) objects representing versions of the algorithm.|
 
 ## Get algorithm version
 
@@ -269,7 +271,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/versions/:git
 # Querying information about a single build is not currently supported in our Python client library.
 ```
 
-`GET /v1/algorithms/:username/:algoname/versions/:git_hash`
+`GET /algorithms/:username/:algoname/versions/:git_hash`
 
 ### Path Parameters
 
@@ -328,4 +330,4 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/versions/:git
 }
 ```
 
-A single [algorithm object](#the-algorithm-object) representing the specific version you wished to retrieve.
+A single [algorithm object](#the-algorithm-object) representing the specific version you wished to retrieve, otherwise an [error](#errors).

@@ -36,7 +36,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds \
 # Listing algorithm builds is not yet supported via our Python client library.
 ```
 
-`GET /v1/algorithms/:username/:algoname/builds`
+`GET /algorithms/:username/:algoname/builds`
 
 ### Path Parameters
 
@@ -72,7 +72,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds \
 }
 ```
 
-A colletion of zero or more [algorithm builds](#the-algorithm-build-object), otherwise an [error](#errors).
+A collection of zero or more [algorithm builds](#the-algorithm-build-object), otherwise an [error](#errors).
 
 |Attribute|Type|Description|
 |-|-|-|
@@ -91,7 +91,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds/:build
 # Obtaining an algorithm build is not yet supported via our Python client library.
 ```
 
-`GET /v1/algorithms/:username/:algoname/builds/:build_id`
+`GET /algorithms/:username/:algoname/builds/:build_id`
 
 |Parameter|Type|Description|
 |-|-|-|
@@ -128,7 +128,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds/:build
 # Obtaining an algorithm build's logs is not yet supported via our Python client library.
 ```
 
-`GET /v1/algorithms/:username/:algoname/builds/:build_id/logs`
+`GET /algorithms/:username/:algoname/builds/:build_id/logs`
 
 |Parameter|Type|Description|
 |-|-|-|

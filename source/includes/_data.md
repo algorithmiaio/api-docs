@@ -124,7 +124,7 @@ Returns the following JSON payload upon successful directory creation, otherwise
 |-|-|-|
 |`result`|String|The data URI of the resulting directory.|
 
-## Get a file or folder
+## Get a file or directory
 
 ```shell
 curl https://api.algorithmia.com/v1/connector/data/demo/example.png \

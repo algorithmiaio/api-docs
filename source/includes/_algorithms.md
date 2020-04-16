@@ -139,7 +139,7 @@ algo.create(
 )
 ```
 
-`POST /v1/algorithms/:username`
+`POST /algorithms/:username`
 
 ### Path Parameters
 
@@ -222,7 +222,7 @@ print(result.result)    # Hello Neo
 print(result.metadata)  # Metadata(content_type='text',duration=0.0002127)
 ```
 
-`POST /v1/algo/:username/:algoname/[:version]`
+`POST /algo/:username/:algoname/[:version]`
 
 ### Path Parameters
 
@@ -299,7 +299,7 @@ algo = client.algo(':username/:algoname')
 print(algo.info()) # Prints an algorithm object
 ```
 
-`GET /v1/algorithms/:username/:algoname`
+`GET /algorithms/:username/:algoname`
 
 ### Path Parameters
 
@@ -381,7 +381,7 @@ algo.update(
 )
 ```
 
-`PUT /v1/algorithms/:username/:algoname`
+`PUT /algorithms/:username/:algoname`
 
 ### Path Parameters
 
@@ -453,7 +453,7 @@ algo = client.algo(':username/:algoname')
 algo.compile() # Returns an algorithm object upon successful compilation.
 ```
 
-`POST /v1/algorithms/:username/:algoname/compile`
+`POST /algorithms/:username/:algoname/compile`
 
 ### Path Parameters
 
@@ -513,7 +513,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname \
 # Deleting an algorithm is not yet supported by our Python client library.
 ```
 
-`DELETE /v1/algorithms/:username/:algoname`
+`DELETE /algorithms/:username/:algoname`
 
 ### Path Parameters
 
@@ -537,7 +537,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/scm/status \
 # Obtaining an algorithm's SCM status is not yet supported via our Python client library.
 ```
 
-`GET /v1/algorithms/:username/:algoname/scm/status`
+`GET /algorithms/:username/:algoname/scm/status`
 
 ### Path Parameters
 
