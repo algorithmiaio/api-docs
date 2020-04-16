@@ -19,7 +19,7 @@
 |Attribute|Type|Description|
 |-|-|-|
 |`build_id`|String|The unique identifier for this algorithm build.|
-|`commit_sha`|String|The specific Git commit SHA that what built for this algorithm.|
+|`commit_sha`|String|The specific Git commit SHA that was built for this algorithm.|
 |`finished_at`|String|The ISO 8601 datetime at which the build completed.|
 |`started_at`|String|The ISO 8601 datetime at which the build began.|
 |`status`|String|One of `failed`, `in-progress`, or `succeeded`.|
@@ -54,6 +54,26 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds \
 
 ### Returns
 
+```json
+{
+  "marker": null,
+  "next_link": null,
+  "results": [{
+    "build_id": "132298b7-8ca4-40ca-bd2a-84254fd67a81",
+    "commit_sha": "d2f4112966eb5bcc2a54693249d634372d8b788a",
+    "finished_at": "2020-04-07T16:45:10.096Z",
+    "resource_type": "algorithm_build",
+    "started_at": "2020-04-07T16:45:10.096Z",
+    "status": "succeeded",
+    "version_info": {
+      "semantic_version": "1.0.0"
+    }
+  }]
+}
+```
+
+A colletion of zero or more [algorithm builds](#the-algorithm-build-object), otherwise an [error](#errors).
+
 |Attribute|Type|Description|
 |-|-|-|
 |`marker`|String|If more results are available than can be shown based on the supplied `limit`, this value can be used to paginate results. See the [pagination section](#pagination) above.|
@@ -81,6 +101,20 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds/:build
 
 ### Returns
 
+```json
+{
+  "build_id": "132298b7-8ca4-40ca-bd2a-84254fd67a81",
+  "commit_sha": "d2f4112966eb5bcc2a54693249d634372d8b788a",
+  "finished_at": "2020-04-07T16:45:10.096Z",
+  "resource_type": "algorithm_build",
+  "started_at": "2020-04-07T16:45:10.096Z",
+  "status": "succeeded",
+  "version_info": {
+    "semantic_version": "1.0.0"
+  }
+}
+```
+
 An [algorithm build](#the-algorithm-build-object) object.
 
 ## Get algorithm build logs
@@ -104,7 +138,13 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds/:build
 
 ### Returns
 
-Note that, until a build's `status` attribute transitions to either `succeeded` or `failed`, logs will not be available, and requests logs for a build will result in a 404 response.
+```json
+{
+  "logs": "Building algorithm..."
+}
+```
+
+An object containing the logs for an algorithm build, otherwise an [error](#errors). Note that, until a build's `status` attribute transitions to either `succeeded` or `failed`, logs will not be available, and requests logs for a build will result in a 404 response.
 
 |Attribute|Type|Description|
 |-|-|-|

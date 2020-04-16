@@ -6,10 +6,10 @@
 {
   "build": {
     "build_id": "j85f8087db281388d79fb224853864da73bff865",
-    "status": "succeeded",
     "commit_sha": "j85f8087db281388d79fb224853864da73bff865",
-    "started_at": "2019-05-07T21:16:40.148Z",
     "finished_at": "2019-05-07T21:16:43.121Z",
+    "started_at": "2019-05-07T21:16:40.148Z",
+    "status": "succeeded",
     "version_info": {
       "semantic_version": "0.1.0"
     }
@@ -32,7 +32,6 @@
     "license": "apl",
     "network_access": "full",
     "pipeline_enabled": true,
-    "royalty_microcredits": 0,
     "source_visibility": "closed"
   },
   "self_link": "https://api.algorithmia.com/v1/algorithms/algorithmiahq/Hello/versions/a501ed74fd91548dedd50dffa59e9f0e53ce49a3",
@@ -68,16 +67,16 @@
 
 |Attribute|Type|Description|
 |-|-|-|
-|`build`|Object|The [algorithm build](#the-algorithm-build-object) which resulted in the present algorithm version. If the algorithm has not yet been built, this field will be empty.|
+|`build`|Object|The [algorithm build](#the-algorithm-build-object) which resulted in the present algorithm version.|
 |`compilation.output`|String|The logs for the algorithm's most recent build.|
 |`compilation.successful`|Boolean|Whether the algorithm's most recent build succeeded or failed.|
 |`details.label`|String|The human-readable name for an algorithm.|
-|`details.summary`|String|A full description of an algorithm's capabilitities. Can contain HTML for rendering in an algorithm's "Docs" tab. Note that, if an algorithm's `README.md` file is updated this value will be overwritten with the HTML equivalent of that file.|
+|`details.summary`|String|A full description of an algorithm's capabilitities. Can contain HTML for rendering in an algorithm's "Docs" tab. Note that, if an algorithm's `README.md` file is updated, this value will be overwritten with the HTML equivalent of that file.|
 |`details.tagline`|String|A short description of an algorithm for display under an algorithm's label.|
 |`name`|String|The unique ID for an algorithm.|
 |`resource_type`|String|Set to `algorithm` for algorithm objects.
-|`self_link`|String|A URL to the latest published version of the algorithm, if one exists.
-|`settings.algorithm_callability`|String|Whether the latest version of an algorithm can be called by users other than the algorithm's owner (or if the algorithm's owner is an organization, the organization's members). Is initially set to `private`, even if an algorithm has no versions.|
+|`self_link`|String|A URL that can be used to retrieve the present algorithm version.|
+|`settings.algorithm_callability`|String|Whether the latest version of an algorithm can be called by users other than the algorithm's owner (or if the algorithm's owner is an organization, the organization's members). One of `public` or `private`. Is initially set to `private`, even if an algorithm has no versions.|
 |`settings.environment`|String|The hardware your algorithm will run on. One of `cpu` or `gpu`. Not set if `settings.package_set` is specified.|
 |`settings.language`|String|The language an algorithm is authored in. One of `java`, `javascript`, `python2-lackpack` (Python 2), `python3-1` (Python 3), `r`, `ruby`, `rust`, or `scala`. Not set if `settings.package_set` is specified.|
 |`settings.license`|String|The license for an algorithm's source code. One of [`apl`](https://algorithmia.com/api_dev_terms), [`apache2`](https://www.apache.org/licenses/LICENSE-2.0), [`gpl3`](https://www.gnu.org/licenses/gpl-3.0.en.html) or [`mit`](https://opensource.org/licenses/MIT). Only [`apl`](https://algorithmia.com/api_dev_terms) supports closed-source algorithms.|
@@ -89,9 +88,9 @@
 |`source.repository_name`|String|The name of the Git repository that was created for the algorithm's source code (if the repository is hosted externally to the Algorithmia platform).|
 |`source.repository_owner`|String|The username of the SCM user that owns the Git repository for this algorithm (if the repository is hosted externally to the Algorithmia platform).|
 |`source.repository_ssh_url`|String|The SSH URL of the algorithm's Git repository (if the repository is hosted externally to the Algorithmia platform).|
-|`source.scm`|Object|The SCM object representing the repository host for this algorithm.|
+|`source.scm`|Object|The [SCM object](#the-scm-object) representing the repository host for this algorithm.|
 |`version_info.git_hash`|String|The Git SHA of the algorithm's most recent version.|
-|`version_info.release_notes`|String|If this version of the algorithm has been published, this field informs consumers of any new changes in the algorithm.|
+|`version_info.release_notes`|String|If this version of the algorithm has been published, this field informs consumers of any new changes in the algorithm that accompany the published version.|
 |`version_info.sample_input`|String|An example of a valid text input to the algorithm. Only configurable for algorithm versions that have been published publicly or privately.|
 |`version_info.sample_output`|String|An example of what the algorithm's output would be given the text provided in `version_info.sample_input`.|
 |`version_info.semantic_version`|String|If this version of the algorithm has been published publicly or privately, this is semantic version that can be used to call said published version.|
@@ -100,7 +99,7 @@
 
 ```shell
 curl https://api.algorithmia.com/v1/algorithms/:username \
-  -H 'Authorization: Simple YOUR_API_KEY' \
+  -H 'Authorization: Simple API_KEY' \
   -H 'Content-Type: application/json' \
   -d '{
     "details": {
@@ -121,7 +120,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username \
 ```python
 import Algorithmia
 
-client = Algorithmia.client('YOUR_API_KEY')
+client = Algorithmia.client('API_KEY')
 
 algo = client.algo(':username/my_first_algorithm')
 
@@ -155,7 +154,7 @@ algo.create(
 |`details.label`|String|*Required*. The human-readable name for your algorithm.|
 |`details.summary`|String|A full description of your algorithm's capabilitities. HTML is accepted for rendering in the algorithm's "Docs" tab.|
 |`details.tagline`|String|A short description of your algorithm for display under the algorithm's label.|
-|`name`|String|*Required*. The unique ID for your algorithm. Only alphanumeric characters and underscores are permitted.|
+|`name`|String|*Required*. The unique ID for your algorithm. Only alphanumeric characters and underscores are permitted. Must begin with a letter.|
 |`settings.environment`|String|*Required if `language` specified*. The hardware your algorithm will run on. Choose from `cpu` or `gpu`.|
 |`settings.language`|String|*Required if `package_set` not specified*. The language you wish to develop your algorithm in. Choose from `java`, `javascript`, `python2-lackpack` (Python 2), `python3-1` (Python 3), `r`, `ruby`, `rust`, or `scala`. |
 |`settings.license`|String|*Required*. The license for your algorithm's source code. Choose from [`apl`](https://algorithmia.com/api_dev_terms), [`apache2`](https://www.apache.org/licenses/LICENSE-2.0), [`gpl3`](https://www.gnu.org/licenses/gpl-3.0.en.html) or [`mit`](https://opensource.org/licenses/MIT). Select `apl` if you wish for your algorithm's source code to be closed-source.|
@@ -196,14 +195,14 @@ algo.create(
 
 ### Returns
 
-If the request is successful, an [algorithm object](#the-algorithm-object) representing the created algorithm will be returned to you.
+If the request is successful, an [algorithm object](#the-algorithm-object) representing the created algorithm will be returned to you, otherwise an [error](#errors).
 
 ## Invoke an algorithm
 
 ```shell
 curl https://api.algorithmia.com/v1/algo/demo/Hello \
   -X POST \
-  -H 'Authorization: Simple YOUR_API_KEY' \
+  -H 'Authorization: Simple API_KEY' \
   -H 'Content-Type: text/plain' \
   -d 'Neo'
 ```
@@ -211,7 +210,7 @@ curl https://api.algorithmia.com/v1/algo/demo/Hello \
 ```python
 import Algorithmia
 
-client = Algorithmia.client('YOUR_API_KEY')
+client = Algorithmia.client('API_KEY')
 algo = client.algo('demo/Hello')
 
 # Query parameters can be set via set_options.
@@ -238,7 +237,7 @@ print(result.metadata)  # Metadata(content_type='text',duration=0.0002127)
 |Parameter|Type|Description|
 |-|-|-|
 |`output`|String|Determines how the algorithm's response is handled. Choose from `raw` (response is returned without a JSON wrapper) or `void` (algorithm call is made asynchronously and no output is returned).|
-|`stdout`|Boolean|Whether the `stdout` of the algorithm should be returned in the response. Only available to the owner of the algorithm. Defaults to `false`.|
+|`stdout`|Boolean|Whether the `stdout` of the algorithm should be returned in the response. Only available to the owner of the algorithm (or, if the algorithm is owned by an organization, the organization's members). Defaults to `false`.|
 |`timeout`|Number|Duration, in seconds, that should pass before the invocation should timeout. Defaults to `300` (5 minutes). Maximum value is `3000` (50 minutes).|
 
 ### Payload Parameters
@@ -250,6 +249,10 @@ Both binary data and text may be passed as algorithm input data. To ensure your 
 |`application/json`|body specifies JSON input data (UTF-8 encoded)|
 |`application/text`|body specifies text input data (UTF-8 encoded)|
 |`application/octet-stream`|body specifies binary input data (raw bytes)|
+
+<aside class="notice">
+The maximum request size for an algorithm invocation is 10MiB.
+</aside>
 
 ### Returns
 
@@ -270,26 +273,26 @@ Depending on the configuration of the `output` query parameter, you may either r
 
 |Attribute|Type|Description|
 |-|-|-|
-|`async`|Boolean|Specifies whether the invocation was run asyncronously, e.g. if the `output` query parameter was set to `void`.|
+|`async`|Boolean|Specifies whether the invocation was run asynchronously, e.g. if the `output` query parameter was set to `void`.|
 |`error.message`|String|A human-readable message describing the error encountered while running the algorithm, if any.|
 |`error.stacktrace`|String|The stacktrace of the error encountered while running the algorithm, if any. Only returned if the caller has access to the algorithm's source code.|
 |`metadata.content_type`|String|One of `binary`, `json`, `text`, or `void` (if the algorithm provided no response).|
 |`metadata.duration`|Number|The duration of the algorithm invocation, in seconds.|
 |`metadata.stdout`|String|The data piped to the algorithms `stdout` stream during execution. Only provided if the `stdout` query parameter was set to `true` and the caller is the algorithm's owner.|
 |`request_id`|String|The unique ID for the invocation request.|
-|`result`|String or Object|The unique ID for the invocation request.|
+|`result`|String or Object|The result of the algorithm invocation if `output` was not set to either `void` or `raw`. Returned as an object if `metadata.content_type` is set to `json`, or as a Base64-encoded string if `metadata.content_type` is set to `binary`.|
 
 ## Get an algorithm
 
 ```shell
 curl https://api.algorithmia.com/v1/algorithms/:username/:algoname \
-  -H 'Authorization: Simple YOUR_API_KEY'
+  -H 'Authorization: Simple API_KEY'
 ```
 
 ```python
 import Algorithmia
 
-client = Algorithmia.client('YOUR_API_KEY')
+client = Algorithmia.client('API_KEY')
 
 algo = client.algo(':username/:algoname')
 
@@ -307,14 +310,41 @@ print(algo.info()) # Prints an algorithm object
 
 ### Returns 
 
-An [algorithm object](#the-algorithm-object).
+```json
+{
+  "name": "my_first_algorithm",
+  "details": {
+    "label": "My First Algorithm"
+  },
+  "settings": {
+    "algorithm_callability": "private",
+    "source_visibility": "closed",
+    "language": "java",
+    "environment": "cpu",
+    "license": "apl",
+    "network_access": "full",
+    "pipeline_enabled": true
+  },
+  "source": {
+    "scm": {
+      "id": "internal",
+      "provider": "internal",
+      "default": true,
+      "enabled": true
+    }
+  },
+  "resource_type": "algorithm"
+}
+```
+
+An [algorithm object](#the-algorithm-object) upon success, otherwise an [error](#errors).
 
 ## Update an algorithm
 
 ```shell
 curl https://api.algorithmia.com/v1/algorithms/:username/:algoname \
   -X PUT
-  -H 'Authorization: Simple YOUR_API_KEY' \
+  -H 'Authorization: Simple API_KEY' \
   -H 'Content-Type: application/json' \
   -d '{
     "details": {
@@ -333,7 +363,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname \
 ```python
 import Algorithmia
 
-client = Algorithmia.client('YOUR_API_KEY')
+client = Algorithmia.client('API_KEY')
 
 algo = client.algo(':username/:algoname')
 
@@ -358,7 +388,7 @@ algo.update(
 |Parameter|Type|Description|
 |-|-|-|
 |`username`|String|*Required*. The username of the user or organization that owns the algorithm.|
-|`algoname`|String|*Required*. The name of the algorithm you wish to retrieve.|
+|`algoname`|String|*Required*. The name of the algorithm you wish to update.|
 
 ### Payload Parameters
 
@@ -376,20 +406,47 @@ algo.update(
 
 ### Returns
 
-The updated [algorithm object](#the-algorithm-object).
+```json
+{
+  "name": "my_algorithm",
+  "details": {
+    "label": "My Updated Algorithm"
+  },
+  "settings": {
+    "algorithm_callability": "private",
+    "source_visibility": "closed",
+    "language": "java",
+    "environment": "gpu",
+    "license": "apl",
+    "network_access": "full",
+    "pipeline_enabled": true
+  },
+  "source": {
+    "scm": {
+      "id": "internal",
+      "provider": "internal",
+      "default": true,
+      "enabled": true
+    }
+  },
+  "resource_type": "algorithm"
+}
+```
+
+The updated [algorithm object](#the-algorithm-object) upon success, otherwise an [error](#errors).
 
 ## Compile an algorithm
 
 ```shell
 curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/compile \
   -X POST
-  -H 'Authorization: Simple YOUR_API_KEY'
+  -H 'Authorization: Simple API_KEY'
 ```
 
 ```python
 import Algorithmia
 
-client = Algorithmia.client('YOUR_API_KEY')
+client = Algorithmia.client('API_KEY')
 
 algo = client.algo(':username/:algoname')
 
@@ -407,14 +464,49 @@ algo.compile() # Returns an algorithm object upon successful compilation.
 
 ### Returns 
 
-An [algorithm object](#the-algorithm-object) upon successful compilation. Note that the values contained within the `compilation` object will have been updated.
+```json
+{
+    "name": "Hello",
+    "details": {
+      "label": "Greeting Algorithm"
+    },
+    "settings": {
+      "algorithm_callability": "public",
+      "source_visibility": "closed",
+      "language": "python3-1",
+      "environment": "gpu",
+      "license": "apl",
+      "network_access": "full",
+      "pipeline_enabled": true
+    },
+    "version_info": {
+      "git_hash": "6d50c89cb1d9eef506f9339af0c47f384ba71258"
+    },
+    "source": {
+      "scm": {
+        "id": "internal",
+        "provider": "internal",
+        "default": true,
+        "enabled": true
+      }
+    },
+    "compilation": {
+      "successful": true,
+      "output": "Building algorithm ..."
+    },
+    "self_link": "http://api.algorithmia.com/v1/algorithms/demo/Hello/versions/6d50c72cb1d9eef507f9339af0c47f484ba71258",
+    "resource_type": "algorithm"
+}
+```
+
+An [algorithm object](#the-algorithm-object) upon successful compilation, otherwise an [error](#errors). Note that the values contained within the `compilation` object will have been updated.
 
 ## Delete an algorithm
 
 ```shell
 curl https://api.algorithmia.com/v1/algorithms/:username/:algoname \
-  -X DELETE
-  -H 'Authorization: Simple YOUR_API_KEY'
+  -X DELETE \
+  -H 'Authorization: Simple API_KEY'
 ```
 
 ```python
@@ -432,13 +524,13 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname \
 
 ### Returns 
 
-An empty response upon success.
+An empty response upon success, otherwise an [error](#errors).
 
 ## Get algorithm SCM status
 
 ```shell
 curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/scm/status \
-  -H 'Authorization: Simple YOUR_API_KEY'
+  -H 'Authorization: Simple API_KEY'
 ```
 
 ```python
@@ -465,7 +557,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/scm/status \
 }
 ```
 
-An object describing the algorithm's connection to its repository host. Be advised that, if your algorithm's repository is hosted externally, this payload will contain sensitive data about your algorithm's connection (such as the `repository_webhook_secret`).
+An object describing the algorithm's connection to its repository host, otherwise an [error](#errors). Be advised that, if your algorithm's repository is hosted externally, this payload will contain sensitive data about your algorithm's connection (such as the `repository_webhook_secret`).
 
 |Attribute|Type|Description|
 |-|-|-|

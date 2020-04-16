@@ -461,6 +461,10 @@ html, body {
     padding: 0;
   }
 
+  p code {
+    white-space: nowrap;
+  }
+
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
