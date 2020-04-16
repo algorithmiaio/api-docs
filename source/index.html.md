@@ -23,9 +23,17 @@ If this is your first time trying Algorithmia, you might find it useful to start
 
 ## Base URL
 
+```python
+import Algorithmia
+
+# When passing a custom API endpoint to our Python client, you 
+# may omit the `v1` path prefix, as it will be supplied automatically.
+client = Algorithmia.client('API_KEY', 'https://api.example.com')
+```
+
 By default, we provide examples using the `https://api.algorithmia.com/v1` base URL, but if you are using an enterprise version of Algorithmia hosted under a different domain, you should ensure you modify any code samples as necessary.
 
-Per our [versioning scheme](#versioning), ensure that you supply the appropriate version prefix in addition to the REST API endpoint you wish to use. Thus, if your Algorithmia instance was hosted at `example.com`, your base URL would be `https://api.example.com/v1`.
+Per our [versioning scheme](#versioning), ensure that you supply the appropriate version prefix in addition to the REST API endpoint you wish to use. Thus, if your Algorithmia instance was hosted at `example.com`, your base URL would be `https://api.example.com/v1`. If using a client library, ensure you properly pass your custom endpoint as a parameter when initializing the client.
 
 ## Authentication
 
@@ -43,6 +51,10 @@ client = Algorithmia.client('API_KEY')
 
 If you are interacting directly with Algorithmia's REST API, provide your API key via an `Authorization` header with the prefix `Simple`. If you are using on of our client libraries, follow the instructions specific to that client library. This holds true for both standard and admin API keys. Learn more about API keys [in our devcenter](/developers/platform/customizing-api-keys).
 
+<aside class="notice">
+Ensure that you replace <code>API_KEY</code> with your personal API key.
+</aside>
+
 ## Errors
 
 ```json
@@ -58,8 +70,8 @@ Should an error occur while fulfilling a request, you will be returned an object
 |Attribute|Type|Description|
 |-|-|-|
 |`id`|String|An optional identifier for the error that can be provided to Algorithmia support to aid debugging.|
-|`code`|Number|The specific error code pertaining to the error. See the expandable section below for details about specific error codes.|
-|`message`|String|A human-readable explanation of the cause of the error.|
+|`code`|Number|The specific error code pertaining to the error. See the expandable section below for details about available error codes.|
+|`message`|String|A human-readable explanation of the error's cause.|
 
 The full list of error codes can be viewed by expanding the list below:
 
@@ -160,7 +172,7 @@ The full list of error codes can be viewed by expanding the list below:
 
 If you are querying a collection of objects, and there are more results available than can be displayed in a single response, you may paginate results with *markers*.
 
-A collection response will contain two properties that allow you to fetch further pages of a response: `marker` and `next_link`. `marker` can be supplied as a query parameter to a subsequent request, informing the API that you wish to obtain the next page of results for your prior query. Conveniently, the `next_link` property contains the preconstructed URL for you to make just such a query.
+A collection response will contain two properties that allow you to fetch additional pages of results: `marker` and `next_link`. `marker` can be supplied as a query parameter to a subsequent request, informing the API that you wish to obtain the next page of results for your prior query. Conveniently, the `next_link` property contains the preconstructed URL for you to make just such a query.
 
 If there are no additional results for a particular collection query, both the `marker` and `next_link` properties will be `null`.
 
