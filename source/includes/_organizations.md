@@ -4,24 +4,24 @@
 
 ```json
 {
-  "org_name": "algorithmiahq",
-  "org_label": "Algorithmia",
   "org_contact_name": "Algorithmia Support",
   "org_email": "support@algorithmia.com",
+  "org_label": "Algorithmia",
+  "org_name": "algorithmiahq",
   "org_url": "https://algorithmia.com",
-  "self_link": "http://api.test.algorithmia.com/v1/organizations/algorithmiahq",
-  "resource_type": "organization"
+  "resource_type": "organization",
+  "self_link": "http://api.algorithmia.com/v1/organizations/algorithmiahq"
 }
 ```
 
 |Attribute|Type|Description|
 |-|-|-|
-|`org_name`|String|The unique identifier for this organization.|
-|`org_label`|String|The human-readable name for the organization.|
 |`org_contact_name`|String|The individual who can be contacted with any questions about the organization.|
 |`org_email`|String|The email address by which the organization's contact may be reached.|
+|`org_label`|String|The human-readable name for the organization.|
+|`org_name`|String|The unique identifier for this organization.|
 |`org_url`|String|The URL for the organization's website.|
-|`resource_type`|String|Always set to `organization` for organizations.
+|`resource_type`|String|Always set to `organization` for organization objects.|
 |`self_link`|String|The URL that can be used to retrieve this specific organization via the REST API.|
 
 ## Create an organization
@@ -30,12 +30,13 @@
 curl https://api.algorithmia.com/v1/organizations \
   -X POST \
   -H 'Authorization: Simple ADMIN_API_KEY' \
+  -H 'Content-Type: application/json' \
   -d '{
-    "org_name": "example_organization",
-    "org_label": "Example Organization",
     "org_contact_name": "Example User",
     "org_email": "support@example.com",
-    "org_url": "https://example.com",
+    "org_label": "Example Organization",
+    "org_name": "example_organization",
+    "org_url": "https://example.com"
   }'
 ```
 
@@ -43,7 +44,7 @@ curl https://api.algorithmia.com/v1/organizations \
 # Creating an organization is not yet supported by our Python client library.
 ```
 
-`POST /v1/organizations`
+`POST /organizations`
 
 ### Authorization
 
@@ -53,10 +54,10 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 
 |Parameter|Type|Description|
 |-|-|-|
-|`org_name`|String|*Required*. The unique identifier for this organization. Only letters, numbers, and underscores are permitted.|
+|`org_name`|String|*Required*. The unique identifier for this organization. Only letters, numbers, and underscores are permitted. Must start with a letter.|
 |`org_label`|String|*Required*. The human-readable name for the organization.|
 |`org_contact_name`|String|*Required*. The individual who can be contacted with any questions about the organization.|
-|`org_email`|String|*Required*. The email address by which the organization's contact may be reached.|
+|`org_email`|String|*Required*. The email address by which the organization may be contacted.|
 |`org_url`|String|The URL for the organization's website.|
 
 ## List organizations
@@ -70,7 +71,11 @@ curl https://api.algorithmia.com/v1/organizations \
 # Listing organizations is not yet supported by our Python client library.
 ```
 
-`GET /v1/organizations`
+`GET /organizations`
+
+### Authorization
+
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](https://algorithmia.com/developers/platform/customizing-api-keys) to learn more.
 
 ### Query Parameters
 
@@ -80,6 +85,24 @@ curl https://api.algorithmia.com/v1/organizations \
 |`marker`|String|Used for paginating results from previous queries. See the [pagination section](#pagination) above.|
 
 ### Returns
+
+```json
+{
+  "marker": null,
+  "next_link": null,
+  "results": [{
+    "org_contact_name": "Algorithmia Support",
+    "org_email": "support@algorithmia.com",
+    "org_label": "Algorithmia",
+    "org_name": "algorithmiahq",
+    "org_url": "https://algorithmia.com",
+    "resource_type": "organization",
+    "self_link": "http://api.algorithmia.com/v1/organizations/algorithmiahq"
+  }]
+}
+```
+
+A collection of zero or more [organization objects](#the-organization-object), otherwise an [error](#errors).
 
 |Attribute|Type|Description|
 |-|-|-|
@@ -98,7 +121,11 @@ curl https://api.algorithmia.com/v1/organizations/:org_name \
 # Getting an organization is not yet supported by our Python client library.
 ```
 
-`GET /v1/organizations/:org_name`
+`GET /organizations/:org_name`
+
+### Authorization
+
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](https://algorithmia.com/developers/platform/customizing-api-keys) to learn more.
 
 ### Path Parameters
 
@@ -108,7 +135,19 @@ curl https://api.algorithmia.com/v1/organizations/:org_name \
 
 ### Returns 
 
-A single [organization object](#the-organization-object) if a valid `org_name` was provided, otherwise an error.
+```json
+{
+  "org_contact_name": "Algorithmia Support",
+  "org_email": "support@algorithmia.com",
+  "org_label": "Algorithmia",
+  "org_name": "algorithmiahq",
+  "org_url": "https://algorithmia.com",
+  "resource_type": "organization",
+  "self_link": "http://api.algorithmia.com/v1/organizations/algorithmiahq"
+}
+```
+
+A single [organization object](#the-organization-object) if a valid `org_name` was provided, otherwise an [error](#errors).
 
 ## Delete an organization
 
@@ -122,7 +161,11 @@ curl https://api.algorithmia.com/v1/organizations/:org_name \
 # Deleting an organization is not yet supported by our Python client library.
 ```
 
-`DELETE /v1/organizations/:org_name`
+`DELETE /organizations/:org_name`
+
+### Authorization
+
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](https://algorithmia.com/developers/platform/customizing-api-keys) to learn more.
 
 ### Path Parameters
 
@@ -132,4 +175,4 @@ curl https://api.algorithmia.com/v1/organizations/:org_name \
 
 ## Returns
 
-An empty response upon success, otherwise an error.
+An empty response upon success, otherwise an [error](#errors).
