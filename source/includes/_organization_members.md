@@ -14,9 +14,9 @@
 |Attribute|Type|Description|
 |-|-|-|
 |`role`|String|One of `owner` or `member`. Owners have the ability to add and remove organization members, promote or demote other owners, and publish algorithms publicly on behalf of the organization.|
-|`resource_type`|String|Always set to `organization_member` for organization members.|
+|`resource_type`|String|Always set to `organization_member` for organization member objects.|
 |`user_link`|String|A link to the [user object](#the-user-object) for the organization member.|
-|`username`|String|The unique identifer for the user.|
+|`username`|String|The user's unique identifer.|
 
 ## List organization members
 
@@ -29,11 +29,11 @@ curl https://api.algorithmia.com/v1/organizations/:org_name/members \
 # Querying organization members is not yet supported by our Python client library.
 ```
 
-`GET /v1/organizations/:org_name/members`
+`GET /organizations/:org_name/members`
 
 ### Authorization
 
-In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](https://algorithmia.com/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
 
 ### Path Parameters
 
@@ -63,17 +63,19 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 }
 ```
 
+A collection of [organization member objects](#the-organization-member-object), otherwise an [error](#errors).
+
 |Attribute|Type|Description|
 |-|-|-|
 |`marker`|String|If more results are available than can be shown based on the supplied `limit`, this value can be used to paginate results. See the [pagination section](#pagination) above.|
 |`next_link`|String|A link to the next page of results, if more results exist.|
-|`results`|Array|A list of zero or more [organization member objects](#the-organization-member-object).|
+|`results`|Array|A list of one or more [organization member objects](#the-organization-member-object).|
 
 ## Add organization member
 
 ```shell
 curl https://api.algorithmia.com/v1/organizations/:org_name/members/:username \
-  -X PUT
+  -X PUT \
   -H 'Authorization: Simple ADMIN_API_KEY'
 ```
 
@@ -81,11 +83,11 @@ curl https://api.algorithmia.com/v1/organizations/:org_name/members/:username \
 # Adding organization members is not yet supported by our Python client library.
 ```
 
-`PUT /v1/organizations/:org_name/members/:username`
+`PUT /organizations/:org_name/members/:username`
 
 ### Authorization
 
-In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](https://algorithmia.com/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
 
 
 |Parameter|Type|Description|
@@ -95,13 +97,13 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 
 ### Returns
 
-No content if the operation was successful, otherwise an error.
+No content if the operation was successful, otherwise an [error](#errors).
 
 ## Delete organization member
 
 ```shell
 curl https://api.algorithmia.com/v1/organizations/:org_name/members/:username \
-  -X DELETE
+  -X DELETE \
   -H 'Authorization: Simple ADMIN_API_KEY'
 ```
 
@@ -109,18 +111,19 @@ curl https://api.algorithmia.com/v1/organizations/:org_name/members/:username \
 # Deleting organization members is not yet supported by our Python client library.
 ```
 
-`DELETE https://api.algorithmia.com/v1/organizations/:org_name/members/:username`
+`DELETE /organizations/:org_name/members/:username`
 
 ### Authorization
 
-In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](https://algorithmia.com/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
 
+### Path Parameters
 
 |Parameter|Type|Description|
 |-|-|-|
-|`org_name`|String|*Required*. The the unique `org_name` of the organization you wish to retrieve members for.|
+|`org_name`|String|*Required*. The the unique `org_name` of the organization for which you wish to delete a member.|
 |`username`|String|*Required*. The `username` of the specific user you wish to remove from the organization.|
 
 ### Returns
 
-No content if the operation was successful, otherwise an error.
+No content if the operation was successful, otherwise an [error](#errors).

@@ -75,7 +75,7 @@ curl https://api.algorithmia.com/v1/organizations \
 
 ### Authorization
 
-In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](https://algorithmia.com/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
 
 ### Query Parameters
 
@@ -125,7 +125,7 @@ curl https://api.algorithmia.com/v1/organizations/:org_name \
 
 ### Authorization
 
-In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](https://algorithmia.com/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
 
 ### Path Parameters
 
@@ -165,7 +165,7 @@ curl https://api.algorithmia.com/v1/organizations/:org_name \
 
 ### Authorization
 
-In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](https://algorithmia.com/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
 
 ### Path Parameters
 
