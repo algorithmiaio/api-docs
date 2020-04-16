@@ -12,7 +12,7 @@ Connectors offer you a convenient API by which to access data stored across mult
 
 With the exception of `data`, connectors may also be identified by a *label*, or no label if a specific connector is the default for its connector type. These options can be configured for a given connector in your [data portal](/data).
 
-For example, if you create an S3 data connector with the label `test`, you would identify it to the API as `s3+test`. However, if a specific connector is the default for it's type, you can omit the label and simply use the connector's type instead. Thus, your default S3 connector would be identified to the API as simply `s3`.
+For example, if you create an S3 data connector with the label `test`, you would identify it to the API as `s3+test`. However, if a specific connector is the default for its type, you can omit the label and simply use the connector's type instead. Thus, your default S3 connector would be identified to the API as simply `s3`.
 
 ### Data URIs
 
@@ -34,7 +34,7 @@ Algorithmia supports a *data URI* notation for identifying files and directories
 
 Algorithmia will return data URIs to you identifying new files or directories you may create, and you can use these in any of our client libraries (including our Python client library) to act on those resources.
 
-Paths are contextual to the data connector you are interacting with. For example, paths for the `data` connector must begin first with the username of user who owns the collection you wish to interact with (or `.my` to refer to the calling user), then the collection name, then the file (`data` does not support directories within collections). However, when interacting with an `s3` connector, you must supply the name of the bucket as the first component of the data. Ensure you carefully read [the documentation](https://algorithmia.com/developers/data/) for the connector you are working with.
+Paths are contextual to the data connector you are interacting with. For example, paths for the `data` connector must begin first with the username of user who owns the collection you wish to interact with (or `.my` to refer to the calling user), then the collection name, then the file (`data` does not support directories within collections). However, when interacting with an `s3` connector, you must supply the name of the bucket as the first component of the data. Ensure you carefully read [the documentation](/developers/data) for the connector you are working with.
 
 #### 
  
@@ -87,14 +87,14 @@ curl https://api.algorithmia.com/v1/connector/data/demo \
 import Algorithmia
 from Algorithmia.acl import ReadAcl
 
-client = Algorithmia.client('YOUR_API_KEY')
+client = Algorithmia.client('API_KEY')
 
 example_collection = client.dir("data://demo/example_collection")
 
 example_collection.create(ReadAcl.public)
 ```
 
-`POST /v1/connector/:connector_id/:connector_path`
+`POST /connector/:connector_id/:connector_path`
 
 ### Path Parameters
 
@@ -108,7 +108,7 @@ example_collection.create(ReadAcl.public)
 |Parameter|Type|Description|
 |-|-|-|
 |`name`|String|*Required*. The name of the directory you wish to create at the location specified by `connector_path`.|
-|`acl.read`|Array|Used to set the ACL for [hosted data collections](/developers/data/hosted) only. There are three potential configurations for this field: |
+|`acl.read`|Array|Used to set the ACL for [hosted data collections](/developers/data/hosted) only. Choose from `[]` (only you may access), `["algo://.my/*"]` (only your algorithms may access), and `["user://*"]` (any user may access).|
 
 ### Returns
 
@@ -118,7 +118,7 @@ example_collection.create(ReadAcl.public)
 }
 ```
 
-Returns the following JSON payload upon successful directory creation, otherwise an error.
+Returns the following JSON payload upon successful directory creation, otherwise an [error](#errors).
 
 |Attribute|Type|Description|
 |-|-|-|
@@ -134,7 +134,7 @@ curl https://api.algorithmia.com/v1/connector/data/demo/example.png \
 ```python
 import Algorithmia
 
-client = Algorithmia.client('YOUR_API_KEY')
+client = Algorithmia.client('API_KEY')
 
 # Download file and get the file handle
 exampleFile = client.file("data://demo/example_collection/example.png").getFile()
@@ -149,7 +149,7 @@ exampleJson =  client.file("data://demo/example_collection/example.txt").getJson
 exampleBytes = client.file("data://demo/example_collection/example.png").getBytes()
 ```
 
-`GET /v1/connector/:connector_id/:connector_path`
+`GET /connector/:connector_id/:connector_path`
 
 ### Path Parameters
 
@@ -160,16 +160,59 @@ exampleBytes = client.file("data://demo/example_collection/example.png").getByte
 
 ### Returns
 
-If the `connector_path` identifies a file, the file's contents will be returned to you.
+If the `connector_path` identifies a file, the file's contents will be returned to you, and a `X-Data-Type` response header will be returned with the value `file`.
 
-If the `connector_path` identifies a folder, the folder's contents will be described by the following JSON structure.
+If the `connector_path` identifies a folder, the folder's contents will be described by the following JSON structure, and a `X-Data-Type` response header will be returned with the value `directory`.
 
 |Attribute|Type|Description|
 |-|-|-|
 |`folders`|String|A list of zero or more folder stored at this path.|
 |`files`|String|A list of zero or more files stored at this path.|
 
-Otherwise, an error object will be returned to you.
+Otherwise, an [error object](#errors) will be returned to you.
+
+## Update collection ACL
+
+```shell
+curl https://api.algorithmia.com/v1/connector/data/demo/example_collection \
+  -X PATCH \
+  -H 'Authorization: Simple API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "acl": {
+      "read": []
+    }
+  }'
+```
+
+```python
+import Algorithmia
+from Algorithmia.acl import ReadAcl
+
+client = Algorithmia.client('API_KEY')
+
+example_collection = client.dir("data://demo/example_collection")
+
+example_collection.update_permissions(ReadAcl.private)
+```
+
+`POST /connector/data/:collection`
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`collection`|String|The name of the hosted data collection you wish to update.|
+
+### Payload Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`acl.read`|Array|*Required*. Choose from `[]` (only you may access), `["algo://.my/*"]` (only your algorithms may access), and `["user://*"]` (any user may access).|
+
+### Returns
+
+An empty response upon success, accompanied by a `200` status code, otherwise an [error](#errors).
 
 ## Upload a file
 
@@ -203,7 +246,7 @@ client.file("data://demo/example_collection/example.txt").put("Hello world!")
 client.file("data://demo/example_collection/example.json").putJson({"hello": "world"})
 ```
 
-`PUT /v1/connector/:connector_id/:connector_path`
+`PUT /connector/:connector_id/:connector_path`
 
 ### Payload Parameters
 
@@ -217,7 +260,7 @@ The body of the request will become the contents of the file that is created.
 }
 ```
 
-Returns the following JSON payload upon successful upload, otherwise an error.
+Returns the following JSON payload upon successful upload, otherwise an [error](#errors).
 
 |Attribute|Type|Description|
 |-|-|-|
@@ -240,11 +283,11 @@ if client.file("data://demo/example_collection/example.png").exists():
   print("File exists!")
 ```
 
-`HEAD /v1/connector/:connector_id/:connector_path`
+`HEAD /connector/:connector_id/:connector_path`
 
 ### Returns
 
-Returns an affirmative response if the file exists (such as a 200 status code), otherwise an error.
+Returns an affirmative response if the file exists (such as a 200 status code), otherwise an [error](#errors).
 
 ## Delete a file or directory
 
@@ -257,14 +300,14 @@ curl https://api.algorithmia.com/v1/connector/data/demo/example_collection/examp
 ```python
 import Algorithmia
 
-client = Algorithmia.client('YOUR_API_KEY')
+client = Algorithmia.client('API_KEY')
 
 exampleFile = client.file("data://demo/example_collection/example.png")
 
 exampleFile.delete()
 ```
 
-`DELETE /:connector_id/:connector_path`
+`DELETE /connector/:connector_id/:connector_path`
 
 ### Query Parameters
 
@@ -274,10 +317,10 @@ exampleFile.delete()
 
 ### Returns
 
-A JSON payload of the following structure if the request succeeds (or suceeds partially), otherwise an error.
+A JSON payload of the following structure if the request succeeds (or succeeds partially), otherwise an [error](#errors).
 
 |Attribute|Type|Description|
 |-|-|-|
-|`result.deleted`|Number|I|
+|`result.deleted`|Number|If the deletion is successful, the total number of files deleted.|
 |`error.deleted`|Number|If an error occurred during deletion, this property indicates how many files were deleted before the error occurred.|
 
