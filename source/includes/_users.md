@@ -28,26 +28,27 @@
 
 ```shell
 curl https://api.algorithmia.com/v1/users \
-  -X PUT \
+  -X POST \
   -H 'Authorization: Simple ADMIN_API_KEY' \
+  -H 'Content-Type: application/json' \
   -d '{
     "company_name": "Algorithmia",
     "company_role": "Example User",
     "email": "example@example.com",
     "fullname": "Example User",
     "username": "example_user"
-  }
+  }'
 ```
 
 ```python
 # Creating a user is not yet supported by our Python client library.
 ```
 
-`POST https://api.algorithmia.com/v1/users`
+`POST /v1/users`
 
 ### Authorization
 
-In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](https://algorithmia.com/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
 
 ### Payload Parameters
 
@@ -73,7 +74,7 @@ In order to interact with this endpoint you must provide an admin API key. Visit
 }
 ```
 
-A single [user object](#the-user-object) if a valid user payload was provided, otherwise an error.
+A single [user object](#the-user-object) if a valid user payload was provided, otherwise an [error](#errors).
 
 ## List users
 
@@ -86,11 +87,11 @@ curl https://api.algorithmia.com/v1/users \
 # Listing users is not yet supported by our Python client library.
 ```
 
-`GET https://api.algorithmia.com/v1/users`
+`GET /users`
 
 ### Authorization
 
-In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](https://algorithmia.com/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
 
 ### Query Parameters
 
@@ -101,11 +102,29 @@ In order to interact with this endpoint you must provide an admin API key. Visit
 
 ### Returns
 
+```json
+{
+  "marker": null,
+  "next_link": null,
+  "results": [{
+    "company_name": "Algorithmia",
+    "company_role": "Example User",
+    "email": "me@example.com",
+    "fullname": "Example User",
+    "resource_type": "user",
+    "self_link": "https://api.algorithmia.com/v1/users/example_user",
+    "username": "example_user"
+  }]
+}
+```
+
+A collection of [user objects](#the-user-object), otherwise an [error](#errors).
+
 |Attribute|Type|Description|
 |-|-|-|
 |`marker`|String|If more results are available than can be shown based on the supplied `limit`, this value can be used to paginate results. See the [versioning section](#versioning) above.|
 |`next_link`|String|A link to the next page of results, if more results exist.|
-|`results`|Array|A list of zero or more [user objects](#the-user-object).|
+|`results`|Array|A list of one or more [user objects](#the-user-object).|
 
 ## Update a user
 
@@ -113,24 +132,25 @@ In order to interact with this endpoint you must provide an admin API key. Visit
 curl https://api.algorithmia.com/v1/users/example_user \
   -X PUT \
   -H 'Authorization: Simple ADMIN_API_KEY' \
+  -H 'Content-Type: application/json' \
   -d '{
     "company_name": "Algorithmia",
     "company_role": "Example User",
     "email": "example@example.com",
     "fullname": "Example User",
     "username": "example_user"
-  }
+  }'
 ```
 
 ```python
 # Updating a user is not yet supported by our Python client library.
 ```
 
-`PUT https://api.algorithmia.com/v1/users/:username`
+`PUT /users/:username`
 
 ### Authorization
 
-In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](https://algorithmia.com/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
 
 ### Path Parameters
 
@@ -162,7 +182,7 @@ In order to interact with this endpoint you must provide an admin API key. Visit
 }
 ```
 
-The updated [user object](#the-user-object) if a valid user payload was provided, otherwise an error.
+The updated [user object](#the-user-object) if a valid user payload was provided, otherwise an [error](#errors).
 
 ## Delete a user
 
@@ -180,8 +200,8 @@ curl https://api.algorithmia.com/v1/users/:username \
 
 ### Authorization
 
-In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](https://algorithmia.com/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
 
 ### Returns
 
-An empty response upon success, otherwise an error.
+An empty response upon success, otherwise an [error](#errors).
