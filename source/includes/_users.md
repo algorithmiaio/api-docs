@@ -168,7 +168,7 @@ In order to interact with this endpoint you must provide an admin API key. Visit
 |`fullname`|String|*Required*. The user's full name. If no change desired, supply the previous value of user's `fullname` property.|
 |`username`|String|*Required*. The user's unique identifier for this user. Must be supplied, but cannot be used to change a user's username.|
 
-## Returns
+### Returns
 
 ```json
 {

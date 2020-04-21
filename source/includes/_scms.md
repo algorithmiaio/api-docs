@@ -76,7 +76,7 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 |`urls.api`|String|*Required*. The URL to the SCM's SSH endpoint.|
 |`urls.web`|String|*Required*. The URL to the SCM's website.|
 
-## Returns
+### Returns
 
 ```json
 {

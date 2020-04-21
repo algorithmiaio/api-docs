@@ -173,6 +173,6 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 |-|-|-|
 |`org_name`|String|*Required*. The the unique `org_name` for the organization you wish to delete.|
 
-## Returns
+### Returns
 
 An empty response upon success, otherwise an [error](#errors).
