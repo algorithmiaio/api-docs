@@ -143,6 +143,12 @@ curl https://api.algorithmia.com/v1/users/:username \
 
 In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
 
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`username`|String|*Required*. The the unique `username` for the user you wish to retrieve.|
+
 ### Returns
 
 A single [user object](#the-user-object) upon success, otherwise an [error](#errors).

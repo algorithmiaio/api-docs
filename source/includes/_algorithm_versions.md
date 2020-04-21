@@ -49,7 +49,7 @@
 }
 ```
 
-Algorithm version objects are identical to the [algorithm object](#the-algorithm-object), with the sole difference being that algorithm versions must return values for the `build`, `compilation`, `self_link`, and `version_info` properties, given that they represent compiled, call-able instances of the algorithm.
+Algorithm version objects are identical to [algorithm objects](#the-algorithm-object), with the sole difference being that algorithm versions must return values for the `build`, `compilation`, `self_link`, and `version_info` properties, given that they represent compiled, call-able instances of the algorithm.
 
 ## Publish an algorithm version
 

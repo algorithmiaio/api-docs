@@ -166,8 +166,8 @@ If the `connector_path` identifies a folder, the folder's contents will be descr
 
 |Attribute|Type|Description|
 |-|-|-|
-|`folders`|String|A list of zero or more folder stored at this path.|
-|`files`|String|A list of zero or more files stored at this path.|
+|`folders`|String|A list of zero or more [folders](#the-folder-object) stored at this path.|
+|`files`|String|A list of zero or more [files](#the-file-object) stored at this path.|
 
 Otherwise, an [error object](#errors) will be returned to you.
 
@@ -196,12 +196,13 @@ example_collection = client.dir("data://demo/example_collection")
 example_collection.update_permissions(ReadAcl.private)
 ```
 
-`POST /connector/data/:collection`
+`POST /connector/data/:username/:collection`
 
 ### Path Parameters
 
 |Parameter|Type|Description|
 |-|-|-|
+|`username`|String|The unique ID of the user or organization who owns the collection you wish to update.|
 |`collection`|String|The name of the hosted data collection you wish to update.|
 
 ### Payload Parameters
@@ -248,6 +249,13 @@ client.file("data://demo/example_collection/example.json").putJson({"hello": "wo
 
 `PUT /connector/:connector_id/:connector_path`
 
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`connector_id`|String|The ID of the specific connector you wish to create interact with. Learn more in the [connectors section](#connectors) above.|
+|`connector_path`|String|The path at which your new file should exist. Note that this path is contextual to the type of connector you are interacting with.|
+
 ### Payload Parameters
 
 The body of the request will become the contents of the file that is created.
@@ -285,6 +293,13 @@ if client.file("data://demo/example_collection/example.png").exists():
 
 `HEAD /connector/:connector_id/:connector_path`
 
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`connector_id`|String|The ID of the specific connector you wish to create interact with. Learn more in the [connectors section](#connectors) above.|
+|`connector_path`|String|The path to the file or directory you wish to verify. Note that this path is contextual to the type of connector you are interacting with.|
+
 ### Returns
 
 Returns an affirmative response if the file exists (such as a 200 status code), otherwise an [error](#errors).
@@ -308,6 +323,13 @@ exampleFile.delete()
 ```
 
 `DELETE /connector/:connector_id/:connector_path`
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`connector_id`|String|The ID of the specific connector you wish to create interact with. Learn more in the [connectors section](#connectors) above.|
+|`connector_path`|String|The path to the file or directory you wish to delete. Note that this path is contextual to the type of connector you are interacting with.|
 
 ### Query Parameters
 
