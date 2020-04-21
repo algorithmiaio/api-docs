@@ -49,7 +49,7 @@ client = Algorithmia.client('API_KEY')
 ```
 
 
-If you are interacting directly with Algorithmia's REST API, provide your API key via an `Authorization` header with the prefix `Simple`. If you are using on of our client libraries, follow the instructions specific to that client library. This holds true for both standard and admin API keys. Learn more about API keys [in our devcenter](/developers/platform/customizing-api-keys).
+If you are interacting directly with Algorithmia's REST API, provide your API key via an `Authorization` header with the prefix `Simple`. If you are using one of our client libraries, follow the instructions specific to that client library. This holds true for both standard and admin API keys. Learn more about API keys [in our devcenter](/developers/platform/customizing-api-keys).
 
 <aside class="notice">
 Ensure that you replace <code>API_KEY</code> with your personal API key.
