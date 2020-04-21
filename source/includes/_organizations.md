@@ -48,7 +48,7 @@ curl https://api.algorithmia.com/v1/organizations \
 
 ### Authorization
 
-In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](https://algorithmia.com/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](https://algorithmia.com/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
 
 ### Payload Parameters
 
@@ -59,6 +59,22 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 |`org_contact_name`|String|*Required*. The individual who can be contacted with any questions about the organization.|
 |`org_email`|String|*Required*. The email address by which the organization may be contacted.|
 |`org_url`|String|The URL for the organization's website.|
+
+### Returns 
+
+```json
+{
+  "org_contact_name": "Example User",
+  "org_email": "support@example.com",
+  "org_label": "Example Organization",
+  "org_name": "example_organization",
+  "org_url": "https://example.com",
+  "resource_type": "organization",
+  "self_link": "http://api.algorithmia.com/v1/organizations/algorithmiahq"
+}
+```
+
+A single [organization object](#the-organization-object) representing the newly created organization, otherwise an [error](#errors).
 
 ## List organizations
 
@@ -75,13 +91,13 @@ curl https://api.algorithmia.com/v1/organizations \
 
 ### Authorization
 
-In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
 
 ### Query Parameters
 
 |Parameter|Type|Description|
 |-|-|-|
-|`limit`|Number|The maximum number of items to return in the response. Defaults to 10.|
+|`limit`|Number|The maximum number of items to return in the response. Defaults to 50.|
 |`marker`|String|Used for paginating results from previous queries. See the [pagination section](#pagination) above.|
 
 ### Returns
@@ -125,7 +141,7 @@ curl https://api.algorithmia.com/v1/organizations/:org_name \
 
 ### Authorization
 
-In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
 
 ### Path Parameters
 
@@ -165,7 +181,7 @@ curl https://api.algorithmia.com/v1/organizations/:org_name \
 
 ### Authorization
 
-In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
 
 ### Path Parameters
 

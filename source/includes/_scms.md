@@ -61,17 +61,17 @@ curl https://api.algorithmia.com/v1/admin/scms \
 
 ### Authorization
 
-In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
 
 ### Payload Parameters
 
 |Attribute|Type|Description|
 |-|-|-|
 |`enabled`|Boolean|Whether this SCM should be enabled for Algorithmia platform users on creation.|
-|`id`|String|If provided, allows the configuration of a vanity ID. Otherwise, a UUID will be generated for this property.|
+|`id`|String|If provided, allows the configuration of a vanity ID. Otherwise, a UUID will be generated for this attribute.|
 |`oauth.client_id`|String|*Required*. The ID of the OAuth client that can be used to authenticate Algorithmia platform users with the SCM. Learn more about creating OAuth apps [in our documentation](/developers/algorithmia-enterprise/scms).|
 |`oauth.client_secret`|String|*Required*. The secret of the OAuth client that can be used to authenticate Algorithmia platform users with the SCM. Learn more about creating OAuth apps [in our documentation](/developers/algorithmia-enterprise/scms).|
-|`provider`|String|*Required* Represents the type of SCM you wish to create. `github` is the only available option at the present time.|
+|`provider`|String|*Required*. Represents the type of SCM you wish to create. `github` is the only available option at the present time.|
 |`urls.api`|String|*Required*. The URL to the SCM's API endpoint.|
 |`urls.api`|String|*Required*. The URL to the SCM's SSH endpoint.|
 |`urls.web`|String|*Required*. The URL to the SCM's website.|
@@ -95,7 +95,7 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 }
 ```
 
-A single [SCM object](#the-scm-object) if the payload was valid, otherwise an [error](#errors).
+A single [SCM object](#the-scm-object) if a valid SCM payload was provided, otherwise an [error](#errors).
 
 ## List SCMs
 
@@ -131,9 +131,11 @@ curl https://api.algorithmia.com/v1/scms \
 }
 ```
 
+A collection of [SCM objects](#the-scm-object) if the request was successful, otherwise an [error](#errors).
+
 |Attribute|Type|Description|
 |-|-|-|
-|`results`|Array|A list of one or more [scm objects](#the-scm-object). An SCM of the type `internal` will always be returned.|
+|`results`|Array|A list of one or more [SCM objects](#the-scm-object). An SCM of the type `internal` will always be a member of the returned collection.|
 
 ## Get an SCM
 
@@ -195,7 +197,7 @@ curl https://api.algorithmia.com/v1/admin/scms/:scm_id \
 
 ### Authorization
 
-In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
 
 ### Path Parameters
 
@@ -246,7 +248,7 @@ curl https://api.algorithmia.com/v1/admin/scms/:scm_id/default \
 
 ### Authorization
 
-In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
 
 ### Path Parameters
 
@@ -274,7 +276,7 @@ curl https://api.algorithmia.com/v1/admin/scms/:scm_id \
 
 ### Authorization
 
-In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
 
 ### Path Parameters
 
