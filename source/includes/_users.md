@@ -44,11 +44,11 @@ curl https://api.algorithmia.com/v1/users \
 # Creating a user is not yet supported by our Python client library.
 ```
 
-`POST /v1/users`
+`POST /users`
 
 ### Authorization
 
-In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
 
 ### Payload Parameters
 
@@ -58,7 +58,7 @@ In order to interact with this endpoint you must provide an admin API key. Visit
 |`company_role`|String|The user's occupation.|
 |`email`|String|*Required*. The user's email address. Must not already be in use by another user on the platform.|
 |`fullname`|String|*Required*. The user's full name.|
-|`username`|String|*Required*. The unique identifier for this user. Only letters, numbers, and underscores are permitted.|
+|`username`|String|*Required*. The unique identifier for this user. Only letters, numbers, and underscores are permitted, and must begin with a letter.|
 
 ### Returns
 
@@ -91,13 +91,13 @@ curl https://api.algorithmia.com/v1/users \
 
 ### Authorization
 
-In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
 
 ### Query Parameters
 
 |Parameter|Type|Description|
 |-|-|-|
-|`limit`|Number|The maximum number of items to return in the response. Defaults to 10.|
+|`limit`|Number|The maximum number of items to return in the response. Defaults to 50.|
 |`marker`|String|Used for paginating results from previous queries. See the [versioning section](#versioning) above.|
 
 ### Returns
@@ -126,6 +126,27 @@ A collection of [user objects](#the-user-object), otherwise an [error](#errors).
 |`next_link`|String|A link to the next page of results, if more results exist.|
 |`results`|Array|A list of one or more [user objects](#the-user-object).|
 
+## Get a user
+
+```shell
+curl https://api.algorithmia.com/v1/users/:username \
+  -H 'Authorization: Simple ADMIN_API_KEY'
+```
+
+```python
+# Retrieving a user is not yet supported by our Python client library.
+```
+
+`GET /users/:username`
+
+### Authorization
+
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
+
+### Returns
+
+A single [user object](#the-user-object) upon success, otherwise an [error](#errors).
+
 ## Update a user
 
 ```shell
@@ -150,7 +171,7 @@ curl https://api.algorithmia.com/v1/users/example_user \
 
 ### Authorization
 
-In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
 
 ### Path Parameters
 
@@ -196,11 +217,11 @@ curl https://api.algorithmia.com/v1/users/:username \
 # Deleting a user is not yet supported by our Python client library.
 ```
 
-`DELETE https://api.algorithmia.com/v1/users/:username`
+`DELETE /users/:username`
 
 ### Authorization
 
-In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys) to learn more.
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
 
 ### Returns
 
