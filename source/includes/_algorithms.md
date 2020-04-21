@@ -28,7 +28,7 @@
   "settings": {
     "algorithm_callability": "private",
     "environment": "cpu",
-    "language": "java",
+    "language": "python3-1",
     "license": "apl",
     "network_access": "full",
     "pipeline_enabled": true,
@@ -108,7 +108,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username \
     "name": "my_first_algorithm",
     "settings": {
       "environment": "cpu",
-      "language": "java",
+      "language": "python3-1",
       "license": "apl",
       "network_access": "full",
       "pipeline_enabled": true,
@@ -129,7 +129,7 @@ algo.create(
     "label": "My First Algorithm"
   },
   settings = {
-    "language": "java",
+    "language": "python3-1",
     "source_visibility": "closed",
     "license": "apl",
     "network_access": "full",
@@ -175,7 +175,7 @@ algo.create(
   "settings": {
     "algorithm_callability": "private",
     "source_visibility": "closed",
-    "language": "java",
+    "language": "python3-1",
     "environment": "cpu",
     "license": "apl",
     "network_access": "full",
@@ -319,7 +319,7 @@ print(algo.info()) # Prints an algorithm object
   "settings": {
     "algorithm_callability": "private",
     "source_visibility": "closed",
-    "language": "java",
+    "language": "python3-1",
     "environment": "cpu",
     "license": "apl",
     "network_access": "full",
@@ -415,7 +415,7 @@ algo.update(
   "settings": {
     "algorithm_callability": "private",
     "source_visibility": "closed",
-    "language": "java",
+    "language": "python3-1",
     "environment": "gpu",
     "license": "apl",
     "network_access": "full",
