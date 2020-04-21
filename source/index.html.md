@@ -181,3 +181,23 @@ If there are no additional results for a particular collection query, both the `
 The latest version of the Algorithmia API is `v1`, and endpoints supported in this version fall under the `/v1` path prefix.
 
 Algorithmia will update this path prefix in the future should we release a new version of the Algorithmia API.
+
+## Client Libraries
+
+Algorithmia offers client libraries in several languages. While nearly all client libraries offer the ability to invoke algorithms and manage data connectors, we recommend using our Python client library as it exposes additional functionality for managing algorithms.
+
+|Language|Client Library|Documentation|
+|-|-|-|
+|C#/.NET|[algorithmia-c-sharp](https://github.com/algorithmiaio/algorithmia-c-sharp)|[Guide](/developers/clients/c_sharp_net)|
+|CLI|[algorithmia-cli](https://github.com/algorithmiaio/algorithmia-cli)|[Guide](/developers/clients/cli)|
+|Go|[algorithmia-go](https://github.com/algorithmiaio/algorithmia-go)|[Guide](/developers/clients/go)|
+|Java|[algorithmia-java](https://github.com/algorithmiaio/algorithmia-java)|[Guide](/developers/clients/java)|
+|JavaScript|[algorithmia-js](https://github.com/algorithmiaio/algorithmia-js)|[Guide](/developers/clients/javascript)|
+|Node.js|[algorithmia-nodejs](https://github.com/algorithmiaio/algorithmia-nodejs)|[Guide](/developers/clients/node)|
+|PHP|[algorithmia-php](https://github.com/algorithmiaio/algorithmia-php)|[Guide](/developers/clients/php)|
+|Python|[algorithmia-python](https://github.com/algorithmiaio/algorithmia-python)|[Guide](/developers/clients/python)|
+|R|[algorithmia-r](https://github.com/algorithmiaio/algorithmia-r)|[Guide](/developers/clients/r)|
+|Ruby|[algorithmia-ruby](https://github.com/algorithmiaio/algorithmia-ruby)|[Guide](/developers/clients/ruby)|
+|Rust|[algorithmia-rust](https://github.com/algorithmiaio/algorithmia-rust)|[Guide](/developers/clients/rust)|
+|Scala|[algorithmia-scala](https://github.com/algorithmiaio/algorithmia-scala)|[Guide](/developers/clients/scala)|
+|Swift|[algorithmia-swift](https://github.com/algorithmiaio/algorithmia-swift)|[Guide](/developers/clients/swift)|
