@@ -49,7 +49,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds \
 
 |Parameter|Type|Description|
 |-|-|-|
-|`limit`|Number|The maximum number of items to return in the response. Defaults to 10.|
+|`limit`|Number|The maximum number of items to return in the response. Defaults to 50.|
 |`marker`|String|Used for paginating results from previous queries. See the [pagination section](#pagination) above.|
 
 ### Returns
@@ -115,7 +115,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds/:build
 }
 ```
 
-An [algorithm build](#the-algorithm-build-object) object.
+An [algorithm build](#the-algorithm-build-object) object, otherwise an [error](#errors).
 
 ## Get algorithm build logs
 
@@ -144,7 +144,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds/:build
 }
 ```
 
-An object containing the logs for an algorithm build, otherwise an [error](#errors). Note that, until a build's `status` attribute transitions to either `succeeded` or `failed`, logs will not be available, and requests logs for a build will result in a 404 response.
+An object containing the logs for an algorithm build, otherwise an [error](#errors). Note that, until a build's `status` attribute transitions to either `succeeded` or `failed`, logs will not be available, and requesting logs for a build will result in a 404 response.
 
 |Attribute|Type|Description|
 |-|-|-|

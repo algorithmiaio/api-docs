@@ -8,6 +8,7 @@
     "build_id": "j85f8087db281388d79fb224853864da73bff865",
     "commit_sha": "j85f8087db281388d79fb224853864da73bff865",
     "finished_at": "2019-05-07T21:16:43.121Z",
+    "resource_type": "algorithm_build",
     "started_at": "2019-05-07T21:16:40.148Z",
     "status": "succeeded",
     "version_info": {
@@ -119,6 +120,7 @@ You may only publish the most recent compiled version of an algorithm. If the mo
     "build_id": "j85f8087db281388d79fb224853864da73bff865",
     "commit_sha": "j85f8087db281388d79fb224853864da73bff865",
     "finished_at": "2019-05-07T21:16:43.121Z",
+    "resource_type": "algorithm_build",
     "started_at": "2019-05-07T21:16:40.148Z",
     "status": "succeeded",
     "version_info": {
@@ -160,7 +162,7 @@ You may only publish the most recent compiled version of an algorithm. If the mo
 }
 ```
 
-Returns an [algorithm object](#the-algorithm-object) representing the published version, with its `version_info.semantic_version` property having been incremented appropriately from the previous published version (if any).
+Returns an [algorithm object](#the-algorithm-object) representing the published version, with its `version_info.semantic_version` property having been incremented appropriately from the previous published version (if any). If the request was unsuccessful, and [error](#errors) will be returned.
 
 ## List algorithm versions
 
@@ -195,7 +197,7 @@ print(algo.versions(limit=10))
 |Parameter|Type|Description|
 |-|-|-|
 |`callable`|Boolean|Whether to return only public or private algorithm versions. `true` maps to algorithm versions with `algorithm_callability` set to `public`, whereas `false` maps to `private`. Omitting this parameter results in versions with both `public` and `private` being returned.|
-|`limit`|Number|The maximum number of items to return in the response. Defaults to 10.|
+|`limit`|Number|The maximum number of items to return in the response. Defaults to 50.|
 |`published`|Boolean|Whether to return only versions that have been published (e.g. have an associated semantic version). `true` will return only published versions, and `false` will return only unpublished versions. Omitting this parameter results in both published and unpublished versions being returned.|
 |`marker`|String|Used for paginating results from previous queries. See the [versioning section](#versioning) above.|
 

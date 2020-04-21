@@ -51,6 +51,8 @@ client = Algorithmia.client('API_KEY')
 
 If you are interacting directly with Algorithmia's REST API, provide your API key via an `Authorization` header with the prefix `Simple`. If you are using one of our client libraries, follow the instructions specific to that client library. This holds true for both standard and admin API keys. Learn more about API keys [in our devcenter](/developers/platform/customizing-api-keys).
 
+Ensure that you [enable algorithm management capabilities](/developers/algorithm-development/algorithm-management) for your API key if you wish to create, edit, or delete algorithms.
+
 <aside class="notice">
 Ensure that you replace <code>API_KEY</code> with your personal API key.
 </aside>
@@ -65,7 +67,7 @@ Ensure that you replace <code>API_KEY</code> with your personal API key.
 }
 ```
 
-Should an error occur while fulfilling a request, you will be returned an object possessing the following attributes. 
+Should an error occur while fulfilling a request, you will be returned an object possessing the following attributes: 
 
 |Attribute|Type|Description|
 |-|-|-|

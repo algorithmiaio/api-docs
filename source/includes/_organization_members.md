@@ -45,7 +45,7 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 
 |Parameter|Type|Description|
 |-|-|-|
-|`limit`|Number|The maximum number of items to return in the response. Defaults to 10.|
+|`limit`|Number|The maximum number of items to return in the response. Defaults to 50.|
 |`marker`|String|Used for paginating results from previous queries. See the [pagination section](#pagination) above.|
 
 ### Returns
