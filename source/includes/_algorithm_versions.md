@@ -281,7 +281,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/versions/:git
 |-|-|-|
 |`username`|String|*Required*. The username of the user or organization that owns the algorithm.|
 |`algoname`|String|*Required*. The name of the algorithm you wish to retrieve a version for.|
-|`git_sha`|String|*Required*. The Git hash of the specific version you to retrieve (e.g. `version_info.git_hash`).|
+|`git_hash`|String|*Required*. The Git hash of the specific version you to retrieve (e.g. `version_info.git_hash`).|
 
 ### Returns
 

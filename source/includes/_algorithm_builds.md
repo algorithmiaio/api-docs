@@ -21,6 +21,7 @@
 |`build_id`|String|The unique identifier for this algorithm build.|
 |`commit_sha`|String|The specific Git commit SHA that was built for this algorithm.|
 |`finished_at`|String|The ISO 8601 datetime at which the build completed.|
+|`resource_type`|String|Set to `algorithm_build` for algorithm build objects.|
 |`started_at`|String|The ISO 8601 datetime at which the build began.|
 |`status`|String|One of `failed`, `in-progress`, or `succeeded`.|
 |`version_info.semantic_version`|String|The semantic version that this build was published as. Absent unless the build has been published as a public or private version.|
@@ -97,7 +98,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds/:build
 |-|-|-|
 |`username`|String|*Required*. The username of the user or organization that owns the algorithm.|
 |`algoname`|String|*Required*. The name of the algorithm you wish to retrieve a build for.|
-|`build_id`|String|*Required*. The ID of the specific build you wish to retrive.|
+|`build_id`|String|*Required*. The ID of the specific build you wish to retrieve.|
 
 ### Returns
 
@@ -134,7 +135,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/builds/:build
 |-|-|-|
 |`username`|String|*Required*. The username of the user or organization that owns the algorithm.|
 |`algoname`|String|*Required*. The name of the algorithm you wish to retrieve a build for.|
-|`build_id`|String|*Required*. The ID of the specific build you wish to retrive logs for.|
+|`build_id`|String|*Required*. The ID of the specific build you wish to retrieve logs for.|
 
 ### Returns
 

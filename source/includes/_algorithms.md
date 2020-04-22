@@ -283,7 +283,7 @@ Depending on the configuration of the `output` query parameter, you may either r
 |`metadata.duration`|Number|The duration of the algorithm invocation, in seconds.|
 |`metadata.stdout`|String|The data piped to the algorithms `stdout` stream during execution. Only provided if the `stdout` query parameter was set to `true` and the caller is the algorithm's owner.|
 |`request_id`|String|The unique ID for the invocation request.|
-|`result`|String or Object|The result of the algorithm invocation if `output` was not set to either `void` or `raw`. Returned as an object if `metadata.content_type` is set to `json`, or as a Base64-encoded string if `metadata.content_type` is set to `binary`.|
+|`result`|String or Object|The result of the algorithm invocation if `output` was not set to either `void` or `raw`. Returned as a string if `metadata.content_type` is set to `text`, a JSON object if `metadata.content_type` is set to `json`, or as a Base64-encoded string if `metadata.content_type` is set to `binary`.|
 
 ## Get an algorithm
 
@@ -405,7 +405,7 @@ algo.update(
 |`settings.network_access`|String|*Required*. Specifies whether the algorithm will have access to the public internet upon execution. Choose from `full` or `isolated`.|
 |`settings.package_set`|String|*Required if `settings.package_set` was previously specified.* Specifies the package set that should define the algorithm's build and runtime environments.|
 |`settings.pipeline_enabled`|Boolean|*Required*. Specifies whether this algorithm is allowed to call other algorithms on the platform.|
-|`settings.source_visibility`|String|*Required*. Specifies whether the source code for this algorithm will be viewable by any user of the platform. If creating an algorithm with an external repository host, such as GitHub, determines whether the repo is created as public or private. Choose from `open` or `closed`.|
+|`settings.source_visibility`|String|*Required*. Specifies whether the source code for this algorithm will be viewable by any user of the platform. Note that, if your algorithm's source code is hosted externally to the platform, updating this value will not result in changes to the backing repository's visibility. For example, updating this value for an algorithm will not change a GitHub repository from private to public or vice-versa.|
 
 ### Returns
 

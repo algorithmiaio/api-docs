@@ -54,7 +54,7 @@ If you are interacting directly with Algorithmia's REST API, provide your API ke
 Ensure that you [enable algorithm management capabilities](/developers/algorithm-development/algorithm-management) for your API key if you wish to create, edit, or delete algorithms.
 
 <aside class="notice">
-Ensure that you replace <code>API_KEY</code> with your personal API key.
+If using code from one of the samples provided in this documentation, ensure that you replace <code>API_KEY</code> with your personal API key.
 </aside>
 
 ## Errors
@@ -71,8 +71,8 @@ Should an error occur while fulfilling a request, you will be returned an object
 
 |Attribute|Type|Description|
 |-|-|-|
-|`id`|String|An optional identifier for the error that can be provided to Algorithmia support to aid debugging.|
-|`code`|Number|The specific error code pertaining to the error. See the expandable section below for details about available error codes.|
+|`id`|String|An optional identifier for the error that can be provided to Algorithmia customer support to aid debugging.|
+|`code`|Number|The specific code pertaining to the error. See the expandable section below for details about available error codes.|
 |`message`|String|A human-readable explanation of the error's cause.|
 
 The full list of error codes can be viewed by expanding the list below:
