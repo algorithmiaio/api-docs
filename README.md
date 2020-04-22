@@ -1,82 +1,58 @@
-[![Run Status](https://api.shippable.com/projects/56709c711895ca4474666740/badge?branch=master)](https://app.shippable.com/projects/56709c711895ca4474666740)
+Algorithmia API Documentation
+=============================
 
-API Docs
-========
+This repository houses the documentation for Algorithmia's API.
 
-Welcome to the repository for Algorithmia's API. Here you will find the API reference, as well as some documentation on getting started with the API and basic set up.
+## Getting Started
 
-These docs are built on Slate. Learn more over at [the official repo](https://github.com/tripit/slate).
+### Local Development
 
-Running locally
-------------------------------
-
-### Prerequisites
-
-You're going to need:
-
- - **Linux or OS X** — Windows may work, but is unsupported.
- - **Ruby, version 1.9.3 or newer**
- - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
-
-### Getting Set Up
-
- 1. Fork this repository on Github.
- 2. Clone *your forked repository* with `git clone https://github.com/YOURUSERNAME/api-docs.git`
- 3. `cd api-docs`
- 4. Install all dependencies: `bundle install`. If you are having trouble with some of the gems, try running `bundle update`, then run `bundle install` again.
- 5. Start the test server: `rake serve`
-
-You can now see the docs at <http://localhost:4567>. Whoa! That was fast!
-
-If you are making any changes to the stylesheets or javascript, run `rake build` to re-build the project so you can see your changes.
-
-### How to add new files
-
-To add a new file and have it included in the navigation, be sure to add it to the `includes:` field of the front-matter in `index.rb`. Note that while the files are prefaced with an underscore, here in the front-matter, the underscore is unnecessary. You also do not need to include the file extension.
+First, ensure you have Ruby 2.3.1 or later installed on your system. Then, with the repository as your active working directory, run the following to install necessary packages:
 
 ```
-...
-includes:
-  - introduction
-  - authentication
-  - apispecification
-  - data
-  - dataapispecification
-  - clients/cli
-...
-
+bundle install
 ```
 
+ If Ruby is already installed, but the `bundle install` command doesn't work, just run `gem install bundler` and try the above command once more.
 
-### Language Tabs
-
-Adding a new language to the docs is easy! To get a new language tab, simply add the language to the front-matter in `index.rb`. 
+Then run the following to fire up a development server:
 
 ```
-language_tabs:
-  - shell: cURL
-  - cli: CLI
-  - python
-  - java
-  - scala
-  - javascript
-  - nodejs
+bundle exec middleman server
 ```
 
-Need to add a custom lexer? Add it in `custom_lexers.rb`.
+And voila! Your development server is available at `localhost:4567`, and will automatically update with any changes you make.
 
-If you add a new language, be sure to add code samples for each snippet that appears in other languages! The docs are only complete when there is language parity.
+### Building for Production
 
-Contributing
--------------
+To build the static assets for this documentation, simply run:
 
-First, check out a new branch and make any changes on that branch. When you are ready, make a pull request to this repo and we will review the changes. Be sure to describe the changes, attach screenshots of any cosmetic changes, and if applicable, link to the open issue.
+```
+bundle exec middleman build --clean
+```
 
+A `build` directory will be created that contains all of the production-ready static assets for this documentation.
 
-Need Help? Found a bug?
-----------------
+## Contributing
 
+Want to add documentation for a new API resource or endpoint? Huzzah! Follow this checklist to ensure you add all of the necessary information.
 
-If you find a bug, can't follow the documentation or have a question – [submit an issue!](https://github.com/algorithmiaio/api-docs/issues)
+### If you're adding a new resource:
 
-We will respond to you or reach out for more information as soon as possible. And, of course, feel free to submit pull requests with bug fixes or changes.
+- First, create a new file in `source/includes` specifically for your resource. Title it `_${resource_name}`, e.g. `_users.md`, `_organization_members.md`, etc...
+- Add the name of this file to the `includes` section at the top of `index.html.md` file. Alphabetical ordering please!
+- Within your new file, add a section to the top that fully describes the resource and the properties it might possess. For an example, take a look at the `_algorithms.md` file: it possesses a section titled "The algorithm object" which describes every property an `algorithm` object might possess.
+- For each property, provide the name of the property (for nested properties use dot notation, e.g. `obj1.property`), the data type, and a description of the property.
+- For each endpoint that can be used to modify a resource type, follow the instructions below on how to add an endpoint.
+
+### If you're adding a new endpoint for a resource:
+
+- Find the file in `source/includes` for the resource you wish to add an endpoint for. If one doesn't exist, take a look at the section above on adding a new resource.
+- Endpoints are ordered by CRUD: create, read, update, then delete. If your endpoint doesn't fit one of those categories, use your best judgement to determine where it should fit within the file, and try to observe conventions used in other resource files.
+- Add the following to your description of the new endpoint:
+  - Examples for cURL and Python.
+  - The REST API endpoint backing the endpoint, e.g. `PUT /algorithms/:username/:algoname`.
+  - A description of any and all inputs, such as path and query parameters and the structure a request body should take (if one is required).
+  - A description of what will be returned upon success or failure, and an example for the success case.
+
+When in doubt, take a look at how other endpoints have been documented, and leverage existing conventions. If you need to alert a user to sharp edge, or simply point out a nuance, leverage an `aside` element (check out the examples in [the Slate demo](https://slatedocs.github.io/slate/#introduction)).
