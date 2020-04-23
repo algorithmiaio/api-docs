@@ -4,6 +4,7 @@
 
 ```json
 {
+  "id":"123e4567-e89b-12d3-a456-426655440000",
   "company_name": "Algorithmia",
   "company_role": "Example User",
   "email": "me@example.com",
@@ -16,13 +17,14 @@
 
 |Attribute|Type|Description|
 |-|-|-|
+|`id`|String|The unique identifier for this user.|
 |`company_name`|String|The name of the user's employer.|
 |`company_role`|String|The user's occupation.|
 |`email`|String|The user's email address.|
 |`fullname`|String|The user's full name.|
 |`resource_type`|String|Always set to `user` for users.
 |`self_link`|String|The URL that can be used to retrieve this specific user via the REST API.|
-|`username`|String|The unique identifier for this user.|
+|`username`|String|The unique alias for this user.|
 
 ## Create a user
 
@@ -64,6 +66,7 @@ In order to interact with this endpoint you must provide an admin API key. Visit
 
 ```json
 {
+  "id":"123e4567-e89b-12d3-a456-426655440000",
   "company_name": "Algorithmia",
   "company_role": "Example User",
   "email": "me@example.com",
@@ -107,6 +110,7 @@ In order to interact with this endpoint you must provide an admin API key. Visit
   "marker": null,
   "next_link": null,
   "results": [{
+    "id":"123e4567-e89b-12d3-a456-426655440000",
     "company_name": "Algorithmia",
     "company_role": "Example User",
     "email": "me@example.com",
@@ -199,6 +203,7 @@ In order to interact with this endpoint you must provide an admin API key. Visit
 
 ```json
 {
+  "id":"123e4567-e89b-12d3-a456-426655440000",
   "company_name": "Algorithmia",
   "company_role": "Example User",
   "email": "me@example.com",
