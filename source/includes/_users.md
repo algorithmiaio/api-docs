@@ -4,7 +4,7 @@
 
 ```json
 {
-  "id":"123e4567-e89b-12d3-a456-426655440000",
+  "id": "123e4567-e89b-12d3-a456-426655440000",
   "company_name": "Algorithmia",
   "company_role": "Example User",
   "email": "me@example.com",
@@ -66,7 +66,7 @@ In order to interact with this endpoint you must provide an admin API key. Visit
 
 ```json
 {
-  "id":"123e4567-e89b-12d3-a456-426655440000",
+  "id": "123e4567-e89b-12d3-a456-426655440000",
   "company_name": "Algorithmia",
   "company_role": "Example User",
   "email": "me@example.com",
@@ -110,7 +110,7 @@ In order to interact with this endpoint you must provide an admin API key. Visit
   "marker": null,
   "next_link": null,
   "results": [{
-    "id":"123e4567-e89b-12d3-a456-426655440000",
+    "id": "123e4567-e89b-12d3-a456-426655440000",
     "company_name": "Algorithmia",
     "company_role": "Example User",
     "email": "me@example.com",
@@ -203,7 +203,7 @@ In order to interact with this endpoint you must provide an admin API key. Visit
 
 ```json
 {
-  "id":"123e4567-e89b-12d3-a456-426655440000",
+  "id": "123e4567-e89b-12d3-a456-426655440000",
   "company_name": "Algorithmia",
   "company_role": "Example User",
   "email": "me@example.com",
