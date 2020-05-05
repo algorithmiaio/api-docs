@@ -233,7 +233,7 @@ print(result.metadata)  # Metadata(content_type='text',duration=0.0002127)
 |-|-|-|
 |`username`|String|*Required*. The username of the user or organization that owns the algorithm.|
 |`algoname`|String|*Required*. The name of the algorithm you wish to invoke.|
-|`version`|String|The specific version of the algorithm you wish to invoke. The following are valid values for this parameter:<br><br>- `latestPrivate`: Resolves to the latest version you have published privately.<br>-`<Git SHA>`: Resolves to the built version of your algorithm for a specific Git SHA. Useful for testing an unpublished algorithm build.<br>- `1.1.1`: Fully specified semantic version.<br>- `1.2.*`: Specified to the minor level. Will resolve to the latest publicly published version with a minor version of 1.2<br>- `1.*`: Specified to a major version. Will resolve to the latest publicly published version with major version `1`.<br><br>Defaults to latest publicly published version of your algorithm.|
+|`version`|String|The specific version of the algorithm you wish to invoke. The following are valid values for this parameter:<br><br>- `latestPrivate`: Resolves to the latest version you have published privately.<br>-`<Git SHA>`: Resolves to the built version of your algorithm for a specific Git SHA. Useful for testing an unpublished algorithm build.<br>- `1.1.1`: Fully specified semantic version.<br>- `1.2.*`: Specified to the minor level. Will resolve to the latest publicly published version with a minor version of 1.2<br><br>Defaults to latest publicly published version of your algorithm.|
 
 ### Query Parameters
 
