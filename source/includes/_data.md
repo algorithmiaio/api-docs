@@ -430,3 +430,53 @@ A JSON payload with an array of collections objects. Here is a description of ea
 |`acl.read_a`|String|Collection's acl for algorithm.|
 |`location`|String|Actual location of the collection's storage on the backing drive.|
 
+## Get hosted data collections owned by the user
+
+```shell
+curl https://api.algorithmia.com/v1/hostedData \
+  -X GET \
+  -H 'Authorization: Simple API_KEY'
+```
+
+```python
+# Getting user's hosted data collections is not yet supported in python
+```
+
+`GET /hostedData`
+
+### Returns
+
+```json
+{
+    "result": [
+        {
+            "id": "a4be30b0-f3fc-46ba-abc2-2ff690489573",
+            "object_id": "collec-2ee51154-e483-4d7e-9af3-c357581d5422",
+            "collection_name": "Collection",
+            "username": "calling_user",
+            "acl": {
+                "read_w": false,
+                "read_g": false,
+                "read_u": true,
+                "read_a": true
+            },
+            "location": "storage_location"
+        }
+    ]
+}
+```
+
+A JSON payload with an array of collections objects. Here is a description of each collection object 
+
+|Attribute|Type|Description|
+|-|-|-|
+|`id`|String|Unique immutable id of the hosted collection|
+|`object_id`|String|Deprecated unique immutable id of the hosted collection|
+|`collection_name`|String|The name of the hosted data collection.|
+|`username`|String|The name of the owner of the hosted data collection.|
+|`acl.read_w`|String|Collection's acl for world.|
+|`acl.read_g`|String|Collection's acl for group.|
+|`acl.read_u`|String|Collection's acl for user.|
+|`acl.read_a`|String|Collection's acl for algorithm.|
+|`location`|String|Actual location of the collection's storage on the backing drive.|
+
