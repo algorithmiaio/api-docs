@@ -797,7 +797,7 @@ The updated [algorithm object](#the-algorithm-object) upon success, otherwise an
 ## Compile an algorithm by UUID
 
 ```shell
-curl https://api.algorithmia.com/v1/algorithms/:algorithmId \
+curl https://api.algorithmia.com/v1/algorithms/:algorithmId/compile \
   -X POST
   -H 'Authorization: Simple API_KEY'
 ```
@@ -806,7 +806,7 @@ curl https://api.algorithmia.com/v1/algorithms/:algorithmId \
 # Compilation of algorithms via UUID is not yet supported in python
 ```
 
-`POST /algorithms/:algorithmId`
+`POST /algorithms/:algorithmId/compile`
 
 ### Path Parameters
 
@@ -852,27 +852,3 @@ curl https://api.algorithmia.com/v1/algorithms/:algorithmId \
 ```
 
 An [algorithm object](#the-algorithm-object) upon successful compilation, otherwise an [error](#errors). Note that the values contained within the `compilation` object will have been updated.
-
-## Delete an algorithm by UUID
-
-```shell
-curl https://api.algorithmia.com/v1/algorithms/:algorithmId \
-  -X DELETE \
-  -H 'Authorization: Simple API_KEY'
-```
-
-```python
-# Deleting an algorithm is not yet supported by our Python client library.
-```
-
-`DELETE /algorithms/:algorithmId`
-
-### Path Parameters
-
-|Parameter|Type|Description|
-|-|-|-|
-|`algorithmId`|String|*Required*. Immutable Unique identifier of the algorithm.|
-
-### Returns 
-
-An empty response upon success, otherwise an [error](#errors).
