@@ -142,6 +142,9 @@ exampleFile = client.file("data://demo/example_collection/example.png").getFile(
 # Get file's contents as a string
 exampleText = client.file("data://demo/example_collection/example.txt").getString()
 
+# Get local file's contents as a string
+exampleText = client.file("file://example.txt").getString()
+
 # Get file's contents as JSON
 exampleJson =  client.file("data://demo/example_collection/example.txt").getJson()
 
