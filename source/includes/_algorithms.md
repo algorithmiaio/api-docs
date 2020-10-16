@@ -540,7 +540,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/scm/status \
 # Obtaining an algorithm's SCM status is not yet supported via our Python client library.
 ```
 
-`GET /algorithms/:username/:algoname/scm/status`
+`GET /v1/algorithms/:username/:algoname/scm/status`
 
 ### Path Parameters
 
@@ -553,10 +553,7 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/scm/status \
 
 ```json
 {
-    "scm_connection_status": "active",
-    "repository_public_deploy_key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCr2Hmsh5aTeHab+zMARTWpfUGk8Dfff0IicY7L8wMuQETyTSHcphN7CdJtCl3/nk45cz+DqH3tn1lOPXGPJghXYajtWJwwsGt5JS1y/gRiYvx67yYEy6RrSVV6JeMpbWasdfhjMdS533fjOnsFSkZPKv3GeVT5uOM4r29pjpTfQbZxC//iA0sv4Y/wECGOYnJWCmc6eU1faOaocsXW4pasdtAfC9D//eDfVbryBKisaStWPO5a5x1y45H1+0Ne4Rq5NV5BLaiISAP7L3i9A9O9mgddW3SufEZ+dt8cP8QmDgl2K39G7zfqD2TNhAHd7ToU8/7n9dp",
-    "repository_webhook_secret": "8f63faa1-8e61-4272-8335-1aafb4a2b9289",
-    "repository_webhook_url": "http://api.algorithmia.com/v1/algorithms/:username/:algoname/scm/webhook"
+    "scm_connection_status": "active"
 }
 ```
 
