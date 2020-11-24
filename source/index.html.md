@@ -9,6 +9,7 @@ includes:
   - algorithm_builds
   - algorithm_versions
   - data
+  - event_listener
   - organizations
   - organization_members
   - scms
