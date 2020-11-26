@@ -4,6 +4,8 @@
 
 ```json
 {
+  "id": "16037c0e-069a-4e39-ae83-8e3a156ef096",
+  "listenerOwner": "me",
   "sourceType": "Kafka",
   "sourceURI": "ec2-34-221-191-143.us-west-2.compute.amazonaws.com:9092",
   "algoName": "test-algorithm",
@@ -11,16 +13,38 @@
   "algoVersion": "1.0.0",
   "credentials": "{\"username\": \"SASL-username\",\"password\": \"SASL-password\", \"topic\": \"test-topic\", \"certificate\": \"-----BEGIN CERTIFICATE-----\\r\\nMIIDuTCCAqGgAwIBAgIJALFQWXZx8OQuMA0GCSqGSIb3DQEBCwUAMHMxHzAdBgNV\\r\\nBAMMFmNhMS50ZXN0Lmh1c3NlaW5qb2UuaW8xDDAKBgNVBAsMA0RldjETMBEGA1UE\\r\\nCgwKSHVzc2VpbkpvZTESMBAGA1UEBwwJTWVsYm91cm5lMQwwCgYDVQQIDANWSUMx\\r\\nCzAJBgNVBAYTAkFVMB4XDTIwMTEyMzE4NTY0OVoXDTIxMTEyMzE4NTY0OVowczEf\\r\\nMB0GA1UEAwwWY2ExLnRlc3QuaHVzc2VpbmpvZS5pbzEMMAoGA1UECwwDRGV2MRMw\\r\\nEQYDVQQKDApIdXNzZWluSm9lMRIwEAYDVQQHDAlNZWxib3VybmUxDDAKBgNVBAgM\\r\\nA1ZJQzELMAkGA1UEBhMCQVUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB\\r\\nAQCeDV19eR+ZavTQCRVAnK\\/LAq80WPORYScLZWIPXwHl4QnIqbc7N7Lgt4rYPN20\\r\\njGEnu+FeblahCBPHer36ebKQLv0i4uJiuJwsiIZs1Bijy0td6JeetlHRPC7eUXrH\\r\\ngwOimbeQikXRc5xa2wrsr3DSLcrHGOvy6m+P+1NJu0qx6y\\/FlaOR0veFbko+SqL0\\r\\n7bxtn1ws8mRfgBj7ykKkm\\/GISuDVhrUV6KXGVZ6wNy5emlLTWr20iG+So+TzFCU2\\r\\nmZh7YJ7VV0g6R1xRIG3x0dlGd2St\\/feYpCDesoek56gWf6axZOHbOwiXX6JZRAUD\\r\\ngseUDv+pMf8GE5HwKkrRzV0tAgMBAAGjUDBOMB0GA1UdDgQWBBQiHrM5EwPei3SW\\r\\nhJE8uQUc2J7HNjAfBgNVHSMEGDAWgBQiHrM5EwPei3SWhJE8uQUc2J7HNjAMBgNV\\r\\nHRMEBTADAQH\\/MA0GCSqGSIb3DQEBCwUAA4IBAQBsdDqaHp\\/XnL6C33Yfs1+RA0h1\\r\\nupHAqx4Zd\\/KJctiSAshOfqzANP1tItIj8QXeuBCxuSzUdgzkQVho3Q2ryZHXd80Q\\r\\nnHQFJZ1kxLBblQgjv4oz2CaFM4NbJ0L0eKcbv+OhIp4CH+0w+GjSWNNsTd9pknQ1\\r\\nT1CqGt0GYBD0cZA8+OwaHfw\\/kHm81onn7JLHeMxDb4bP7ATUZ9EPtJD7FNiGDsZY\\r\\nvYEVbEOctPW5bnAksXWpFG\\/v\\/jtOsEXrgoz4GMzrYdLlOPhy06rekDUxwJebCzor\\r\\nAmBJ4EihAQ4Kjc1wNxCMx4VpSCtPjfsLp0WppqObDjPmgI+gUHVLrS0yTBXw\\r\\n-----END CERTIFICATE-----\"}"
 }
-
-
-    sourceType: String,
-    sourceURI: String,
-    algoName: String,
-    algoOwner: String,
-    algoVersion: Option[String],
-    credentials: String
-
 ```
+
+## Create an event listener
+
+```shell
+curl https://api.algorithmia.com/v1/users/:username/event-listeners \
+  -X POST \
+  -H 'Authorization: Simple ADMIN_API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{
+"sourceType": "Kafka",
+"sourceURI": "ec2-34-221-191-143.us-west-2.compute.amazonaws.com:9092",
+"algoName": "test-algorithm",
+"algoOwner": "algo-owner",
+"algoVersion": "1.0.0",
+"credentials": "{\"username\": \"SASL-username\",\"password\": \"SASL-password\", \"topic\": \"test-topic\", \"certificate\": \"-----BEGIN CERTIFICATE-----\\r\\nMIIDuTCCAqGgAwIBAgIJALFQWXZx8OQuMA0GCSqGSIb3DQEBCwUAMHMxHzAdBgNV\\r\\nBAMMFmNhMS50ZXN0Lmh1c3NlaW5qb2UuaW8xDDAKBgNVBAsMA0RldjETMBEGA1UE\\r\\nCgwKSHVzc2VpbkpvZTESMBAGA1UEBwwJTWVsYm91cm5lMQwwCgYDVQQIDANWSUMx\\r\\nCzAJBgNVBAYTAkFVMB4XDTIwMTEyMzE4NTY0OVoXDTIxMTEyMzE4NTY0OVowczEf\\r\\nMB0GA1UEAwwWY2ExLnRlc3QuaHVzc2VpbmpvZS5pbzEMMAoGA1UECwwDRGV2MRMw\\r\\nEQYDVQQKDApIdXNzZWluSm9lMRIwEAYDVQQHDAlNZWxib3VybmUxDDAKBgNVBAgM\\r\\nA1ZJQzELMAkGA1UEBhMCQVUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB\\r\\nAQCeDV19eR+ZavTQCRVAnK\\/LAq80WPORYScLZWIPXwHl4QnIqbc7N7Lgt4rYPN20\\r\\njGEnu+FeblahCBPHer36ebKQLv0i4uJiuJwsiIZs1Bijy0td6JeetlHRPC7eUXrH\\r\\ngwOimbeQikXRc5xa2wrsr3DSLcrHGOvy6m+P+1NJu0qx6y\\/FlaOR0veFbko+SqL0\\r\\n7bxtn1ws8mRfgBj7ykKkm\\/GISuDVhrUV6KXGVZ6wNy5emlLTWr20iG+So+TzFCU2\\r\\nmZh7YJ7VV0g6R1xRIG3x0dlGd2St\\/feYpCDesoek56gWf6axZOHbOwiXX6JZRAUD\\r\\ngseUDv+pMf8GE5HwKkrRzV0tAgMBAAGjUDBOMB0GA1UdDgQWBBQiHrM5EwPei3SW\\r\\nhJE8uQUc2J7HNjAfBgNVHSMEGDAWgBQiHrM5EwPei3SWhJE8uQUc2J7HNjAMBgNV\\r\\nHRMEBTADAQH\\/MA0GCSqGSIb3DQEBCwUAA4IBAQBsdDqaHp\\/XnL6C33Yfs1+RA0h1\\r\\nupHAqx4Zd\\/KJctiSAshOfqzANP1tItIj8QXeuBCxuSzUdgzkQVho3Q2ryZHXd80Q\\r\\nnHQFJZ1kxLBblQgjv4oz2CaFM4NbJ0L0eKcbv+OhIp4CH+0w+GjSWNNsTd9pknQ1\\r\\nT1CqGt0GYBD0cZA8+OwaHfw\\/kHm81onn7JLHeMxDb4bP7ATUZ9EPtJD7FNiGDsZY\\r\\nvYEVbEOctPW5bnAksXWpFG\\/v\\/jtOsEXrgoz4GMzrYdLlOPhy06rekDUxwJebCzor\\r\\nAmBJ4EihAQ4Kjc1wNxCMx4VpSCtPjfsLp0WppqObDjPmgI+gUHVLrS0yTBXw\\r\\n-----END CERTIFICATE-----\"}"
+}'
+```
+
+`POST /users/:username/event-listeners`
+
+### Authorization
+
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`username`|String|*Required*. The `username` for the owner of the event listeners you wish to retrieve.|
+
+### Payload Parameters
 
 |Attribute|Type|Description|
 |-|-|-|
@@ -32,7 +56,7 @@
 |`credentials`|String|The credentials for the event listener. In case of Kafka, this is an embedded JSON object (see below). The entire json object must be escaped before it is assigned to this field so that it serializes as a JSON string properly |
 
 
-## The Kafka Credentials object
+### The Kafka Credentials object
 
 ```json
 {
@@ -51,21 +75,170 @@
 |`credentials`|String|The content of the CA certificate file. It's VERY important to serialize whitespace properly - the backend does not parse the certificate properly if whitespace is stripped from the content. 
 
 
-## Create an event listener
+### Returns
+
+```json
+{
+    "algoName": "Hello",
+    "algoOwner": "demo",
+    "credentials": "{\"username\": \"SASL-username\",\"password\": \"SASL-password\", \"topic\": \"manual-test-topic\", \"certificate\": \"-----BEGIN CERTIFICATE-----\r\nMIIDuTCCAqGgAwIBAgIJALFQWXZx8OQuMA0GCSqGSIb3DQEBCwUAMHMxHzAdBgNV\r\nBAMMFmNhMS50ZXN0Lmh1c3NlaW5qb2UuaW8xDDAKBgNVBAsMA0RldjETMBEGA1UE\r\nCgwKSHVzc2VpbkpvZTESMBAGA1UEBwwJTWVsYm91cm5lMQwwCgYDVQQIDANWSUMx\r\nCzAJBgNVBAYTAkFVMB4XDTIwMTEyMzE4NTY0OVoXDTIxMTEyMzE4NTY0OVowczEf\r\nMB0GA1UEAwwWY2ExLnRlc3QuaHVzc2VpbmpvZS5pbzEMMAoGA1UECwwDRGV2MRMw\r\nEQYDVQQKDApIdXNzZWluSm9lMRIwEAYDVQQHDAlNZWxib3VybmUxDDAKBgNVBAgM\r\nA1ZJQzELMAkGA1UEBhMCQVUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB\r\nAQCeDV19eR+ZavTQCRVAnK/LAq80WPORYScLZWIPXwHl4QnIqbc7N7Lgt4rYPN20\r\njGEnu+FeblahCBPHer36ebKQLv0i4uJiuJwsiIZs1Bijy0td6JeetlHRPC7eUXrH\r\ngwOimbeQikXRc5xa2wrsr3DSLcrHGOvy6m+P+1NJu0qx6y/FlaOR0veFbko+SqL0\r\n7bxtn1ws8mRfgBj7ykKkm/GISuDVhrUV6KXGVZ6wNy5emlLTWr20iG+So+TzFCU2\r\nmZh7YJ7VV0g6R1xRIG3x0dlGd2St/feYpCDesoek56gWf6axZOHbOwiXX6JZRAUD\r\ngseUDv+pMf8GE5HwKkrRzV0tAgMBAAGjUDBOMB0GA1UdDgQWBBQiHrM5EwPei3SW\r\nhJE8uQUc2J7HNjAfBgNVHSMEGDAWgBQiHrM5EwPei3SWhJE8uQUc2J7HNjAMBgNV\r\nHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQBsdDqaHp/XnL6C33Yfs1+RA0h1\r\nupHAqx4Zd/KJctiSAshOfqzANP1tItIj8QXeuBCxuSzUdgzkQVho3Q2ryZHXd80Q\r\nnHQFJZ1kxLBblQgjv4oz2CaFM4NbJ0L0eKcbv+OhIp4CH+0w+GjSWNNsTd9pknQ1\r\nT1CqGt0GYBD0cZA8+OwaHfw/kHm81onn7JLHeMxDb4bP7ATUZ9EPtJD7FNiGDsZY\r\nvYEVbEOctPW5bnAksXWpFG/v/jtOsEXrgoz4GMzrYdLlOPhy06rekDUxwJebCzor\r\nAmBJ4EihAQ4Kjc1wNxCMx4VpSCtPjfsLp0WppqObDjPmgI+gUHVLrS0yTBXw\r\n-----END CERTIFICATE-----\"}",
+    "id": "16037c0e-069a-4e39-ae83-8e3a156ef096",
+    "listenerOwner": "me",
+    "sourceType": "Kafka",
+    "sourceURI": "ec2-34-221-191-143.us-west-2.compute.amazonaws.com:9092"
+}
+```
+
+A single [event listener object](#the-event-listener-object) if a valid user payload was provided, otherwise an [error](#errors).
+
+
+## List event listeners
 
 ```shell
-curl https://api.algorithmia.com/v1/users/me/event-listeners \
-  -X POST \
+curl https://api.algorithmia.com/v1/users/:username/event-listeners \
+  -H 'Authorization: Simple ADMIN_API_KEY'
+```
+
+```python
+# Listing users is not yet supported by our Python client library.
+```
+
+`GET /users/:username/event-listeners`
+
+
+### Authorization
+
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`username`|String|*Required*. The `username` for the owner of the event listeners you wish to retrieve.|
+
+### Returns
+
+```json
+[{
+    "algoName": "Hello",
+    "algoOwner": "demo",
+    "credentials": "{\"username\": \"SASL-username\",\"password\": \"SASL-password\", \"topic\": \"manual-test-topic\", \"certificate\": \"-----BEGIN CERTIFICATE-----\r\nMIIDuTCCAqGgAwIBAgIJALFQWXZx8OQuMA0GCSqGSIb3DQEBCwUAMHMxHzAdBgNV\r\nBAMMFmNhMS50ZXN0Lmh1c3NlaW5qb2UuaW8xDDAKBgNVBAsMA0RldjETMBEGA1UE\r\nCgwKSHVzc2VpbkpvZTESMBAGA1UEBwwJTWVsYm91cm5lMQwwCgYDVQQIDANWSUMx\r\nCzAJBgNVBAYTAkFVMB4XDTIwMTEyMzE4NTY0OVoXDTIxMTEyMzE4NTY0OVowczEf\r\nMB0GA1UEAwwWY2ExLnRlc3QuaHVzc2VpbmpvZS5pbzEMMAoGA1UECwwDRGV2MRMw\r\nEQYDVQQKDApIdXNzZWluSm9lMRIwEAYDVQQHDAlNZWxib3VybmUxDDAKBgNVBAgM\r\nA1ZJQzELMAkGA1UEBhMCQVUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB\r\nAQCeDV19eR+ZavTQCRVAnK/LAq80WPORYScLZWIPXwHl4QnIqbc7N7Lgt4rYPN20\r\njGEnu+FeblahCBPHer36ebKQLv0i4uJiuJwsiIZs1Bijy0td6JeetlHRPC7eUXrH\r\ngwOimbeQikXRc5xa2wrsr3DSLcrHGOvy6m+P+1NJu0qx6y/FlaOR0veFbko+SqL0\r\n7bxtn1ws8mRfgBj7ykKkm/GISuDVhrUV6KXGVZ6wNy5emlLTWr20iG+So+TzFCU2\r\nmZh7YJ7VV0g6R1xRIG3x0dlGd2St/feYpCDesoek56gWf6axZOHbOwiXX6JZRAUD\r\ngseUDv+pMf8GE5HwKkrRzV0tAgMBAAGjUDBOMB0GA1UdDgQWBBQiHrM5EwPei3SW\r\nhJE8uQUc2J7HNjAfBgNVHSMEGDAWgBQiHrM5EwPei3SWhJE8uQUc2J7HNjAMBgNV\r\nHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQBsdDqaHp/XnL6C33Yfs1+RA0h1\r\nupHAqx4Zd/KJctiSAshOfqzANP1tItIj8QXeuBCxuSzUdgzkQVho3Q2ryZHXd80Q\r\nnHQFJZ1kxLBblQgjv4oz2CaFM4NbJ0L0eKcbv+OhIp4CH+0w+GjSWNNsTd9pknQ1\r\nT1CqGt0GYBD0cZA8+OwaHfw/kHm81onn7JLHeMxDb4bP7ATUZ9EPtJD7FNiGDsZY\r\nvYEVbEOctPW5bnAksXWpFG/v/jtOsEXrgoz4GMzrYdLlOPhy06rekDUxwJebCzor\r\nAmBJ4EihAQ4Kjc1wNxCMx4VpSCtPjfsLp0WppqObDjPmgI+gUHVLrS0yTBXw\r\n-----END CERTIFICATE-----\"}",
+    "id": "16037c0e-069a-4e39-ae83-8e3a156ef096",
+    "listenerOwner": "me",
+    "sourceType": "Kafka",
+    "sourceURI": "ec2-34-221-191-143.us-west-2.compute.amazonaws.com:9092"
+}]
+}
+```
+
+A collection of [event listeners](#the-event-listener-object), otherwise an [error](#errors).
+
+
+## Get an event listener
+
+```shell
+curl https://api.algorithmia.com/v1/users/:username/event-listeners:id \
+  -H 'Authorization: Simple ADMIN_API_KEY'
+```
+
+```python
+# Retrieving a user is not yet supported by our Python client library.
+```
+
+`GET /users/:username/event-listeners/:id`
+
+### Authorization
+
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`username`|String|*Required*. The `username` for the owner of the event listeners you wish to retrieve.|
+|`id`|String|*Required*. The `id` of the event listener you wish to retrieve.|
+
+### Returns
+
+A single [event listener](#the-event-listener-object) upon success, otherwise an [error](#errors).
+
+
+## Update an event-listener
+
+```shell
+curl https://api.algorithmia.com/v1/users/:username/event-listeners \
+  -X PUT \
   -H 'Authorization: Simple ADMIN_API_KEY' \
   -H 'Content-Type: application/json' \
   -d '{
-"id": "test-topic",
 "sourceType": "Kafka",
 "sourceURI": "ec2-34-221-191-143.us-west-2.compute.amazonaws.com:9092",
 "algoName": "test-algorithm",
 "algoOwner": "algo-owner",
 "algoVersion": "1.0.0",
-"listenerOwner": "owner",
 "credentials": "{\"username\": \"SASL-username\",\"password\": \"SASL-password\", \"topic\": \"test-topic\", \"certificate\": \"-----BEGIN CERTIFICATE-----\\r\\nMIIDuTCCAqGgAwIBAgIJALFQWXZx8OQuMA0GCSqGSIb3DQEBCwUAMHMxHzAdBgNV\\r\\nBAMMFmNhMS50ZXN0Lmh1c3NlaW5qb2UuaW8xDDAKBgNVBAsMA0RldjETMBEGA1UE\\r\\nCgwKSHVzc2VpbkpvZTESMBAGA1UEBwwJTWVsYm91cm5lMQwwCgYDVQQIDANWSUMx\\r\\nCzAJBgNVBAYTAkFVMB4XDTIwMTEyMzE4NTY0OVoXDTIxMTEyMzE4NTY0OVowczEf\\r\\nMB0GA1UEAwwWY2ExLnRlc3QuaHVzc2VpbmpvZS5pbzEMMAoGA1UECwwDRGV2MRMw\\r\\nEQYDVQQKDApIdXNzZWluSm9lMRIwEAYDVQQHDAlNZWxib3VybmUxDDAKBgNVBAgM\\r\\nA1ZJQzELMAkGA1UEBhMCQVUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB\\r\\nAQCeDV19eR+ZavTQCRVAnK\\/LAq80WPORYScLZWIPXwHl4QnIqbc7N7Lgt4rYPN20\\r\\njGEnu+FeblahCBPHer36ebKQLv0i4uJiuJwsiIZs1Bijy0td6JeetlHRPC7eUXrH\\r\\ngwOimbeQikXRc5xa2wrsr3DSLcrHGOvy6m+P+1NJu0qx6y\\/FlaOR0veFbko+SqL0\\r\\n7bxtn1ws8mRfgBj7ykKkm\\/GISuDVhrUV6KXGVZ6wNy5emlLTWr20iG+So+TzFCU2\\r\\nmZh7YJ7VV0g6R1xRIG3x0dlGd2St\\/feYpCDesoek56gWf6axZOHbOwiXX6JZRAUD\\r\\ngseUDv+pMf8GE5HwKkrRzV0tAgMBAAGjUDBOMB0GA1UdDgQWBBQiHrM5EwPei3SW\\r\\nhJE8uQUc2J7HNjAfBgNVHSMEGDAWgBQiHrM5EwPei3SWhJE8uQUc2J7HNjAMBgNV\\r\\nHRMEBTADAQH\\/MA0GCSqGSIb3DQEBCwUAA4IBAQBsdDqaHp\\/XnL6C33Yfs1+RA0h1\\r\\nupHAqx4Zd\\/KJctiSAshOfqzANP1tItIj8QXeuBCxuSzUdgzkQVho3Q2ryZHXd80Q\\r\\nnHQFJZ1kxLBblQgjv4oz2CaFM4NbJ0L0eKcbv+OhIp4CH+0w+GjSWNNsTd9pknQ1\\r\\nT1CqGt0GYBD0cZA8+OwaHfw\\/kHm81onn7JLHeMxDb4bP7ATUZ9EPtJD7FNiGDsZY\\r\\nvYEVbEOctPW5bnAksXWpFG\\/v\\/jtOsEXrgoz4GMzrYdLlOPhy06rekDUxwJebCzor\\r\\nAmBJ4EihAQ4Kjc1wNxCMx4VpSCtPjfsLp0WppqObDjPmgI+gUHVLrS0yTBXw\\r\\n-----END CERTIFICATE-----\"}"
 }'
 ```
+
+```python
+# Updating an event-listener is not yet supported by our Python client library.
+```
+
+`PUT /users/:username/event-listeners/:id`
+
+### Authorization
+
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`username`|String|*Required*. The `username` for the owner of the event listeners you wish to update.|
+|`id`|String|*Required*. The `id` of the event listener you wish to retrieve.|
+
+### Payload Parameters
+
+|Attribute|Type|Description|
+|-|-|-|
+|`sourceType`|String|Event listener type. Valid values are `AmazonSQS`, `AzureSB` and `Kafka`|
+|`sourceURI`|String|Endpoint URI|
+|`algoName`|String|The algorithm to which the event listener will provide data|
+|`algoOwner`|String|The algorithm owner|
+|`algoVersion`|String|The algorithm version (optional)|
+|`credentials`|String|The credentials for the event listener. In case of Kafka, this is an embedded JSON object (see below). The entire json object must be escaped before it is assigned to this field so that it serializes as a JSON string properly |
+
+### Returns
+
+```json
+{
+    "algoName": "Hello",
+    "algoOwner": "demo",
+    "credentials": "{\"username\": \"SASL-username\",\"password\": \"SASL-password\", \"topic\": \"manual-test-topic\", \"certificate\": \"-----BEGIN CERTIFICATE-----\r\nMIIDuTCCAqGgAwIBAgIJALFQWXZx8OQuMA0GCSqGSIb3DQEBCwUAMHMxHzAdBgNV\r\nBAMMFmNhMS50ZXN0Lmh1c3NlaW5qb2UuaW8xDDAKBgNVBAsMA0RldjETMBEGA1UE\r\nCgwKSHVzc2VpbkpvZTESMBAGA1UEBwwJTWVsYm91cm5lMQwwCgYDVQQIDANWSUMx\r\nCzAJBgNVBAYTAkFVMB4XDTIwMTEyMzE4NTY0OVoXDTIxMTEyMzE4NTY0OVowczEf\r\nMB0GA1UEAwwWY2ExLnRlc3QuaHVzc2VpbmpvZS5pbzEMMAoGA1UECwwDRGV2MRMw\r\nEQYDVQQKDApIdXNzZWluSm9lMRIwEAYDVQQHDAlNZWxib3VybmUxDDAKBgNVBAgM\r\nA1ZJQzELMAkGA1UEBhMCQVUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIB\r\nAQCeDV19eR+ZavTQCRVAnK/LAq80WPORYScLZWIPXwHl4QnIqbc7N7Lgt4rYPN20\r\njGEnu+FeblahCBPHer36ebKQLv0i4uJiuJwsiIZs1Bijy0td6JeetlHRPC7eUXrH\r\ngwOimbeQikXRc5xa2wrsr3DSLcrHGOvy6m+P+1NJu0qx6y/FlaOR0veFbko+SqL0\r\n7bxtn1ws8mRfgBj7ykKkm/GISuDVhrUV6KXGVZ6wNy5emlLTWr20iG+So+TzFCU2\r\nmZh7YJ7VV0g6R1xRIG3x0dlGd2St/feYpCDesoek56gWf6axZOHbOwiXX6JZRAUD\r\ngseUDv+pMf8GE5HwKkrRzV0tAgMBAAGjUDBOMB0GA1UdDgQWBBQiHrM5EwPei3SW\r\nhJE8uQUc2J7HNjAfBgNVHSMEGDAWgBQiHrM5EwPei3SWhJE8uQUc2J7HNjAMBgNV\r\nHRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQBsdDqaHp/XnL6C33Yfs1+RA0h1\r\nupHAqx4Zd/KJctiSAshOfqzANP1tItIj8QXeuBCxuSzUdgzkQVho3Q2ryZHXd80Q\r\nnHQFJZ1kxLBblQgjv4oz2CaFM4NbJ0L0eKcbv+OhIp4CH+0w+GjSWNNsTd9pknQ1\r\nT1CqGt0GYBD0cZA8+OwaHfw/kHm81onn7JLHeMxDb4bP7ATUZ9EPtJD7FNiGDsZY\r\nvYEVbEOctPW5bnAksXWpFG/v/jtOsEXrgoz4GMzrYdLlOPhy06rekDUxwJebCzor\r\nAmBJ4EihAQ4Kjc1wNxCMx4VpSCtPjfsLp0WppqObDjPmgI+gUHVLrS0yTBXw\r\n-----END CERTIFICATE-----\"}",
+    "id": "16037c0e-069a-4e39-ae83-8e3a156ef096",
+    "listenerOwner": "me",
+    "sourceType": "Kafka",
+    "sourceURI": "ec2-34-221-191-143.us-west-2.compute.amazonaws.com:9092"
+}
+```
+
+
+The updated [event-listener](#the-event-listener-object) if a valid event listener payload was provided, otherwise an [error](#errors).
+
+`DELETE /users/:username/event-listeners/:id`
+
+### Authorization
+
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`username`|String|*Required*. The `username` for the owner of the event listeners.|
+|`id`|String|*Required*. The `id` of the event listener you wish to delete.|
+
+### Returns
+
+An empty response upon success, otherwise an [error](#errors).
+
