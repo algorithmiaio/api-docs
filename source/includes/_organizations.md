@@ -9,6 +9,9 @@
   "org_label": "Algorithmia",
   "org_name": "algorithmiahq",
   "org_url": "https://algorithmia.com",
+  "external_admin_group": "sample external admin group",
+  "external_member_group": "sample external member group",
+  "external_id": "sampleExternalId",
   "resource_type": "organization",
   "self_link": "http://api.algorithmia.com/v1/organizations/algorithmiahq"
 }
@@ -21,6 +24,9 @@
 |`org_label`|String|The human-readable name for the organization.|
 |`org_name`|String|The unique identifier for this organization.|
 |`org_url`|String|The URL for the organization's website.|
+|`external_admin_group`|String|The name of the admin group from the external identity system when using external organization membership management.|
+|`external_member_group`|String|The name of the member group from the external identity system when using external organization membership management.|
+|`external_id`|String|The identifier for this organization in the external identity system when using external organization membership management.|
 |`resource_type`|String|Always set to `organization` for organization objects.|
 |`self_link`|String|The URL that can be used to retrieve this specific organization via the REST API.|
 
@@ -36,7 +42,10 @@ curl https://api.algorithmia.com/v1/organizations \
     "org_email": "support@example.com",
     "org_label": "Example Organization",
     "org_name": "example_organization",
-    "org_url": "https://example.com"
+    "org_url": "https://example.com",
+    "external_admin_group": "sample external admin group",
+    "external_member_group": "sample external member group",
+    "external_id": "sampleExternalId",
   }'
 ```
 
@@ -59,6 +68,9 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 |`org_contact_name`|String|*Required*. The individual who can be contacted with any questions about the organization.|
 |`org_email`|String|*Required*. The email address by which the organization may be contacted.|
 |`org_url`|String|The URL for the organization's website.|
+|`external_admin_group`|String|The name of the admin group from the external identity system when using external organization membership management.|
+|`external_member_group`|String|The name of the member group from the external identity system when using external organization membership management.|
+|`external_id`|String|The identifier for this organization in the external identity system when using external organization membership management.|
 
 ### Returns 
 
@@ -69,6 +81,9 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
   "org_label": "Example Organization",
   "org_name": "example_organization",
   "org_url": "https://example.com",
+  "external_admin_group": "sample external admin group",
+  "external_member_group": "sample external member group",
+  "external_id": "sampleExternalId",
   "resource_type": "organization",
   "self_link": "http://api.algorithmia.com/v1/organizations/algorithmiahq"
 }
@@ -112,6 +127,9 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
     "org_label": "Algorithmia",
     "org_name": "algorithmiahq",
     "org_url": "https://algorithmia.com",
+    "external_admin_group": "sample external admin group",
+    "external_member_group": "sample external member group",
+    "external_id": "sampleExternalId",
     "resource_type": "organization",
     "self_link": "http://api.algorithmia.com/v1/organizations/algorithmiahq"
   }]
@@ -147,7 +165,7 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 
 |Parameter|Type|Description|
 |-|-|-|
-|`org_name`|String|*Required*. The the unique `org_name` for the organization you wish to retrieve.|
+|`org_name`|String|*Required*. The unique `org_name` for the organization you wish to retrieve.|
 
 ### Returns 
 
@@ -158,6 +176,51 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
   "org_label": "Algorithmia",
   "org_name": "algorithmiahq",
   "org_url": "https://algorithmia.com",
+  "external_admin_group": "sample external admin group",
+  "external_member_group": "sample external member group",
+  "external_id": "sampleExternalId",
+  "resource_type": "organization",
+  "self_link": "http://api.algorithmia.com/v1/organizations/algorithmiahq"
+}
+```
+
+A single [organization object](#the-organization-object) if a valid `org_name` was provided, otherwise an [error](#errors).
+
+## Get an organization through external ID
+
+```shell
+curl https://api.algorithmia.com/v1/organizations \
+  -H 'Authorization: Simple ADMIN_API_KEY'
+```
+
+```python
+# Getting an organization is not yet supported by our Python client library.
+```
+
+`GET /organizations/externalId/:external_id`
+
+### Authorization
+
+In order to interact with this endpoint you must pass an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
+
+### Query Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`external_id`|String|*Required*. The unique `external_id` which has been updated to match the ID given to this organization by the external identity provider.|
+
+### Returns 
+
+```json
+{
+  "org_contact_name": "Algorithmia Support",
+  "org_email": "support@algorithmia.com",
+  "org_label": "Algorithmia",
+  "org_name": "algorithmiahq",
+  "org_url": "https://algorithmia.com",
+  "external_admin_group": "sample external admin group",
+  "external_member_group": "sample external member group",
+  "external_id": "sampleExternalId",
   "resource_type": "organization",
   "self_link": "http://api.algorithmia.com/v1/organizations/algorithmiahq"
 }
