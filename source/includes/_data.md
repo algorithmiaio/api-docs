@@ -127,7 +127,7 @@ Returns the following JSON payload upon successful directory creation, otherwise
 ## Get a file or directory
 
 ```shell
-curl https://api.algorithmia.com/v1/connector/data/demo/example.png \
+curl https://api.algorithmia.com/v1/connector/data/demo/example_collection/example.png \
   -H 'Authorization: Simple API_KEY'
 ```
 
