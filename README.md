@@ -7,17 +7,17 @@ This repository houses the documentation for Algorithmia's API.
 ### Local Development
 
 ```bash
-docker run --rm --name slate -p 4567:4567 -v $(pwd)/source:/srv/slate/source slatedocs/slate serve
+docker run --rm --name slate -p 4567:4567 -v $(pwd)/source:/srv/slate/source slatedocs/slate:v2.8.0 serve
 ```
 
-And voila! Your development server is available at `localhost:4567`, and will automatically update with any changes you make.
+And voila! Your development server is available at `localhost:4567`. Note: Full page reloads will be required to see updates.
 
 ### Building for Production
 
 To build the static assets for this documentation, simply run:
 
 ```bash
-docker run --rm --name slate -v $(pwd)/build:/srv/slate/build -v $(pwd)/source:/srv/slate/source slatedocs/slate
+docker run --rm --name slate -v $(pwd)/build:/srv/slate/build -v $(pwd)/source:/srv/slate/source slatedocs/slate:v2.8.0
 ```
 
 A `build` directory will be created that contains all of the production-ready static assets for this documentation.
