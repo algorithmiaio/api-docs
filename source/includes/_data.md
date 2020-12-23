@@ -124,10 +124,10 @@ Returns the following JSON payload upon successful directory creation, otherwise
 |-|-|-|
 |`result`|String|The data URI of the resulting directory.|
 
-## Get a file or directory
+## Get a file
 
 ```shell
-curl https://api.algorithmia.com/v1/connector/data/demo/example.png \
+curl https://api.algorithmia.com/v1/connector/data/demo/example_collection/example.png \
   -H 'Authorization: Simple API_KEY'
 ```
 
@@ -158,14 +158,50 @@ exampleBytes = client.file("data://demo/example_collection/example.png").getByte
 
 |Parameter|Type|Description|
 |-|-|-|
-|`connector_id`|String|The ID of the specific connector you wish to retrieve data from. Learn more in the [connectors section](#connectors) above.|
+|`connector_id`|String|The ID of the specific connector from which you wish to retrieve data. Learn more in the [connectors section](#connectors) above.|
 |`connector_path`|String|The connector path for which you wish to retrieve contents.|
 
 ### Returns
 
-If the `connector_path` identifies a file, the file's contents will be returned to you, and a `X-Data-Type` response header will be returned with the value `file`.
+The file's contents and an `X-Data-Type` response header with the value `file`.
 
-If the `connector_path` identifies a folder, the folder's contents will be described by the following JSON structure, and a `X-Data-Type` response header will be returned with the value `directory`.
+Otherwise, an [error object](#errors) will be returned to you.
+
+
+## List directory contents
+
+```shell
+curl https://api.algorithmia.com/v1/connector/data/demo/collection_name \
+  -H 'Authorization: Simple API_KEY'
+```
+
+```python
+import Algorithmia
+
+client = Algorithmia.client('API_KEY')
+
+# Get directory's contents as a string
+exampleText = client.file("data://demo/example_collection").getString()
+
+# Get directory's contents as JSON
+exampleJson =  client.file("data://demo/example_collection").getJson()
+
+# Get directory's contents as a byte array
+exampleBytes = client.file("data://demo/example_collection").getBytes()
+```
+
+`GET /connector/:connector_id/:connector_path`
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`connector_id`|String|The ID of the specific connector from which you wish to retrieve data. Learn more in the [connectors section](#connectors) above.|
+|`connector_path`|String|The connector path for which you wish to list contents.|
+
+### Returns
+
+The directory's contents described by the following JSON structure, and a `X-Data-Type` response header with the value `directory`.
 
 |Attribute|Type|Description|
 |-|-|-|
