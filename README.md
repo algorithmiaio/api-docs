@@ -1,5 +1,4 @@
-Algorithmia API Documentation
-=============================
+# Algorithmia API Documentation
 
 This repository houses the documentation for Algorithmia's API.
 
@@ -7,18 +6,8 @@ This repository houses the documentation for Algorithmia's API.
 
 ### Local Development
 
-First, ensure you have Ruby 2.3.1 or later installed on your system. Then, with the repository as your active working directory, run the following to install necessary packages:
-
-```
-bundle install
-```
-
- If Ruby is already installed, but the `bundle install` command doesn't work, just run `gem install bundler` and try the above command once more.
-
-Then run the following to fire up a development server:
-
-```
-bundle exec middleman server
+```bash
+docker run --rm --name slate -p 4567:4567 -v $(pwd)/source:/srv/slate/source slatedocs/slate serve
 ```
 
 And voila! Your development server is available at `localhost:4567`, and will automatically update with any changes you make.
@@ -27,8 +16,8 @@ And voila! Your development server is available at `localhost:4567`, and will au
 
 To build the static assets for this documentation, simply run:
 
-```
-bundle exec middleman build --clean
+```bash
+docker run --rm --name slate -v $(pwd)/build:/srv/slate/build -v $(pwd)/source:/srv/slate/source slatedocs/slate
 ```
 
 A `build` directory will be created that contains all of the production-ready static assets for this documentation.
@@ -37,7 +26,7 @@ A `build` directory will be created that contains all of the production-ready st
 
 Want to add documentation for a new API resource or endpoint? Huzzah! Follow this checklist to ensure you add all of the necessary information.
 
-### If you're adding a new resource:
+### If you're adding a new resource
 
 - First, create a new file in `source/includes` specifically for your resource. Title it `_${resource_name}`, e.g. `_users.md`, `_organization_members.md`, etc...
 - Add the name of this file to the `includes` section at the top of `index.html.md` file. Alphabetical ordering please!
@@ -45,7 +34,7 @@ Want to add documentation for a new API resource or endpoint? Huzzah! Follow thi
 - For each property, provide the name of the property (for nested properties use dot notation, e.g. `obj1.property`), the data type, and a description of the property.
 - For each endpoint that can be used to modify a resource type, follow the instructions below on how to add an endpoint.
 
-### If you're adding a new endpoint for a resource:
+### If you're adding a new endpoint for a resource
 
 - Find the file in `source/includes` for the resource you wish to add an endpoint for. If one doesn't exist, take a look at the section above on adding a new resource.
 - Endpoints are ordered by CRUD: create, read, update, then delete. If your endpoint doesn't fit one of those categories, use your best judgement to determine where it should fit within the file, and try to observe conventions used in other resource files.
