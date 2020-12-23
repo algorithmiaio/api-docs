@@ -91,7 +91,7 @@ The full list of error codes can be viewed by expanding the list below:
       <tr><td>1001</td><td>An algorithm with the requested name does not exist.</td></tr>
       <tr><td>1002</td><td>An algorithm with the requested name already exists.</td></tr>
       <tr><td>1003</td><td>The package set does not exist.</td></tr>
-      <tr><td>1004</td><td>The package set build doest not exist.</td></tr>
+      <tr><td>1004</td><td>The package set build does not exist.</td></tr>
       <tr><td>1005</td><td>The package does not exist.</td></tr>
       <tr><td>1006</td><td>Unable to update package set.</td></tr>
       <tr><td>1007</td><td>Version already published. Please compile your algorithm.</td></tr>
@@ -124,7 +124,7 @@ The full list of error codes can be viewed by expanding the list below:
       <tr><td>3105</td><td>Favicon cannot exceed maximum size.</td></tr>
       <tr><td>3106</td><td>Invalid file to upload.</td></tr>
       <tr><td>3107</td><td>Logo cannot exceed maximum size.</td></tr>
-      <tr><td>4001</td><td>The request algorithm language is not known.</td></tr>
+      <tr><td>4001</td><td>The requested algorithm language is not known.</td></tr>
       <tr><td>4002</td><td>The requested algorithm language does not support this feature.</td></tr>
       <tr><td>4003</td><td>Malformed package set JSON in request.</td></tr>
       <tr><td>4004</td><td>The requested machine type is not supported.</td></tr>
