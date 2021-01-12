@@ -26,7 +26,7 @@
 |`org_url`|String|The URL for the organization's website.|
 |`external_admin_group`|String|The name of the admin group from the external identity system when using external organization membership management.|
 |`external_member_group`|String|The name of the member group from the external identity system when using external organization membership management.|
-|`external_id`|String|The identifier for this organization in the external identity system when using external organization membership management.|
+|`external_id`|String|A custom identifier which can be used to synchronize with external systems, such as an identitiy provider.|
 |`resource_type`|String|Always set to `organization` for organization objects.|
 |`self_link`|String|The URL that can be used to retrieve this specific organization via the REST API.|
 
@@ -207,7 +207,7 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 
 |Parameter|Type|Description|
 |-|-|-|
-|`external_id`|String|*Required*. The unique `external_id` which has been updated to match the ID given to this organization by the external identity provider.|
+|`external_id`|String|*Required*. The unique `external_id` which has been updated to match the ID manually supplied to this organization during creation and/or update.
 
 ### Returns 
 
