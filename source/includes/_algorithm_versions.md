@@ -86,6 +86,9 @@ algo.publish(
     "release_notes": "A few bug fixes.",
     "sample_input": "testing",
     "version_type": "minor"
+  },
+    details = {
+        "label": "Algorithm Display Name"
   }
 )
 ```
@@ -111,6 +114,7 @@ You may only publish the most recent compiled version of an algorithm. If the mo
 |`version_info.release_notes`|String|Describes any changes introduced by this version.|
 |`version_info.sample_input`|String|An example of a valid text input to the algorithm.|
 |`version_info.version_type`|String|*Required*. The increase in semantic version you would like to be attributable to the version. Choose from `major`, `minor`, or `patch`. Note that, depending on changes you've made recently to algorithm, you may be required to choose `minor` or `major`. Read our [algorithm versioning docs](/developers/platform/versioning) to learn more.|
+|`details.label`|String|*Required*. The display name that shows up on the algorithm's homepage; unlike the algorithm's name, this may contain spaces.|
 
 ### Returns
 
