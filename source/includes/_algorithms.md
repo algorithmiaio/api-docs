@@ -253,7 +253,7 @@ Both binary data and text may be passed as algorithm input data. To ensure your 
 |`application/text`|body specifies text input data (UTF-8 encoded)|
 |`application/octet-stream`|body specifies binary input data (raw bytes)|
 
-<aside class="notice">
+<aside class="notice" id="max-request-size">
 The maximum request size for an algorithm invocation is 10MiB.
 </aside>
 
