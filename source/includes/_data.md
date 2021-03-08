@@ -5,10 +5,10 @@
 Connectors offer you a convenient API through which to access data stored across multiple storage providers, from Algorithmia's built-in data store to Amazon S3. You can learn more about the connectors Algorithmia supports [in our documentation](/developers/data). The various connector types are identified as follows:
 
 - `data`: Algorithmia's built-in data storage solution.
+- `s3`: Amazon Simple Storage Service (S3)
 - `azureblob`: Microsoft Azure Blob Storage
 - `dropbox`: Dropbox
 - `gs`: Google Cloud Storage
-- `s3`: Amazon S3
 
 With the exception of `data`, connectors may also be identified by a *label*, or no label if a specific connector is the default for its connector type. These options can be configured for a given connector in your [data portal](/data).
 
