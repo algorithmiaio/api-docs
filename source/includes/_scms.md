@@ -154,7 +154,7 @@ curl https://api.algorithmia.com/v1/scms/:scm_id \
 
 |Parameter|Type|Description|
 |-|-|-|
-|`scm_id`|String|The the unique `id` for the SCM you wish to retrieve.|
+|`scm_id`|String|The unique `id` for the SCM you wish to retrieve.|
 
 ### Returns
 
@@ -203,7 +203,7 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 
 |Parameter|Type|Description|
 |-|-|-|
-|`scm_id`|String|The the unique `id` for the SCM you wish to update.|
+|`scm_id`|String|The unique `id` for the SCM you wish to update.|
 
 ### Payload Parameters
 
@@ -254,7 +254,7 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 
 |Parameter|Type|Description|
 |-|-|-|
-|`scm_id`|String|The the unique `id` for the SCM you wish to set as the default SCM.|
+|`scm_id`|String|The unique `id` for the SCM you wish to set as the default SCM.|
 
 ### Returns 
 
@@ -282,7 +282,7 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 
 |Parameter|Type|Description|
 |-|-|-|
-|`scm_id`|String|The the unique `id` for the SCM you wish to delete.|
+|`scm_id`|String|The unique `id` for the SCM you wish to delete.|
 
 ### Returns
 

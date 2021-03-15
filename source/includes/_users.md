@@ -151,7 +151,7 @@ In order to interact with this endpoint you must provide an admin API key. Visit
 
 |Parameter|Type|Description|
 |-|-|-|
-|`username`|String|*Required*. The the unique `username` for the user you wish to retrieve.|
+|`username`|String|*Required*. The unique `username` for the user you wish to retrieve.|
 
 ### Returns
 
@@ -187,7 +187,7 @@ In order to interact with this endpoint you must provide an admin API key. Visit
 
 |Parameter|Type|Description|
 |-|-|-|
-|`username`|String|*Required*. The the unique `username` for the user you wish to update.|
+|`username`|String|*Required*. The unique `username` for the user you wish to update.|
 
 ### Payload Parameters
 

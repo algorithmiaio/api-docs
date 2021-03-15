@@ -30,7 +30,7 @@ s3+test://my_bucket/example/test.png
 azureblob://example/test.png
 ```
 
-Algorithmia supports a *data URI* notation for identifying files and folders across connectors. To construct a data URI, take the unique identifer of a given connector (such as `data`, `azureblob`, or `s3+test`) and supply that as the URI's protocol. Then append the path to the file or folder you wish to act on. See examples to the right.
+Algorithmia supports a *data URI* notation for identifying files and folders across connectors. To construct a data URI, take the unique identifier of a given connector (such as `data`, `azureblob`, or `s3+test`) and supply that as the URI's protocol. Then append the path to the file or folder you wish to act on. See examples to the right.
 
 Algorithmia will return data URIs to you identifying new files or folders you create, and you can use these in any of our client libraries (including our Python client library) to act on those resources.
 

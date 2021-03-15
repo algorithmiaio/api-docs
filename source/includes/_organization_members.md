@@ -16,7 +16,7 @@
 |`role`|String|One of `owner` or `member`. Owners have the ability to add and remove organization members, promote or demote other owners, and publish algorithms publicly on behalf of the organization.|
 |`resource_type`|String|Always set to `organization_member` for organization member objects.|
 |`user_link`|String|A link to the [user object](#the-user-object) for the organization member.|
-|`username`|String|The user's unique identifer.|
+|`username`|String|The user's unique identifier.|
 
 ## List organization members
 
@@ -39,7 +39,7 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 
 |Parameter|Type|Description|
 |-|-|-|
-|`org_name`|String|*Required*. The the unique `org_name` of the organization you wish to retrieve members for.|
+|`org_name`|String|*Required*. The unique `org_name` of the organization you wish to retrieve members for.|
 
 ### Query Parameters
 
@@ -92,7 +92,7 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 
 |Parameter|Type|Description|
 |-|-|-|
-|`org_name`|String|*Required*. The the unique `org_name` of the organization you wish to retrieve members for.|
+|`org_name`|String|*Required*. The unique `org_name` of the organization you wish to retrieve members for.|
 |`username`|String|*Required*. The `username` of the specific user you wish to add to the organization.|
 
 ### Returns
@@ -121,7 +121,7 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 
 |Parameter|Type|Description|
 |-|-|-|
-|`org_name`|String|*Required*. The the unique `org_name` of the organization for which you wish to delete a member.|
+|`org_name`|String|*Required*. The unique `org_name` of the organization for which you wish to delete a member.|
 |`username`|String|*Required*. The `username` of the specific user you wish to remove from the organization.|
 
 ### Returns

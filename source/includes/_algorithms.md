@@ -72,7 +72,7 @@
 |`compilation.output`|String|The logs for the algorithm's most recent build.|
 |`compilation.successful`|Boolean|Whether the algorithm's most recent build succeeded or failed.|
 |`details.label`|String|The human-readable name for an algorithm.|
-|`details.summary`|String|A full description of an algorithm's capabilitities. Can contain HTML for rendering in an algorithm's "Docs" tab. Note that, if an algorithm's `README.md` file is updated, this value will be overwritten with the HTML equivalent of that file.|
+|`details.summary`|String|A full description of an algorithm's capabilities. Can contain HTML for rendering in an algorithm's "Docs" tab. Note that, if an algorithm's `README.md` file is updated, this value will be overwritten with the HTML equivalent of that file.|
 |`details.tagline`|String|A short description of an algorithm for display under an algorithm's label.|
 |`name`|String|The unique ID for an algorithm.|
 |`resource_type`|String|Set to `algorithm` for algorithm objects.
@@ -84,7 +84,7 @@
 |`settings.network_access`|String|Specifies whether an algorithm has access to the public internet upon execution. One of `full` or `isolated`.|
 |`settings.package_set`|String|Specifies the package set that defines an algorithm's build and runtime environments. Not set if `settings.language` is specified.|
 |`settings.pipeline_enabled`|Boolean|Specifies whether this algorithm is allowed to call other algorithms on the platform.|
-|`settings.source_visbility`|String|Specifies whether the source code for this algorithm will be viewable by any user of the platform. One of `open` or `closed`. Must be set to `open` unless license chosen is [`apl`](https://algorithmia.com/api_dev_terms).|
+|`settings.source_visibility`|String|Specifies whether the source code for this algorithm will be viewable by any user of the platform. One of `open` or `closed`. Must be set to `open` unless license chosen is [`apl`](https://algorithmia.com/api_dev_terms).|
 |`source.repository_https_url`|String|The HTTPS URL of the algorithm's Git repository (if the repository is hosted externally to the Algorithmia platform).|
 |`source.repository_name`|String|The name of the Git repository that was created for the algorithm's source code (if the repository is hosted externally to the Algorithmia platform).|
 |`source.repository_owner`|String|The username of the SCM user that owns the Git repository for this algorithm (if the repository is hosted externally to the Algorithmia platform).|
@@ -94,7 +94,7 @@
 |`version_info.release_notes`|String|If this version of the algorithm has been published, this field informs consumers of any new changes in the algorithm that accompany the published version.|
 |`version_info.sample_input`|String|An example of a valid text input to the algorithm. Only configurable for algorithm versions that have been published publicly or privately.|
 |`version_info.sample_output`|String|An example of what the algorithm's output would be given the text provided in `version_info.sample_input`.|
-|`version_info.semantic_version`|String|If this version of the algorithm has been published publicly or privately, this is semantic version that can be used to call said published version.|
+|`version_info.semantic_version`|String|If this version of the algorithm has been published publicly or privately, this is the semantic version that can be used to call said published version.|
 
 ## Create an algorithm
 
@@ -153,16 +153,16 @@ algo.create(
 |Parameter|Type|Description|
 |-|-|-|
 |`details.label`|String|*Required*. The human-readable name for your algorithm.|
-|`details.summary`|String|A full description of your algorithm's capabilitities. HTML is accepted for rendering in the algorithm's "Docs" tab.|
+|`details.summary`|String|A full description of your algorithm's capabilities. HTML is accepted for rendering in the algorithm's "Docs" tab.|
 |`details.tagline`|String|A short description of your algorithm for display under the algorithm's label.|
 |`name`|String|*Required*. The unique ID for your algorithm. Only alphanumeric characters and underscores are permitted. Must begin with a letter.|
-|`settings.environment`|String|*Required if `language` specified*. The hardware your algorithm will run on. Choose from `cpu` or `gpu`.|
+|`settings.environment`|String|*Required if `language` is specified*. The hardware your algorithm will run on. Choose from `cpu` or `gpu`.|
 |`settings.language`|String|*Required if `package_set` not specified*. The language you wish to develop your algorithm in. Choose from `java`, `javascript`, `python2-lackpack` (Python 2), `python3-1` (Python 3), `r`, `ruby`, `rust`, or `scala`. |
 |`settings.license`|String|*Required*. The license for your algorithm's source code. Choose from [`apl`](https://algorithmia.com/api_dev_terms), [`apache2`](https://www.apache.org/licenses/LICENSE-2.0), [`gpl3`](https://www.gnu.org/licenses/gpl-3.0.en.html) or [`mit`](https://opensource.org/licenses/MIT). Select `apl` if you wish for your algorithm's source code to be closed-source.|
 |`settings.network_access`|String|*Required*. Specifies whether the algorithm will have access to the public internet upon execution. Choose from `full` or `isolated`.|
 |`settings.package_set`|String|*Required if `language` not specified*. Specifies the package set that should define the algorithm's build and runtime environments.|
 |`settings.pipeline_enabled`|Boolean|*Required*. Specifies whether this algorithm is allowed to call other algorithms on the platform.|
-|`settings.source_visbility`|String|*Required*. Specifies whether the source code for this algorithm will be viewable by any user of the platform. If creating an algorithm with an external repository host, such as GitHub, determines whether the created repository is public or private. Choose from `open` or `closed`.|
+|`settings.source_visibility`|String|*Required*. Specifies whether the source code for this algorithm will be viewable by any user of the platform. If creating an algorithm with an external repository host, such as GitHub, determines whether the created repository is public or private. Choose from `open` or `closed`.|
 |`source.repository_name`|String|Specifies the name of the Git repository that will be created for your algorithm's source code (if using an external SCM). Defaults to your algorithm's `name` property.|
 |`source.repository_owner`|String|The username of the SCM user you wish to own your algorithm. Defaults to the user you performed SCM authorization with.|
 |`source.scm`|String|The ID of the SCM you wish to host your algorithm's source code. Defaults to the default SCM for your Algorithmia instance.|
@@ -398,7 +398,7 @@ algo.update(
 |Parameter|Type|Description|
 |-|-|-|
 |`details.label`|String|The human-readable name for your algorithm.|
-|`details.summary`|String|A full description of your algorithm's capabilitities. HTML is accepted for rendering in the algorithm's "Docs" tab.|
+|`details.summary`|String|A full description of your algorithm's capabilities. HTML is accepted for rendering in the algorithm's "Docs" tab.|
 |`details.tagline`|String|A short description of your algorithm for display under the algorithm's label.|
 |`settings.environment`|String|*Required if `settings.language` is specified.* The hardware your algorithm will run on. Choose from `cpu` or `gpu`.|
 |`settings.license`|String|*Required*. The license for your algorithm's source code. Choose from [`apl`](https://algorithmia.com/api_dev_terms), [`apache2`](https://www.apache.org/licenses/LICENSE-2.0), [`gpl3`](https://www.gnu.org/licenses/gpl-3.0.en.html) or [`mit`](https://opensource.org/licenses/MIT). Select `apl` if you wish for your algorithm's source code to be closed-source.|
