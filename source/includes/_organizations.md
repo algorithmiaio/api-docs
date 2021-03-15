@@ -250,7 +250,7 @@ In order to interact with this endpoint you must pass an admin API key. Visit [o
 
 |Parameter|Type|Description|
 |-|-|-|
-|`org_name`|String|*Required*. The the unique `org_name` for the organization you wish to delete.|
+|`org_name`|String|*Required*. The unique `org_name` for the organization you wish to delete.|
 
 ### Returns
 
