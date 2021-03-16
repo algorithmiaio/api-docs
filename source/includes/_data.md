@@ -107,7 +107,7 @@ example_collection.create(ReadAcl.public)
 
 |Parameter|Type|Description|
 |-|-|-|
-|`name`|String|*Required*. The name of the folder you wish to create at the location specified by `connector_path`.|
+|`name`|String|*Required*. The name of the folder you wish to create at the path specified by `connector_path`.|
 |`acl.read`|Array|Used to set the ACL for [hosted data collections](/developers/data/hosted) only. Choose from `[]` (only you may access), `["algo://.my/*"]` (only your algorithms may access), and `["user://*"]` (any user may access).|
 
 ### Returns
@@ -198,12 +198,12 @@ exampleBytes = client.file("data://demo/example_collection").getBytes()
 
 ### Returns
 
-The folder's contents described by the following JSON structure, and a `X-Data-Type` response header with the value `directory`, otherwise an [error](#errors).
+The folder's contents described with the following JSON payload, and a `X-Data-Type` response header with the value `directory`, otherwise an [error](#errors). The `files` and `folders` properties will only be present if there are one or more files or folders present, respectively, at the specified path.
 
 |Attribute|Type|Description|
 |-|-|-|
-|`folders`|String|A list of zero or more [folders](#the-folder-object) stored at this path.|
-|`files`|String|A list of zero or more [files](#the-file-object) stored at this path.|
+|`folders`|String|A list of one or more [folders](#the-folder-object) stored at this path.|
+|`files`|String|A list of one or more [files](#the-file-object) stored at this path.|
 
 ## Update collection ACL
 
