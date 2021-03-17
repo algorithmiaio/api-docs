@@ -591,5 +591,264 @@ curl https://api.algorithmia.com/v1/algorithms/:algorithmId/collections/:collect
 
 ### Returns
 
-
 An empty responce, otherwise an [error](#errors). Be advised that, if your algorithm already has a default dataset, the new dataset will be assigned as a default one instead.
+
+## Invoke an algorithm by UUID
+
+```shell
+curl https://api.algorithmia.com/v1/algo/:algorithmID \
+  -X POST \
+  -H 'Authorization: Simple API_KEY' \
+  -H 'Content-Type: text/plain' \
+  -d 'Neo'
+```
+
+```python
+#Invoking algorithms via UUID is not yet supported in python
+```
+
+`POST /algo/:algorithmID/[:version]`
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`algorithmID`|String|*Required*. Unique stable ID of the algorithm.|
+|`version`|String|The specific version of the algorithm you wish to invoke. The following are valid values for this parameter:<br><br>- `latestPrivate`: Resolves to the latest version you have published privately.<br>-`<Git SHA>`: Resolves to the built version of your algorithm for a specific Git SHA. Useful for testing an unpublished algorithm build.<br>- `1.1.1`: Fully specified semantic version.<br>- `1.2.*`: Specified to the minor level. Will resolve to the latest publicly published version with a minor version of 1.2<br>- `1.*`: Specified to a major version. Will resolve to the latest publicly published version with major version `1`.<br><br>Defaults to latest publicly published version of your algorithm.|
+
+### Query Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`output`|String|Determines how the algorithm's response is handled. Choose from `raw` (response is returned without a JSON wrapper) or `void` (algorithm call is made asynchronously and no output is returned).|
+|`stdout`|Boolean|Whether the `stdout` of the algorithm should be returned in the response. Only available to the owner of the algorithm (or, if the algorithm is owned by an organization, the organization's members). Defaults to `false`.|
+|`timeout`|Number|Duration, in seconds, that should pass before the invocation should timeout. Defaults to `300` (5 minutes). Maximum value is `3000` (50 minutes).|
+
+### Payload Parameters
+
+Both binary data and text may be passed as algorithm input data. To ensure your algorithm is passed the input data correctly, supply one of the following values for the `Content-Type` header when calling your algorithm (client libraries handle this automatically):
+
+|Content-Type|Description|
+|-|-|
+|`application/json`|body specifies JSON input data (UTF-8 encoded)|
+|`application/text`|body specifies text input data (UTF-8 encoded)|
+|`application/octet-stream`|body specifies binary input data (raw bytes)|
+
+<aside class="notice">
+The maximum request size for an algorithm invocation is 10MiB.
+</aside>
+
+### Returns
+
+```json
+{
+  "result": "Hello Neo",
+  "metadata": {
+    "content_type": "text",
+    "duration": 0.0002127,
+    "stdout": "Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF8"
+  }
+}
+```
+
+Depending on the configuration of the `output` query parameter, you may either receive an invocation result object or the raw output of the algorithm.
+
+#### Invocation Result Object
+
+|Attribute|Type|Description|
+|-|-|-|
+|`async`|Boolean|Specifies whether the invocation was run asynchronously, e.g. if the `output` query parameter was set to `void`.|
+|`error.message`|String|A human-readable message describing the error encountered while running the algorithm, if any.|
+|`error.stacktrace`|String|The stacktrace of the error encountered while running the algorithm, if any. Only returned if the caller has access to the algorithm's source code.|
+|`metadata.content_type`|String|One of `binary`, `json`, `text`, or `void` (if the algorithm provided no response).|
+|`metadata.duration`|Number|The duration of the algorithm invocation, in seconds.|
+|`metadata.stdout`|String|The data piped to the algorithms `stdout` stream during execution. Only provided if the `stdout` query parameter was set to `true` and the caller is the algorithm's owner.|
+|`request_id`|String|The unique ID for the invocation request.|
+|`result`|String or Object|The result of the algorithm invocation if `output` was not set to either `void` or `raw`. Returned as a string if `metadata.content_type` is set to `text`, a JSON object if `metadata.content_type` is set to `json`, or as a Base64-encoded string if `metadata.content_type` is set to `binary`.|
+
+## Get an algorithm by UUID
+
+```shell
+curl https://api.algorithmia.com/v1/algorithms/:algorithmId \
+  -H 'Authorization: Simple API_KEY'
+```
+
+```python
+# Getting algorithm info by UUID is not yet supported in Python
+```
+
+`GET /algorithms/:username/:algorithmId`
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`algorithmId`|String|*Required*. Immutable Unique identifier of the algorithm.|
+
+### Returns 
+
+```json
+{
+  "name": "my_first_algorithm",
+  "details": {
+    "label": "My First Algorithm"
+  },
+  "settings": {
+    "algorithm_callability": "private",
+    "source_visibility": "closed",
+    "language": "python3-1",
+    "environment": "cpu",
+    "license": "apl",
+    "network_access": "full",
+    "pipeline_enabled": true
+  },
+  "source": {
+    "scm": {
+      "id": "internal",
+      "provider": "internal",
+      "default": true,
+      "enabled": true
+    }
+  },
+  "resource_type": "algorithm"
+}
+```
+
+An [algorithm object](#the-algorithm-object) upon success, otherwise an [error](#errors).
+
+## Update an algorithm by UUID
+
+```shell
+curl https://api.algorithmia.com/v1/algorithms/:algorithmId \
+  -X PUT
+  -H 'Authorization: Simple API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "details": {
+      "label": "My Updated Algorithm"
+    },
+    "settings": {
+      "environment": "gpu",
+      "license": "apl",
+      "network_access": "full",
+      "pipeline_enabled": true,
+      "source_visibility": "closed"
+    }
+  }'
+```
+
+```python
+# Updating algorithm by UUID is not yet supported in python
+```
+
+`PUT /algorithms/:algorithmId`
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`algorithmId`|String|*Required*. Immutable Unique identifier of the algorithm.|
+
+### Payload Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`details.label`|String|The human-readable name for your algorithm.|
+|`details.summary`|String|A full description of your algorithm's capabilitities. HTML is accepted for rendering in the algorithm's "Docs" tab.|
+|`details.tagline`|String|A short description of your algorithm for display under the algorithm's label.|
+|`settings.environment`|String|*Required if `settings.language` is specified.* The hardware your algorithm will run on. Choose from `cpu` or `gpu`.|
+|`settings.license`|String|*Required*. The license for your algorithm's source code. Choose from [`apl`](https://algorithmia.com/api_dev_terms), [`apache2`](https://www.apache.org/licenses/LICENSE-2.0), [`gpl3`](https://www.gnu.org/licenses/gpl-3.0.en.html) or [`mit`](https://opensource.org/licenses/MIT). Select `apl` if you wish for your algorithm's source code to be closed-source.|
+|`settings.network_access`|String|*Required*. Specifies whether the algorithm will have access to the public internet upon execution. Choose from `full` or `isolated`.|
+|`settings.package_set`|String|*Required if `settings.package_set` was previously specified.* Specifies the package set that should define the algorithm's build and runtime environments.|
+|`settings.pipeline_enabled`|Boolean|*Required*. Specifies whether this algorithm is allowed to call other algorithms on the platform.|
+|`settings.source_visibility`|String|*Required*. Specifies whether the source code for this algorithm will be viewable by any user of the platform. Note that, if your algorithm's source code is hosted externally to the platform, updating this value will not result in changes to the backing repository's visibility. For example, updating this value for an algorithm will not change a GitHub repository from private to public or vice-versa.|
+
+### Returns
+
+```json
+{
+  "name": "my_algorithm",
+  "details": {
+    "label": "My Updated Algorithm"
+  },
+  "settings": {
+    "algorithm_callability": "private",
+    "source_visibility": "closed",
+    "language": "python3-1",
+    "environment": "gpu",
+    "license": "apl",
+    "network_access": "full",
+    "pipeline_enabled": true
+  },
+  "source": {
+    "scm": {
+      "id": "internal",
+      "provider": "internal",
+      "default": true,
+      "enabled": true
+    }
+  },
+  "resource_type": "algorithm"
+}
+```
+
+The updated [algorithm object](#the-algorithm-object) upon success, otherwise an [error](#errors).
+
+## Compile an algorithm by UUID
+
+```shell
+curl https://api.algorithmia.com/v1/algorithms/:algorithmId/compile \
+  -X POST
+  -H 'Authorization: Simple API_KEY'
+```
+
+```python
+# Compilation of algorithms via UUID is not yet supported in python
+```
+
+`POST /algorithms/:algorithmId/compile`
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`algorithmId`|String|*Required*. Immutable Unique identifier of the algorithm.|
+
+### Returns 
+
+```json
+{
+    "name": "Hello",
+    "details": {
+      "label": "Greeting Algorithm"
+    },
+    "settings": {
+      "algorithm_callability": "public",
+      "source_visibility": "closed",
+      "language": "python3-1",
+      "environment": "gpu",
+      "license": "apl",
+      "network_access": "full",
+      "pipeline_enabled": true
+    },
+    "version_info": {
+      "git_hash": "6d50c89cb1d9eef506f9339af0c47f384ba71258"
+    },
+    "source": {
+      "scm": {
+        "id": "internal",
+        "provider": "internal",
+        "default": true,
+        "enabled": true
+      }
+    },
+    "compilation": {
+      "successful": true,
+      "output": "Building algorithm ..."
+    },
+    "self_link": "http://api.algorithmia.com/v1/algorithms/demo/Hello/versions/6d50c72cb1d9eef507f9339af0c47f484ba71258",
+    "resource_type": "algorithm"
+}
+```
+
+An [algorithm object](#the-algorithm-object) upon successful compilation, otherwise an [error](#errors). Note that the values contained within the `compilation` object will have been updated.

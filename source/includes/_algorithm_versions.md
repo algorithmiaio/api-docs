@@ -337,3 +337,100 @@ curl https://api.algorithmia.com/v1/algorithms/:username/:algoname/versions/:git
 ```
 
 A single [algorithm object](#the-algorithm-object) representing the specific version you wished to retrieve, otherwise an [error](#errors).
+
+
+## Publish an algorithm version by algorithm UUID
+
+```shell
+curl https://api.algorithmia.com/v1/algorithms/:algorithmId/version \
+  -X POST \
+  -H 'Authorization: Simple API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "settings": {
+      "algorithm_callability": "private"
+    },
+    "version_info": {
+      "version_type": "minor",
+      "release_notes": "A few bug fixes.",
+      "sample_input": "42"
+    }
+  }'
+```
+
+```python
+# Publishing algorithm versions by algorithm UUID is not available in python client yet.
+```
+
+`POST /algorithms/:algorithmId/version`
+
+<aside class="notice">
+You may only publish the most recent compiled version of an algorithm. If the most recent compiled version has already been published, you will need to <a href="#compile-an-algorithm">recompile your algorithm</a> in order to publish a new version. 
+</aside>
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`algorithmId`|String|*Required*. Algorithm UUID to assign a collection to.|
+
+### Payload Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`settings.algorithm_callability`|String|*Required*. Whether this algorithm version will remain call-able by only the owner of the algorithm (either organization members or individual user), or whether it will be freely call-able by all Algorithmia platform users. Choose from `public` or `private`.|
+|`version_info.release_notes`|String|Describes any changes introduced by this version.|
+|`version_info.sample_input`|String|An example of a valid text input to the algorithm.|
+|`version_info.version_type`|String|*Required*. The increase in semantic version you would like to be attributable to the version. Choose from `major`, `minor`, or `patch`. Note that, depending on changes you've made recently to algorithm, you may be required to choose `minor` or `major`. Read our [algorithm versioning docs](/developers/platform/versioning) to learn more.|
+
+### Returns
+
+```json
+{
+  "build": {
+    "build_id": "j85f8087db281388d79fb224853864da73bff865",
+    "commit_sha": "j85f8087db281388d79fb224853864da73bff865",
+    "finished_at": "2019-05-07T21:16:43.121Z",
+    "resource_type": "algorithm_build",
+    "started_at": "2019-05-07T21:16:40.148Z",
+    "status": "succeeded",
+    "version_info": {
+      "semantic_version": "0.1.0"
+    }
+  },
+  "compilation": {
+    "output": "Algorithm building...",
+    "successful": true
+  },
+  "details": {
+    "label": "Greeting Algorithm"
+  },
+  "name": "Hello",
+  "resource_type": "algorithm",
+  "settings": {
+    "algorithm_callability": "public",
+    "source_visibility": "closed",
+    "language": "python3-1",
+    "environment": "gpu",
+    "license": "apl",
+    "network_access": "full",
+    "pipeline_enabled": true
+  },
+  "source": {
+    "scm": {
+      "id": "internal",
+      "provider": "internal",
+      "default": true,
+      "enabled": true
+    }
+  },
+  "version_info": {
+    "git_hash": "j85f8087db281388d79fb224853864da73bff865",
+    "release_notes": "A few bug fixes",
+    "sample_input": "testing",
+    "semantic_version": "0.1.0"
+  }
+}
+```
+
+Returns an [algorithm object](#the-algorithm-object) representing the published version, with its `version_info.semantic_version` property having been incremented appropriately from the previous published version (if any). If the request was unsuccessful, and [error](#errors) will be returned.

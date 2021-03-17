@@ -237,3 +237,117 @@ In order to interact with this endpoint you must provide an admin API key. Visit
 ### Returns
 
 An empty response upon success, otherwise an [error](#errors).
+
+## Get a user by UUID
+
+```shell
+curl https://api.algorithmia.com/v1/users/:userId \
+  -H 'Authorization: Simple ADMIN_API_KEY'
+```
+
+```python
+# Retrieving a user is not yet supported by our Python client library.
+```
+
+`GET /users/:username`
+
+### Authorization
+
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`userId`|String|*Required*. Unique immutable Id of the users.|
+
+### Returns
+
+A single [user object](#the-user-object) upon success, otherwise an [error](#errors).
+
+## Update a user by UUID
+
+```shell
+curl https://api.algorithmia.com/v1/users/:userId \
+  -X PUT \
+  -H 'Authorization: Simple ADMIN_API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "company_name": "Algorithmia",
+    "company_role": "Example User",
+    "email": "example@example.com",
+    "fullname": "Example User",
+    "username": "example_user"
+  }'
+```
+
+```python
+# Updating a user is not yet supported by our Python client library.
+```
+
+`PUT /users/:userId`
+
+### Authorization
+
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`userId`|String|*Required*. Unique immutable Id of the users.|
+
+### Payload Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`company_name`|String|The name of the user's employer.|
+|`company_role`|String|The user's occupation.|
+|`email`|String|*Required*. The user's email address. If no change desired, supply the previous value of user's `email` property.|
+|`fullname`|String|*Required*. The user's full name. If no change desired, supply the previous value of user's `fullname` property.|
+|`username`|String|*Required*. The user's unique identifier for this user. Must be supplied, but cannot be used to change a user's username.|
+
+### Returns
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426655440000",
+  "company_name": "Algorithmia",
+  "company_role": "Example User",
+  "email": "me@example.com",
+  "fullname": "Example User",
+  "resource_type": "user",
+  "self_link": "https://api.algorithmia.com/v1/users/example_user",
+  "username": "example_user"
+}
+```
+
+The updated [user object](#the-user-object) if a valid user payload was provided, otherwise an [error](#errors).
+
+## Delete a user by UUID
+
+```shell
+curl https://api.algorithmia.com/v1/users/:userId \
+  -X DELETE \
+  -H 'Authorization: Simple ADMIN_API_KEY'
+```
+
+```python
+# Deleting a user is not yet supported by our Python client library.
+```
+
+`DELETE /users/:userId`
+
+### Authorization
+
+In order to interact with this endpoint you must provide an admin API key. Visit [our documentation](/developers/platform/customizing-api-keys#admin-api-keys) to learn more.
+
+### Path Parameters
+
+|Parameter|Type|Description|
+|-|-|-|
+|`userId`|String|*Required*. Unique immutable Id of the users.|
+
+### Returns
+
+An empty response upon success, otherwise an [error](#errors).
