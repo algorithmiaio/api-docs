@@ -139,6 +139,9 @@ client = Algorithmia.client('API_KEY')
 # Download file and get the file handle
 exampleFile = client.file("data://demo/example_collection/example.png").getFile()
 
+# Download file and get the full path (location + file name) on disk
+exampleFile = client.file("data://demo/example_collection/example.png").getFile().name
+
 # Get file's contents as a string
 exampleText = client.file("data://demo/example_collection/example.txt").getString()
 
