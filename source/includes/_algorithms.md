@@ -102,6 +102,7 @@
 
 ```shell
 curl https://api.algorithmia.com/v1/algorithms/:username \
+  -X POST \
   -H 'Authorization: Simple API_KEY' \
   -H 'Content-Type: application/json' \
   -d '{
